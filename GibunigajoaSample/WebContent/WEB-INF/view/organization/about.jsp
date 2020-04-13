@@ -1,0 +1,200 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <title>Home Builder - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+  </head>
+  <body>
+ 
+  
+    <!-- END nav -->
+
+      
+   	
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+    	<div class="container">
+    		<div class="row d-flex no-gutters">
+    			<div class="col-md-6 d-flex">
+    				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image:url(${pageContext.request.contextPath}/resources/images/about.jpg);">
+    				 
+    				</div>
+    			</div>
+    			<div class="col-md-6 pl-md-5">
+    				<div class="row justify-content-start py-5">
+		          <div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
+		          	  
+		            <h2 class="mb-4">${rep_list.response.body.items.item.nanmmbyNm}</h2>
+		            <p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p> 
+		            <div class="tabulation-2 mt-4">
+									 
+									<div class="tab-content bg-light rounded mt-2">
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●대표자명:${rep_list.response.body.items.item.rprsntvNm}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●설립일:${rep_list.response.body.items.item.fondDe}</p>
+									  </div>
+									   <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●사업자번호:${rep_list.response.body.items.item.bizrno}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●전화번호:${rep_list.response.body.items.item.dmstcTelno}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●팩스번호:${rep_list.response.body.items.item.fxnum}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●주소:${rep_list.response.body.items.item.adres}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●홈페이지:<a href="${rep_list.response.body.items.item.hmpgAdres}">${rep_list.response.body.items.item.hmpgAdres}</a></p>
+									  </div>
+									</div>
+								</div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+    
+    
+
+    <section class="ftco-section testimony-section bg-primary">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          	<span class="subheading">Testimonial</span>
+            <h2 class="mb-4">모집 프로그램</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate"> 
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(${pageContext.request.contextPath}/resources/images/person_1.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(${pageContext.request.contextPath}/resources/images/person_2.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(${pageContext.request.contextPath}/resources/person_3.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(${pageContext.request.contextPath}/resources/images/person_1.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(${pageContext.request.contextPath}/resources/images/person_2.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div> 
+        </div>
+      </div>
+    </section>
+
+ 
+
+ 
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+  <script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
+  <script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+<!--definition: 하나하나 정의하는것  -->
+	<!--Super()  -->
+	<definition name="base_layout" template="/WEB-INF/view/template/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/view/template/footer.jsp"/>
+	</definition>
+	<definition name="main" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/gibuniga/main.jsp"/>
+	</definition>
+	<definition name="signUpIndividual" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/gibuniga/signUpIndividual.jsp"/>
+	</definition>
+	<definition name="signUpGroup" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/gibuniga/signUpGroup.jsp"/>
+	</definition>
+	<definition name="loginForm" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/gibuniga/loginForm.jsp"/>
+	</definition>
+	
+	
+	<!--LDK -->
+	<definition name="adminProgramList" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/admin/programList.jsp"/>
+	</definition>
+	<definition name="showProgramContent" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/admin/showProgramContent.jsp"/>
+	</definition>
+	<definition name="registerProgram" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/contributionProgram/registerProgram.jsp"/>
+	</definition>
+	<definition name="requestProgramDetail" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/contributionProgram/requestProgramDetail.jsp"/>
+	</definition>
+	<definition name="requestProgramList" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/contributionProgram/requestProgramList.jsp"/>
+	</definition>
+	<definition name="updateForm" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/contributionProgram/updateForm.jsp"/>
+	</definition>
+	<definition name="programList" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/contributionProgram/programList.jsp"/>
+	</definition>
+	
+	<!-- NSB -->
+	<definition name="mypage" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/mypage/mypage.jsp"/>
+	</definition>
+	<definition name="qANDa" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/mypage/qANDa.jsp"/>
+	</definition>
+	
+	
+	<!-- KMS -->
+	<definition name="about" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/organization/about.jsp"/>
+	</definition>
+	<definition name="board" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/organization/board.jsp"/>
+	</definition>
+	<definition name="response" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/organization/response.jsp"/>
+	</definition>
+</tiles-definitions>

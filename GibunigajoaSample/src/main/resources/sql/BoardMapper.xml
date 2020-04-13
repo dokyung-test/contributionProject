@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project">
+
+	<insert id="insertContribution">
+		insert into
+		contribution_history(user_idx,organization_name,program_name,date,subscription_type,contribution,note,register_type_flg)
+		values(#{user_idx},#{organization_name},#{program_name},#{date},#{subscription_type},#{contribution},#{note},#{register_type_flg})
+	</insert>
+
+	<insert id="insertQandA">
+		insert into
+		question_boards(user_idx,subject,content,register_date)
+		values(#{user_idx},#{subject},#{content},now())
+	</insert>
+
+	<select id="ContributionList"
+		resultType="contribution.model.ContributionDto">
+		select * from contribution_history
+	</select>
+
+	<select id="QandAList" resultType="contribution.model.QandADto">
+		select * from question_boards
+	</select>
+
+	<select id="ContributionContent"
+		resultType="contribution.model.ContributionDto">
+		select
+		* from contribution_history where
+		contribution_history_idx=#{contribution_history_idx}
+	</select>
+
+	<select id="QandAContent" resultType="contribution.model.QandADto">
+		select
+		status_id,subject,content,answer,register_date
+		from question_boards
+		where
+		board_idx=#{board_idx}
+	</select>
+
+	<delete id="delete">
+		delete from contribution_history where
+		contribution_history_idx=#{contribution_history_idx}
+	</delete>
+
+	<update id="update">
+		update contribution_history set
+		organization_name=#{organization_name},program_name=#{program_name},date=#{date}
+		,subscription_type=#{subscription_type},contribution=#{contribution},note=#{note}
+		where contribution_history_idx=#{contribution_history_idx}
+	</update>
+
+
+
+</mapper>
