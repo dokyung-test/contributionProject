@@ -9,7 +9,7 @@
 <c:redirect url="gibuniga/main.do"></c:redirect>
  -->
 <a href="main.do">main</a> 
-<a href="contributionProgram/registerForm.do">프로그램등록</a>
+<a href="contributionProgram/registerForm.do">프로그램등록1111</a>
 <a href="admin/programList.do">admin</a>
  </body>
 </html>
