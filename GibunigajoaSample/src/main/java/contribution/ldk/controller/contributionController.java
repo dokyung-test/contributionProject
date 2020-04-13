@@ -34,6 +34,9 @@ public class contributionController {
 
 	public void setService(programService service) {
 		this.service = service;
+		
+		
+		
 	}
 
 	// 클래스에 들어올때마다 호출 ->언제나 필요한 경우 아니면 붙이지말자.
