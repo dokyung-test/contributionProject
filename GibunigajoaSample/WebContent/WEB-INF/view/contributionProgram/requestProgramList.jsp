@@ -24,27 +24,31 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 	
-
 	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/animate/animate.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/select2/select2.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/util2.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main2.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor_dk/animate/animate.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor_dk/select2/select2.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor_dk/perfect-scrollbar/perfect-scrollbar.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 	<!--===============================================================================================-->
 
 
 </head>
 <body>
+<br>
 
+	        
+	        
+	<div class="limiter">
+		<div class="container-table100">
+		
+			
 				<div class="table100 ver2 m-b-110">
+				<div class="button-group-area mt-40" style = "text-align : right">
+				<a href="#" class="genric-btn success radius">프로그램 신청</a>
+			</div>
+				<div class="wrap-table100">
+				
 					<div class="table100-head">
 						<table>
 							<thead>
@@ -61,7 +65,6 @@
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
-							
 								<c:if test="${!empty programLists}">
 									<c:forEach var = "requestProgram" items="${programLists}">
 										<tr class="row100 body">
@@ -79,13 +82,15 @@
 									<td rowspan="4">신청한 프로그램이 없습니다.</td>
 								</tr>
 								</c:if>
-								
-
-
 							</tbody>
 						</table>
 					</div>
 				</div>
+
+			</div>
+		</div>
+	</div>
+
 				
 
 
@@ -109,6 +114,23 @@
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/main2.js"/>"></script> 
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
+  <script src="<c:url value="/resources/vendor_dk/bootstrap/js/popper.js"/>"></script>
+<script src="<c:url value="/resources/vendor_dk/bootstrap/js/bootstrap.min.js"/>"></script>
+<!--===============================================================================================-->
+	<script src="<c:url value="/resources/vendor_dk/select2/select2.min.js"/>"></script>
+<!--===============================================================================================-->
+	<script src="<c:url value="/resources/vendor_dk/perfect-scrollbar/perfect-scrollbar.min.js"/>"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
     
 
 </body>
