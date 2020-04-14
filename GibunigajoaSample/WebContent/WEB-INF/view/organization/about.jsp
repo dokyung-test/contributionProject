@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en"> 
   <head>
@@ -81,16 +82,41 @@
     
 
     <section class="ftco-section testimony-section bg-primary">
-      <div class="container">
+    <c:if test="${R==1}">
+       <div class="container">
+     
         <div class="row justify-content-center mb-5">
+        
+          <div class="col-md-8 text-center heading-section heading-section-white ftco-animate">
+          
+            <h2 class="mb-4">모집중인 프로그램이 없습니다</h2> 
+          </div>  
+        </div>
+    </div>
+    
+    </c:if>
+    
+   <c:if test="${R==0}">
+      <div class="container">
+     
+        <div class="row justify-content-center mb-5">
+        
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
           	<span class="subheading">Testimonial</span>
             <h2 class="mb-4">모집 프로그램</h2>
           </div>
         </div>
+        
         <div class="row ftco-animate"> 
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
+         
+            
+            
+            
+            
+            
+           
               <div class="item">
                 <div class="testimony-wrap py-4">
                 	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
@@ -166,10 +192,13 @@
                   </div>
                 </div>
               </div>  
+             
             </div>
-          </div> 
+          </div>  
         </div>
+     
       </div>
+         </c:if>
     </section>
 
  
