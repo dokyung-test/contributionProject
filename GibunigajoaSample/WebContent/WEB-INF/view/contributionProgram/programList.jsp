@@ -24,8 +24,224 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 </head>
 <body>
+<!-- 아이콘 -->
 
-<table border = "1">
+<section class="testimony-section bg-mainicon">
+      <div class="container">
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+           <div class="carousel-testimony owl-carousel ftco-owl">
+           
+           <table style="width: 100%;">
+           <tr>
+           	<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-old"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">노인</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-wheelchair"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">장애인</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           </tr>
+           </table>
+           <table style="width: 100%;">
+           	<tr>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-multicultural"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">다문화</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-family"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">가족</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           	</tr>
+           </table>
+           <table style="width: 100%;">
+           	<tr>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-earth"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">지구촌</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-eco"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">환경</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           	</tr>
+           	</table>
+           	<table style="width: 100%;">
+           	<tr>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-animal"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">동물</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-ect"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">기타</h3>
+								</div>
+							</div>
+						</div>
+					</a>	 
+           		</td>
+           	</tr>
+           </table>
+   			<table style="width: 100%;">
+           	<tr>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-all"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">전체</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		<td>
+           		<a href="#">
+						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
+							<div class="media block-6 d-block text-center pt-md-4">
+								<div
+									class="icon d-flex justify-content-center align-items-center">
+									<span class="flaticon-children"></span>
+								</div>
+								<div class="media-body p-2 mt-3">
+									<h3 class="heading">청소년</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+           		</td>
+           		
+           	</tr>
+           </table>
+                        
+           </div>
+          </div>
+        </div>
+      </div>
+ </section>
+ 
+ 	<!--마감임박 모집프로그램 -->
+    <section class="ftco-section">
+      <div class="container">
+
+        <div class="row d-flex">
+        
+        
+        <c:forEach var = "program" items="${programList}">
+         <!-- 프로그램당 반복구간-->
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
+              </a>
+              <div class="text mt-3 text-center">
+              	<div class="meta mb-2">
+                  <div><a href="#">${program.program_subject}</a></div>
+                </div>
+                <h3 class="heading"><a href="#">${program.summary}</a></h3>
+              </div>
+            </div>
+          </div>
+ 		<!-- 프로그램당 반복구간-->
+        </c:forEach>
+        
+        
+       
+        </div>
+      </div>
+    </section>
+    
+    
+<%-- <table border = "1">
 	<tr>
 		<th>프로그램제목</th>
 		<th>시작일자</th>
@@ -38,12 +254,7 @@
 		<c:forEach var = "requestProgram" items="${programList}">
 			<tr>
 				<td><a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=${requestProgram.organization_id}">${requestProgram.program_subject}</a></td>
-				<td><fmt:formatDate value="${requestProgram.start_date}" pattern = "yyyy-MM-dd"/></td>
-				<td><fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/></td>
-				<td>
-					<c:if test="${requestProgram.approval_flg == 0}">미승인</c:if>
-					<c:if test="${requestProgram.approval_flg == 1}">승인</c:if>
-				</td>
+
 			</tr>
 		</c:forEach>
 	</c:if>
@@ -52,7 +263,7 @@
 		<td rowspan="4">신청한 프로그램이 없습니다.</td>
 	</tr>
 	</c:if>
-</table>
+</table> --%>
 
 
 <!-- loader -->

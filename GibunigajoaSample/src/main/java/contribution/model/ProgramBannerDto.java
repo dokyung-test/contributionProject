@@ -6,6 +6,7 @@ public class ProgramBannerDto {
 	int program_id;
 	String program_subject;
 	String summary;
+	String banner_file_name;
 	
 	
 	public String getOrganization_id() {
@@ -32,6 +33,21 @@ public class ProgramBannerDto {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
+	
+	public String getBanner_file_name() {
+		return banner_file_name;
+	}
+	public void setBanner_file_name(String banner_file_name) {
+		this.banner_file_name = banner_file_name;
+	}
+	
+	@Override
+	public String toString() {
+		return "ProgramBannerDto [organization_id=" + organization_id + ", program_id=" + program_id
+				+ ", program_subject=" + program_subject + ", summary=" + summary + ", banner_file_name="
+				+ banner_file_name + "]";
+	}
+
 	
 	
 }
