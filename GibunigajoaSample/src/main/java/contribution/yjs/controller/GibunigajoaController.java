@@ -104,7 +104,7 @@ public class GibunigajoaController {
 	        }
 	        
 	        	UserCommand command2 = gibunigajoaService.kakaoNaverloginCheck(email);
-	        
+	        	System.out.println("command2: "+command2);
 	        	session.setAttribute("user_idx", command2.getUser_idx());	
 	        	session.setAttribute("user_id", command2.getUser_id());	
 	        	session.setAttribute("nickname", command2.getNickname());	
@@ -114,7 +114,7 @@ public class GibunigajoaController {
 
 		    //4.파싱 닉네임 세션으로 저장
 	        //session.setAttribute("sessionId",nickname); //세션 생성
-	        //model.addAttribute("result", apiResult);
+	        model.addAttribute("result", apiResult);
 	        return "main";
 	    }
 	
