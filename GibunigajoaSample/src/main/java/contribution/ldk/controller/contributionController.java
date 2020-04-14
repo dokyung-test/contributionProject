@@ -207,14 +207,13 @@ public class contributionController {
 		 */
 	
 	@RequestMapping(value = "/programList.do", method = RequestMethod.GET)
-	public ModelAndView selectProgramList(int type_id) {
+	public ModelAndView selectProgramList(int type) {
 		ModelAndView mav = new ModelAndView("programList");
-		if(type_id == 0) {
+		if(type == 0) {
 			mav.addObject("programList", service.getAllProgramList());
 		}else {
-			mav.addObject("programList", service.getTypeProgramList(type_id));
+			mav.addObject("programList", service.getTypeProgramList(type));
 		}
-		mav.addObject("programList", service.selectAllProgramList());
 		return mav;
 	}
 	

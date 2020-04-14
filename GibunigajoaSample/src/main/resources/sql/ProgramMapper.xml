@@ -78,12 +78,12 @@
 	
 	<!-- 개인회원용 모집프로그램리스트 - 승인받은 전체프로그램-->
 	<select id="getAllProgramList" resultType="contribution.model.ProgramBannerDto">
-		select organization_id, program_id, program_subject, summary from programs where approval_flg = 1
+		select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1
 	</select>
 	
 	<!-- 개인회원용 모집프로그램리스트 - 승인받은 분야별프로그램-->
 	<select id="getTypeProgramList" resultType="contribution.model.ProgramBannerDto" parameterType="int">
-		select organization_id, program_id, program_subject, summary from programs where approval_flg = 1 AND type_id = #{type_id}
+		select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1 AND type_id = #{type_id}
 	</select>
 	
 	
