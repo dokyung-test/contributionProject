@@ -50,10 +50,17 @@ public class ResponseController {
 	public String getResponse(Model model, @RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "") String search, HttpSession session, String organization_id) {
         
+		if(session.getAttribute("user_idx") != null) {
+		
+		int	x = 1;
 		int idx = (Integer)session.getAttribute("user_idx");
 		
 		List<BookmarkDto> bookmarkList = dao.selectBookmarkDto(idx); 
 		
+		model.addAttribute("bookmarkId", bookmarkList);
+		
+		model.addAttribute("R2",x);
+		}
 		
 		ResponseCount responsecount = resTemplate.getForObject(url + serviceKey + keyword + search,
 				ResponseCount.class);
@@ -81,7 +88,7 @@ public class ResponseController {
 	
 		
 		
-		model.addAttribute("bookmarkId", bookmarkList);
+	
 
 		model.addAttribute("search", search);
 

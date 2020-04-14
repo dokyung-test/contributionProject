@@ -48,4 +48,7 @@
 	
 	<bean p:sqlSessionFactory-ref="sqlSessionFactory" class="contribution.model.BookmarkDao" id="bookmarkDao"/>
 
+	<bean id = "programBannerDao" class= "contribution.model.ProgramBannerDao">
+		<property name="sqlSessionFactory" ref = "sqlSessionFactory"/>
+	</bean>
 </beans>

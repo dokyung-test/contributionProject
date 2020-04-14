@@ -198,12 +198,26 @@ public class contributionController {
 	}
 	
 	
+	//기부단체, admin도 사용하던 리스트
+		/*
+		 * @RequestMapping(value = "/programList.do", method = RequestMethod.GET) public
+		 * ModelAndView selectProgramList() { ModelAndView mav = new
+		 * ModelAndView("programList"); mav.addObject("programList",
+		 * service.selectAllProgramList()); return mav; }
+		 */
+	
 	@RequestMapping(value = "/programList.do", method = RequestMethod.GET)
-	public ModelAndView selectProgramList() {
+	public ModelAndView selectProgramList(int type) {
 		ModelAndView mav = new ModelAndView("programList");
-		mav.addObject("programList", service.selectAllProgramList());
+		if(type == 0) {
+			mav.addObject("programList", service.getAllProgramList());
+		}else {
+			mav.addObject("programList", service.getTypeProgramList(type));
+		}
 		return mav;
 	}
+	
+	
 	
 	
 }
