@@ -92,7 +92,7 @@
            <table style="width: 100%;">
            <tr>
            	<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=2" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -107,7 +107,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=3">
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -126,7 +126,7 @@
            <table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=4" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -141,7 +141,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=6" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -160,7 +160,7 @@
            <table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=5" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -175,7 +175,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=8" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -194,7 +194,7 @@
            	<table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=7" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -209,7 +209,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=9" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -228,7 +228,7 @@
    			<table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=0" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -243,7 +243,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=1" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div

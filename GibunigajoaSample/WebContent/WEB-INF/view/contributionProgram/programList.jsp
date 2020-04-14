@@ -35,7 +35,7 @@
            <table style="width: 100%;">
            <tr>
            	<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=2" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -50,7 +50,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=3">
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -69,7 +69,7 @@
            <table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=4" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -84,7 +84,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=6" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -103,7 +103,7 @@
            <table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=5" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -118,7 +118,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=8" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -137,7 +137,7 @@
            	<table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=7" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -152,7 +152,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=9" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -171,7 +171,7 @@
    			<table style="width: 100%;">
            	<tr>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=0" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -186,7 +186,7 @@
 					</a>
            		</td>
            		<td>
-           		<a href="#">
+           		<a href="${pageContext.request.contextPath}/programList.do?type=1" >
 						<div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
 							<div class="media block-6 d-block text-center pt-md-4">
 								<div
@@ -220,14 +220,14 @@
         <c:forEach var = "program" items="${programList}">
          <!-- 프로그램당 반복구간-->
           <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
+           <div class="blog-entry align-self-stretch">
+              <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/${program.banner_file_name});" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}">
               </a>
               <div class="text mt-3 text-center">
               	<div class="meta mb-2">
-                  <div><a href="#">${program.program_subject}</a></div>
+                  <div><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}">${program.program_subject}</a></div>
                 </div>
-                <h3 class="heading"><a href="#">${program.summary}</a></h3>
+                <h3 class="heading"><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}">${program.summary}</a></h3>
               </div>
             </div>
           </div>
