@@ -77,31 +77,31 @@
 
 
 <!-- 금액 / 퍼센트 -->
-    <section class="ftco-counter" id="section-counter">
-    	<div class="container">
-				<div class="row">
+    <section class="ftco-counter" id="section-counter" >
+    	<div class="container" >
+				<div class="row" >
           <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18 d-flex">
               <div class="text-2">
-              	<span>모집금액</span>
+              	<span style = "width : 100px">모집금액</span>
               </div>
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="${totalAmount }"></strong>
+                <strong class="number" data-number="1523000">0</strong>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18 d-flex">
               <div class="text-2">
-              	<span>목표금액</span>
+              	<span style = "width : 200px; padding-left : 100px">목표금액</span>
               </div>
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="${requestProgram.target_amount }"></strong>
+                <strong class="number" data-number="${requestProgram.target_amount }">0</strong>
               </div>
               
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+           <!-- <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18 d-flex">
               <div class="text d-flex align-items-center">
                 <strong class="number" data-number="378">0</strong>
@@ -110,8 +110,8 @@
               	<span>Professional <br>Expert</span>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+          </div> -->
+          <!--<div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18 d-flex">
               <div class="text d-flex align-items-center">
                 <strong class="number" data-number="1200">0</strong>
@@ -120,7 +120,7 @@
               	<span>Machineries <br>Equipments</span>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
     	</div>
     </section>
