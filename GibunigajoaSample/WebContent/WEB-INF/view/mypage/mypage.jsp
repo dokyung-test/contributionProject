@@ -2,36 +2,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="true" %>
-<%@ page isELIgnored="false" %>
+<%@ page session="true"%>
+<%@ page isELIgnored="false"%>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
-    <link href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">  
-    <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
 <link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/animate.css"/>">
+<link
+	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/magnific-popup.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/ionicons.min.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/flaticon.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/icomoon.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+
+<link
+	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet"
@@ -40,17 +59,28 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
@@ -135,6 +165,7 @@
 												var note = args.note;
 												var date1 = new Date(date);
 
+
 												var month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) : date1.getMonth() + 1;
 												var date2 = date1.getDate() < 10? '0'+date1.getDate(): date1.getDate();
 												 var text_date = date1.getFullYear()
@@ -148,12 +179,21 @@
 
                                                 var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);
 												
+
+                                                var month1 = (date1.getMonth() + 1) < 10 ? '0' +(date1.getMonth() + 1) : (date1.getMonth() + 1);
+                                                var date2 =  date1.getDate() <10 ? '0' +date1.getDate() : date1.getDate();												
+
  												var text_date = date1
 														.getFullYear()
 														+ "-"
 														+ month1
 														+ "-"
+
 														+ date1.getDate() + "일"; 
+
+
+														+ date2; 
+										
 
 												$("#organization_name2")
 														.append(
@@ -189,6 +229,12 @@
             close();
               }
 		}
+
+    function inNumber(){
+        if(event.keyCode<48 || event.keyCode>57){
+           event.returnValue=false;
+        }
+    }
 
 	function closeModal() {
 		$('.searchModal').hide();
@@ -284,13 +330,15 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:set var="total" value="0" />
 									<c:forEach var="list" items="${list}">
 										<tr>
 											<td style="font-size: 15px">${list.organization_name}</td>
 											<td style="font-size: 15px"><p id="content"
 													title="${list.contribution_history_idx}">
 													${list.program_name}</p></td>
-											<td style="font-size: 15px">${list.contribution}원</td>
+											<td style="font-size: 15px"><fmt:formatNumber
+													value="${list.contribution}" pattern="#,###원" /></td>
 											<td style="font-size: 15px"><fmt:formatDate
 													value="${list.date}" pattern="yyyy년 MM월 dd일" /></td>
 											<td style="font-size: 15px">${list.subscription_type}</td>
@@ -298,11 +346,21 @@
 												title="${list.contribution_history_idx}" class="update"
 												style="color: blue">수정 / </a> <a href="#"
 												onclick="deletelist(${list.contribution_history_idx})"
-												style="color: blue">삭제</a>
+												style="color: blue">삭제</a> <c:set var="total"
+													value="${total + list.contribution}" />
 										</tr>
 									</c:forEach>
 								</tbody>
+								<tfoot>
+									<tr align="right">
+										<th style="font-size: 20px" colspan="6">${nickname}님의 총
+											기부액은 <fmt:formatNumber value="${total}" pattern="#,###원" />
+											원 입니다.
+										</th>
+									</tr>
+								</tfoot>
 							</table>
+
 						</div>
 					</div>
 				</div>
@@ -340,9 +398,10 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎기부 금액</label>
-												<input type="text" class="form-control" name="contribution"
-													placeholder="기부금액">
+												<label class="label" style="font-size: 20px">◎기부
+													금액(숫자만)</label> <input type="text" class="form-control"
+													name="contribution" placeholder="기부금액"
+													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -367,7 +426,8 @@
 											<div class="form-group">
 												<label class="label" style="font-size: 20px">◎비고</label>
 												<textarea name="note" class="form-control" id="message"
-													cols="30" rows="4" placeholder="메모할 내용을 적으세요." style="resize: none;"></textarea>
+													cols="30" rows="4" placeholder="메모할 내용을 적으세요."
+													style="resize: none;"></textarea>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -533,8 +593,8 @@
 		</div>
 		<!-- 기부내역 수정 끝 -->
 
-		</div>
-		<!-- End of Content Wrapper -->
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -545,46 +605,63 @@
 	</a> -->
 
 
-<!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+	</div>
 
- <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.waypoints.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="<c:url value="/resources/js/google-map.js"/>"></script>
-  <script src="<c:url value="/resources/js/main.js"/>"></script>
-  <script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/popper.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.waypoints.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
+	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/vendor/datatables/check.js?v=1"></script>
-		<script
+	<script
 		src="${pageContext.request.contextPath}/resources/vendor/datatables/check3.js?v=1"></script>
 	<!-- Page level custom scripts -->
-	<script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 
 </body>
 
