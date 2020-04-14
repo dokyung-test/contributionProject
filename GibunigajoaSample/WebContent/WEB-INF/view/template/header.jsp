@@ -54,7 +54,8 @@
 	        		<ul class="submenu">
 	        			<li><a href="${pageContext.request.contextPath}/mypage.do">기부이력목록조회</a></li>
 	        			<li><a href="${pageContext.request.contextPath}/qANDa.do">Q&A</a></li>
-	        			<li><a href="${pageContext.request.contextPath}/updateUser.do">회원정보수정</a></li>
+	        			<li><a href="${pageContext.request.contextPath}/updateUserForm.do">회원정보수정</a></li>
+	        			<li><a href="${pageContext.request.contextPath}/bookmark1.do">기부단체 즐겨찾기 목록</a></li>
 	        		</ul>
 	        	</li>
 	        	<li class="nav-item" id="customerpage"><a href="javascript:void(0);" class="nav-link">고객센터</a>
