@@ -5,7 +5,7 @@
 
 <html lang="en">
 <head>
-<title>Home Builder - Free Bootstrap 4 Template by Colorlib</title>
+<title>기부단체 목록</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,7 +63,7 @@
 			<div class="row no-gutters slider-text align-items-end">
 				<div class="col-md-9 ftco-animate pb-5">
 					<p class="breadcrumbs mb-2">
-						<span class="mr-2"><a href="index.html">Home</a> <a
+						<span class="mr-2"><a href="main.do">Home</a> <a
 							href="response.do">
 								<h1 class="mb-0 bread">기부단체</h1>
 						</a>
@@ -112,8 +112,8 @@
 
 						<div class="col-md-4 d-flex ftco-animate">
 							<div class="blog-entry align-self-stretch">
-								<a href="blog-single.html" class="block-20 rounded"
-									style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
+								<a href="board.do?nanmmbyId=${item.nanmmbyId}" class="block-20 rounded"
+									style="background-image: url('${pageContext.request.contextPath}/resources/images/image_${status.count}.jpg');">
 								</a>
 
 								<div class="text mt-3 text-center">
