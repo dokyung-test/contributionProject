@@ -134,12 +134,15 @@
 												var subscription_type = args.subscription_type;
 												var note = args.note;
 												var date1 = new Date(date);
-												var text_date = date1
+
+                                                var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);
+												
+/* 												var text_date = date1
 														.getFullYear()
 														+ "년  "
 														+ (date1.getMonth() + 1)
 														+ "월 "
-														+ date1.getDate() + "일";
+														+ date1.getDate() + "일"; */
 
 												
 												$("#organization_name2")
