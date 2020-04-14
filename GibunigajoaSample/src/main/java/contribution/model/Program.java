@@ -27,8 +27,17 @@ public class Program {
 	String representative;
 	int approval_flg;
 	String banner_file_name;
+	String usage_plan;
 	
 	
+	
+	
+	public String getUsage_plan() {
+		return usage_plan;
+	}
+	public void setUsage_plan(String usage_plan) {
+		this.usage_plan = usage_plan;
+	}
 	public String getBanner_file_name() {
 		return banner_file_name;
 	}

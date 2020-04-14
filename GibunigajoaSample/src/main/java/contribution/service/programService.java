@@ -157,4 +157,9 @@ public class programService {
 		return programBannerDao.getAllProgramList();
 	}
 	
+	//프로그램 전체 이미지 습득
+	public List<String> getAllImages(int program_id, String organization_id){
+		return programDao.getAllImages(makeMap(program_id, organization_id));
+	}
+	
 }

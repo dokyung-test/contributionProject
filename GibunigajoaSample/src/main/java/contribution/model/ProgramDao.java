@@ -58,5 +58,10 @@ public class ProgramDao extends SqlSessionDaoSupport{
 		return getSqlSession().update("program.updateProgramReadcount", programSearchKeyword);
 	}
 	
+	//프로그램 전체 이미지 습득
+	public List<String> getAllImages(Map<String, Object> programSearchKeyword){
+		return getSqlSession().selectList("program.selectProgramImages", programSearchKeyword);
+	}
+	
 	
 }

@@ -19,7 +19,7 @@
 	</select>
 	
 	<insert id="insertProgram" parameterType="contribution.model.Program">
-		insert into programs(organization_id, program_id, program_subject, type_id, start_date, end_date, target_amount, purpose, summary, content, organization_url, bank_name, account, corporate_registration_number, zip, address, address_detail, phone_number, representative) values (#{organization_id}, #{program_id}, #{program_subject}, #{type_id}, #{start_date}, #{end_date}, #{target_amount}, #{purpose}, #{summary}, #{content}, #{organization_url}, #{bank_name}, #{account}, #{corporate_registration_number}, #{zip}, #{address}, #{address_detail}, #{phone_number}, #{representative})
+		insert into programs(organization_id, program_id, program_subject, type_id, start_date, end_date, target_amount, purpose, summary, content, organization_url, bank_name, account, corporate_registration_number, zip, address, address_detail, phone_number, representative, usage_plan) values (#{organization_id}, #{program_id}, #{program_subject}, #{type_id}, #{start_date}, #{end_date}, #{target_amount}, #{purpose}, #{summary}, #{content}, #{organization_url}, #{bank_name}, #{account}, #{corporate_registration_number}, #{zip}, #{address}, #{address_detail}, #{phone_number}, #{representative}, #{usage_plan})
 	</insert>
 	
 	<!-- 메인, 프로그램리스트에서 분야별로 검색 -->
@@ -33,8 +33,8 @@
 	</select>
 	
 	<!-- 프로그램의 모든 이미지 -->
-	<select id = "selectProgramImages" parameterType = "map" resultType = "contribution.model.ProgramImage">
-		select * from program_images where program_id = #{program_id} and organization_id = #{organization_id}
+	<select id = "selectProgramImages" parameterType = "map" resultType = "String">
+		select stored_file_name from program_images where program_id = #{program_id} and organization_id = #{organization_id}
 	</select>
 	
 	<!-- 프로그램수정 -->
