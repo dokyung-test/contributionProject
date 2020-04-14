@@ -75,4 +75,16 @@
 	<update id="updateProgramReadcount" parameterType="map">
 		update programs set readcount = readcount+1 where organization_id = #{organization_id} and program_id = #{program_id}
 	</update>
+	
+	<!-- 개인회원용 모집프로그램리스트 - 승인받은 전체프로그램-->
+	<select id="getAllProgramList" resultType="contribution.model.ProgramBannerDto">
+		select organization_id, program_id, program_subject, summary from programs where approval_flg = 1
+	</select>
+	
+	<!-- 개인회원용 모집프로그램리스트 - 승인받은 분야별프로그램-->
+	<select id="getTypeProgramList" resultType="contribution.model.ProgramBannerDto" parameterType="int">
+		select organization_id, program_id, program_subject, summary from programs where approval_flg = 1 AND type_id = #{type_id}
+	</select>
+	
+	
 </mapper>

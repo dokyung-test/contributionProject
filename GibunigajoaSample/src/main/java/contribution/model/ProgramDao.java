@@ -57,4 +57,6 @@ public class ProgramDao extends SqlSessionDaoSupport{
 	public int updateReadcount(Map<String, Object> programSearchKeyword) {
 		return getSqlSession().update("program.updateProgramReadcount", programSearchKeyword);
 	}
+	
+	
 }
