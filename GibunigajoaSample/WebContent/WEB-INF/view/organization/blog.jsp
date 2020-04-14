@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 <!DOCTYPE html> 
-
 <html lang="en">
 <head>
 <title>기부단체 목록</title>
@@ -55,7 +54,7 @@
   <link href="${pageContext.request.contextPath}/resources/kimcss/search.css"  rel="stylesheet" id="bootstrap-css"> --%>
 </head>
 <body>
-	<section class="hero-wrap hero-wrap-2"
+<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_3.jpg');"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
