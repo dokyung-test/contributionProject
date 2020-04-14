@@ -23,36 +23,70 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+	
+
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/animate/animate.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/select2/select2.min.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor_dk/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/util2.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main2.css">
+	<!--===============================================================================================-->
+
+
 </head>
 <body>
-<table border = "1">
-	<tr>
-		<th>프로그램제목</th>
-		<th>시작일자</th>
-		<th>종료일자</th>
-		<th>승인상태</th>
-		
-	</tr>
-	
-	<c:if test="${!empty programLists}">
-		<c:forEach var = "requestProgram" items="${programLists}">
-			<tr>
-				<td><a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>">${requestProgram.program_subject}</a></td>
-				<td><fmt:formatDate value="${requestProgram.start_date}" pattern = "yyyy-MM-dd"/></td>
-				<td><fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/></td>
-				<td>
-					<c:if test="${requestProgram.approval_flg == 0}">미승인</c:if>
-					<c:if test="${requestProgram.approval_flg == 1}">승인</c:if>
-				</td>
-			</tr>
-		</c:forEach>
-	</c:if>
-	<c:if test="${empty programLists }">
-	<tr>
-		<td rowspan="4">신청한 프로그램이 없습니다.</td>
-	</tr>
-	</c:if>
-</table>
+
+				<div class="table100 ver2 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">프로그램제목</th>
+									<th class="cell100 column2">시작일자</th>
+									<th class="cell100 column3">종료일자</th>
+									<th class="cell100 column4">승인상태</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+							
+								<c:if test="${!empty programLists}">
+									<c:forEach var = "requestProgram" items="${programLists}">
+										<tr class="row100 body">
+											<td class="cell100 column1"><a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>">${requestProgram.program_subject}</a></td>
+											<td class="cell100 column2"><fmt:formatDate value="${requestProgram.start_date}" pattern = "yyyy-MM-dd"/></td>
+											<td class="cell100 column3"><fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/></td>
+											<td class="cell100 column4"><c:if test="${requestProgram.approval_flg == 0}">미승인</c:if>
+												<c:if test="${requestProgram.approval_flg == 1}">승인</c:if></td>
+										</tr>
+										
+									</c:forEach>
+								</c:if>
+								<c:if test="${empty programLists }">
+								<tr>
+									<td rowspan="4">신청한 프로그램이 없습니다.</td>
+								</tr>
+								</c:if>
+								
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
 
 
 <!-- loader -->
@@ -73,6 +107,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="<c:url value="/resources/js/google-map.js"/>"></script>
   <script src="<c:url value="/resources/js/main.js"/>"></script>
+  <script src="<c:url value="/resources/js/main2.js"/>"></script> 
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
     
 
