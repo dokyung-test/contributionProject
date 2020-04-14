@@ -2,24 +2,20 @@ package contribution.yjs.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -131,6 +127,18 @@ public class GibunigajoaController {
 		
 		return singnUpSuccess;
 	}
+	
+	
+	 @RequestMapping(value = "/oauth", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
+	 public String kakaoLogin(@RequestParam("code") String code) {
+		 //System.out.println(access_token);
+	     return "home";
+	 }
+	 
+	 @RequestMapping(value="/kakaologin.do")
+	 public String kakaoLoginCheck() {
+		 return "main";
+	 }
 	
 	
 	@InitBinder

@@ -57,7 +57,14 @@
 								</div>
 								<!-- 카카오로그인 버튼 -->
 								<a id="kakao-login-btn"></a>
-								<a href="http://developers.kakao.com/logout"></a>
+								<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+								<!--
+								<a href="https://kauth.kakao.com/oauth/authorize
+								?client_id=11ca364dcf1e525a4923fc643d1a05e2
+								&redirect_uri=http://localhost:8081/GibunigajoaSample/kakaologin.do
+								&response_type=code">
+									<img alt="카카오버튼" src="${pageContext.request.contextPath}/resources/images/kakao_login_btn_medium_narrow.png">
+								</a>  -->
 							</div>
 						</div>
 					</div>
