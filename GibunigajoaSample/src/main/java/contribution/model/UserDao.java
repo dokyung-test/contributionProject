@@ -20,4 +20,14 @@ public class UserDao extends SqlSessionDaoSupport{
 		UserCommand command = getSqlSession().selectOne("gibunigajoa.loginCheck", m);
 		return command;
 	}
+	
+	public UserCommand kakaoNaverloginCheck(String user_id) {
+		UserCommand command = getSqlSession().selectOne("gibunigajoa.loginCheck", user_id);
+		return command;
+	}
+	//카카오톡 네이버 회원정보 저장
+	public int kakaoNaverInsert(UserCommand command) {
+		return getSqlSession().insert("gibunigajoa.kakaoNaverInsert", command);
+	}
+	
 }

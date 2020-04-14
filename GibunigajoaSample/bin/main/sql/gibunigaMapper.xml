@@ -8,6 +8,10 @@
 <insert id="memberInsert" parameterType="contribution.model.UserCommand">insert into users values(#{user_idx}, #{user_id}, #{password}, #{name}, #{nickname}, #{birthday}, #{phone_number}, #{register_date}, #{grade}, #{user_type_id}, #{organization_id})</insert>
 <!--로그인 체크 -->
 <select id="loginCheck" parameterType="map" resultType="contribution.model.UserCommand">select * from users where user_id=#{user_id} and password=#{password}</select>
+<!--카카오&네이버 회원정보저장  -->
+<insert id="kakaoNaverInsert" parameterType="contribution.model.UserCommand">insert into users (user_id, name, nickname, register_date, grade, user_type_id, organization_id) values(#{user_id}, #{name}, #{nickname}, #{register_date}, #{grade}, #{user_type_id}, #{organization_id})</insert>
 
+<!--카카오&네이버 로그인 -->
+<select id="kakaoNaverloginCheck" parameterType="String" resultType="contribution.model.UserCommand">select * from users where user_id=#{user_id}</select>
 
 </mapper> 

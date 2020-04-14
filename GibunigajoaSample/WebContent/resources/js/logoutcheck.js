@@ -30,6 +30,7 @@ loginBtn.onclick = function(){
 //logout시 controller session 삭제 처리로 이동  
 function logout(){
 			if(confirm("로그아웃 하시겠습니까?")){
+				//kakaoLogOut();
 				location.href = "logout.do"; 
 			}else{
 						
@@ -39,45 +40,53 @@ function logout(){
 //카카오톡 로그인
 //사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('28abf74319c8fba2a728a8ac668a3696');
-//카카오 로그인 버튼을 생성합니다.
-Kakao.Auth.createLoginButton({ 
-    container: '#kakao-login-btn', 
-    success: function(authObj) { 
-           Kakao.API.request({
+// 카카오 로그인 버튼을 생성합니다.
+Kakao.Auth.createLoginButton({
+    container: '#kakao-login-btn',
+    success: function(authObj) {
+     
+     // 로그인 성공시, API를 호출합니다.
+     Kakao.API.request({
+      url: '/v2/user/me',
+      success: function(res) {
+       console.log(res);
+       
+       var userID = res.id;      //유저의 카카오톡 고유 id
+       var userEmail = res.kaccount_email;   //유저의 이메일
+       var userNickName = res.properties.nickname; //유저가 등록한 별명
+       document.getElementById( "kakaoThumbnailImg" ).innerHTML = res.properties.nickname;
+       console.log(userID);
+       console.log(userEmail);
+       console.log(userNickName);
+      },
+      fail: function(error) {
+       alert(JSON.stringify(error));
+      }
+     });
+    },
+    fail: function(err) {
+     alert(JSON.stringify(err));
+    }
+   });
 
-        	   url: '/v1/user/me',
-        	   success: function(res) {
- 
-                     console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-                     console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-                     console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근          
-                 // res.properties.nickname으로도 접근 가능 )
-                     console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-                     var kakaonickname = res.properties.nickname;    //카카오톡 닉네임을 변수에 저장 (닉네임 값을 다른페이지로 넘겨 출력하기 위해서)
-                     alert("nickname: "+kakaonickname);
-                     //window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/GibunigajoaSample/main?kakaonickname="+kakaonickname);
-          //로그인 결과 페이지로 닉네임 값을 넘겨서 출력시킨다.,
-                   }
-                 })
-               },
-               fail: function(error) {
-                 alert(JSON.stringify(error));
-               }
-             });
-/*Kakao.Auth.createLoginButton({
- container: '#kakao-login-btn',
- success: function (authObj) {
-     //alert(JSON.stringify(authObj));
-	 Kakao.Auth.authorize({
-		  redirectUri: 'http://developers.kakao.com/kakaoLogin.jsp'
+function kakaoLogOut(){
+	alert("ok");
+	Kakao.Auth.logout(function() {
+		  console.log(Kakao.Auth.getAccessToken());
 		});
- },
- fail: function (err) {
-     //alert(JSON.stringify(err));
- }
-});*/
-
-
+	
+/*	
+ *카카오 이 페이지에서 탈퇴 
+ * Kakao.API.request({
+		  url: '/v1/user/unlink',
+		  success: function(response) {
+		    console.log(response);
+		  },
+		  fail: function(error) {
+		    console.log(error);
+		  },
+		});*/
+}
  
 //홈페이지 가입 로그인 확인 
 function loginCheck(){
