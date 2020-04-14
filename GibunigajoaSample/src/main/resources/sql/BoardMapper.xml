@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 회원정보 받아오기 -->
-	<select id="updateUser" resultType="contribution.model.UserCommand">
+	<select id="updateform" resultType="contribution.model.UserCommand">
 		select * from users where user_idx=#{user_idx}
 	</select>
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import contribution.model.ContributionDto;
 import contribution.model.MypageDao;
 import contribution.model.QandADto;
+import contribution.model.UserCommand;
 
 @Service
 public class MypageService {
@@ -57,5 +58,9 @@ public class MypageService {
 	//Q&A 추가
 	public int insertQandA(QandADto dto) {
 		return dao.insertQandA(dto);
+	}
+	
+	public UserCommand UpdateUser(int user_idx) {
+		return dao.UserUpdate(user_idx);
 	}
 }
