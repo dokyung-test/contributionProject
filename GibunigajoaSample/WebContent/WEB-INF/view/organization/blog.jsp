@@ -195,7 +195,7 @@
 						<div class="row d-flex">
 							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
-									<a href="blog-single.html" class="block-20 rounded"
+									<a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}" class="block-20 rounded"
 										style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
 									</a>
 									<div class="text mt-3 text-center">
