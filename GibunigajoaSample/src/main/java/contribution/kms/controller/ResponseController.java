@@ -28,6 +28,7 @@ public class ResponseController {
 	String alldata = "&numOfRows=3127";
 	String pageNo = "&pageNo=";
 	String keyword = "&keyword=";
+	String numOfRows="&numOfRows=6";
 	String progrmRegistNo = "&progrmRegistNo=";
 
 	String nanmmbyNmurl = "http://openapi.1365.go.kr/openapi/service/rest/ContributionGroupService/getCntrGrpInfo";
@@ -61,13 +62,13 @@ public class ResponseController {
 		Page page = new Page(count, curPage);
 		int i;
 		if (count == 1) {
-			ResponseOne list1 = resTemplate.getForObject(url + serviceKey + pageNo + curPage + keyword + search,
+			ResponseOne list1 = resTemplate.getForObject(url + serviceKey +numOfRows+pageNo + curPage + keyword + search,
 					ResponseOne.class);
 			i = 1;
 			model.addAttribute("rep", list1);
 			model.addAttribute("R", i);
 		} else if (count > 1) {
-			ResponseList list1 = resTemplate.getForObject(url + serviceKey + pageNo + curPage + keyword + search,
+			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + search,
 					ResponseList.class);
 			i = 0;
 			model.addAttribute("rep_List", list1);
@@ -87,7 +88,7 @@ public class ResponseController {
 		model.addAttribute("Page", page);
 		// int listCnt =list.getResponse().getBody().getTotalCount();
 
-		return "response";
+		return "organization/blog";
 	}
 
 	@RequestMapping("/board.do")

@@ -2,9 +2,9 @@ package contribution.model;
 
 public class Page {
     //한 페이지당 게시글 수 
-	private int pageSize=10;
+	private int pageSize=6;
     //한 블럭당 페이지 수	
-	private int rangeSize=10;
+	private int rangeSize=5; 
     // 현재 페이지 	
 	private int curPage =1;
     // 현재 블럭	

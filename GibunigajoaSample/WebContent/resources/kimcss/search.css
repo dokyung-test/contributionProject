@@ -1,10 +1,10 @@
-#search {
+#search1 {
     float: right;
     margin-top: 9px;
     width: 250px;
 }
 
-.search {
+.search1 {
     padding: 5px 0;
     width: 230px;
     height: 30px;
@@ -14,7 +14,7 @@
     line-height: 22px;
 }
 
-    .search input {
+    .search1 input {
         position: absolute;
         width: 0px;
         float: Left;
@@ -29,12 +29,12 @@
         border-radius:1px;
     }
 
-        .search:hover input, .search input:focus {
+        .search1:hover input, .search1 input:focus {
             width: 200px;
             margin-left: 0px;
         }
 
-.btn {
+.btn1 {
     height: 30px;
     position: absolute;
     right: 0;
