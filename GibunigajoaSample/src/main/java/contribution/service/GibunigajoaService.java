@@ -33,5 +33,12 @@ public class GibunigajoaService{
 		return userDao.loginCheck(m);
 	}
 	
-	 
+	public UserCommand kakaoNaverloginCheck(String user_id) {
+		return userDao.kakaoNaverloginCheck(user_id);
+	}
+	
+	//카카오톡 네이버 회원정보 저장 
+	public int kakaoNaverInsert(UserCommand command) {
+		return userDao.kakaoNaverInsert(command);
+	}
 }

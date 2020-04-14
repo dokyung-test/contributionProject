@@ -1,5 +1,6 @@
 package contribution.yjs.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,9 +8,13 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -28,7 +34,10 @@ public class GibunigajoaController {
 	
 	@Autowired
 	GibunigajoaService gibunigajoaService;
-	
+	/* NaverLoginBO */
+    private NaverLoginBO naverLoginBO;
+    private String apiResult = null;
+    
 	@RequestMapping("/main.do")
 	public String mainForm(UserCommand command, HttpSession session) {
 		
@@ -38,9 +47,76 @@ public class GibunigajoaController {
 	}
 	
 	@RequestMapping("/loginForm.do")
-	public String loginForm() {
+	public String loginForm(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+        System.out.println("naverAuthUrl"+naverAuthUrl);
+        //네이버 로그인 URL 연결 
+        model.addAttribute("url", naverAuthUrl);
 		return "loginForm";
 	}
+	
+	//naver 로그인 유전정보 존재시 로그인, 비존재시 회원정보 INSERT
+	 @RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	            throws IOException, ParseException {
+	        System.out.println("여기는 callback");
+	       
+	        OAuth2AccessToken oauthToken;
+	        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	        //1. 로그인 사용자 정보를 읽어온다.
+	        apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
+	        /** apiResult json 구조
+	        {"resultcode":"00",
+	        "message":"success",
+	        "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+	        **/
+	        //2. String형식인 apiResult를 json형태로 바꿈
+	        JSONParser parser = new JSONParser();
+	        Object obj = parser.parse(apiResult);
+	        JSONObject jsonObj = (JSONObject) obj;
+	        
+	        //3. 데이터 파싱
+	        //Top레벨 단계 _response 파싱
+	        JSONObject response_obj = (JSONObject)jsonObj.get("response");
+	        //response의 nickname값 파싱
+	        String user_id = (String)response_obj.get("id");
+	        String email = (String)response_obj.get("email");//naver email을 기부니가조아 페이지에선 ID로 사용
+	        String name = (String)response_obj.get("name");
+	        String nickname = (String)response_obj.get("nickname");
+	        String birthday = (String)response_obj.get("birthday");
+	        System.out.println("id: "+user_id+" email:"+email+" name: "+name+" nickname: "+nickname+ "birthday: "+birthday);
+	        
+	        //존재하는 유저인지 확인 
+	        int num = gibunigajoaService.signupIdCheck(user_id);
+	        
+	        if(num == 0) { //존재하지 않을 경우 값을 저장
+	        	UserCommand command = new UserCommand();
+	        	
+	        	command.setUser_id(email);
+	        	command.setName(name);
+	        	command.setNickname(nickname);
+	        	command.setUser_type_id(1);
+	        	command.setGrade(0);
+	    		command.setRegister_date(new Date(System.currentTimeMillis()));
+	    		command.setOrganization_id("");
+	    			    		
+	    		int	result= gibunigajoaService.kakaoNaverInsert(command);
+	        }
+	        
+	        	UserCommand command2 = gibunigajoaService.kakaoNaverloginCheck(email);
+	        
+	        	session.setAttribute("user_idx", command2.getUser_idx());	
+	        	session.setAttribute("user_id", command2.getUser_id());	
+	        	session.setAttribute("nickname", command2.getNickname());	
+	        	session.setAttribute("grade", command2.getGrade());	
+	        	session.setAttribute("user_type_id", command2.getUser_type_id());
+	        	session.setAttribute("organization_id", command2.getOrganization_id());
+
+		    //4.파싱 닉네임 세션으로 저장
+	        //session.setAttribute("sessionId",nickname); //세션 생성
+	        //model.addAttribute("result", apiResult);
+	        return "main";
+	    }
 	
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
@@ -61,7 +137,6 @@ public class GibunigajoaController {
 			session.setAttribute("grade", command.getGrade());	
 			session.setAttribute("user_type_id", command.getUser_type_id());	
 			session.setAttribute("organization_id", command.getOrganization_id());
-			
 			num = 1;
 			json.addProperty("num", num);
 			
@@ -153,7 +228,10 @@ public class GibunigajoaController {
 	public void setGibunigajoaService(GibunigajoaService gibunigajoaService) {
 		this.gibunigajoaService = gibunigajoaService;
 	}
-	
+	 @Autowired
+	    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+	        this.naverLoginBO = naverLoginBO;
+	    }
 	
 
 }

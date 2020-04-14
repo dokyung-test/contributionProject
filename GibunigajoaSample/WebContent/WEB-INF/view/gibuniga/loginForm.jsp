@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-    
-    
-  
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script> 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 	<section class="ftco-section">
@@ -56,9 +56,21 @@
 									</div>
 								</div>
 								<!-- 카카오로그인 버튼 -->
-								<a id="kakao-login-btn"></a>
-								<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-								<!--
+								<div class="col-md-12">
+								<div class="form-group">
+									<a id="kakao-login-btn"></a>
+									<div onclick="kakaoLogOut();"><span id="kakaoThumbnailImg"></span></div>
+									<%-- <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a> --%>
+									
+									<!-- 네이버 로그인 창으로 이동 -->
+									<div id="naver_id_login" style="text-align:center">
+									<a href="${url}">
+									<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+									</a>
+								</div>
+								</div>
+								</div>
+							<!--
 								<a href="https://kauth.kakao.com/oauth/authorize
 								?client_id=11ca364dcf1e525a4923fc643d1a05e2
 								&redirect_uri=http://localhost:8081/GibunigajoaSample/kakaologin.do
