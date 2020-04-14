@@ -150,7 +150,7 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  align-items: center;
+/*   align-items: center; */
   justify-content: center;
   flex-wrap: wrap;
   padding: 33px 30px;
@@ -286,12 +286,11 @@ th, td {
 }
 
 .table100.ver2 th {
-  font-family: Lato-Bold;
   font-size: 18px;
-  color: #fa4251;
+  color: #f8f9fa;
   line-height: 1.4;
 
-  background-color: transparent;
+  background-color: #fdbe34;
 }
 
 .table100.ver2 td {
