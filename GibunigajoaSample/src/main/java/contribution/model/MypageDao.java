@@ -46,4 +46,8 @@ public class MypageDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("project.insertQandA",dto);
 	}
 	
+	public UserCommand UserUpdate(int user_idx) {
+		return getSqlSession().selectOne("project.updateform",user_idx);
+	}
+	
 }

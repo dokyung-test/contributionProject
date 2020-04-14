@@ -1,6 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true"%>
+<%@ page isELIgnored="false"%>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -20,7 +24,7 @@
 </head>
 <body>
 
-<form action="signUp.do" method="post">
+<form action="update.do" method="post">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -29,17 +33,10 @@
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<!-- <div class="col-md-7"> -->
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">회원가입</h3>
+										<h3 class="mb-4">회원정보 수정</h3>
 										<div id="form-message-warning" class="mb-4"></div> 
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										
 											<div class="row">
-												<div class="col-md-12" >
-														<label class="label" for="user_id">ID</label>
-													<div class="form-group">
-														<input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" style="width: 70%; display: inline-block;">
-														<input type="button" value="중복체크" class="btn btn-primary" id="idCheckBtn" onclick="signupIdCheck()"/>
-													</div>
-												</div>
 												<div class="col-md-12"> 
 													<label class="label" for="password">password</label>
 														<div class="form-group">
@@ -56,47 +53,43 @@
 												<div class="col-md-12">
 													<label class="label" for="name">Name</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="name" id="name" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" value="${list.name}" class="form-control" name="name" id="name" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="name">Nickname</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" value="${list.nickname}" class="form-control" name="nickname" id="nickname" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;" value>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="birthday">birthday</label>
 														<div class="form-group">
-														<input type="date" class="form-control" name="birthday" id="birthday" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="date" value="${list.birthday}" class="form-control" name="birthday" id="birthday" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">PhoneNumber</label>
 														<div class="form-group">
-														<input type="number" class="form-control" name="phone_number" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="number" value="${list.phonenumber}" class="form-control" name="phone_number" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="button" value="취소" class="btn btn-primary" style="float: right; padding-left: 4%; padding-right: 4%;" onclick="location.href='main.do'"/>
-														<input type="submit" value="회원가입" class="btn btn-primary" style="float: right; margin-right: 1%"/>
+														<input type="button" value="취소" class="btn btn-primary" style="float: right; padding-left: 4%; padding-right: 4%;" onclick="location.href='mypage.do'"/>
+														<input type="submit" value="회원정보 수정" class="btn btn-primary" style="float: right; margin-right: 1%"/>
 														<div class="submitting"></div>
 													</div>
 												</div>
-											</div>
-										</form>
-									</div> 
-								<!-- </div> -->
-								
+											</div>								
+									</div> 							
 							</div>
-							
+						
 						</div>
 					</div>
 				</div>
     	</div>
-    	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
     </section>
     
     

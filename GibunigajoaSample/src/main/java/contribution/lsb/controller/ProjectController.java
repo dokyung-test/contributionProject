@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import contribution.model.ContributionDto;
 import contribution.model.QandADto;
+import contribution.model.UserCommand;
 import contribution.service.MypageService;
 
 @Controller
@@ -36,7 +37,7 @@ public class ProjectController {
 
 	// 기부내역 입력
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public String insertdonation(ContributionDto dto) {		
+	public String insertdonation(ContributionDto dto) {
 		service.insertContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -48,11 +49,11 @@ public class ProjectController {
 		return "redirect:/qANDa.do";
 	}
 
-	// 기부 내역  user_idx를 받아서 리스트 보기
+	// 기부 내역 user_idx를 받아서 리스트 보기
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public ModelAndView ContributionList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
 
@@ -61,7 +62,7 @@ public class ProjectController {
 		return mav;
 	}
 
-	// Q&A user_idx를 받아서 리스트 보기 
+	// Q&A user_idx를 받아서 리스트 보기
 	@RequestMapping(value = "/qANDa.do", method = RequestMethod.GET)
 	public ModelAndView QandAList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -90,15 +91,15 @@ public class ProjectController {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		System.out.println(json.toJson(list));
-		out.print(json.toJson(list));		
+		out.print(json.toJson(list));
 	}
-	
+
 	// 기부내역 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatedonation(ContributionDto dto) {
-		
+
 		service.updateContribution(dto);
-		
+
 		return "redirect:/mypage.do";
 	}
 
@@ -118,17 +119,18 @@ public class ProjectController {
 		service.deleteContribution(contribution_history_idx);
 		return "redirect:/mypage.do";
 	}
-	
-	/*
-	 * // 회원정보 수정
-	 * 
-	 * @RequestMapping(value = "/ContributionContent.do", method =
-	 * RequestMethod.POST) public void ContributionContent(HttpServletResponse resp,
-	 * int num) throws Exception { ContributionDto list =
-	 * service.ContributionContent(num); Gson json = new Gson();
-	 * resp.setContentType("text/html;charset=utf-8"); PrintWriter out =
-	 * resp.getWriter(); out.print(json.toJson(list)); }
-	 */
+
+	// 회원정보 수정
+	@RequestMapping(value = "/updateUser.do", method = RequestMethod.GET)
+	public ModelAndView updateUser(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		int idx = (int) session.getAttribute("user_idx");
+		UserCommand list = service.UpdateUser(idx);
+		mav.addObject("list", list);
+		mav.setViewName("updateUser");
+		return mav;
+	}
 
 	@InitBinder
 	protected void initBinnder(WebDataBinder binder) {
