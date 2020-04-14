@@ -8851,8 +8851,8 @@ h1, h2, h3, h4, h5,
 #section-counter {
   position: relative;
   z-index: 0;
-  background: #f8f9fd; }
-  #section-counter:after {
+  background:  #fdbe34; }
+/*   #section-counter:after {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -8861,7 +8861,8 @@ h1, h2, h3, h4, h5,
     z-index: -1;
     opacity: 1;
     width: 50%;
-    background: #fdbe34; }
+    background: #fdbe34; } */
+
 
 .ftco-counter {
   overflow-x: hidden;
@@ -8887,7 +8888,7 @@ h1, h2, h3, h4, h5,
       font-size: 50px;
       color: rgba(0, 0, 0, 0.8); }
   .ftco-counter .text-2 {
-    padding-left: 1em; }
+    padding-left: 13em; }
     @media (max-width: 767.98px) {
       .ftco-counter .text-2 {
         width: 100%; } }
