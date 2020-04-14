@@ -87,8 +87,8 @@ public class GibunigajoaController {
 	        System.out.println("id: "+user_id+" email:"+email+" name: "+name+" nickname: "+nickname+ "birthday: "+birthday);
 	        
 	        //존재하는 유저인지 확인 
-	        int num = gibunigajoaService.signupIdCheck(user_id);
-	        
+	        int num = gibunigajoaService.signupIdCheck(email);
+	        System.out.println("email: "+num);
 	        if(num == 0) { //존재하지 않을 경우 값을 저장
 	        	UserCommand command = new UserCommand();
 	        	

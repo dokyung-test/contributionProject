@@ -70,13 +70,7 @@
 								</div>
 								</div>
 								</div>
-							<!--
-								<a href="https://kauth.kakao.com/oauth/authorize
-								?client_id=11ca364dcf1e525a4923fc643d1a05e2
-								&redirect_uri=http://localhost:8081/GibunigajoaSample/kakaologin.do
-								&response_type=code">
-									<img alt="카카오버튼" src="${pageContext.request.contextPath}/resources/images/kakao_login_btn_medium_narrow.png">
-								</a>  -->
+							
 							</div>
 						</div>
 					</div>

@@ -126,6 +126,6 @@ function programAuthorityCheck() {
 		alert("기부단체 전용 페이지입니다.\n 접근권한이 없습니다.")
 		//location.href="main.do";
 	}else{
-		location.href = "registerForm.do";
+		location.href = "requestList.do";
 	}
 }
