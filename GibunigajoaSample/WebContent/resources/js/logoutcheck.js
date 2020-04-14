@@ -44,20 +44,32 @@ Kakao.init('28abf74319c8fba2a728a8ac668a3696');
 Kakao.Auth.createLoginButton({
     container: '#kakao-login-btn',
     success: function(authObj) {
-     
      // 로그인 성공시, API를 호출합니다.
      Kakao.API.request({
       url: '/v2/user/me',
       success: function(res) {
        console.log(res);
        
-       var userID = res.id;      //유저의 카카오톡 고유 id
-       var userEmail = res.kaccount_email;   //유저의 이메일
-       var userNickName = res.properties.nickname; //유저가 등록한 별명
-       document.getElementById( "kakaoThumbnailImg" ).innerHTML = res.properties.nickname;
-       console.log(userID);
-       console.log(userEmail);
-       console.log(userNickName);
+       var user_id = res.id;      //유저의 카카오톡 고유 id
+       var nickname = res.properties.nickname; //유저가 등록한 별명
+       //var userEmail = res.kaccount_email;   //유저의 이메일
+       //document.getElementById( "kakaoThumbnailImg" ).innerHTML = res.properties.nickname;
+       console.log(user_id);
+       console.log(nickname);
+       
+       $.ajax({
+   		type:"get"
+   		,url:"kakaoLogin.do?user_id="+user_id+"&nickname="+nickname	 
+   		,dataType:"html"})
+   		.done(function(args){
+   				location.href = "main.do";
+   		})
+   		.fail(function(e) {
+   			alert("error");
+   			alert(e.responseText);
+   		});
+       //
+      // location.href = "main.do";
       },
       fail: function(error) {
        alert(JSON.stringify(error));
@@ -69,13 +81,16 @@ Kakao.Auth.createLoginButton({
     }
    });
 
-function kakaoLogOut(){
+
+//카카오 톡의 로그아웃 기능 굳이 사용할 필요는 없다. 
+/*function kakaoLogOut(){
 	alert("ok");
+	//이 페이지에서 정보 삭제 
 	Kakao.Auth.logout(function() {
 		  console.log(Kakao.Auth.getAccessToken());
 		});
 	
-/*	
+	
  *카카오 이 페이지에서 탈퇴 
  * Kakao.API.request({
 		  url: '/v1/user/unlink',
@@ -85,8 +100,8 @@ function kakaoLogOut(){
 		  fail: function(error) {
 		    console.log(error);
 		  },
-		});*/
-}
+		});
+}*/
  
 //홈페이지 가입 로그인 확인 
 function loginCheck(){

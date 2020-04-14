@@ -57,13 +57,13 @@
 								</div>
 								<!-- 카카오로그인 버튼 -->
 								<div class="col-md-12">
-								<div class="form-group">
+								<div class="form-group" style="display: inline-block;">
 									<a id="kakao-login-btn"></a>
-									<div onclick="kakaoLogOut();"><span id="kakaoThumbnailImg"></span></div>
-									<%-- <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a> --%>
+									<%-- <div onclick="kakaoLogOut();"><span id="kakaoThumbnailImg"></span></div>
+									<a href="${pageContext.request.contextPath}/logout.do">로그아웃</a> --%>
 									
 									<!-- 네이버 로그인 창으로 이동 -->
-									<div id="naver_id_login" style="text-align:center">
+									<div id="naver_id_login" style="text-align:center; margin-top: 10%;">
 									<a href="${url}">
 									<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
 									</a>

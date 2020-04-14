@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
@@ -50,6 +51,7 @@ public class GibunigajoaController {
 	public String loginForm(Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
         System.out.println("naverAuthUrl"+naverAuthUrl);
+        
         //네이버 로그인 URL 연결 
         model.addAttribute("url", naverAuthUrl);
 		return "loginForm";
@@ -95,7 +97,7 @@ public class GibunigajoaController {
 	        	command.setUser_id(email);
 	        	command.setName(name);
 	        	command.setNickname(nickname);
-	        	command.setUser_type_id(1);
+	        	command.setUser_type_id(3);
 	        	command.setGrade(0);
 	    		command.setRegister_date(new Date(System.currentTimeMillis()));
 	    		command.setOrganization_id("");
@@ -117,6 +119,38 @@ public class GibunigajoaController {
 	        model.addAttribute("result", apiResult);
 	        return "main";
 	    }
+	 
+	 //카카오 로그인 & 회원정보 저장
+	 @RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	 @ResponseBody
+	 public void kakaoLogin(String user_id, String nickname, HttpSession session) {
+		 System.out.println("user_id: "+user_id+" nickname: "+nickname);
+		 
+		
+		 int num = gibunigajoaService.signupIdCheck(user_id);
+		 if(num == 0) {
+			 UserCommand command = new UserCommand();
+	        	
+	        	command.setUser_id(user_id);
+	        	command.setNickname(nickname);
+	        	command.setUser_type_id(3);
+	        	command.setGrade(0);
+	    		command.setRegister_date(new Date(System.currentTimeMillis()));
+	    		command.setOrganization_id("");
+	    		
+	    		int	result= gibunigajoaService.kakaoNaverInsert(command);
+	    		
+		 }
+			 UserCommand command2 = gibunigajoaService.kakaoNaverloginCheck(user_id);
+	        	System.out.println("command2: "+command2);
+	        	session.setAttribute("user_idx", command2.getUser_idx());	
+	        	session.setAttribute("user_id", command2.getUser_id());	
+	        	session.setAttribute("nickname", command2.getNickname());	
+	        	session.setAttribute("grade", command2.getGrade());	
+	        	session.setAttribute("user_type_id", command2.getUser_type_id());
+	        	session.setAttribute("organization_id", command2.getOrganization_id());
+		 
+	 }
 	
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
