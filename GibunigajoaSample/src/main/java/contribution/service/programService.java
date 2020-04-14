@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import contribution.model.Program;
+import contribution.model.ProgramBannerDao;
+import contribution.model.ProgramBannerDto;
 import contribution.model.ProgramDao;
 import contribution.model.ProgramImage;
 import contribution.model.ProgramImageDao;
@@ -25,7 +27,9 @@ public class programService {
 	
 	@Autowired
 	ProgramImageDao programImageDao;
-
+	
+	@Autowired
+	ProgramBannerDao programBannerDao;
 	
 	@Autowired
 	public void setProgramImageDao(ProgramImageDao programImageDao) {
@@ -41,6 +45,12 @@ public class programService {
 	public void setTypeDao(TypeDao typeDao) {
 		this.typeDao = typeDao;
 	}
+	
+	@Autowired
+	public void setProgramBannerDao(ProgramBannerDao programBannerDao) {
+		this.programBannerDao = programBannerDao;
+	}
+
 	
 	public int insertProgram(Program program) {
 		int programCount = programCount(program.getOrganization_id());
@@ -135,4 +145,16 @@ public class programService {
 	public int updateReadcount(Map<String, Object> programSearchKeyword) {
 		return programDao.updateReadcount(programSearchKeyword);
 	}
+	
+	
+	//개인회원용 -분야별 모집프로그램리스트
+	public List<ProgramBannerDto> getTypeProgramList(int type_id) {
+		return programBannerDao.getTypeProgramList(type_id);
+	}
+	
+	//개인회원용 -전체분야의 모집프로그램리스트
+	public List<ProgramBannerDto> getAllProgramList() {
+		return programBannerDao.getAllProgramList();
+	}
+	
 }
