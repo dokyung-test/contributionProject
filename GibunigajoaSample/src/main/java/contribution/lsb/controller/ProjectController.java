@@ -55,7 +55,10 @@ public class ProjectController {
 		
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> NSB
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
