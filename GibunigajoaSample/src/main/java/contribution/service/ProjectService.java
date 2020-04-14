@@ -20,13 +20,13 @@ public class ProjectService {
 	}
 	
 	//기부내역 리스트 보기
-	public List<ContributionDto> ContributionList(){
-		return dao.ContributionList();
+	public List<ContributionDto> ContributionList(int user_idx){
+		return dao.ContributionList(user_idx);
 	}
 	
 	//Q&A 리스트 보기
-	public List<QandADto> QandAList(){
-		return dao.QandAList();
+	public List<QandADto> QandAList(int user_idx){
+		return dao.QandAList(user_idx);
 	}
 	
 	//기부내역 상세글 보기

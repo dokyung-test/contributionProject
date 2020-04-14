@@ -13,7 +13,8 @@
 <a href="admin/programList.do">admin</a>
 test_gibunigajoaSample_YJS
 test_nsb
- </body>
+ </body
+ .>
 </html>
 
 

@@ -45,14 +45,14 @@ public class ProjectController {
 	@RequestMapping(value = "/qANDaInsert.do", method = RequestMethod.POST)
 	public String qAndAInsert(QandADto dto) {
 		service.insertQandA(dto);
-		return "redirect:/mypage.do";
+		return "redirect:/qANDa.do";
 	}
 
 	// 기부 내역 리스트 보기
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public ModelAndView ContributionList() {
+	public ModelAndView ContributionList(int user_idx) {
 		ModelAndView mav = new ModelAndView();
-		List<ContributionDto> list = service.ContributionList();
+		List<ContributionDto> list = service.ContributionList(user_idx);
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
@@ -60,9 +60,9 @@ public class ProjectController {
 
 	// Q&A 리스트 보기
 	@RequestMapping(value = "/qANDa.do", method = RequestMethod.GET)
-	public ModelAndView QandAList() {
+	public ModelAndView QandAList(int user_idx) {
 		ModelAndView mav = new ModelAndView();
-		List<QandADto> list = service.QandAList();
+		List<QandADto> list = service.QandAList(user_idx);
 		mav.addObject("list", list);
 		mav.setViewName("qANDa");
 		return mav;

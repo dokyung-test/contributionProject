@@ -3,25 +3,22 @@
 <%@ page session="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true" %>
-<!DOCTYPE html>
+<%@ page isELIgnored="false" %>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
     <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
-    
     <link href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
-
-    <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">
-    
+    <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">  
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+
 <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
@@ -56,17 +53,16 @@
 <script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js"></script>
+
 
 <script>
 	$(function() {
-		/* 기부내역 추가 누를 시 */
+		/* 기부내역 추가 누를 시 입력 창 */
 		$("#testBtn").on('click', function() {
 			$("#modal").show();
 		});
 
-		/* 상세 글 보기 */
+		/* 기부 이력 상세 글 보기 */
 		$("p").click(
 				function() {
 
@@ -115,7 +111,7 @@
 					return false;
 				});
 
-		/* 수정을 누를 경우 */
+		/* 수정을 누를 경우 수정 창 띄우기 */
 		$(".update")
 				.click(
 						function() {
@@ -160,18 +156,26 @@
 																"<br class='a'><input type='text' name='contribution' class='a' value='"+contribution+"'>");
 												$("#note2")
 														.append(
-																"<br class='a'><textarea cols='50' rows='3' name='note' class='a'>"
+																"<br class='a'><textarea cols='50' rows='3' name='note' class='a' style='resize: none;'>"
 																		+ note
 																		+ "</textarea>");
 												$("#hidden")
 												.append(
 														"<input type='hidden' name='contribution_history_idx' value='"+contribution_history_idx+"' />");
-
 											});
 							$("#updatemodal").show();
 							return false;
 						});
 	});
+
+	function deletelist(a){
+      if(confirm("삭제하시겠습니까?")){
+            location.href="delete.do?contribution_history_idx="+a;
+
+          }else{
+            close();
+              }
+		}
 
 	function closeModal() {
 		$('.searchModal').hide();
@@ -215,11 +219,17 @@
 
 .a {
 	color: black;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
 }
 </style>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -228,354 +238,287 @@
 </head>
 <body id="page-top">
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+	<nav
+		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+	</nav>
+	<!-- 리스트 시작 -->
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
 
-		<!-- 사이드 바 시작 -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+			<div class="container-fluid">
+				<!-- 페이지 머리 -->
+				<h1 class="h3 mb-2 text-gray-800">기부목록관리 페이지</h1>
 
-			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="dashboard.jsp">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">메인페이지</div>
-			</a>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading" style="font-size: 20px;">MyPage</div>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
-
-			<!-- 기부이력목록 -->
-			<li class="nav-item"><a class="nav-link" href="mypage.do"> <span
-					style="font-size: 20px;">기부이력목록</span></a></li>
-
-			<!-- Q&A -->
-			<li class="nav-item"><a class="nav-link" href="qANDa.do"><span
-					style="font-size: 20px;">Q&A</span> </a></li>
-
-			<!-- 회원정보 수정 -->
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="editProfile.jsp"> <span style="font-size: 20px;">회원정보수정</span>
-			</a></li>
-
-			<!-- 로그아웃 -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"><span
-					style="font-size: 20px;">회원탈퇴</span> </a></li>
-
-		</ul>
-		<!-- 사이드 바 끝 -->
-
-		<!-- 리스트 시작 -->
-		<div id="content-wrapper" class="d-flex flex-column">
-
-			<!-- Main Content -->
-			<div id="content">
-
-				<div class="container-fluid">
-					<!-- 페이지 머리 -->
-					<h1 class="h3 mb-2 text-gray-800">기부목록관리 페이지</h1>
-
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h4 class="m-0 font-weight-bold text-primary">기부내역조회</h4>
-							<a style="position: absolute; right: 20px; top: 10px;">
-								<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
-							</a>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h4 class="m-0 font-weight-bold text-primary">기부내역조회</h4>
+						<a style="position: absolute; right: 20px; top: 10px;">
+							<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
+						</a>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable" width="100%"
+								cellspacing="0">
+								<thead>
+									<tr>
+										<th style="font-size: 20px">기관명</th>
+										<th style="font-size: 20px">프로그램명</th>
+										<th style="font-size: 20px">기부금액</th>
+										<th style="font-size: 20px">날짜</th>
+										<th style="font-size: 20px">구분</th>
+										<th style="font-size: 20px"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="list" items="${list}">
 										<tr>
-											<th style="font-size: 20px">기관명</th>
-											<th style="font-size: 20px">프로그램명</th>
-											<th style="font-size: 20px">기부금액</th>
-											<th style="font-size: 20px">날짜</th>
-											<th style="font-size: 20px">구분</th>
-											<th style="font-size: 20px"></th>
+											<td style="font-size: 15px">${list.organization_name}</td>
+											<td style="font-size: 15px"><p id="content"
+													title="${list.contribution_history_idx}">
+													${list.program_name}</p></td>
+											<td style="font-size: 15px">${list.contribution}원</td>
+											<td style="font-size: 15px"><fmt:formatDate
+													value="${list.date}" pattern="yyyy년 MM월 dd일" /></td>
+											<td style="font-size: 15px">${list.subscription_type}</td>
+											<td align="center" style="font-size: 15px"><a href="#"
+												title="${list.contribution_history_idx}" class="update"
+												style="color: blue">수정 / </a> <a href="#"
+												onclick="deletelist(${list.contribution_history_idx})"
+												style="color: blue">삭제</a>
 										</tr>
-									</thead>
-
-									<%-- ${list.contribution_history_idx} --%>
-									<tbody>
-										<c:forEach var="list" items="${list}">
-											<tr>
-												<td style="font-size: 15px">${list.organization_name}</td>
-												<td style="font-size: 15px"><p id="content"
-														title="${list.contribution_history_idx}">
-														${list.program_name}</p></td>
-												<td style="font-size: 15px">${list.contribution}원</td>
-												<td style="font-size: 15px"><fmt:formatDate
-														value="${list.date}" pattern="yyyy년 MM월 dd일" /></td>
-												<td style="font-size: 15px">${list.subscription_type}</td>
-												<td align="center" style="font-size: 15px">
-												<a href="#"
-													title="${list.contribution_history_idx}" class="update" style="color: blue">수정
-														/ </a> <a
-													href="delete.do?contribution_history_idx=${list.contribution_history_idx}" style="color: blue">삭제</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-
-								</table>
-							</div>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-
 				</div>
-				<!-- /.container-fluid -->
-
 			</div>
-			<!-- End of Main Content -->
+		</div>
+		<!-- End of Main Content -->
 
-			<!-- 기부 내역 추가 폼 -->
-			<div id="modal" class="searchModal">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-md-12">
-							<div class="wrapper">
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4" style="font-size: 40px">기부 내역 추가</h3>
-									<div id="form-message-warning" class="mb-4"></div>
-									<div id="form-message-success" class="mb-4"
-										style="font-size: 20px">기부내역을 추가해 주세요.</div>
-									<form method="POST" action="insert.do" name="form"
-										onsubmit="return checkAll()">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎기관명</label> <input
-														type="text" class="form-control" name="organization_name"
-														placeholder="기관명">
-												</div>
+		<!-- 기부 내역 추가 폼 -->
+		<div id="modal" class="searchModal">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="wrapper">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<h3 class="mb-4" style="font-size: 40px">기부 내역 추가</h3>
+								<div id="form-message-warning" class="mb-4"></div>
+								<div id="form-message-success" class="mb-4"
+									style="font-size: 20px">기부내역을 추가해 주세요.</div>
+								<form method="POST" action="insert.do" name="form"
+									onsubmit="return checkAll()">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎기관명</label> <input
+													type="text" class="form-control" name="organization_name"
+													placeholder="기관명">
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎프로그램명</label>
-													<input type="text" class="form-control" name="program_name"
-														placeholder="프로그램명">
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎프로그램명</label>
+												<input type="text" class="form-control" name="program_name"
+													placeholder="프로그램명">
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎기부 금액</label>
-													<input type="text" class="form-control" name="contribution"
-														placeholder="기부금액">
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎기부 금액</label>
+												<input type="text" class="form-control" name="contribution"
+													placeholder="기부금액">
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎날짜</label> <input
-														type="Date" class="form-control" name="date"
-														placeholder="날짜">
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎날짜</label> <input
+													type="Date" class="form-control" name="date"
+													placeholder="날짜">
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎구분</label> <select
-														name="subscription_type"
-														style="width: 200px; height: 50px; font-size: 20px">
-														<option value="정기" style="font-size: 20px">정기</option>
-														<option value="비정기" style="font-size: 20px">비정기</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" style="font-size: 20px">◎비고</label>
-													<textarea name="note" class="form-control" id="message"
-														cols="30" rows="4" placeholder="메모할 내용을 적으세요."></textarea>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<input type="button" onclick="closeModal()"
-														style="height: 50px; width: 240px; font-size: 20px;"
-														value="취소" class="btn btn-primary" /> <input
-														type="submit"
-														style="height: 50px; width: 240px; font-size: 20px;"
-														value="추가" class="btn btn-primary" />
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎구분</label> <select
+													name="subscription_type"
+													style="width: 200px; height: 50px; font-size: 20px">
+													<option value="정기" style="font-size: 20px">정기</option>
+													<option value="비정기" style="font-size: 20px">비정기</option>
+												</select>
 											</div>
 										</div>
 
-										<input type="hidden" name="register_type_flg" value="1">
-										<input type="hidden" name="user_idx" value="1">
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 기부 내역 추가 종료 -->
-
-			<!-- 기부 내역 상세 내역-->
-			<div id="contentmodal" class="searchModal">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-md-12">
-							<div class="wrapper">
-								<!--  <div class="col-md-7"> -->
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h1 class="mb-4" style="font-size: 40px">
-										기부 내역
-										</h1>
-										<div id="form-message-success" class="mb-4"
-											style="font-size: 20px">기부내역 상세보기</div>
-										<hr width="1000px" color="black" noshade />
-										<form method="POST" action="ContributionContent.do">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="organization_name">◎기관명 </label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="program_name">◎프로그램명</label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="contribution">◎기부 금액</label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px" id="date">◎날짜</label>
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="subscription_type">◎구분(정기/비정기)</label>
-													</div>
-												</div>
-
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px" id="note">◎메모</label>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="button" onclick="closeModal()" id="cancel"
-															style="height: 50px; width: 240px; font-size: 20px;"
-															value="취소" class="btn btn-primary" />
-													</div>
-												</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px">◎비고</label>
+												<textarea name="note" class="form-control" id="message"
+													cols="30" rows="4" placeholder="메모할 내용을 적으세요." style="resize: none;"></textarea>
 											</div>
-
-											<input type="hidden" name="register_type_flg" value="1">
-											<input type="hidden" name="user_idx" value="1">
-										</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 기부 내역 상세내역 종료 -->
-
-			<!-- 기부내역 수정 시작 -->
-			<div id="updatemodal" class="searchModal">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-md-12">
-							<div class="wrapper">
-								<
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4" style="font-size: 40px">기부 내역 수정</h3>
-									<div id="form-message-warning" class="mb-4"></div>
-									<div id="form-message-success" class="mb-4"
-										style="font-size: 20px">기부내역을 수정해 주세요.</div>
-									<form method="POST" action="update.do" name="form2"
-										onsubmit="return checkAll2()">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="organization_name2">◎기관명 </label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="program_name2">◎프로그램명</label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="contribution2">◎기부 금액</label>
-
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px" id="date2">◎날짜</label>
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px"
-															id="subscription_type2">◎구분</label> <select
-															name="subscription_type"
-															style="width: 200px; height: 50px; font-size: 20px">
-															<option value="정기" style="font-size: 20px">정기</option>
-															<option value="비정기" style="font-size: 20px">비정기</option>
-														</select>
-													</div>
-												</div>
-
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label" style="font-size: 20px" id="note2">◎메모</label>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="button" onclick="closeModal()" id="cancel"
-															style="height: 50px; width: 240px; font-size: 20px;"
-															value="취소" class="btn btn-primary" /> <input
-															type="submit" id="hidden"
-															style="height: 50px; width: 240px; font-size: 20px;"
-															value="수정" class="btn btn-primary" />
-													</div>
-												</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="button" onclick="closeModal()"
+													style="height: 50px; width: 240px; font-size: 20px;"
+													value="취소" class="btn btn-primary" /> <input type="submit"
+													style="height: 50px; width: 240px; font-size: 20px;"
+													value="추가" class="btn btn-primary" />
 											</div>
-										</form>
-								</div>
+										</div>
+									</div>
+									<input type="hidden" name="register_type_flg" value="1">
+									<input type="hidden" name="user_idx" value="${user_idx}">
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- 기부내역 수정 끝 -->
+		</div>
+		<!-- 기부 내역 추가 종료 -->
+
+		<!-- 기부 내역 상세 내역-->
+		<div id="contentmodal" class="searchModal">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="wrapper">
+							<!--  <div class="col-md-7"> -->
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<h1 class="mb-4" style="font-size: 40px">기부 내역</h1>
+								<div id="form-message-success" class="mb-4"
+									style="font-size: 20px">기부내역 상세보기</div>
+								<hr width="1000px" color="black" noshade />
+								<form method="POST" action="ContributionContent.do">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="organization_name">◎기관명 </label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="program_name">◎프로그램명</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="contribution">◎기부 금액</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px" id="date">◎날짜</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="subscription_type">◎구분(정기/비정기)</label>
+											</div>
+										</div>
+
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px" id="note">◎메모</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="button" onclick="closeModal()" id="cancel"
+													style="height: 50px; width: 240px; font-size: 20px;"
+													value="취소" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+									<input type="hidden" name="register_type_flg" value="1">
+									<input type="hidden" name="user_idx" value="1">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 기부 내역 상세내역 종료 -->
+
+		<!-- 기부내역 수정 시작 -->
+		<div id="updatemodal" class="searchModal">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="wrapper">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<h3 class="mb-4" style="font-size: 40px">기부 내역 수정</h3>
+								<div id="form-message-warning" class="mb-4"></div>
+								<div id="form-message-success" class="mb-4"
+									style="font-size: 20px">기부내역을 수정해 주세요.</div>
+								<form method="POST" action="update.do" name="form2"
+									onsubmit="return checkAll2()">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="organization_name2">◎기관명 </label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="program_name2">◎프로그램명</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="contribution2">◎기부 금액</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px" id="date2">◎날짜</label>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px"
+													id="subscription_type2">◎구분</label> <select
+													name="subscription_type"
+													style="width: 200px; height: 50px; font-size: 20px">
+													<option value="정기" style="font-size: 20px">정기</option>
+													<option value="비정기" style="font-size: 20px">비정기</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="label" style="font-size: 20px" id="note2">◎메모</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="button" onclick="closeModal()" id="cancel"
+													style="height: 50px; width: 240px; font-size: 20px;"
+													value="취소" class="btn btn-primary" /> <input type="submit"
+													id="hidden"
+													style="height: 50px; width: 240px; font-size: 20px;"
+													value="수정" class="btn btn-primary" />
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 기부내역 수정 끝 -->
 
 		</div>
 		<!-- End of Content Wrapper -->
