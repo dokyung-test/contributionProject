@@ -49,7 +49,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav" >
 	        <ul class="navbar-nav mr-auto">
 	        	<li class="nav-item active"><a href="${pageContext.request.contextPath}/response.do" class="nav-link">기부단체</a></li>
-	        	<li class="nav-item"><a href="javascript:void(0);" class="nav-link">모집프로그램</a></li>
+	        	<li class="nav-item"><a href="${pageContext.request.contextPath}/programList.do" class="nav-link">모집프로그램</a></li>
 	        	<li class="nav-item" id="mypage"><a href="javascript:void(0);" class="nav-link">마이페이지</a>
 	        		<ul class="submenu">
 	        			<li><a href="${pageContext.request.contextPath}/mypage.do">기부이력목록조회</a></li>

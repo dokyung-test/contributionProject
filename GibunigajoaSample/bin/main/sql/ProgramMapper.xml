@@ -66,4 +66,9 @@
 	<update id="updateApprovalFlg" parameterType="map">
 		update programs set approval_flg = #{approval_flg} where program_id = #{program_id} AND organization_id = #{organization_id}
 	</update>
+	
+	<!-- 프로그램 모집금액 합계계산 -->
+	<select id="calcTargetAmount" resultType="int" parameterType="map">
+		select sum(contribution) from contribution_history where program_id = #{program_id} AND organization_id = #{organization_id}
+	</select>
 </mapper>

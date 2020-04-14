@@ -37,7 +37,7 @@
 	<c:if test="${!empty programList}">
 		<c:forEach var = "requestProgram" items="${programList}">
 			<tr>
-				<td><a href = "/Sample/admin/showProgramContent.do?program_id=${requestProgram.program_id}&organization_id=${requestProgram.organization_id}">${requestProgram.program_subject}</a></td>
+				<td><a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=${requestProgram.organization_id}">${requestProgram.program_subject}</a></td>
 				<td><fmt:formatDate value="${requestProgram.start_date}" pattern = "yyyy-MM-dd"/></td>
 				<td><fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/></td>
 				<td>
