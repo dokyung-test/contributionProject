@@ -22,7 +22,7 @@ public class UserDao extends SqlSessionDaoSupport{
 	}
 	
 	public UserCommand kakaoNaverloginCheck(String user_id) {
-		UserCommand command = getSqlSession().selectOne("gibunigajoa.loginCheck", user_id);
+		UserCommand command = getSqlSession().selectOne("gibunigajoa.kakaoNaverloginCheck", user_id);
 		return command;
 	}
 	//카카오톡 네이버 회원정보 저장
