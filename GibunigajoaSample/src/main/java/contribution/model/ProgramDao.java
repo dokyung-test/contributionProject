@@ -44,4 +44,12 @@ public class ProgramDao extends SqlSessionDaoSupport{
 		approvalInfo.put("approval_flg", approval_flg);
 		return getSqlSession().update("program.updateApprovalFlg", approvalInfo);
 	}
+	
+	public int calcTargetAmount(Map<String, Object> programSearchKeyword) {
+		int totalAmount = 0;
+		if(getSqlSession().selectOne("program.calcTargetAmount", programSearchKeyword) != null) {
+			totalAmount = getSqlSession().selectOne("program.calcTargetAmount", programSearchKeyword);
+		}
+		return totalAmount;
+	}
 }

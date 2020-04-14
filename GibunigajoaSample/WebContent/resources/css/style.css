@@ -8821,6 +8821,28 @@ h1, h2, h3, h4, h5,
     .tabulation-2 .nav-pills .nav-item .nav-link.active span {
       color: #fff; }
 
+.tabulation-2 .nav-link2{
+  background: #c0c0c0;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 600;
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+  .tabulation-2 .nav-pills .nav-item .nav-link2 span {
+    color: #00043C; }
+  .tabulation-2 .nav-pills .nav-item .nav-link2.active {
+    color: #fff;
+    background: #00043C;
+    border: 1px solid #00043C; }
+    .tabulation-2 .nav-pills .nav-item .nav-link2.active span {
+      color: #fff; }
+      .tabulation-2 .nav-pills .nav-item .nav-link2.fade{
+      color: #fff;
+    background: #808080;
+      } 
+      
+      
+
 .tabulation-2 .tab-content {
   background: #fff;
   padding: 20px;

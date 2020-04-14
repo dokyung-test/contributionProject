@@ -92,24 +92,39 @@ public class programService {
 		return programDao.selectAllProgramList();
 	}
 	
+	public Map<String, Object> makeMap(int program_id, String organization_id){
+		Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
+		programSearchKeyword.put("organization_id", organization_id);
+		programSearchKeyword.put("program_id", program_id);
+		return programSearchKeyword;
+	}
+	
 	
 	//controller에서 이동. 개인회원 & admin 공동이용
 	//프로그램상세에서 호출
 	public Program getProgramInfo(int program_id, String organization_id) {
-		Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
-		programSearchKeyword.put("organization_id", organization_id);
-		programSearchKeyword.put("program_id", program_id);
-		Program pro = requestProgramDetail(programSearchKeyword);
+		/*
+		 * Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
+		 * programSearchKeyword.put("organization_id", organization_id);
+		 * programSearchKeyword.put("program_id", program_id);
+		 */
+		Program pro = requestProgramDetail(makeMap(program_id, organization_id));
 		return pro;
 	}
 	
 	//controller에서 이동. 개인회원 & admin 공동이용	
 	//프로그램 배너만 뽑을 때 호출.
 	public List<ProgramImage> getProgramBanner(int program_id, String organization_id) {
-		Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
-		programSearchKeyword.put("organization_id", organization_id);
-		programSearchKeyword.put("program_id", program_id);
-		return getProgramBanner(programSearchKeyword);
+		/*
+		 * Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
+		 * programSearchKeyword.put("organization_id", organization_id);
+		 * programSearchKeyword.put("program_id", program_id);
+		 */
+		return getProgramBanner(makeMap(program_id, organization_id));
+	}
+	
+	public int calcTargetAmount(Map<String, Object> programSearchKeyword) {
+		return programDao.calcTargetAmount(programSearchKeyword);
 	}
 	
 	

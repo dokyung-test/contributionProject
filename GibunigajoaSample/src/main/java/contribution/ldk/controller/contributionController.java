@@ -90,16 +90,27 @@ public class contributionController {
 		return mav;
 	}
 	
-	
+	//프로그램상세
 	@RequestMapping(value = "/showProgram.do", method = RequestMethod.GET)
 	public ModelAndView showProgramContent(int program_id, String organization_id) {
+		
 		ModelAndView mav = new ModelAndView("requestProgramDetail");
 		Program pro = service.getProgramInfo(program_id, organization_id);
 		mav.addObject("requestProgram", pro);
 		mav.addObject("typeValue", service.selectTypeValue(pro.getType_id()));
 		List<ProgramImage> images = service.getProgramBanner(program_id, organization_id);
 		mav.addObject("images", images);
+		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
 		return mav;
+	}
+	
+	public int updateReadcount(int program_id, String organization_id) {
+		
+	}
+	
+	//기부이력으로 프로그램 기부내역 합계 계산
+	public int calcTargetAmount(int program_id, String organization_id) {
+		return service.calcTargetAmount(service.makeMap(program_id, organization_id));
 	}
 	
 	//service로 이동
@@ -184,6 +195,14 @@ public class contributionController {
 	public int deleteBanner(String organization_id, int program_id) {
 		int row = 0;
 		return row;
+	}
+	
+	
+	@RequestMapping(value = "/programList.do", method = RequestMethod.GET)
+	public ModelAndView selectProgramList() {
+		ModelAndView mav = new ModelAndView("programList");
+		mav.addObject("programList", service.selectAllProgramList());
+		return mav;
 	}
 	
 	
