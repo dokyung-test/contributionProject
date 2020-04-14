@@ -34,9 +34,6 @@ public class contributionController {
 
 	public void setService(programService service) {
 		this.service = service;
-		 
-		
-		
 	}
 
 	// 클래스에 들어올때마다 호출 ->언제나 필요한 경우 아니면 붙이지말자.
@@ -69,9 +66,7 @@ public class contributionController {
 	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView registerProgram(@ModelAttribute("program") Program pro, HttpSession session) {
 		//pro.setOrganization_id("000000015");
-		System.out.println(pro);
 		int rowNum = service.insertProgram(pro);
-		System.out.println("rowNum : " + rowNum);
 		if (rowNum > 0) {
 			return requestList(session);
 		} else {
