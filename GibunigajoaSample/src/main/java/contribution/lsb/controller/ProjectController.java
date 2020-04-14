@@ -97,9 +97,7 @@ public class ProjectController {
 	// 기부내역 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatedonation(ContributionDto dto) {
-
 		service.updateContribution(dto);
-
 		return "redirect:/mypage.do";
 	}
 
@@ -120,17 +118,24 @@ public class ProjectController {
 		return "redirect:/mypage.do";
 	}
 
-	// 회원정보 수정
-	@RequestMapping(value = "/updateUser.do", method = RequestMethod.GET)
-	public ModelAndView updateUser(HttpSession session) {
+	// 회원정보 수정 폼 가기
+	@RequestMapping(value = "/updateUserForm.do", method = RequestMethod.GET)
+	public ModelAndView updateUserForm(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
 		int idx = (int) session.getAttribute("user_idx");
-		UserCommand list = service.UpdateUser(idx);
+		UserCommand list = service.UpdateUserForm(idx);
 		mav.addObject("list", list);
 		mav.setViewName("updateUser");
 		return mav;
 	}
+	
+	//회원정보 수정하기
+	@RequestMapping(value = "/userUpdate.do", method = RequestMethod.POST)
+	public String updateUser(UserCommand dto) {
+		service.updateUser(dto);
+		return "redirect:/mypage.do";
+	}
+	
 
 	@InitBinder
 	protected void initBinnder(WebDataBinder binder) {

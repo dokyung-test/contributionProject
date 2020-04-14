@@ -60,7 +60,13 @@ public class MypageService {
 		return dao.insertQandA(dto);
 	}
 	
-	public UserCommand UpdateUser(int user_idx) {
-		return dao.UserUpdate(user_idx);
+	//회원정보 수정 폼 가기
+	public UserCommand UpdateUserForm(int user_idx) {
+		return dao.UserUpdateForm(user_idx);
+	}
+	
+	//기부내역 수정
+	public int updateUser(UserCommand dto) {
+		return dao.updateUser(dto);
 	}
 }

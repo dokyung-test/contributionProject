@@ -84,7 +84,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-
 <script>
 	$(function() {
 		/* 기부내역 추가 누를 시 입력 창 */
@@ -119,23 +118,19 @@
 										+ date1.getDate() + "일";
 
 								$("#organization_name").append(
-										"<div class='a'>" + organization_name
-												+ "</div>");
+										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='organization_name' class='a' value='"+organization_name+"'>");
 								$("#program_name").append(
-										"<div class='a' >" + program_name
-												+ "</div>");
+										"<br class='a'><input type='text' ' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+program_name+"'>");
 								$("#date").append(
-										"<div class='a'>" + text_date
-												+ "</div>");
+										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
 								$("#contribution").append(
-										"<div class='a'>" + contribution + "원"
-												+ "</div>");
+										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");
 								$("#subscription_type").append(
-										"<div class='a'>" + subscription_type
-												+ "</div>");
+										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+subscription_type+"'>");
 								$("#note").append(
-										"<div class='a'>" + note + "</div>");
-
+										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
+										+ note
+										+ "</textarea>");
 							});
 					$("#contentmodal").show();
 					return false;
@@ -173,9 +168,6 @@
 														+ month1
 														+ "-"
 														+ date2;
-
-												//var text_date = "2020-04-01";
-
 
                                                 var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);
 												
@@ -237,8 +229,14 @@
     }
 
 	function closeModal() {
-		$('.searchModal').hide();
-		$('.searchModal2').hide();
+		$('#updatemodal').hide();
+		$('#modal').hide();
+		$('.a').remove();
+	}
+
+	function closeModal2() {
+
+		$('#contentmodal').hide();
 		$('.a').remove();
 	};
 </script>
@@ -282,6 +280,7 @@
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
+	border: 1px solid gray;
 }
 </style>
 
@@ -355,7 +354,7 @@
 									<tr align="right">
 										<th style="font-size: 20px" colspan="6">${nickname}님의 총
 											기부액은 <fmt:formatNumber value="${total}" pattern="#,###원" />
-											원 입니다.
+											입니다.
 										</th>
 									</tr>
 								</tfoot>
@@ -384,21 +383,21 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎기관명</label> <input
+												<label class="label" style="font-size: 25px;color:black"> ■ 기관명</label> <input
 													type="text" class="form-control" name="organization_name"
 													placeholder="기관명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎프로그램명</label>
+												<label class="label" style="font-size: 25px;color:black"> ■ 프로그램명</label>
 												<input type="text" class="form-control" name="program_name"
 													placeholder="프로그램명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎기부
+												<label class="label" style="font-size: 25px;color:black"> ■ 기부
 													금액(숫자만)</label> <input type="text" class="form-control"
 													name="contribution" placeholder="기부금액"
 													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
@@ -406,14 +405,14 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎날짜</label> <input
+												<label class="label" style="font-size: 25px;color:black"> ■ 날짜</label> <input
 													type="Date" class="form-control" name="date"
 													placeholder="날짜">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎구분</label> <select
+												<label class="label" style="font-size: 25px;color:black"> ■ 구분</label> <br><select
 													name="subscription_type"
 													style="width: 200px; height: 50px; font-size: 20px">
 													<option value="정기" style="font-size: 20px">정기</option>
@@ -424,7 +423,7 @@
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px">◎비고</label>
+												<label class="label" style="font-size: 25px;color:black"> ■ 비고</label>
 												<textarea name="note" class="form-control" id="message"
 													cols="30" rows="4" placeholder="메모할 내용을 적으세요."
 													style="resize: none;"></textarea>
@@ -457,7 +456,6 @@
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
-							<!--  <div class="col-md-7"> -->
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h1 class="mb-4" style="font-size: 40px">기부 내역</h1>
 								<div id="form-message-success" class="mb-4"
@@ -502,14 +500,13 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="button" onclick="closeModal()" id="cancel"
+												<input type="button" onclick="closeModal2()" id="cancel"
 													style="height: 50px; width: 240px; font-size: 20px;"
 													value="취소" class="btn btn-primary" />
 											</div>
 										</div>
 									</div>
 									<input type="hidden" name="register_type_flg" value="1">
-									<input type="hidden" name="user_idx" value="1">
 								</form>
 							</div>
 						</div>
@@ -584,6 +581,7 @@
 											</div>
 										</div>
 									</div>
+									<input type="hidden" name="user_idx" value="${user_idx}">
 								</form>
 							</div>
 						</div>

@@ -46,8 +46,13 @@ public class MypageDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("project.insertQandA",dto);
 	}
 	
-	public UserCommand UserUpdate(int user_idx) {
+	//회원정보 수정 폼 가기
+	public UserCommand UserUpdateForm(int user_idx) {
 		return getSqlSession().selectOne("project.updateform",user_idx);
 	}
 	
+	//회원정보 업데이트
+	public int updateUser(UserCommand dto) {
+		return getSqlSession().update("project.updateUser",dto);
+	}
 }
