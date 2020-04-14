@@ -5,6 +5,11 @@
 <%@ page session = "true" %>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+	function organizationOpen(url){
+		window.open(url,'_blank');
+	}
+</script>
 <head>
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,6 +29,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+
 </head>
 
   <body>
@@ -60,7 +66,7 @@
 									    <a class="nav-link active py-2" data-toggle="tab" href="">기부하기</a>
 									  </li>
 									  <li class="nav-item px-lg-2 mb-md-0 mb-2">
-									    <a class="nav-link py-2" data-toggle="tab" href="${requestProgram.organization_url}">홈페이지에서 참여하기</a>
+									    <a class="nav-link py-2" onclick = "organizationOpen('${requestProgram.organization_url}');" href = "#">홈페이지에서 참여하기</a>
 									  </li>
 									 <!--  <li class="nav-item">
 									    <a class="nav-link py-2 mb-md-0 mb-2" data-toggle="tab" href="#home3">Our Value</a>
@@ -86,7 +92,7 @@
               	<span style = "width : 100px">모집금액</span>
               </div>
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="1523000">0</strong>
+                <strong class="number" data-number="${totalAmount}">0</strong>
               </div>
             </div>
           </div>
@@ -174,6 +180,9 @@
   		<h3>상세내용</h3>
 		<br>
 		<p>${requestProgram.content}</p>
+		<h3>기부금 사용계획</h3>
+		<br>
+		<p>${requestProgram.usage_plan }</p>
 	  </div>
 	  <div class="tab-pane container p-0 fade" id="organization">
 	  	<p>기관소개</p>
@@ -189,12 +198,13 @@
     <section class="ftco-section ftco-no-pt ftco-no-pb">
 		  <div class="container-fluid px-md-0">
         <div class="row no-gutters">
-
+			<!-- 사진단위 반복  -->
+			<c:forEach var = "image" items="${images}">
           <div class="col-md-4 ftco-animate">
           <!-- 화면에 깔리는 img -->
-            <div class="work img d-flex align-items-end" style="background-image: url(images/unicef.jpg);">
+            <div class="work img d-flex align-items-end" style="background-image: url(${pageContext.request.contextPath}/resources/images/${image});">
             	<!-- 클릭시 확대되는 이미지. 위아래 둘다 일치시켜줄 것!-->
-            	<a href="images/unicef.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            	<a href="${pageContext.request.contextPath}/resources/images/${image}" class="icon image-popup d-flex justify-content-center align-items-center">
 	    					<span class="icon-expand"></span>
 	    				</a>
             	<div class="desc w-100 px-4">
@@ -205,32 +215,10 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="work img d-flex align-items-end" style="background-image: url(images/work-5.jpg);">
-            	<a href="images/work-5.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-	    					<span class="icon-expand"></span>
-	    				</a>
-            	<div class="desc w-100 px-4">
-	              <div class="text w-100 mb-3">
-	              	<span>Building</span>
-	              	<h2><a href="work-single.html">College Health Profession</a></h2>
-	              </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="work img d-flex align-items-end" style="background-image: url(images/work-6.jpg);">
-            	<a href="images/work-6.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
-	    					<span class="icon-expand"></span>
-	    				</a>
-            	<div class="desc w-100 px-4">
-	              <div class="text w-100 mb-3">
-	              	<span>Building</span>
-	              	<h2><a href="work-single.html">College Health Profession</a></h2>
-	              </div>
-              </div>
-            </div>
-          </div>
+		</c:forEach>
+		
+		
+		
         </div>
       </div> 
 		</section>
@@ -455,7 +443,6 @@
   <script src="<c:url value="/resources/js/google-map.js"/>"></script>
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
-    
   </body>
 
 

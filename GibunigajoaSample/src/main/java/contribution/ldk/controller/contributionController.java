@@ -98,7 +98,7 @@ public class contributionController {
 		Program pro = service.getProgramInfo(program_id, organization_id);
 		mav.addObject("requestProgram", pro);
 		mav.addObject("typeValue", service.selectTypeValue(pro.getType_id()));
-		List<ProgramImage> images = service.getProgramBanner(program_id, organization_id);
+		List<String> images = service.getAllImages(program_id, organization_id);
 		mav.addObject("images", images);
 		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
 		return mav;
