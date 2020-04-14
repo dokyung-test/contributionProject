@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -50,9 +51,11 @@ public class ProjectController {
 
 	// 기부 내역 리스트 보기
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public ModelAndView ContributionList(int user_idx) {
+	public ModelAndView ContributionList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<ContributionDto> list = service.ContributionList(user_idx);
+		
+		int idx = (int) session.getAttribute("user_idx");
+		List<ContributionDto> list = service.ContributionList(idx);
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
@@ -60,9 +63,10 @@ public class ProjectController {
 
 	// Q&A 리스트 보기
 	@RequestMapping(value = "/qANDa.do", method = RequestMethod.GET)
-	public ModelAndView QandAList(int user_idx) {
+	public ModelAndView QandAList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<QandADto> list = service.QandAList(user_idx);
+		int idx = (int) session.getAttribute("user_idx");
+		List<QandADto> list = service.QandAList(idx);
 		mav.addObject("list", list);
 		mav.setViewName("qANDa");
 		return mav;
