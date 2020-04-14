@@ -7,13 +7,13 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 public class ProjectDao extends SqlSessionDaoSupport{
 	
 	//기부내역 리스트
-	public List<ContributionDto> ContributionList(){
-		return getSqlSession().selectList("project.ContributionList");
+	public List<ContributionDto> ContributionList(int user_idx){
+		return getSqlSession().selectList("project.ContributionList",user_idx);
 	}
 	
 	//Q&A 리스트
-	public List<QandADto> QandAList(){
-		return getSqlSession().selectList("project.QandAList");
+	public List<QandADto> QandAList(int user_idx){
+		return getSqlSession().selectList("project.QandAList",user_idx);
 	}
 	
 	//기부내역 상세글 보기

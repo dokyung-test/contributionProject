@@ -19,11 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="ContributionList"
 		resultType="contribution.model.ContributionDto">
-		select * from contribution_history
+		select * from contribution_history where user_idx=#{user_idx}
 	</select>
 
 	<select id="QandAList" resultType="contribution.model.QandADto">
-		select * from question_boards
+		select * from question_boards where user_idx=#{user_idx}
 	</select>
 
 	<select id="ContributionContent"
