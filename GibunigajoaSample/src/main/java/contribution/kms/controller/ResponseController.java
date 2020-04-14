@@ -95,7 +95,7 @@ public class ResponseController {
 		model.addAttribute("Page", page);
 		// int listCnt =list.getResponse().getBody().getTotalCount();
 
-		return "organization/blog";
+		return "blog";
 	}
 
 	@RequestMapping("/board.do")

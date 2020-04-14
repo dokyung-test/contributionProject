@@ -66,4 +66,7 @@
 	<definition name="response" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/view/organization/response.jsp"/>
 	</definition>
+	<definition name="blog" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/view/organization/blog.jsp"/>
+	</definition>
 </tiles-definitions>
