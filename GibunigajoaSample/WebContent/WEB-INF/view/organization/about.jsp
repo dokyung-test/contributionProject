@@ -69,6 +69,7 @@
 									  </div>
 									</div>
 								</div>
+								<a class="btn btn-primary" href="response.do">단체목록</a>
 		          </div>
 		        </div>
 	        </div>

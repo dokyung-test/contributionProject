@@ -20,7 +20,7 @@ public class BookmarkService {
 	
 	
 	public int insertOrDelete(int user_idx,String organization_id) {
-		int i ;  
+		int i;
 		if(dao.selectBookmark(user_idx, organization_id)==0) {
 			dao.insertBookmark(user_idx, organization_id);
 			i =1; 
