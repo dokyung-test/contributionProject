@@ -93,7 +93,7 @@ public class contributionController {
 	//프로그램상세
 	@RequestMapping(value = "/showProgram.do", method = RequestMethod.GET)
 	public ModelAndView showProgramContent(int program_id, String organization_id) {
-		
+		int updateReadCount = updateReadcount(program_id, organization_id);
 		ModelAndView mav = new ModelAndView("requestProgramDetail");
 		Program pro = service.getProgramInfo(program_id, organization_id);
 		mav.addObject("requestProgram", pro);
@@ -105,7 +105,7 @@ public class contributionController {
 	}
 	
 	public int updateReadcount(int program_id, String organization_id) {
-		
+		return service.updateReadcount(service.makeMap(program_id, organization_id));
 	}
 	
 	//기부이력으로 프로그램 기부내역 합계 계산

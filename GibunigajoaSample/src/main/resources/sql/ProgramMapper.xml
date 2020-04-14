@@ -71,4 +71,8 @@
 	<select id="calcTargetAmount" resultType="int" parameterType="map">
 		select sum(contribution) from contribution_history where program_id = #{program_id} AND organization_id = #{organization_id}
 	</select>
+	
+	<update id="updateProgramReadcount" parameterType="map">
+		update programs set readcount = readcount+1 where organization_id = #{organization_id} and program_id = #{program_id}
+	</update>
 </mapper>

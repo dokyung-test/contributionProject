@@ -52,4 +52,9 @@ public class ProgramDao extends SqlSessionDaoSupport{
 		}
 		return totalAmount;
 	}
+	
+	//프로그램 조회수 올리기
+	public int updateReadcount(Map<String, Object> programSearchKeyword) {
+		return getSqlSession().update("program.updateProgramReadcount", programSearchKeyword);
+	}
 }

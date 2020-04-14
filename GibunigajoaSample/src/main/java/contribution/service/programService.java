@@ -131,4 +131,8 @@ public class programService {
 	public int updateApprovalFlg(String organization_id, int program_id, int approval_flg) {
 		return programDao.updateApprovalFlg(organization_id, program_id, approval_flg);
 	}
+	
+	public int updateReadcount(Map<String, Object> programSearchKeyword) {
+		return programDao.updateReadcount(programSearchKeyword);
+	}
 }
