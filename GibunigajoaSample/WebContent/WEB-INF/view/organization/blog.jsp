@@ -2,33 +2,49 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
-  
-<html lang="en">
+<html>
 <head>
 <title>Home Builder - Free Bootstrap 4 Template by Colorlib</title>
 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/animate.css"/>">
+
+<link
+	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/magnific-popup.css"/>">
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/ionicons.min.css"/>">
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/flaticon.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/icomoon.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+
+<link
+	href="${pageContext.request.contextPath}/resources/kimcss/Table.css"
+	rel="stylesheet" id="bootstrap-css">
+<link
+	href="${pageContext.request.contextPath}/resources/kimcss/search.css"
+	rel="stylesheet" id="bootstrap-css">
+
  
-    <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
-    
-    <link href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
-
-    <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">
-    
-    <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-    
-    <link href="${pageContext.request.contextPath}/resources/kimcss/Table.css" rel="stylesheet" id="bootstrap-css">
-    <link href="${pageContext.request.contextPath}/resources/kimcss/search.css"  rel="stylesheet" id="bootstrap-css">
-    
-  
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
@@ -54,6 +70,34 @@
         </form>   
           </div> 
 <%--             		    <div class="search1">
+=======
+<body>
+<section class="hero-wrap hero-wrap-2"
+		style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_3.jpg');"
+		data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end">
+				<div class="col-md-9 ftco-animate pb-5">
+					<p class="breadcrumbs mb-2">
+						<span class="mr-2"><a href="main.do">Home</a> <a
+							href="response.do">
+								<h1 class="mb-0 bread">기부단체</h1>
+						</a>
+							<div>
+								<form action="response.do" method="get"
+									class="searchform order-lg-last">
+									<div class="form-group d-flex">
+										<input type="text" class="form-control pl-3"
+											placeholder="Search" name="search" value="${search}">
+										<button type="submit" placeholder=""
+											class="form-control search">
+											<span class="fa fa-search"></span>
+										</button>
+									</div>
+								</form>
+							</div> <%--             		    <div class="search1">
+>>>>>>> kimproject
  <form name="form" action="response.do" method="get" class="searchform order-lg-last" > 
  <!--  -->   
    <div class="form-group d-flex"> 
