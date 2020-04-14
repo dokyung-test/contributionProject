@@ -134,14 +134,15 @@
 												var subscription_type = args.subscription_type;
 												var note = args.note;
 												var date1 = new Date(date);
-												var text_date = date1
-														.getFullYear()
-														+ "년  "
-														+ (date1.getMonth() + 1)
-														+ "월 "
-														+ date1.getDate() + "일";
+												var month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) : date1.getMonth() + 1;
+												var date2 = date1.getDate() < 10? '0'+date1.getDate(): date1.getDate();
+												 var text_date = date1.getFullYear()
+														+ "-"
+														+ month1
+														+ "-"
+														+ date2;
 
-												
+												//var text_date = "2020-04-01";
 												$("#organization_name2")
 														.append(
 																"<br class='a'><input type='text' name='organization_name' class='a' value='"+organization_name+"'>");

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -21,22 +22,21 @@ import com.google.gson.Gson;
 
 import contribution.model.ContributionDto;
 import contribution.model.QandADto;
-import contribution.service.ProjectService;
+import contribution.service.MypageService;
 
 @Controller
 public class ProjectController {
 
 	@Autowired
-	ProjectService service;
+	MypageService service;
 
-	public void setService(ProjectService service) {
+	public void setService(MypageService service) {
 		this.service = service;
 	}
 
 	// 기부내역 입력
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
-	public String insertdonation(ContributionDto dto) {
-		
+	public String insertdonation(ContributionDto dto) {		
 		service.insertContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -48,21 +48,25 @@ public class ProjectController {
 		return "redirect:/qANDa.do";
 	}
 
-	// 기부 내역 리스트 보기
+	// 기부 내역  user_idx를 받아서 리스트 보기
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public ModelAndView ContributionList(int user_idx) {
+	public ModelAndView ContributionList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<ContributionDto> list = service.ContributionList(user_idx);
+		
+		int idx = (int) session.getAttribute("user_idx");
+		List<ContributionDto> list = service.ContributionList(idx);
+		
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
 	}
 
-	// Q&A 리스트 보기
+	// Q&A user_idx를 받아서 리스트 보기 
 	@RequestMapping(value = "/qANDa.do", method = RequestMethod.GET)
-	public ModelAndView QandAList(int user_idx) {
+	public ModelAndView QandAList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<QandADto> list = service.QandAList(user_idx);
+		int idx = (int) session.getAttribute("user_idx");
+		List<QandADto> list = service.QandAList(idx);
 		mav.addObject("list", list);
 		mav.setViewName("qANDa");
 		return mav;
@@ -114,6 +118,17 @@ public class ProjectController {
 		service.deleteContribution(contribution_history_idx);
 		return "redirect:/mypage.do";
 	}
+	
+	/*
+	 * // 회원정보 수정
+	 * 
+	 * @RequestMapping(value = "/ContributionContent.do", method =
+	 * RequestMethod.POST) public void ContributionContent(HttpServletResponse resp,
+	 * int num) throws Exception { ContributionDto list =
+	 * service.ContributionContent(num); Gson json = new Gson();
+	 * resp.setContentType("text/html;charset=utf-8"); PrintWriter out =
+	 * resp.getWriter(); out.print(json.toJson(list)); }
+	 */
 
 	@InitBinder
 	protected void initBinnder(WebDataBinder binder) {
