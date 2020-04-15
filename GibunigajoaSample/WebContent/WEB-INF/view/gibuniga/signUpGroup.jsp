@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 </head>
 <body>
 
-<form action="signUp.do" method="post">
+<form action="GroupUserSignup.do" method="post">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -30,9 +31,10 @@
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">회원가입</h3>
 										<div id="form-message-warning" class="mb-4"></div> 
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<!-- <form method="POST" id="contactForm" name="contactForm" class="contactForm"> -->
 											<div class="row">
 												<div class="col-md-12" >
+												<input type="hidden" name="organization_id" id="nanmmbyId"/>
 														<label class="label" for="user_id">ID</label>
 													<div class="form-group">
 														<input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" style="width: 70%; display: inline-block;">
@@ -53,29 +55,96 @@
 													</div>
 												</div>
 												<div class="col-md-12">
+													<label class="label" for="name">모집단체명</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="nanmmByNm" id="nanmmbyNm" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
+													    <input type="button" value="검색" class="btn btn-primary" id="idCheckBtn" onclick="searchCheck()"/>
+													</div>
+												</div>
+												<div class="col-md-12">
 													<label class="label" for="name">대표자명</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="name" id="name" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="rprsntvNm" id="rprsntvNm" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="name">Nickname</label>
+													<label class="label" for="birthday">설립일자</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="fondDe" id="fondDe" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="birthday">birthday</label>
+													<label class="label" for="phone_number">전화번호</label>
 														<div class="form-group">
-														<input type="date" class="form-control" name="birthday" id="birthday" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="phone_number">PhoneNumber</label>
+													<label class="label" for="phone_number">공제유형</label>
 														<div class="form-group">
-														<input type="number" class="form-control" name="phone_number" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="cntrDdcTy" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">기부금단체 지정번호</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="ctbgrnpAppnNo" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">팩스번호</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="fxnum" id="fxnum" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">주소</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="adres" id="adres" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">상세주소</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="adres_detail" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">우편번호</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="zip" id="zip" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">홈페이지 주소</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="hmpadres" id="hmpgAdres" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">사업자 등록번호</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="bizrno" id="bizrno" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												<div >
+													<label class="label" >모집분야</label>
+														<div >    
+														<input type="radio"  name="type_id" id="" value="0">전체
+													    <input type="radio" name="type_id" id="" value="1">아동,청소년
+													    <input type="radio"  name="type_id" id="" value="2">노인복지
+													    <input type="radio"  name="type_id" id="" value="3">장애인
+													    <input type="radio"  name="type_id" id="" value="4">다문화
+													    <input type="radio" name="type_id" id="" value="5">지구촌
+													    <input type="radio"  name="type_id" id="" value="6">가족,여성
+													    <input type="radio"  name="type_id" id="" value="7">동물
+													    <input type="radio"  name="type_id" id="" value="8">환경
+													     <input type="radio"  name="type_id" id="" value="9">기타
+													</div>
+												</div>
+												
+												
+												
 												
 												<div class="col-md-12">
 													<div class="form-group">
@@ -85,7 +154,7 @@
 													</div>
 												</div>
 											</div>
-										</form>
+									<!-- 	</form> -->
 									</div> 
 								<!-- </div> -->
 								
@@ -122,6 +191,6 @@
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
   <script src="<c:url value="/resources/js/signup.js"/>"></script>
-
+   <script src="<c:url value="/resources/js/searchOrganiztion.js"/>"></script>
 </body>
 </html>
