@@ -30,7 +30,7 @@
 									src="${pageContext.request.contextPath}/resources/images/user_02.png"></span></a>
 							<div>
 								<a href="javascript:void(0);" id="loginBtn">로그인&nbsp;&nbsp;&nbsp;</a>
-								<a href="javascript:void(0);" style="color: #0056b3;" id="myBtn">회원가입</a>
+								<a href="javascript:void(0);" style="color: #0056b3;" id="myBtn" onclick="memberBtn();">회원가입</a>
 							</div>
 						</c:when>
 						<c:otherwise>
