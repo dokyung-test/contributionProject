@@ -7,7 +7,7 @@
 		select * from programs where organization_id = #{organization_id} AND program_id = #{program_id}
 	</select>
 	<select id = "selectProgramCount" parameterType="String" resultType="int">
-		select count(*)as cnt from programs where organization_id = #{organization_id}
+		select max(program_id)+1 from programs where organization_id = #{organization_id}
 	</select>
 	
 	<select id = "selectAllType" resultType="contribution.model.Type">
@@ -18,8 +18,9 @@
 		select type from types where type_id = #{type_id}
 	</select>
 	
+	<!-- 기부단체 프로그램신청 등록 -->
 	<insert id="insertProgram" parameterType="contribution.model.Program">
-		insert into programs(organization_id, program_id, program_subject, type_id, start_date, end_date, target_amount, purpose, summary, content, organization_url, bank_name, account, corporate_registration_number, zip, address, address_detail, phone_number, representative, usage_plan) values (#{organization_id}, #{program_id}, #{program_subject}, #{type_id}, #{start_date}, #{end_date}, #{target_amount}, #{purpose}, #{summary}, #{content}, #{organization_url}, #{bank_name}, #{account}, #{corporate_registration_number}, #{zip}, #{address}, #{address_detail}, #{phone_number}, #{representative}, #{usage_plan})
+		insert into programs(organization_id, program_id, program_subject, type_id, start_date, end_date, target_amount, purpose, summary, content, organization_url, bank_name, account, phone_number, representative, usage_plan) values (#{organization_id}, #{program_id}, #{program_subject}, #{type_id}, #{start_date}, #{end_date}, #{target_amount}, #{purpose}, #{summary}, #{content}, #{organization_url}, #{bank_name}, #{account}, #{phone_number}, #{representative}, #{usage_plan})
 	</insert>
 	
 	<!-- 메인, 프로그램리스트에서 분야별로 검색 -->

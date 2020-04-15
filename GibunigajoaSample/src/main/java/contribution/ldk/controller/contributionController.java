@@ -46,12 +46,12 @@ public class contributionController {
 
 	@RequestMapping(value = "/registerForm.do", method = RequestMethod.GET)
 	public ModelAndView registerForm(HttpSession session) {
-		session.setAttribute("organization_id", "00000015");
+		//session.setAttribute("organization_id", "00000015");
 		ModelAndView mav = new ModelAndView("registerForm");
 		mav.addObject("program", new Program());
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
-		System.out.println("서버경로 : " + session.getServletContext().getRealPath("/"));
+		//System.out.println("서버경로 : " + session.getServletContext().getRealPath("/"));
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
@@ -62,10 +62,13 @@ public class contributionController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
+	
+	//프로그램신청 등록
 	@RequestMapping(value = "/registerProgram.do", method = RequestMethod.POST)
 	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView registerProgram(@ModelAttribute("program") Program pro, HttpSession session) {
 		//pro.setOrganization_id("000000015");
+		System.out.println(pro);
 		int rowNum = service.insertProgram(pro);
 		if (rowNum > 0) {
 			return requestList(session);
@@ -127,7 +130,7 @@ public class contributionController {
 	 */
 	
 	@RequestMapping(value = "/updateForm.do", method = RequestMethod.POST)
-	public ModelAndView registerForm(@ModelAttribute Program updateProgram,HttpSession session) {
+	public ModelAndView updateForm(@ModelAttribute Program updateProgram,HttpSession session) {
 		ModelAndView mav = new ModelAndView("updateForm");
 		Program pro = service.getProgramInfo(updateProgram.getProgram_id(), updateProgram.getOrganization_id());
 		mav.addObject("updateProgram", pro);
