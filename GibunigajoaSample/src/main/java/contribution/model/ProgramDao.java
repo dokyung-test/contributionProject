@@ -63,5 +63,10 @@ public class ProgramDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("program.selectProgramImages", programSearchKeyword);
 	}
 	
+	//프로그램상세 - 기부단체이름습득
+	public String getOrganizationName(String organization_id) {
+		return getSqlSession().selectOne("program.getOrganizationName", organization_id);
+	}
+	
 	
 }

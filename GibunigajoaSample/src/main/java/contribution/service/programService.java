@@ -162,4 +162,9 @@ public class programService {
 		return programDao.getAllImages(makeMap(program_id, organization_id));
 	}
 	
+	//프로그램상세 - 기부단체이름습득
+	public String getOrganizationName(String organization_id) {
+		return programDao.getOrganizationName(organization_id);
+	}
+	
 }

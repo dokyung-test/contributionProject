@@ -99,6 +99,7 @@ public class contributionController {
 		List<String> images = service.getAllImages(program_id, organization_id);
 		mav.addObject("images", images);
 		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
+		mav.addObject("organization_name", service.getOrganizationName(organization_id));
 		return mav;
 	}
 	

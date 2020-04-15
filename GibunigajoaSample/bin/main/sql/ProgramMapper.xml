@@ -87,5 +87,8 @@
 		select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1 AND type_id = #{type_id}
 	</select>
 	
+	<select id="getOrganizationName" resultType="String" parameterType="String">
+		select nanmmByNm from organizations where organization_id = #{organization_id}
+	</select>
 	
 </mapper>
