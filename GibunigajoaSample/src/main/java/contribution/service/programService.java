@@ -80,9 +80,16 @@ public class programService {
 		return typeDao.selectTypeValue(type_id);
 	}
 	
+	//미승인프로그램수정 - 배너, 이미지 접근불가
 	public int updateProgram(Program program) {
 		return programDao.updateProgram(program);
 	}
+	
+	//승인프로그램수정 - 배너, 이미지 접근가능
+	public int updateProgramApproval(Program program) {
+		return programDao.updateProgramApproval(program);
+	}
+		
 	
 	//배너를 program_images에서 보관하다가 수정 -> program테이블로 이동. 사용하지 않는 메서드
 	/*

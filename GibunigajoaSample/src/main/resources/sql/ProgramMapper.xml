@@ -38,9 +38,17 @@
 		select stored_file_name from program_images where program_id = #{program_id} and organization_id = #{organization_id}
 	</select>
 	
+	<!-- 미승인된 프로그램 - 배너, 이미지 접근불가-->
 	<!-- 프로그램수정 -->
 	<update id="updateProgram" parameterType = "contribution.model.Program" >
-		update programs set program_subject = #{program_subject}, type_id = #{type_id}, start_date = #{start_date}, end_date = #{end_date}, target_amount = #{target_amount}, purpose = #{purpose}, summary = #{summary}, content = #{content}, organization_url = #{organization_url}, bank_name = #{bank_name}, account = #{account}, corporate_registration_number = #{corporate_registration_number}, zip = #{zip}, address = #{address}, address_detail = #{address_detail}, phone_number = #{phone_number}, representative = #{representative}, banner_file_name = #{banner_file_name} where program_id = #{program_id} AND organization_id = #{organization_id}
+		update programs set program_subject = #{program_subject}, type_id = #{type_id}, start_date = #{start_date}, end_date = #{end_date}, target_amount = #{target_amount}, purpose = #{purpose}, summary = #{summary}, content = #{content}, organization_url = #{organization_url}, bank_name = #{bank_name}, account = #{account}, phone_number = #{phone_number}, representative = #{representative}, usage_plan = #{usage_plan} where program_id = #{program_id} AND organization_id = #{organization_id}
+	</update>
+	
+	
+	<!-- 승인된 프로그램 - 배너, 이미지 접근가능-->
+	<!-- 프로그램수정 -->
+	<update id="updateProgramApproval" parameterType = "contribution.model.Program" >
+		update programs set program_subject = #{program_subject}, type_id = #{type_id}, start_date = #{start_date}, end_date = #{end_date}, target_amount = #{target_amount}, purpose = #{purpose}, summary = #{summary}, content = #{content}, organization_url = #{organization_url}, bank_name = #{bank_name}, account = #{account}, phone_number = #{phone_number}, representative = #{representative}, banner_file_name = #{banner_file_name}, usage_plan = #{usage_plan} where program_id = #{program_id} AND organization_id = #{organization_id}
 	</update>
 	
 	<!-- 프로그램 이미지 등록 -->

@@ -24,9 +24,17 @@ public class ProgramDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("program.selectProgram", map);
 	}
 	
+	
+	//미승인프로그램 수정 - 배너, 이미지 접근불가
 	public int updateProgram(Program program) {
 		return getSqlSession().update("program.updateProgram", program);
 	}
+	
+	//승인프로그램 수정 - 배너, 이미지 접근가능
+	public int updateProgramApproval(Program program) {
+		return getSqlSession().update("program.updateProgramApproval", program);
+	}
+	
 	
 	//배너이미지 insert
 	public int insertProgramBanner(ProgramImage imageInfo) {
