@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session = "true" %>
 <!DOCTYPE html>
 <html>
@@ -150,13 +151,26 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="banner">배너이미지</label>
-															<input type = "file" id = "banner" name = "banner" class = "form-control">														
+															<input type = "file" id = "banner" name = "banner" class = "form-control" >														
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+															<%-- <c:forEach items = "${fn:split(updateProgram.banner_file_name,'_')}" var = "item">
+																${item }<br>
+															</c:forEach> --%>
+															${updateProgram.original_file_name}
+															<!-- <input type = "file" id = "banner" name = "banner" class = "form-control" >	 -->													
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="images">이미지</label>
-															<input type = "file" id = "images" name = "images" multiple="multiple" class = "form-control">
+															<input type = "file" id = "images" name = "images" multiple="multiple" class = "form-control" >
+															<c:forEach var = "original_file_name" items = "${programImageList}">
+																${original_file_name}
+															</c:forEach>
+													
 													</div>
 												</div>
 												<div class="col-md-12">

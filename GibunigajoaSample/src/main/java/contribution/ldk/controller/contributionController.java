@@ -3,7 +3,9 @@ package contribution.ldk.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -163,6 +165,8 @@ public class contributionController {
 		mav.addObject("updateProgram", pro);
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
+		List<String> programImageList = service.getProgramOriginalFileName(program_id, organization_id);
+		mav.addObject("programImageList", programImageList);
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
@@ -178,9 +182,13 @@ public class contributionController {
 		int program_id = requestProgram.getProgram_id();
 		String root = request.getServletContext().getRealPath("resources/images/");
 		String banner_file_name = "";
+		String original_file_name = "";
 		if(!banner.isEmpty()) {
-			banner_file_name = insertBanner(organization_id, program_id, root, banner);
+			Map<String, String> fileInfo = insertBanner(organization_id, program_id, root, banner);
+			banner_file_name = fileInfo.get("stored_file_name");
+			original_file_name = fileInfo.get("original_name");
 		}
+		requestProgram.setOriginal_file_name(original_file_name);
 		requestProgram.setBanner_file_name(banner_file_name);
 		System.out.println("승인update");
 		System.out.println(requestProgram);
@@ -221,7 +229,7 @@ public class contributionController {
 	
 	
 	//프로그램배너 파일로 출력
-	public String insertBanner(String organization_id, int program_id, String root, MultipartFile image) {
+	public Map<String, String> insertBanner(String organization_id, int program_id, String root, MultipartFile image) {
 		FileUtils fileUtils = new FileUtils();
 		return fileUtils.bannerImageUpload(image, organization_id, program_id, root);
 		

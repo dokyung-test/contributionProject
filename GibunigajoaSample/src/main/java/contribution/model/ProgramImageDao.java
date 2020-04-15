@@ -10,5 +10,9 @@ public class ProgramImageDao extends SqlSessionDaoSupport{
 	public List<ProgramImage> getProgramBanner(Map<String, Object> map) {
 		return getSqlSession().selectList("program.selectProgramImages", map);
 	}
+	//프로그램의 이미지들의 원본파일명만 습득
+	public List<String> getProgramOriginalFileName(Map<String, Object> map) {
+		return getSqlSession().selectList("program.selectProgramImagesOriginalFileName", map);
+	}
 	
 }
