@@ -1,5 +1,6 @@
 package contribution.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,15 @@ public class MypageService {
 	//기부내역 수정
 	public int updateUser(UserCommand dto) {
 		return dao.updateUser(dto);
+	}
+	
+	//회원 탈퇴 비밀번호 체크
+	public UserCommand deleteUserCheck(HashMap<Object, Object> m) {
+		return dao.deleteUserCheck(m);
+	}
+	
+	//회원 탈퇴
+	public int deleteUser(int user_idx) {
+		return dao.deleteUser(user_idx);
 	}
 }

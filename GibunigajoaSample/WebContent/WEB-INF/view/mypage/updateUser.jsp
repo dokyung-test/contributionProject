@@ -32,13 +32,26 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/icomoon.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 
 <script>
-	$(function() {
-		$("#delete").on('click', function() {
-			$("#modal").show();
-		});
+$(function() {
+	<!-- 회원탈퇴 누를시 modal창 띄우는 jquery  -->
+	$("#testBtn").on('click',function() {
+		$("#modal").show();
 	});
+	});
+
+/* 취소 누를시 modal창을 숨김  */
+function closeModal() {
+	$('.searchModal').hide();
+
+};
+
 </script>
 <style>
 /* modal창의 배경 */
@@ -53,21 +66,26 @@
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
+} 
+
 </style>
 </head>
-<body>
 
-	<form action="userUpdate.do" method="post">
-		<section class="ftco-section">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-12">
-						<div class="wrapper">
+<body>
+ <!--    회원정보 수정 -->
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrapper">
+						<button id="testBtn" class="btn btn-primary"
+							style="position: relative; left: 800px; width: 250px; font-size: 20px;"
+							>회원 탈퇴</button>
+						<form action="userUpdate.do" method="post">
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
-								<!-- <div class="col-md-7"> -->
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">회원정보 수정</h3>
+
 									<div id="form-message-warning" class="mb-4"></div>
 									<div class="row">
 										<div class="col-md-12">
@@ -127,12 +145,11 @@
 										<div class="col-md-12">
 											<div class="form-group">
 
-
-
 												<input type="button" value="취소" class="btn btn-primary"
 													style="float: right; padding-left: 4%; padding-right: 4%;"
-													onclick="location.href='mypage.do'" /> <input type="submit"
-													value="회원정보 수정" class="btn btn-primary"
+													onclick="location.href='mypage.do'" />
+													 <input
+													type="submit" value="회원정보 수정" class="btn btn-primary"
 													style="float: right; margin-right: 1%" />
 												<div class="submitting"></div>
 											</div>
@@ -141,20 +158,52 @@
 									<input type="hidden" name="user_idx" value="${user_idx}">
 								</div>
 							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <!-- 회원 탈퇴 modal -->
+	<div id="modal" class="searchModal">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<div class="wrapper">
+						<!--  <div class="col-md-7"> -->
+						<div class="contact-wrap w-100 p-md-5 p-4">
+							<h3 class="mb-4" style="font-size: 40px">비밀번호 확인</h3>
+							<div id="form-message-warning" class="mb-4"></div>
+							<form method="POST" action="deleteUser.do" name="form" id="pass">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="label" style="font-size: 20px">비밀번호 확인</label>
+											<input type="password" class="form-control" name="password" id="password" placeholder="password를 입력해주세요" style="width: 100%; display: inline-block;">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="button" onclick="closeModal()"
+												style="float: right;  height: 50px; width: 150px; font-size: 20px;"
+												value="취소" class="btn btn-primary" /> 
+												<input type="button"
+												style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
+												value="탈퇴" class="btn btn-primary" onclick="deleteUser()"/>
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="user_idx" value="${user_idx}" id="user_idx">
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-
-		<div id="modal" class="searchModal">
-			<div class="container">
-				<input type="text">
-			</div>
 		</div>
-	</form>
-	<button id="delete" class="btn btn-primary" onclick="deleteUser()">회원
-		탈퇴</button>
+	</div>
+
+
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
@@ -185,5 +234,6 @@
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
+	  <script src="<c:url value="/resources/js/deleteUser.js"/>"></script>
 </body>
 </html>

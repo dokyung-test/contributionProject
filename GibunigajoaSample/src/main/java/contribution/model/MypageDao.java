@@ -1,5 +1,6 @@
 package contribution.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -54,5 +55,16 @@ public class MypageDao extends SqlSessionDaoSupport{
 	//회원정보 업데이트
 	public int updateUser(UserCommand dto) {
 		return getSqlSession().update("project.updateUser",dto);
+	}
+	
+	//회원 탈퇴 비밀번호 체크
+	public UserCommand deleteUserCheck(HashMap<Object, Object> m) {
+		return getSqlSession().selectOne("project.deleteUserCheck", m);
+		
+	}
+	
+	//회원 탈퇴
+	public int deleteUser(int user_idx) {
+		return getSqlSession().delete("project.deleteUser",user_idx);
 	}
 }

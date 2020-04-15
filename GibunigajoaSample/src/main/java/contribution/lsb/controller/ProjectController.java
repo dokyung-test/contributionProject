@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import contribution.model.ContributionDto;
 import contribution.model.QandADto;
@@ -102,7 +105,7 @@ public class ProjectController {
 	}
 
 	// Q&A 상세 글 보기
-	@RequestMapping(value = "/QandAContent.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/QandAContent.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public void QandAContent(HttpServletResponse resp, int num) throws Exception {
 		QandADto list = service.QandAContent(num);
 		Gson json = new Gson();
@@ -128,14 +131,46 @@ public class ProjectController {
 		mav.setViewName("updateUser");
 		return mav;
 	}
-	
-	//회원정보 수정하기
+
+	// 회원정보 수정하기
 	@RequestMapping(value = "/userUpdate.do", method = RequestMethod.POST)
 	public String updateUser(UserCommand dto) {
 		service.updateUser(dto);
 		return "redirect:/mypage.do";
 	}
-	
+
+	// 회원탈퇴 비밀번호 체크
+	@RequestMapping(value = "/deleteUserCheck.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteUserCheck(String password, HttpSession session) {
+		Gson gson = new Gson();
+		JsonObject json = new JsonObject();
+		int idx = (int) session.getAttribute("user_idx");
+		int num = 0;
+		HashMap<Object, Object> m = new HashMap<Object, Object>();
+		m.put("user_idx", idx);
+		m.put("password", password);
+
+		UserCommand user = service.deleteUserCheck(m);	
+		
+			if(user == null) {
+				num = 0;
+			}else {
+				num = 1;				
+			}
+		json.addProperty("num", num);
+		return gson.toJson(json);
+
+	}
+
+	// 회원탈퇴
+	@RequestMapping(value = "/deleteUser.do")
+	public String deletedonation(HttpSession session) {
+		int idx = (int) session.getAttribute("user_idx");
+		service.deleteUser(idx);
+		session.invalidate();
+		return "redirect:/main.do";
+	}
 
 	@InitBinder
 	protected void initBinnder(WebDataBinder binder) {
