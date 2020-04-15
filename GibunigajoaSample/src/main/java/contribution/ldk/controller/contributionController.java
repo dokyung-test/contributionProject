@@ -47,7 +47,7 @@ public class contributionController {
 	@RequestMapping(value = "/registerForm.do", method = RequestMethod.GET)
 	public ModelAndView registerForm(HttpSession session) {
 		session.setAttribute("organization_id", "00000015");
-		ModelAndView mav = new ModelAndView("registerProgram");
+		ModelAndView mav = new ModelAndView("registerForm");
 		mav.addObject("program", new Program());
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);

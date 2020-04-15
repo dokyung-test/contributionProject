@@ -32,7 +32,11 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 	<!--===============================================================================================-->
 
-
+<script type="text/javascript">
+	/* function {
+		window.location
+	} */
+</script>
 </head>
 <body>
 <br>
@@ -40,13 +44,11 @@
 	        
 	        
 	<div class="limiter">
+	<div class="button-group-area mt-40">
+				<a href="${pageContext.request.contextPath}/registerForm.do" class="genric-btn success radius" style = "margin-left : 100px">프로그램 신청</a>
+			</div>
 		<div class="container-table100">
 		
-			<div class="button-group-area mt-40">
-				<a href="" class="genric-btn success radius" style = "margin-right : 1015px">프로그램 신청</a>
-			</div>
-			<br>
-			<br>
 				<div class="table100 ver2 m-b-110">
 				
 			
@@ -89,7 +91,7 @@
 						</table>
 					</div>
 				</div>
-
+			
 			</div>
 		</div>
 	</div>
