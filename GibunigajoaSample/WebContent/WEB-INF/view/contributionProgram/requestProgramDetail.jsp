@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session = "true" %>
 <!DOCTYPE html>
 <html>
@@ -48,10 +49,15 @@
     			<div class="col-md-6 pl-md-5">
     				<div class="row justify-content-start py-5">
 		          <div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
-		          	<span class="subheading">모집완료까지 D-??</span>
+		          	<jsp:useBean id="now" class = "java.util.Date"/>
+		          	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var = "today"/>
+		          	<fmt:parseNumber value = "${requestProgram.end_date.time  / (1000*60*60*24)}" integerOnly = "true" var = "endDate"></fmt:parseNumber>
+		          	<fmt:parseNumber value = "${now.time / (1000*60*60*24)}" integerOnly = "true" var = "startDate"></fmt:parseNumber>
+		          	
+		          	<span class="subheading">모집완료까지 D-${endDate - startDate}</span>
 		            <h2 class="mb-4">${requestProgram.program_subject}</h2>
 		            <p>기부단체명 : (rcritrNm)<br>
-	            		모집기간 : ${requestProgram.start_date} - ${requestProgram.end_date}<br>
+	            		모집기간 : <fmt:formatDate value="${requestProgram.start_date}" pattern="yyyy-MM-dd"/> - <fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/><br>
 	            		목표금액 : ${requestProgram.target_amount } 원
 		            </p>
 		            <div class="tabulation-2 mt-4">
