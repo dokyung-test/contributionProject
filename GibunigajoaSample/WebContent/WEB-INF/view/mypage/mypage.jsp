@@ -109,8 +109,7 @@
 								var organization_name = args.organization_name;
 								var program_name = args.program_name;
 								var date = args.date;
-								var contribution = args.contribution;
-								var subscription_type = args.subscription_type;
+								var contribution = args.contribution;								
 								var note = args.note;
 								var date1 = new Date(date);
 								var text_date = date1.getFullYear() + "년  "
@@ -124,9 +123,7 @@
 								$("#date").append(
 										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
 								$("#contribution").append(
-										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");
-								$("#subscription_type").append(
-										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+subscription_type+"'>");
+										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");								
 								$("#note").append(
 										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
 										+ note
@@ -155,11 +152,9 @@
 												var organization_name = args.organization_name;
 												var program_name = args.program_name;
 												var date = args.date;
-												var contribution = args.contribution;
-												var subscription_type = args.subscription_type;
+												var contribution = args.contribution;												
 												var note = args.note;
 												var date1 = new Date(date);
-
 
 												var month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) : date1.getMonth() + 1;
 												var date2 = date1.getDate() < 10? '0'+date1.getDate(): date1.getDate();
@@ -169,9 +164,7 @@
 														+ "-"
 														+ date2;
 
-                                                var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);
-												
-
+                                                var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);											
                                                 var month1 = (date1.getMonth() + 1) < 10 ? '0' +(date1.getMonth() + 1) : (date1.getMonth() + 1);
                                                 var date2 =  date1.getDate() <10 ? '0' +date1.getDate() : date1.getDate();												
 
@@ -180,13 +173,9 @@
 														+ "-"
 														+ month1
 														+ "-"
-
 														+ date1.getDate() + "일"; 
-
-
 														+ date2; 
 										
-
 												$("#organization_name2")
 														.append(
 																"<br class='a'><input type='text' name='organization_name' class='a' value='"+organization_name+"'>");
@@ -324,7 +313,7 @@
 										<th style="font-size: 20px">프로그램명</th>
 										<th style="font-size: 20px">기부금액</th>
 										<th style="font-size: 20px">날짜</th>
-										<th style="font-size: 20px">구분</th>
+
 										<th style="font-size: 20px"></th>
 									</tr>
 								</thead>
@@ -340,11 +329,10 @@
 													value="${list.contribution}" pattern="#,###원" /></td>
 											<td style="font-size: 15px"><fmt:formatDate
 													value="${list.date}" pattern="yyyy년 MM월 dd일" /></td>
-											<td style="font-size: 15px">${list.subscription_type}</td>
+
 											<td align="center" style="font-size: 15px"><a href="#"
 												title="${list.contribution_history_idx}" class="update"
-												style="color: blue">수정 / </a> 
-												<a href="#"
+												style="color: blue">수정 / </a> <a href="#"
 												onclick="deletelist(${list.contribution_history_idx})"
 												style="color: blue">삭제</a> <c:set var="total"
 													value="${total + list.contribution}" />
@@ -353,7 +341,7 @@
 								</tbody>
 								<tfoot>
 									<tr align="right">
-										<th style="font-size: 20px" colspan="6">${nickname}님의 총
+										<th style="font-size: 20px" colspan="5">${nickname}님의총
 											기부액은 <fmt:formatNumber value="${total}" pattern="#,###원" />
 											입니다.
 										</th>
@@ -384,47 +372,39 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 기관명</label> <input
-													type="text" class="form-control" name="organization_name"
-													placeholder="기관명">
+												<label class="label" style="font-size: 25px; color: black">
+													■ 기관명</label> <input type="text" class="form-control"
+													name="organization_name" placeholder="기관명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 프로그램명</label>
-												<input type="text" class="form-control" name="program_name"
-													placeholder="프로그램명">
+												<label class="label" style="font-size: 25px; color: black">
+													■ 프로그램명</label> <input type="text" class="form-control"
+													name="program_name" placeholder="프로그램명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 기부
-													금액(숫자만)</label> <input type="text" class="form-control"
+												<label class="label" style="font-size: 25px; color: black">
+													■ 기부 금액(숫자만)</label> <input type="text" class="form-control"
 													name="contribution" placeholder="기부금액"
 													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 날짜</label> <input
-													type="Date" class="form-control" name="date"
+												<label class="label" style="font-size: 25px; color: black">
+													■ 날짜</label> <input type="Date" class="form-control" name="date"
 													placeholder="날짜">
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 구분</label> <br><select
-													name="subscription_type"
-													style="width: 200px; height: 50px; font-size: 20px">
-													<option value="정기" style="font-size: 20px">정기</option>
-													<option value="비정기" style="font-size: 20px">비정기</option>
-												</select>
-											</div>
-										</div>
+
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;color:black"> ■ 비고</label>
+												<label class="label" style="font-size: 25px; color: black">
+													■ 비고</label>
 												<textarea name="note" class="form-control" id="message"
 													cols="30" rows="4" placeholder="메모할 내용을 적으세요."
 													style="resize: none;"></textarea>
@@ -487,12 +467,6 @@
 												<label class="label" style="font-size: 20px" id="date">◎날짜</label>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label class="label" style="font-size: 20px"
-													id="subscription_type">◎구분(정기/비정기)</label>
-											</div>
-										</div>
 
 										<div class="col-md-12">
 											<div class="form-group">
@@ -552,17 +526,6 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px" id="date2">◎날짜</label>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<label class="label" style="font-size: 20px"
-													id="subscription_type2">◎구분</label> <select
-													name="subscription_type"
-													style="width: 200px; height: 50px; font-size: 20px">
-													<option value="정기" style="font-size: 20px">정기</option>
-													<option value="비정기" style="font-size: 20px">비정기</option>
-												</select>
 											</div>
 										</div>
 
