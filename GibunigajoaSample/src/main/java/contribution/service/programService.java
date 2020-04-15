@@ -174,4 +174,9 @@ public class programService {
 		return programDao.getOrganizationName(organization_id);
 	}
 	
+	//승인프로그램 수정시 필요한 이미지들의 원본파일명습득
+	public List<String> getProgramOriginalFileName(int program_id, String organization_id) {
+		return programImageDao.getProgramOriginalFileName(makeMap(program_id, organization_id));
+	}
+	
 }

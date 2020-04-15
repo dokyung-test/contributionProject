@@ -24,6 +24,7 @@ public class Program {
 	int approval_flg;
 	String banner_file_name;
 	String usage_plan;
+	String original_file_name;
 	
 	
 	
@@ -147,6 +148,14 @@ public class Program {
 	public void setUsage_plan(String usage_plan) {
 		this.usage_plan = usage_plan;
 	}
+	public String getOriginal_file_name() {
+		return original_file_name;
+	}
+	public void setOriginal_file_name(String original_file_name) {
+		this.original_file_name = original_file_name;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Program [organization_id=" + organization_id + ", program_id=" + program_id + ", program_subject="
