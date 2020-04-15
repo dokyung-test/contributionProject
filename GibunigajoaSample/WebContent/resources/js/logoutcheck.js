@@ -8,13 +8,20 @@ var spanM = document.getElementsByClassName("close_m");
 
 //-------modal
 //회원가입 누르면 modal나옴 
-btn.onclick = function() {
+/*btn.onclick = function() {
     modal.style.display = "block";
-}
+}*/
+
 //modal의 X버튼 누르면 modal close 
 function closeX() {
 	modal.style.display = "none";
 }
+
+//회원가입 누르면 modal나옴 
+function memberBtn(){
+	modal.style.display = "block";
+}
+
 // modal외의 것 클릭하면 modal close
 window.onclick = function(event) {
     if (event.target == modal) {

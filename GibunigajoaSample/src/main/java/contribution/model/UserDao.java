@@ -30,4 +30,9 @@ public class UserDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("gibunigajoa.kakaoNaverInsert", command);
 	}
 	
+	//기부내역 가입자 금액 sum 등급 
+	public int contributionSum(int user_idx) {
+		return getSqlSession().selectOne("gibunigajoa.contributionSum", user_idx);
+	}
+	
 }

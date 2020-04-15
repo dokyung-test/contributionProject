@@ -23,13 +23,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script> 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
 
-<script type="text/javascript">
-
-
-
-</script>
 </head>
 <body>
 	<section class="ftco-section">
@@ -79,9 +73,9 @@
 								</div>
 								</div>
 								
-								<a id="kakaoPayBtn" onclick="kakaoPay();"> <img alt="카카오페이결제버튼" src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_medium.png"></a>
+								<%-- <a id="kakaoPayBtn" onclick="kakaoPay();"> <img alt="카카오페이결제버튼" src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_medium.png"></a>
 								<a id="naverPayBtn" onclick="naverPay();"><img alt="네이버페이결제버튼" src="${pageContext.request.contextPath}/resources/images/npay_logo.PNG"></a> 
-								<%-- <input type="button" id="naverPayBtn" value="네이버페이 결제 버튼" onclick="naverPay();">
+								<input type="button" id="naverPayBtn" value="네이버페이 결제 버튼" onclick="naverPay();">
 								<input type="button" id="kakaoPayBtn" value="카카오페이 결제 버튼" onclick="kakaoPay();">  --%> 
 							
 							</div>

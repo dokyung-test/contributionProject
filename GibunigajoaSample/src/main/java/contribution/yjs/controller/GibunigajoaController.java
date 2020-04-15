@@ -1,11 +1,13 @@
 package contribution.yjs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -21,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import contribution.model.ContributionDto;
 import contribution.model.UserCommand;
 import contribution.service.GibunigajoaService;
 
@@ -238,17 +240,61 @@ public class GibunigajoaController {
 	}
 	
 	
-	 @RequestMapping(value = "/oauth", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
-	 public String kakaoLogin(@RequestParam("code") String code) {
-		 //System.out.println(access_token);
-	     return "home";
-	 }
+	/*
+	  @RequestMapping(value = "/oauth", produces = "application/json", method = {
+	  RequestMethod.GET, RequestMethod.POST }) public String
+	  kakaoLogin(@RequestParam("code") String code) {
+	  //System.out.println(access_token); return "home"; }
 	 
 	 @RequestMapping(value="/kakaologin.do")
 	 public String kakaoLoginCheck() {
 		 return "main";
 	 }
-	
+	*/
+	 @RequestMapping(value="/payment.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	 public void payment(String contribution, String organization_name, String program_subject, String organization_id, String program_id, HttpSession session, HttpServletResponse response) throws IOException {
+		 System.out.println("session: "+session.getAttribute("user_idx"));
+		 String idx = String.valueOf(session.getAttribute("user_idx"));
+		 idx.trim();
+		 int user_idx = Integer.parseInt(idx);
+		 System.out.println("user_idx: "+user_idx);
+		 ContributionDto command = new ContributionDto();
+		 command.setContribution(Integer.parseInt(contribution));
+		 command.setOrganization_name(organization_name);
+		 command.setProgram_name(program_subject);
+		 command.setRegister_type_flg(2);
+		 System.out.println("여기까지 오니? ");
+		 command.setUser_idx(user_idx);
+		 command.setDate(new Date(System.currentTimeMillis()));
+		 command.setOrganization_id(organization_id);
+		 command.setProgram_id(Integer.parseInt(program_id));
+		 
+		 int num = gibunigajoaService.payInsertContribution(command);
+		 
+		 if(session.getAttribute("user_id") != "") {
+			 int contributionSum = gibunigajoaService.contributionSum(user_idx); 
+			 
+			 if(contributionSum >= 100000 && contributionSum < 500000) {
+				 response.setContentType("text/html; charset=UTF-8");
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>alert('10만원 기부해주셨습니다!');</script>");
+				 out.flush(); 
+
+			 }else if(contributionSum >= 500000 && contributionSum < 1000000) {
+				 response.setContentType("text/html; charset=UTF-8");
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>alert('50만원 기부해주셨습니다!');</script>");
+				 out.flush(); 
+			 }else if(contributionSum >= 1000000) {
+				 response.setContentType("text/html; charset=UTF-8");
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>alert('100만원 기부해주셨습니다!');</script>");
+				 out.flush(); 
+			 }
+		 }
+		 
+	 }
+	 
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
