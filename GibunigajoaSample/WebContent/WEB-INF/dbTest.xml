@@ -45,9 +45,9 @@
 	<bean id="dao" class="contribution.model.MypageDao">
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-	
+	<bean p:sqlSessionFactory-ref="sqlSessionFactory" class="contribution.model.GroupUserDao" id="GroupmarkDao"/>
 	<bean p:sqlSessionFactory-ref="sqlSessionFactory" class="contribution.model.BookmarkDao" id="bookmarkDao"/>
-
+ 
 	<bean id = "programBannerDao" class= "contribution.model.ProgramBannerDao">
 		<property name="sqlSessionFactory" ref = "sqlSessionFactory"/>
 	</bean>
