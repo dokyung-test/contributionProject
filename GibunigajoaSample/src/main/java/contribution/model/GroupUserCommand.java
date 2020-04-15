@@ -1,5 +1,7 @@
 package contribution.model;
 
+import java.util.Date;
+
 public class GroupUserCommand {
 
 	String user_id;
@@ -19,12 +21,24 @@ public class GroupUserCommand {
 	String hmpadres;// 홈페이지주소
 	String bizrno; // 사업자 등록번호
 	int type_id;// 모집분야 - table - types랑 연동해서 id만 받아서 사용
+	String nickname;
+	Date register_date;
+	 
 	
 	
 	
-	
-	
-	
+	public Date getRegister_date() {
+		return register_date;
+	}
+	public void setRegister_date(Date register_date) {
+		this.register_date = register_date;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

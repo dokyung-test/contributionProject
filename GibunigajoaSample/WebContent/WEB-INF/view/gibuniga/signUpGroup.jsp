@@ -54,6 +54,13 @@
 														<div id="passwordChkResult"></div> 
 													</div>
 												</div>
+												<div class="col-md-12"> 
+													<label class="label" for="password">닉네임</label>
+														<div class="form-group">
+														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="password" style="width: 70%; display: inline-block;">
+													</div>
+												</div>
+												
 												<div class="col-md-12">
 													<label class="label" for="name">모집단체명</label>
 														<div class="form-group">

@@ -21,12 +21,11 @@ public class GroupUserService {
 	
 	public int insertOrganizations(GroupUserCommand guc) {
 		int i;
-		String user_id=guc.getUser_id();
-		String password=guc.getPassword();
+		
 		String organization_id=guc.getOrganization_id();
 		if(dao.selectGroupUserCount(organization_id)==0) {
 			dao.insertOrganizations(guc);
-			dao.insertGroupUser(user_id, password);
+			dao.insertGroupUser(guc);
 		return	i=1;
 			
 		}else {
