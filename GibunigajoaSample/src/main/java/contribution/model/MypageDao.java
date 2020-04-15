@@ -32,6 +32,11 @@ public class MypageDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("project.insertContribution",dto);
 	}
 	
+	//카카오&네이버 결제 기부내영 추가 
+	public int payInsertContribution(ContributionDto command) {
+		return getSqlSession().insert("project.payInsertContribution", command);
+	}
+	
 	//기부내역 수정
 	public int updateContribution(ContributionDto dto) {
 		return getSqlSession().update("project.update",dto);
