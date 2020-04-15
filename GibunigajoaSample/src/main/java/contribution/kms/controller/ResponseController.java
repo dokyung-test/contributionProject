@@ -1,5 +1,6 @@
 package contribution.kms.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -196,6 +197,7 @@ public class ResponseController {
 	}
 	@RequestMapping(value = "GroupUserSignup.do",method=RequestMethod.POST)
 	public String GroupUser(Model model,GroupUserCommand guc) {
+		guc.setRegister_date(new Date(System.currentTimeMillis()));
 		int i;
 		  i = gusdao.insertOrganizations(guc);
 		model.addAttribute("R",i);
