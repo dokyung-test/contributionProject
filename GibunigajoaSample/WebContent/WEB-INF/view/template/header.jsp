@@ -80,7 +80,20 @@
 							</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>
-						<li><a href="${pageContext.request.contextPath}/qANDa.do">Q&A</a></li>
+
+						<c:choose>
+							<c:when test="${user_type_id eq 1}">
+								<li><a href="${pageContext.request.contextPath}/qANDa.do">Q&A</a></li>
+							</c:when>
+							<c:when test="${user_type_id eq 2}">
+								<li><a href="${pageContext.request.contextPath}/qANDa.do">Q&A</a></li>
+							</c:when>
+							<c:when test="${user_type_id eq 3}">
+								<li><a href="${pageContext.request.contextPath}/qANDa.do">Q&A</a></li>
+							</c:when>
+							<c:otherwise><li>로그인 후 사용가능</li></c:otherwise>
+						</c:choose>
+
 						<c:choose>
 							<c:when test="${user_type_id eq 1}">
 								<li><a
