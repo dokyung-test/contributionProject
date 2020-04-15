@@ -18,10 +18,6 @@ public class Program {
 	String organization_url;
 	String bank_name;
 	String account;
-	String corporate_registration_number;
-	String zip;
-	String address;
-	String address_detail;
 	String phone_number;
 	Date approval_date;
 	String representative;
@@ -31,13 +27,6 @@ public class Program {
 	
 	
 	
-	
-	public String getUsage_plan() {
-		return usage_plan;
-	}
-	public void setUsage_plan(String usage_plan) {
-		this.usage_plan = usage_plan;
-	}
 	public String getBanner_file_name() {
 		return banner_file_name;
 	}
@@ -134,30 +123,6 @@ public class Program {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getCorporate_registration_number() {
-		return corporate_registration_number;
-	}
-	public void setCorporate_registration_number(String corporate_registration_number) {
-		this.corporate_registration_number = corporate_registration_number;
-	}
-	public String getZip() {
-		return zip;
-	}
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAddress_detail() {
-		return address_detail;
-	}
-	public void setAddress_detail(String address_detail) {
-		this.address_detail = address_detail;
-	}
 	public String getPhone_number() {
 		return phone_number;
 	}
@@ -176,17 +141,24 @@ public class Program {
 	public void setRepresentative(String representative) {
 		this.representative = representative;
 	}
-	
+	public String getUsage_plan() {
+		return usage_plan;
+	}
+	public void setUsage_plan(String usage_plan) {
+		this.usage_plan = usage_plan;
+	}
 	@Override
 	public String toString() {
 		return "Program [organization_id=" + organization_id + ", program_id=" + program_id + ", program_subject="
 				+ program_subject + ", type_id=" + type_id + ", start_date=" + start_date + ", end_date=" + end_date
 				+ ", readcount=" + readcount + ", target_amount=" + target_amount + ", purpose=" + purpose
 				+ ", summary=" + summary + ", content=" + content + ", organization_url=" + organization_url
-				+ ", bank_name=" + bank_name + ", account=" + account + ", corporate_registration_number="
-				+ corporate_registration_number + ", zip=" + zip + ", address=" + address + ", address_detail="
-				+ address_detail + ", phone_number=" + phone_number + ", approval_date=" + approval_date
-				+ ", representative=" + representative + "]";
+				+ ", bank_name=" + bank_name + ", account=" + account + ", phone_number=" + phone_number
+				+ ", approval_date=" + approval_date + ", representative=" + representative + ", approval_flg="
+				+ approval_flg + ", banner_file_name=" + banner_file_name + ", usage_plan=" + usage_plan + "]";
 	}
+	
+
+	
 	
 }

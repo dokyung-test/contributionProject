@@ -55,7 +55,7 @@ public class programService {
 	public int insertProgram(Program program) {
 		int programCount = programCount(program.getOrganization_id());
 		//System.out.println("cnt : " + programCount);
-		program.setProgram_id(programCount++);
+		program.setProgram_id(programCount);
 		//System.out.println(program.getProgram_id());
 		return programDao.insertProgram(program);
 	}

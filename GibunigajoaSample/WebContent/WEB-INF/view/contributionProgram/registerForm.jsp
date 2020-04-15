@@ -40,33 +40,126 @@
 </script>
 </head>
 <body>
-<table>
-<form:form commandName="program" action="${pageContext.request.contextPath}/registerProgram.do">
- <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
-<tr><td>프로그램명 : </td><td><form:input path="program_subject"/></td></tr>
-<tr><td>분류 : </td><td><form:select path="type_id">
-<form:options items = "${typeList }" itemLabel="type" itemValue="type_id"/>
-</form:select></td></tr>
-<tr><td>모집시작일  : </td><td><input type = "date" id = "start_date" name = "start_date"></td></tr>
-<tr><td>모집종료일 : </td><td><input type = "date" id = "end_date" name = "end_date" ></td></tr>
-<tr><td>목표금액 : </td><td><form:input path="target_amount"/></td></tr>
-<tr><td>모집목적 : </td><td><form:input path="purpose"/></td></tr>
-<tr><td>모집내용(요약) : </td><td><form:input path="summary"/></td></tr>
-<tr><td>모집내용(상세) : </td><td><form:textarea path="content"/></td></tr>
-<tr><td>단체URL : </td><td><form:input path="organization_url"/></td></tr>
-<tr><td>은행명 : </td><td><form:input path="bank_name"/></td></tr>
-<tr><td>계좌번호 : </td><td><form:input path="account"/></td></tr>
-<tr><td>사업자등록번호 : </td><td><form:input path="corporate_registration_number"/></td></tr>
-<!-- form안에 버튼은 type을 지정해주지 않으면 default submit으로 움직인다. type을 지정해줄것! -->
-<tr><td>우편번호 : </td><td><form:input path="zip"/> <form:button type = "button" onclick = "zipSearch();">우편번호검색</form:button> </td></tr>
-<tr><td>주소 : </td><td><form:input path="address" readonly="true" /> </td></tr>
-<tr><td>상세주소 : </td><td><form:input path="address_detail"/></td></tr>
-<tr><td>연락처 : </td><td><form:input path="phone_number"/></td></tr>
-<tr><td>대표자명 : </td><td><form:input path="representative"/></td></tr>
-<tr><td><input type = "submit" value = "전송">
-<form:button type = "button" onclick = "window.location='${pageContext.request.contextPath}/requestList.do'">목록으로</form:button>
-</td></tr></form:form>
-</table>
+
+   	
+<section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="wrapper">
+							<div class="row no-gutters mb-5" style="background: #e8edf0;">
+								<!-- <div class="col-md-7"> -->
+									<div class="contact-wrap w-100 p-md-5 p-4">
+										<h3 class="mb-4">모집프로그램신청</h3>
+										<form:form commandName="program" action="${pageContext.request.contextPath}/registerProgram.do">
+											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
+											<div class="row">
+												<div class="col-md-9">
+													<div class="form-group">
+														<label class="label" for="program_subject">프로그램명</label>
+														<form:input path="program_subject" class="form-control"/>
+													</div>
+												</div>
+												<div class="col-md-3"> 
+													<div class="form-group">
+														<label class="label" for="type_id">분류</label>
+													<form:select path="type_id" class = "form-control">
+													<form:options items = "${typeList }" itemLabel="type" itemValue="type_id"/>
+													</form:select>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="organization_url">url</label>
+														<form:input path="organization_url" class="form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="representative">담당자명</label>
+													<form:input path="representative" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="phone_number">연락처</label>
+														<form:input path="phone_number" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="bank_name">은행명</label>
+													<form:input path="bank_name" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="account">계좌번호</label>
+														<form:input path="account" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="target_amount">목표금액</label>
+														<form:input path="target_amount" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label class="label" for="start_date">모집시작일</label>
+														<input type = "date" id = "start_date" name = "start_date" class = "form-control">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label class="label" for="end_date">모집종료일</label>
+														<input type = "date" id = "end_date" name = "end_date" class = "form-control">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="purpose">모집목적</label>
+														<form:input path="purpose" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="summary">모집내용(요약)</label>
+														<form:textarea path="summary" class = "form-control" cols = "30" rows = "2"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="content">모집내용(상세)</label>
+														<form:textarea path="content" class = "form-control" cols = "30" rows = "5"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="usage_plan">기부내역 사용계획</label>
+														<form:textarea path="usage_plan" class = "form-control" cols = "30" rows = "5"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<input type="submit" value="프로그램 신청" class="btn btn-primary">
+														<div class="submitting"></div>
+													</div>
+												</div>
+											</div>
+										</form:form>
+									</div> 
+								<!-- </div> -->
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+    	</div>
+    	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
+    </section>
+
 
 
 
