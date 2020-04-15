@@ -57,7 +57,7 @@
 		          	<span class="subheading">모집완료까지 D-${endDate - startDate}</span>
 		            <h2 class="mb-4">${requestProgram.program_subject}</h2>
 		            <p>기부단체명 : (rcritrNm)<br>
-	            		모집기간 : <fmt:formatDate value="${requestProgram.start_date}" pattern="yyyy-MM-dd"/> - <fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/><br>
+	            		모집기간 : <fmt:formatDate value="${requestProgram.start_date}" pattern="yyyy-MM-dd"/>&nbsp; ~ &nbsp;<fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/><br>
 	            		목표금액 : ${requestProgram.target_amount } 원
 		            </p>
 		            <div class="tabulation-2 mt-4">
