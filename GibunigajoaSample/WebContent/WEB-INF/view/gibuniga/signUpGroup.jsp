@@ -55,83 +55,83 @@
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">닉네임</label>
+													<label class="label" for="nickname">닉네임</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="password" style="width: 70%; display: inline-block;">
+														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname" style="width: 70%; display: inline-block;">
 													</div>
 												</div>
 												
 												<div class="col-md-12">
 													<label class="label" for="name">모집단체명</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="nanmmByNm" id="nanmmbyNm" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="nanmmByNm" id="nanmmbyNm" placeholder="모집단체명" style="width: 70%; margin: auto; display: inline-block;">
 													    <input type="button" value="검색" class="btn btn-primary" id="idCheckBtn" onclick="searchCheck()"/>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="name">대표자명</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="rprsntvNm" id="rprsntvNm" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="rprsntvNm" id="rprsntvNm" placeholder="대표자명" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="birthday">설립일자</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="fondDe" id="fondDe" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="fondDe" id="fondDe" placeholder="설립일자"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">전화번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" placeholder="전화번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">공제유형</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="cntrDdcTy" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="cntrDdcTy" id="phone_number" placeholder="공제유형"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">기부금단체 지정번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="ctbgrnpAppnNo" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="ctbgrnpAppnNo" id="phone_number" placeholder="지정번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">팩스번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="fxnum" id="fxnum" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="fxnum" id="fxnum" placeholder="팩스번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">주소</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="adres" id="adres" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="adres" id="adres" placeholder="주소"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">상세주소</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="adres_detail" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="adres_detail" id="phone_number" placeholder="상세주소"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">우편번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="zip" id="zip" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="zip" id="zip" placeholder="우편번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">홈페이지 주소</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="hmpadres" id="hmpgAdres" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="hmpadres" id="hmpgAdres" placeholder="홈페이지주소"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">사업자 등록번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="bizrno" id="bizrno" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="bizrno" id="bizrno" placeholder="사업자 등록번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div >
