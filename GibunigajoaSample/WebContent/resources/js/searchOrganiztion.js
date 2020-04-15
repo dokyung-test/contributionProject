@@ -33,3 +33,13 @@ function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adre
 	self.close();    
 	
 }
+
+function chkSum(){
+	
+	
+if($(":radio[name='type_id']:checked").length <1){	
+	alert("모집분야를 선택해주세요");
+	return false;
+}else{return true;}
+
+}

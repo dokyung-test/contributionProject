@@ -154,9 +154,9 @@
 												
 												
 												<div class="col-md-12">
-													<div class="form-group">
+													<div class="form-group"> 
 														<input type="button" value="취소" class="btn btn-primary" style="float: right; padding-left: 4%; padding-right: 4%;" onclick="location.href='main.do'"/>
-														<input type="submit" value="회원가입" class="btn btn-primary" style="float: right; margin-right: 1%"/>
+														<input type="submit" value="회원가입" class="btn btn-primary" style="float: right; margin-right: 1%" onsubmit="return chkSum();"/>
 														<div class="submitting"></div>
 													</div>
 												</div>
@@ -178,7 +178,7 @@
     
 </form>
 
-  <!-- loader -->
+  <!-- loader --> 
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
