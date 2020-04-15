@@ -6,13 +6,7 @@ function searchCheck(){
 	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,"자식창",settings)
 }
 
-function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adres,zip,hmpadres,bizrno){
-
-	
-	
-	
-	
-	
+function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adres,zip,hmpadres,bizrno){	
 	
 	var nanmmbyId1= document.getElementById(nanmmbyId).value;
 	var nanmmbyNm1=document.getElementById(nanmmbyNm).value;
@@ -33,9 +27,9 @@ function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adre
 	opener.document.getElementById("fxnum").value=fxnum1;
 	opener.document.getElementById("adres").value=adres1;
 	opener.document.getElementById("zip").value=zip1;
-	opener.document.getElementById("hmpadres").value=hmpadres1;
+	opener.document.getElementById("hmpgAdres").value=hmpadres1;
 	opener.document.getElementById("bizrno").value=bizrno1;
 
-	window.close();
+	self.close();    
 	
 }
