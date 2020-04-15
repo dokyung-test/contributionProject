@@ -1,10 +1,8 @@
-<%@page import="java.util.List"%>
-<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
-<%@page import="contribution.model.Type"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session = "true" %>
 <!DOCTYPE html>
 <html>
@@ -27,6 +25,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+    
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -40,77 +39,136 @@
             }
         }).open();
 	}
-
-	function deleteBanner(program_id, organization_id){
-		$.ajax({
-			type : "post",
-			url : "deleteBanner.do",
-			data : "organization_id="+organization_id,
-			dataType : "json"
-		}).done(function(args){
-			if(args.length != 0){
-				var msg = "<table border = '1'>";
-				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
-				for(var id = 0; id <= args.length - 1; id++){
-					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
-					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
-					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
-				}
-				$("#bookList").html(msg);	
-			}
-					
-		}).fail(function(e){
-			alert(e.responseText);	
-		})
-
-	}
 </script>
 </head>
 <body>
-<table>
-<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgram.do" enctype="multipart/form-data">
- <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
-<form:hidden path="program_id"/>
-<tr><td>프로그램명 : </td><td><form:input path="program_subject"/></td></tr>
-<tr><td>분류 : </td><td><form:select path="type_id">
-<form:options items = "${typeList }" itemLabel="type" itemValue="type_id"/>
-</form:select></td></tr>
-<tr><td>모집시작일  : </td><td><input type = "date" id = "start_date" name = "start_date" value = "${updateProgram.start_date}"></td></tr>
-<tr><td>모집종료일 : </td><td><input type = "date" id = "end_date" name = "end_date" value = "${updateProgram.end_date}"></td></tr>
-<tr><td>목표금액 : </td><td><form:input path="target_amount"/></td></tr>
-<tr><td>모집목적 : </td><td><form:input path="purpose"/></td></tr>
-<tr><td>모집내용(요약) : </td><td><form:input path="summary"/></td></tr>
-<tr><td>모집내용(상세) : </td><td><form:textarea path="content"/></td></tr>
-<tr><td>단체URL : </td><td><form:input path="organization_url"/></td></tr>
-<tr><td>은행명 : </td><td><form:input path="bank_name"/></td></tr>
-<tr><td>계좌번호 : </td><td><form:input path="account"/></td></tr>
-<tr><td>사업자등록번호 : </td><td><form:input path="corporate_registration_number"/></td></tr>
-<!-- form안에 버튼은 type을 지정해주지 않으면 default submit으로 움직인다. type을 지정해줄것! -->
-<tr><td>우편번호 : </td><td><form:input path="zip"/> <form:button type = "button" onclick = "zipSearch();">우편번호검색</form:button> </td></tr>
-<tr><td>주소 : </td><td><form:input path="address" readonly="true" /> </td></tr>
-<tr><td>상세주소 : </td><td><form:input path="address_detail"/></td></tr>
-<tr><td>연락처 : </td><td><form:input path="phone_number"/></td></tr>
-<tr><td>대표자명 : </td><td><form:input path="representative"/></td></tr>
-<c:choose>
-<c:when test="${updateProgram.approval_flg == 1}">
-<tr><td>
-배너이미지 : 
-<div id = "bannerLoc">
-<c:if test="${!empty updateProgram.banner_file_name}">
-<img width = "250" height="250" src="${pageContext.request.contextPath}/resources/images/${updateProgram.banner_file_name}"><form:button type = "button" onclick = "deleteBanner(${updateProgram.program_id}, ${updateProgram.organization_id})">삭제</form:button>
-</c:if>
-</div></td><td><input type = "file" id = "banner" name = "banner"></td></tr>
-<tr><td>이미지 : </td><td><input type = "file" id = "images" name = "images" multiple="multiple"></td></tr>
-</c:when>
-</c:choose>
-<tr><td><input type = "submit" value = "전송">
-<form:button type = "button" onclick = "window.location='${pageContext.request.contextPath}/requestList.do'">목록으로</form:button>
-</td></tr></form:form>
-</table>
 
-this is origin/dokyung
-origin
-11111
+   	
+<section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="wrapper">
+							<div class="row no-gutters mb-5" style="background: #e8edf0;">
+								<!-- <div class="col-md-7"> -->
+									<div class="contact-wrap w-100 p-md-5 p-4">
+										<h3 class="mb-4">모집프로그램신청</h3>
+										<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgram.do" enctype="multipart/form-data">
+											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
+											<div class="row">
+												<div class="col-md-9">
+													<div class="form-group">
+														<label class="label" for="program_subject">프로그램명</label>
+														<form:input path="program_subject" class="form-control"/>
+													</div>
+												</div>
+												<div class="col-md-3"> 
+													<div class="form-group">
+														<label class="label" for="type_id">분류</label>
+													<form:select path="type_id" class = "form-control">
+													<form:options items = "${typeList }" itemLabel="type" itemValue="type_id"/>
+													</form:select>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="organization_url">url</label>
+														<form:input path="organization_url" class="form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="representative">담당자명</label>
+													<form:input path="representative" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="phone_number">연락처</label>
+														<form:input path="phone_number" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="bank_name">은행명</label>
+													<form:input path="bank_name" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="account">계좌번호</label>
+														<form:input path="account" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="label" for="target_amount">목표금액</label>
+														<form:input path="target_amount" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label class="label" for="start_date">모집시작일</label>
+														<c:set value = "${updateProgram.start_date }" var = "startDate" ></c:set>
+														<fmt:formatDate value="${updateProgram.start_date}" pattern="yyyy-MM-dd" var="startDate"/>
+														<input type = "date" id = "start_date" name = "start_date" class = "form-control" value = "${startDate}">
+														
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label class="label" for="end_date">모집종료일</label>
+														<fmt:formatDate value="${updateProgram.end_date}" pattern="yyyy-MM-dd" var="endDate"/>
+														<input type = "date" id = "end_date" name = "end_date" class = "form-control" value = "${endDate}">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="purpose">모집목적</label>
+														<form:input path="purpose" class = "form-control"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="summary">모집내용(요약)</label>
+														<form:textarea path="summary" class = "form-control" cols = "30" rows = "2"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="content">모집내용(상세)</label>
+														<form:textarea path="content" class = "form-control" cols = "30" rows = "5"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="label" for="usage_plan">기부내역 사용계획</label>
+														<form:textarea path="usage_plan" class = "form-control" cols = "30" rows = "5"/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group">
+														<input type="submit" value="프로그램 신청" class="btn btn-primary">
+														<div class="submitting"></div>
+													</div>
+												</div>
+											</div>
+										</form:form>
+									</div> 
+								<!-- </div> -->
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+    	</div>
+    	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
+    </section>
+
+
+
+
 <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
