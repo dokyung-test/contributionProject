@@ -3,36 +3,55 @@
 <%@ page session="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%>
-<%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false"%>
 
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
-    <link href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">  
-    <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
 <link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/animate.css"/>">
+<link
+	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/magnific-popup.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/ionicons.min.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/flaticon.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/icomoon.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+
+<link
+	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet"
@@ -41,17 +60,28 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
@@ -82,11 +112,22 @@
 		               
 					   var date1 = new Date(register_date);
 					   var text_date = date1.getFullYear()+"년  "+ (date1.getMonth()+1) +"월 " + date1.getDate() + "일";	
-					   
-					   $("#status_id").append("<div class='a'>"+status_id+"</div>");		             
-		               $("#subject").append("<div class='a'>"+subject+"</div>");
-		               $("#register_date").append("<div class='a'>"+text_date+"</div>"); 
-		               $("#QandAcontent").append("<div class='a'>"+content+"</div>");
+
+		               if(status_id == 1){
+		            	   $("#status_id").append("<div class='a'>"+"접수 중"+"</div>");
+				               }
+		               if(status_id == 2){
+		            	   $("#status_id").append("<div class='a'>"+"처리 중"+"</div>");
+				               }
+		               if(status_id == 3){
+		            	   $("#status_id").append("<div class='a'>"+"답변완료"+"</div>");
+				               }	
+					  
+		               $("#subject").append("<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='subject' class='a' value='"+subject+"'>");
+		               $("#register_date").append("<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='text_date' class='a' value='"+text_date+"'>");
+		               $("#QandAcontent").append("<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='content' class='a'>"
+						+ content
+						+ "</textarea>");
 		               if(status_id == 1){
 		            	   $("#answer").append("<div class='a'>"+"접수 중입니다."+"</div>");
 				               }
@@ -94,7 +135,9 @@
 		            	   $("#answer").append("<div class='a'>"+"처리 중입니다."+"</div>");
 				               }
 		               if(status_id == 3){
-		            	   $("#answer").append("<div class='a'>"+answer+"</div>");
+		            	   $("#answer").append("<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='answer' class='a'>"
+									+ answer
+									+ "</textarea>");
 				               }	               
 		               });
 		        $("#contentmodal").show();
@@ -187,7 +230,7 @@
 							</thead>
 
 							<tbody>
-							
+
 								<c:forEach var="dto" items="${list}">
 									<tr>
 										<c:if test="${dto.status_id eq 1}">
@@ -344,23 +387,33 @@
 		</div>
 	</div>
 	<!-- 기부 내역 상세내역 종료 -->
-	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-	
-  <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.waypoints.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-  <script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="<c:url value="/resources/js/google-map.js"/>"></script>
-  <script src="<c:url value="/resources/js/main.js"/>"></script>
-  <script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+	</div>
+
+	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/popper.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.waypoints.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
+	<script
+		src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
+	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script
