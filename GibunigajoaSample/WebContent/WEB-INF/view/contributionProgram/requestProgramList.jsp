@@ -42,11 +42,14 @@
 	<div class="limiter">
 		<div class="container-table100">
 		
-			
-				<div class="table100 ver2 m-b-110">
-				<div class="button-group-area mt-40" style = "text-align : right">
-				<a href="#" class="genric-btn success radius">프로그램 신청</a>
+			<div class="button-group-area mt-40">
+				<a href="" class="genric-btn success radius" style = "margin-right : 1015px">프로그램 신청</a>
 			</div>
+			<br>
+			<br>
+				<div class="table100 ver2 m-b-110">
+				
+			
 				<div class="wrap-table100">
 				
 					<div class="table100-head">
