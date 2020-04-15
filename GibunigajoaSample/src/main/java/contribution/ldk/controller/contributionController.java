@@ -141,6 +141,8 @@ public class contributionController {
 	 * 느낌. return mav; }
 	 */
 	
+	
+	//미승인 프로그램의 updateForm -배너, 이미지에 접근 불가!
 	@RequestMapping(value = "/updateForm.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(String organization_id, int program_id, HttpSession session) {
 		ModelAndView mav = new ModelAndView("updateForm");
@@ -153,10 +155,25 @@ public class contributionController {
 	}
 	
 	
+	//승인 프로그램의 updateForm -배너, 이미지에 접근 가능!
+	@RequestMapping(value = "/updateFormApproval.do", method = RequestMethod.GET)
+	public ModelAndView updateFormApproval(String organization_id, int program_id, HttpSession session) {
+		ModelAndView mav = new ModelAndView("updateFormApproval");
+		Program pro = service.getProgramInfo(program_id, organization_id);
+		mav.addObject("updateProgram", pro);
+		List<Type> typeList = service.selectTypes();
+		mav.addObject("typeList", typeList);
+		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
+		return mav;
+	}
 	
-	@RequestMapping(value = "/updateProgram.do", method = RequestMethod.POST)
+	
+	//승인된 프로그램의 수정
+	@RequestMapping(value = "/updateProgramApproval.do", method = RequestMethod.POST)
 	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
-	public ModelAndView updateProgram(@ModelAttribute("requestProgram") Program requestProgram, @RequestParam("banner") MultipartFile banner, @RequestParam("images") List<MultipartFile> programImages,HttpSession session, HttpServletRequest request) {
+	public ModelAndView updateProgramApproval(@ModelAttribute("requestProgram") Program requestProgram, @RequestParam("banner") MultipartFile banner, @RequestParam("images") List<MultipartFile> programImages,HttpSession session, HttpServletRequest request) {
+		System.out.println("승인update");
+		System.out.println(requestProgram);
 		String organization_id = (String) session.getAttribute("organization_id");
 		int program_id = requestProgram.getProgram_id();
 		String root = request.getServletContext().getRealPath("resources/images/");
@@ -165,7 +182,9 @@ public class contributionController {
 			banner_file_name = insertBanner(organization_id, program_id, root, banner);
 		}
 		requestProgram.setBanner_file_name(banner_file_name);
-		int rowNum = service.updateProgram(requestProgram);
+		System.out.println("승인update");
+		System.out.println(requestProgram);
+		int rowNum = service.updateProgramApproval(requestProgram);
 		//String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린 resource파일에 허용접근불가-보안문제
 		
 		if (rowNum > 0) {
@@ -177,12 +196,29 @@ public class contributionController {
 						service.insertProgramImage(imageInfo);
 					}
 				}
-			return showProgramContent(requestProgram.getProgram_id(), organization_id);
+			return requestList(session);
 			
 		} else {
 			return new ModelAndView("errors/error");
 		}
 	}
+	
+	
+	//미승인 프로그램의 수정
+	@RequestMapping(value = "/updateProgram.do", method = RequestMethod.POST)
+	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
+	public ModelAndView updateProgram(@ModelAttribute("requestProgram") Program requestProgram, HttpSession session) {
+		String organization_id = (String) session.getAttribute("organization_id");
+		int program_id = requestProgram.getProgram_id();
+		System.out.println("미승인update");
+		System.out.println(requestProgram);
+		int rowNum = service.updateProgramApproval(requestProgram);
+		//String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린 resource파일에 허용접근불가-보안문제
+		
+		return requestList(session);
+	}
+	
+	
 	
 	//프로그램배너 파일로 출력
 	public String insertBanner(String organization_id, int program_id, String root, MultipartFile image) {

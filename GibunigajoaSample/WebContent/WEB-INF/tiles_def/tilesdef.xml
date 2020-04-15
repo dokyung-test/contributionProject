@@ -57,6 +57,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/contributionProgram/updateForm.jsp" />
 	</definition>
+	<definition name="updateFormApproval" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/contributionProgram/updateFormApproval.jsp" />
+	</definition>
 	<definition name="programList" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/contributionProgram/programList.jsp" />

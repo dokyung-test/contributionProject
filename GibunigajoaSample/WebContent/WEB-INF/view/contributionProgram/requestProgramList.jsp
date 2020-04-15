@@ -90,7 +90,14 @@
 												<c:if test="${requestProgram.approval_flg == 1}">승인</c:if></td>
 											<td class="cell100 column5">
 											<div class="button-group-area mt-40">
-												<a href="${pageContext.request.contextPath}/updateForm.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>" class="update-btn success circle">수정</a>
+												<c:choose>
+												<c:when test="${requestProgram.approval_flg == 0}">
+													<a href="${pageContext.request.contextPath}/updateForm.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>" class="update-btn success circle">수정</a>
+												</c:when>
+												<c:when test="${requestProgram.approval_flg == 1}">
+												<a href="${pageContext.request.contextPath}/updateFormApproval.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>" class="update-btn success circle">수정</a>
+												</c:when>
+											</c:choose>
 											</div>
 											</td>
 										</tr>

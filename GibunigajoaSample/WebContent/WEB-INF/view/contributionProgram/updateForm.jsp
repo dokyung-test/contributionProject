@@ -55,6 +55,7 @@
 										<h3 class="mb-4">모집프로그램신청</h3>
 										<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgram.do" enctype="multipart/form-data">
 											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
+											  <input type = "hidden" id = "program_id" name = "program_id" value = "${updateProgram.program_id}"/>
 											<div class="row">
 												<div class="col-md-9">
 													<div class="form-group">
