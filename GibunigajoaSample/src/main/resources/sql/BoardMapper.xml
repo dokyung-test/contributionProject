@@ -80,5 +80,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		user_idx=#{user_idx}
 	</update>
 
+	<!-- 회원탈퇴 비밀번호 체크 -->
+	<select id="deleteUserCheck" parameterType="map" resultType="contribution.model.UserCommand">
+	select * from users where user_idx=#{user_idx} and password=#{password}</select>
+
+    <!-- 회원 탈퇴 -->
+	<delete id="deleteUser">
+		delete from users where
+		user_idx=#{user_idx}
+	</delete>
 
 </mapper>

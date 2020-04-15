@@ -343,7 +343,8 @@
 											<td style="font-size: 15px">${list.subscription_type}</td>
 											<td align="center" style="font-size: 15px"><a href="#"
 												title="${list.contribution_history_idx}" class="update"
-												style="color: blue">수정 / </a> <a href="#"
+												style="color: blue">수정 / </a> 
+												<a href="#"
 												onclick="deletelist(${list.contribution_history_idx})"
 												style="color: blue">삭제</a> <c:set var="total"
 													value="${total + list.contribution}" />
@@ -429,7 +430,7 @@
 													style="resize: none;"></textarea>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-8">
 											<div class="form-group">
 												<input type="button" onclick="closeModal()"
 													style="height: 50px; width: 240px; font-size: 20px;"
