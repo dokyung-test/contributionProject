@@ -62,6 +62,7 @@
 									<th class="cell100 column2">시작일자</th>
 									<th class="cell100 column3">종료일자</th>
 									<th class="cell100 column4">승인상태</th>
+									<th class="cell100 column5"></th>
 								</tr>
 							</thead>
 						</table>
@@ -73,11 +74,25 @@
 								<c:if test="${!empty programLists}">
 									<c:forEach var = "requestProgram" items="${programLists}">
 										<tr class="row100 body">
-											<td class="cell100 column1"><a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>">${requestProgram.program_subject}</a></td>
+											<td class="cell100 column1">
+											<c:choose>
+												<c:when test="${requestProgram.approval_flg == 0}">
+													<a href = "#" style = "color : #000000">${requestProgram.program_subject}</a>
+												</c:when>
+												<c:when test="${requestProgram.approval_flg == 1}">
+													<a style = "color : #000000" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>">${requestProgram.program_subject}</a>
+												</c:when>
+											</c:choose>
+											</td>
 											<td class="cell100 column2"><fmt:formatDate value="${requestProgram.start_date}" pattern = "yyyy-MM-dd"/></td>
 											<td class="cell100 column3"><fmt:formatDate value="${requestProgram.end_date}" pattern="yyyy-MM-dd"/></td>
 											<td class="cell100 column4"><c:if test="${requestProgram.approval_flg == 0}">미승인</c:if>
 												<c:if test="${requestProgram.approval_flg == 1}">승인</c:if></td>
+											<td class="cell100 column5">
+											<div class="button-group-area mt-40">
+												<a href="${pageContext.request.contextPath}/updateForm.do?program_id=${requestProgram.program_id}&organization_id=<%=session.getAttribute("organization_id")%>" class="update-btn success circle">수정</a>
+											</div>
+											</td>
 										</tr>
 										
 									</c:forEach>

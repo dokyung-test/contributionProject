@@ -129,16 +129,29 @@ public class contributionController {
 	 * service.getProgramBanner(programSearchKeyword); }
 	 */
 	
-	@RequestMapping(value = "/updateForm.do", method = RequestMethod.POST)
-	public ModelAndView updateForm(@ModelAttribute Program updateProgram,HttpSession session) {
+	/*
+	 * @RequestMapping(value = "/updateForm.do", method = RequestMethod.POST) public
+	 * ModelAndView updateForm(@ModelAttribute Program updateProgram,HttpSession
+	 * session) { ModelAndView mav = new ModelAndView("updateForm"); Program pro =
+	 * service.getProgramInfo(updateProgram.getProgram_id(),
+	 * updateProgram.getOrganization_id()); mav.addObject("updateProgram", pro);
+	 * List<Type> typeList = service.selectTypes(); mav.addObject("typeList",
+	 * typeList); // registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의
+	 * 느낌. return mav; }
+	 */
+	
+	@RequestMapping(value = "/updateForm.do", method = RequestMethod.GET)
+	public ModelAndView updateForm(String organization_id, int program_id, HttpSession session) {
 		ModelAndView mav = new ModelAndView("updateForm");
-		Program pro = service.getProgramInfo(updateProgram.getProgram_id(), updateProgram.getOrganization_id());
+		Program pro = service.getProgramInfo(program_id, organization_id);
 		mav.addObject("updateProgram", pro);
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
+	
+	
 	
 	@RequestMapping(value = "/updateProgram.do", method = RequestMethod.POST)
 	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
@@ -214,8 +227,6 @@ public class contributionController {
 		}
 		return mav;
 	}
-	
-	
 	
 	
 }
