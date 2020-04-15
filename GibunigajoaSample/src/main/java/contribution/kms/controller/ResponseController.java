@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
+
 import contribution.model.BookmarkDto;
+import contribution.model.GroupUserCommand;
 import contribution.model.Page;
 import contribution.model.ResponseList;
 import contribution.modelcount.ResponseCount;
 import contribution.modelone.ResponseOne;
 import contribution.service.BookmarkService;
+import contribution.service.GroupUserService;
 
 @Controller
 public class ResponseController {
@@ -35,6 +41,15 @@ public class ResponseController {
 	RestTemplate resTemplate;
 
 	BookmarkService dao;
+	GroupUserService gusdao;
+	
+	
+	
+    @Autowired
+	public void setGusdao(GroupUserService gusdao) {
+		this.gusdao = gusdao;
+	}
+
 	
 	@Autowired
 	public void setDao(BookmarkService dao) {
@@ -124,6 +139,48 @@ public class ResponseController {
 		return "about";
 
 	}
+	@RequestMapping(value = "/searchOrganiztion.do",method = RequestMethod.GET)
+	
+	public String searchOrganization(Model model,String nanmmByNm,@RequestParam(defaultValue = "1") int curPage) {
+		
+	
+		
+		ResponseCount responsecount = resTemplate.getForObject(url + serviceKey + keyword + nanmmByNm,
+				ResponseCount.class);
+
+		
+		
+		int count = responsecount.getResponse().getBody().getTotalCount();
+		Page page = new Page(count, curPage);
+		int i;
+		if (count == 1) {
+			ResponseOne list1 = resTemplate.getForObject(url + serviceKey +numOfRows+pageNo + curPage + keyword + nanmmByNm,
+					ResponseOne.class);
+			i = 1;
+			model.addAttribute("rep", list1);
+			model.addAttribute("R", i);
+		} else if (count > 1) {
+			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + nanmmByNm,
+					ResponseList.class);
+			i = 0;
+			model.addAttribute("rep_List", list1);
+			model.addAttribute("R", i);
+		} else { 
+			i = 2;
+
+			model.addAttribute("R", i);
+		}
+	
+		
+		model.addAttribute("nanmmByNm", nanmmByNm);
+
+		model.addAttribute("Page", page);
+		
+		
+		
+	return "organization/response";
+	}
+	
 	
 	@RequestMapping(value = "/bookmark.do",method = RequestMethod.POST)
 	@ResponseBody
@@ -136,6 +193,15 @@ public class ResponseController {
 	
 		return i;
 		
+	}
+	@RequestMapping(value = "GroupUserSignup.do",method=RequestMethod.POST)
+	public String GroupUser(Model model,GroupUserCommand guc) {
+		int i;
+		  i = gusdao.insertOrganizations(guc);
+		model.addAttribute("R",i);
+		 
+		 return "groupPro";
+		 
 	}
 	
 	
