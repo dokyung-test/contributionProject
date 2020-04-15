@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 기부 내역 추가 -->
 	<insert id="insertContribution">
 		insert into
-		contribution_history(user_idx,organization_name,program_name,date,subscription_type,contribution,note,register_type_flg)
-		values(#{user_idx},#{organization_name},#{program_name},#{date},#{subscription_type},#{contribution},#{note},#{register_type_flg})
+		contribution_history(user_idx,organization_name,program_name,date,contribution,note,register_type_flg)
+		values(#{user_idx},#{organization_name},#{program_name},#{date},#{contribution},#{note},#{register_type_flg})
 	</insert>
 
 	<!-- q&a입력 -->
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update contribution_history set
 		organization_name=#{organization_name},program_name=#{program_name},date=#{date}
-		,subscription_type=#{subscription_type},contribution=#{contribution},note=#{note}
+		,contribution=#{contribution},note=#{note}
 		where contribution_history_idx=#{contribution_history_idx}
 	</update>
 
