@@ -42,7 +42,7 @@ public class contributionController {
 	}
 
 	// 클래스에 들어올때마다 호출 ->언제나 필요한 경우 아니면 붙이지말자.
-	//@ModelAttribute
+	// @ModelAttribute
 	/*
 	 * public void getTypes(Model model) {
 	 * System.out.println("@ModdelAttribute /getTypes");
@@ -51,12 +51,12 @@ public class contributionController {
 
 	@RequestMapping(value = "/registerForm.do", method = RequestMethod.GET)
 	public ModelAndView registerForm(HttpSession session) {
-		//session.setAttribute("organization_id", "00000015");
+		// session.setAttribute("organization_id", "00000015");
 		ModelAndView mav = new ModelAndView("registerForm");
 		mav.addObject("program", new Program());
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
-		//System.out.println("서버경로 : " + session.getServletContext().getRealPath("/"));
+		// System.out.println("서버경로 : " + session.getServletContext().getRealPath("/"));
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
@@ -67,12 +67,11 @@ public class contributionController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
-	
-	//프로그램신청 등록
+	// 프로그램신청 등록
 	@RequestMapping(value = "/registerProgram.do", method = RequestMethod.POST)
-	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
+	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView registerProgram(@ModelAttribute("program") Program pro, HttpSession session) {
-		//pro.setOrganization_id("000000015");
+		// pro.setOrganization_id("000000015");
 		System.out.println(pro);
 		int rowNum = service.insertProgram(pro);
 		if (rowNum > 0) {
@@ -81,19 +80,18 @@ public class contributionController {
 			return new ModelAndView("errors/error");
 		}
 	}
-	
-	
-	//각 기부단체 별 신청한 프로그램 리스트
+
+	// 각 기부단체 별 신청한 프로그램 리스트
 	@RequestMapping(value = "/requestList.do", method = RequestMethod.GET)
 	public ModelAndView requestList(HttpSession session) {
-		//session의 organization_id으로 받아옴.
+		// session의 organization_id으로 받아옴.
 		String organization_id = (String) session.getAttribute("organization_id");
 		ModelAndView mav = new ModelAndView("requestProgramList");
 		mav.addObject("programLists", service.requestProgramList(organization_id));
 		return mav;
 	}
-	
-	//프로그램상세
+
+	// 프로그램상세
 	@RequestMapping(value = "/showProgram.do", method = RequestMethod.GET)
 	public ModelAndView showProgramContent(int program_id, String organization_id) {
 		int updateReadCount = updateReadcount(program_id, organization_id);
@@ -107,17 +105,17 @@ public class contributionController {
 		mav.addObject("organization_name", service.getOrganizationName(organization_id));
 		return mav;
 	}
-	
+
 	public int updateReadcount(int program_id, String organization_id) {
 		return service.updateReadcount(service.makeMap(program_id, organization_id));
 	}
-	
-	//기부이력으로 프로그램 기부내역 합계 계산
+
+	// 기부이력으로 프로그램 기부내역 합계 계산
 	public int calcTargetAmount(int program_id, String organization_id) {
 		return service.calcTargetAmount(service.makeMap(program_id, organization_id));
 	}
-	
-	//service로 이동
+
+	// service로 이동
 	/*
 	 * public Program getProgramInfo(int program_id, String organization_id) {
 	 * Map<String, Object> programSearchKeyword = new HashMap<String, Object>();
@@ -125,8 +123,8 @@ public class contributionController {
 	 * programSearchKeyword.put("program_id", program_id); Program pro =
 	 * service.requestProgramDetail(programSearchKeyword); return pro; }
 	 */
-	
-	//service로 이동
+
+	// service로 이동
 	/*
 	 * public List<ProgramImage> getProgramBanner(int program_id, String
 	 * organization_id) { Map<String, Object> programSearchKeyword = new
@@ -134,7 +132,7 @@ public class contributionController {
 	 * organization_id); programSearchKeyword.put("program_id", program_id); return
 	 * service.getProgramBanner(programSearchKeyword); }
 	 */
-	
+
 	/*
 	 * @RequestMapping(value = "/updateForm.do", method = RequestMethod.POST) public
 	 * ModelAndView updateForm(@ModelAttribute Program updateProgram,HttpSession
@@ -145,9 +143,8 @@ public class contributionController {
 	 * typeList); // registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의
 	 * 느낌. return mav; }
 	 */
-	
-	
-	//미승인 프로그램의 updateForm -배너, 이미지에 접근 불가!
+
+	// 미승인 프로그램의 updateForm -배너, 이미지에 접근 불가!
 	@RequestMapping(value = "/updateForm.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(String organization_id, int program_id, HttpSession session) {
 		ModelAndView mav = new ModelAndView("updateForm");
@@ -158,9 +155,8 @@ public class contributionController {
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
-	
-	
-	//승인 프로그램의 updateForm -배너, 이미지에 접근 가능!
+
+	// 승인 프로그램의 updateForm -배너, 이미지에 접근 가능!
 	@RequestMapping(value = "/updateFormApproval.do", method = RequestMethod.GET)
 	public ModelAndView updateFormApproval(String organization_id, int program_id, HttpSession session) {
 		ModelAndView mav = new ModelAndView("updateFormApproval");
@@ -168,24 +164,66 @@ public class contributionController {
 		mav.addObject("updateProgram", pro);
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
-		//List<Map<String, Object>> programImageList = getImagesFileName(program_id, organization_id);
+		// List<Map<String, Object>> programImageList = getImagesFileName(program_id,
+		// organization_id);
 		List<ProgramImage> programImageList = getImagesFileName(program_id, organization_id);
 		mav.addObject("programImageList", programImageList);
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
 	}
-	
-	
-	//프로그램의 원본파일, 저장된 파일명습득
-	public List<ProgramImage> getImagesFileName(int program_id, String organization_id){
+
+	// 프로그램의 원본파일, 저장된 파일명습득
+	public List<ProgramImage> getImagesFileName(int program_id, String organization_id) {
 		return service.getProgramFileName(program_id, organization_id);
 	}
+
+	/*
+	 * // 승인된 프로그램의 수정
+	 * 
+	 * @RequestMapping(value = "/updateProgramApproval.do", method =
+	 * RequestMethod.POST) // 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별
+	 * 파라미터로 받아서 넘겨준다. public ModelAndView
+	 * updateProgramApproval(@ModelAttribute("requestProgram") Program
+	 * requestProgram,
+	 * 
+	 * @RequestParam("banner") MultipartFile banner, @RequestParam("images")
+	 * List<MultipartFile> programImages, HttpSession session, HttpServletRequest
+	 * request) { System.out.println("승인update");
+	 * System.out.println(requestProgram); String organization_id = (String)
+	 * session.getAttribute("organization_id"); int program_id =
+	 * requestProgram.getProgram_id(); String root =
+	 * request.getServletContext().getRealPath("resources/images/"); String
+	 * banner_file_name = ""; String original_file_name = ""; if (!banner.isEmpty())
+	 * { Map<String, String> fileInfo = insertBanner(organization_id, program_id,
+	 * root, banner); banner_file_name = fileInfo.get("stored_file_name");
+	 * original_file_name = fileInfo.get("original_name"); }
+	 * requestProgram.setOriginal_file_name(original_file_name);
+	 * requestProgram.setBanner_file_name(banner_file_name);
+	 * System.out.println("승인update"); System.out.println(requestProgram); int
+	 * rowNum = service.updateProgramApproval(requestProgram); // String root =
+	 * request.getServletContext().getRealPath("/");//프로젝트 외부에 올린 // resource파일에
+	 * 허용접근불가-보안문제
+	 * 
+	 * if (rowNum > 0) { System.out.println(programImages); for (int i = 0; i <=
+	 * programImages.size() - 1; i++) { if (!programImages.get(i).isEmpty()) {
+	 * System.out.println(programImages.get(i)); ProgramImage imageInfo =
+	 * insertImages(organization_id, program_id, root, programImages.get(i));
+	 * service.insertProgramImage(imageInfo); } } return requestList(session);
+	 * 
+	 * } else { return new ModelAndView("errors/error"); } }
+	 */
 	
 	
-	//승인된 프로그램의 수정
+	
+	
+	
+	// 승인된 프로그램의 수정
+	//banner, programImages가 null인 경우, 현상태에서 수정하지 않는다.
 	@RequestMapping(value = "/updateProgramApproval.do", method = RequestMethod.POST)
-	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
-	public ModelAndView updateProgramApproval(@ModelAttribute("requestProgram") Program requestProgram, @RequestParam("banner") MultipartFile banner, @RequestParam("images") List<MultipartFile> programImages,HttpSession session, HttpServletRequest request) {
+	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
+	public ModelAndView updateProgramApproval(@ModelAttribute("requestProgram") Program requestProgram,
+			@RequestParam("banner") MultipartFile banner, @RequestParam("images") List<MultipartFile> programImages,
+			HttpSession session, HttpServletRequest request) {
 		System.out.println("승인update");
 		System.out.println(requestProgram);
 		String organization_id = (String) session.getAttribute("organization_id");
@@ -193,59 +231,65 @@ public class contributionController {
 		String root = request.getServletContext().getRealPath("resources/images/");
 		String banner_file_name = "";
 		String original_file_name = "";
-		if(!banner.isEmpty()) {
+		if (!banner.isEmpty()) {
 			Map<String, String> fileInfo = insertBanner(organization_id, program_id, root, banner);
 			banner_file_name = fileInfo.get("stored_file_name");
 			original_file_name = fileInfo.get("original_name");
+		}else {
+			banner_file_name = requestProgram.getBanner_file_name();
+			original_file_name = requestProgram.getOriginal_file_name();
 		}
 		requestProgram.setOriginal_file_name(original_file_name);
 		requestProgram.setBanner_file_name(banner_file_name);
 		System.out.println("승인update");
 		System.out.println(requestProgram);
 		int rowNum = service.updateProgramApproval(requestProgram);
-		//String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린 resource파일에 허용접근불가-보안문제
-		
+		// String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린
+		// resource파일에 허용접근불가-보안문제
+
 		if (rowNum > 0) {
 			System.out.println(programImages);
-			for(int i = 0; i <= programImages.size() - 1; i++) {
-					if(!programImages.get(i).isEmpty()) {
-						System.out.println(programImages.get(i));
-						ProgramImage imageInfo = insertImages(organization_id, program_id, root, programImages.get(i));
-						service.insertProgramImage(imageInfo);
-					}
+			for (int i = 0; i <= programImages.size() - 1; i++) {
+				if (!programImages.get(i).isEmpty()) {
+					System.out.println(programImages.get(i));
+					ProgramImage imageInfo = insertImages(organization_id, program_id, root, programImages.get(i));
+					service.insertProgramImage(imageInfo);
 				}
+			}
 			return requestList(session);
-			
+
 		} else {
 			return new ModelAndView("errors/error");
 		}
 	}
 	
 	
-	//미승인 프로그램의 수정
+	
+	
+
+	// 미승인 프로그램의 수정
 	@RequestMapping(value = "/updateProgram.do", method = RequestMethod.POST)
-	//요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
+	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView updateProgram(@ModelAttribute("requestProgram") Program requestProgram, HttpSession session) {
 		String organization_id = (String) session.getAttribute("organization_id");
 		int program_id = requestProgram.getProgram_id();
 		System.out.println("미승인update");
 		System.out.println(requestProgram);
 		int rowNum = service.updateProgramApproval(requestProgram);
-		//String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린 resource파일에 허용접근불가-보안문제
-		
+		// String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린
+		// resource파일에 허용접근불가-보안문제
+
 		return requestList(session);
 	}
-	
-	
-	
-	//프로그램배너 파일로 출력
+
+	// 프로그램배너 파일로 출력
 	public Map<String, String> insertBanner(String organization_id, int program_id, String root, MultipartFile image) {
 		FileUtils fileUtils = new FileUtils();
 		return fileUtils.bannerImageUpload(image, organization_id, program_id, root);
-		
+
 	}
-	
-	//프로그램이미지 업로드 후, programImage 객체를 리턴.
+
+	// 프로그램이미지 업로드 후, programImage 객체를 리턴.
 	public ProgramImage insertImages(String organization_id, int program_id, String root, MultipartFile image) {
 		FileUtils fileUtils = new FileUtils();
 		ProgramImage imageInfo = fileUtils.imageUpload(image, organization_id, program_id, root);
@@ -253,73 +297,62 @@ public class contributionController {
 		imageInfo.setProgram_id(program_id);
 		imageInfo.setImage_url(root);
 		return imageInfo;
-		
+
 	}
-	
-	
-	//기부단체, admin도 사용하던 리스트
-		/*
-		 * @RequestMapping(value = "/programList.do", method = RequestMethod.GET) public
-		 * ModelAndView selectProgramList() { ModelAndView mav = new
-		 * ModelAndView("programList"); mav.addObject("programList",
-		 * service.selectAllProgramList()); return mav; }
-		 */
-	
+
+	// 기부단체, admin도 사용하던 리스트
+	/*
+	 * @RequestMapping(value = "/programList.do", method = RequestMethod.GET) public
+	 * ModelAndView selectProgramList() { ModelAndView mav = new
+	 * ModelAndView("programList"); mav.addObject("programList",
+	 * service.selectAllProgramList()); return mav; }
+	 */
+
 	@RequestMapping(value = "/programList.do", method = RequestMethod.GET)
 	public ModelAndView selectProgramList(int type) {
 		ModelAndView mav = new ModelAndView("programList");
-		if(type == 0) {
+		if (type == 0) {
 			mav.addObject("programList", service.getAllProgramList());
-		}else {
+		} else {
 			mav.addObject("programList", service.getTypeProgramList(type));
 		}
 		return mav;
 	}
-	
-	
+
 	@RequestMapping(value = "/deleteBanner.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteBanner(String organization_id, int program_id) {
 		int rowNum = service.deleteBanner(program_id, organization_id);
-		if(rowNum > 0) {
+		if (rowNum > 0) {
 			System.out.println("공백수정");
-		}else {
+		} else {
 			System.out.println("banner delete error");
 		}
 	}
-	
-	
+
+	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteImage(String organization_id, int program_id, String stored_file_name) {
+		int rowNum = service.deleteImage(program_id, organization_id, stored_file_name);
+		List<ProgramImage> fileNameList;
+		Gson json = new Gson();
+		if (rowNum > 0) {
+			System.out.println("delete image");
+		} else {
+			System.out.println("image delete error");
+		}
+		fileNameList = service.getProgramFileName(program_id, organization_id);
+		return json.toJson(fileNameList);
+	}
+
 	/*
 	 * @RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
 	 * 
-	 * @ResponseBody public String deleteImage(String organization_id, int
-	 * program_id, String stored_file_name) { int rowNum =
-	 * service.deleteImage(program_id, organization_id, stored_file_name);
-	 * List<ProgramImage> fileNameList; Gson json = new Gson(); if(rowNum > 0) {
+	 * @ResponseBody public void deleteImage(String organization_id, int program_id,
+	 * String stored_file_name) { int rowNum = service.deleteImage(program_id,
+	 * organization_id, stored_file_name); if(rowNum > 0) {
 	 * System.out.println("delete image"); }else {
-	 * System.out.println("image delete error"); } fileNameList =
-	 * service.getProgramFileName(program_id, organization_id); return
-	 * json.toJson(fileNameList); }
+	 * System.out.println("image delete error"); } }
 	 */
-	
-	
-	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
-	@ResponseBody
-	public void deleteImage(String organization_id, int program_id, String stored_file_name) {
-		int rowNum = service.deleteImage(program_id, organization_id, stored_file_name);
-		/*
-		 * List<ProgramImage> fileNameList; Gson json = new Gson();
-		 */
-		if(rowNum > 0) {
-			System.out.println("delete image");
-		}else {
-			System.out.println("image delete error");
-		}
-		/*
-		 * fileNameList = service.getProgramFileName(program_id, organization_id);
-		 * return json.toJson(fileNameList);
-		 */
-	}
-	
-	
+
 }

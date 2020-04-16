@@ -94,17 +94,25 @@
 	} */
 
 	function deleteImage(msg){
-		alert("들어왔다!");
 		var organization_id = document.getElementById("organization_id").value;
 		var program_id = document.getElementById("program_id").value;
-		alert("기본정보");
 		$.ajax({
 			type : "post",
 			url : "deleteImage.do",
-			data : "organization_id="+organization_id+"&program_id="+program_id+"&stored_file_name="+msg
-			//dataType : "json"
+			data : "organization_id="+organization_id+"&program_id="+program_id+"&stored_file_name="+msg,
+			dataType : "json"
 		}).done(function(args){
 			console.log(args);
+			var msg = "";
+			if(args.length != 0){
+				for(var i = 0; i <= args.length - 1; i++){
+					msg += args[i].original_file_name+"<a onclick = \"deleteImage('"+args[i].stored_file_name+"');\" href = 'javascript:void(0);'>&times;</a><br>"
+				}
+			}else{
+				msg += "등록된 이미지가 없습니다.";
+			}
+			//alert(msg);
+			$("#imagesInfo").html(msg);
 			//$("#"+stored_file_name+"").html("");
 
 			/* if(args.length != 0){
@@ -274,6 +282,8 @@
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
+														<form:hidden path="original_file_name"/>
+														<form:hidden path="banner_file_name"/>
 														<label class="label" for="banner">배너이미지</label>
 															<input type = "file" id = "banner" name = "banner" class = "form-control" >
 															<div id = "bannerInfo">
@@ -303,9 +313,7 @@
 																</c:when>
 																<c:when test="${!empty programImageList}">
 																<c:forEach var = "image" items = "${programImageList}">
-<%-- 																${image.original_file_name}<a onclick = "deleteImage(${image.stored_file_name})" href = "javascript:void(0)">삭제</a>
- --%>															
- 																${image.original_file_name}<a onclick = "deleteImage('${image.stored_file_name}')" href = "javascript:void(0)">삭제</a>
+ 																${image.original_file_name}<a onclick = "deleteImage('${image.stored_file_name}')" href = "javascript:void(0)">&times;</a>
  																<br>
 																</c:forEach>
 																</c:when>
