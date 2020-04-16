@@ -88,25 +88,29 @@ public class ResponseController {
 		
 		model.addAttribute("R2",x);
 		}
-		
+		//키워드에따른 검색결과수 확인하기
 		ResponseCount responsecount = resTemplate.getForObject(url + serviceKey + keyword + search,
 				ResponseCount.class);
-
+          //검색결과수 변수에저장 
 		int count = responsecount.getResponse().getBody().getTotalCount();
+		//페이징처리
 		Page page = new Page(count, curPage);
 		int i;
+		//검색결과수가 1과 같으면 list에 안들어가기때문에 ResponseOne Dto사용
 		if (count == 1) {
 			ResponseOne list1 = resTemplate.getForObject(url + serviceKey +numOfRows+pageNo + curPage + keyword + search,
 					ResponseOne.class);
 			i = 1;
 			model.addAttribute("rep", list1);
 			model.addAttribute("R", i);
+	    //검색 결과수가 1보다 많으면 여러개받아 list에 넣어줘야하기때문에 ResponseList Dto사용
 		} else if (count > 1) {
 			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + search,
 					ResponseList.class);
 			i = 0;
 			model.addAttribute("rep_List", list1);
 			model.addAttribute("R", i);
+			//검색 결과수가 아예없으면  i변수에 2 리턴해서 jsp에 검색결과없음 띄어주기
 		} else { 
 			i = 2;
 
@@ -116,18 +120,19 @@ public class ResponseController {
 		
 		
 	
-
+        //검색했을때 선택한 페이지 그대로 유지해야하기때문에  검색한 키워드 다시들고감
 		model.addAttribute("search", search);
-
+        //페이지 계산해서 jsp로 들고감
 		model.addAttribute("Page", page);
-		// int listCnt =list.getResponse().getBody().getTotalCount();
+		
 
 		return "blog";
 	}
-
+//기부단체 상세화면
 	@RequestMapping("/board.do")
 	public String getBoard(Model model, String nanmmbyId,HttpSession session) {
 
+      //로그인하지않으면 즐겨찾기 숨기고 로그인을했으면 즐겨찾기 보여주기
 		if(session.getAttribute("user_idx") != null) {
 			
 			int	x = 1;
@@ -147,6 +152,7 @@ public class ResponseController {
 		int count = responsecount.getResponse().getBody().getTotalCount();
 		int i;
 		//검색결과가 없으면 400이 뜨는오류때문에 1개의 검색결과와 0개의 검색결과를 나눔(검새결과가 무조건 1개 아니면 0개이다.)
+		//검색결과가 1인경우 공공데이터에서 받아온 값 jsp로 넘겨주기
 		if (count == 1) {
          
 			ResponseOne list = resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + nanmmbyId,
@@ -161,15 +167,15 @@ public class ResponseController {
 			if(!list.getResponse().getBody().getItems().getItem().getFondDe().isEmpty()) {
 	  		      String str = list.getResponse().getBody().getItems().getItem().getFondDe();
 	  		      StringBuffer sb=new StringBuffer(str);
-	  		      sb.insert(4, "년");
-	  		      sb.insert(7, "월");
-	  		      sb.insert(10,"일");
+	  		      sb.insert(4, "년 ");
+	  		      sb.insert(8, "월 ");
+	  		      sb.insert(12,"일");
 	  		      model.addAttribute("date",sb);
 			}
-			
+			 
 
 		} else {
-			//검색결과가 없는 애들은  DB에저장한 기부단체를 뿌려줌
+			//검색결과가 없는 애들은  DB에저장한 기부단체상세값  jsp로 넘겨주기
 	    GroupUserCommand list =dosdao.Detail(nanmmbyId);
 		
 			i = 0;
@@ -179,9 +185,9 @@ public class ResponseController {
         	if(!list.getFondDe().isEmpty()) {
     		      String str = list.getFondDe();
     		      StringBuffer sb=new StringBuffer(str);
-    		      sb.insert(4, "년");
-    		      sb.insert(7, "월");
-    		      sb.insert(10,"일");
+    		      sb.insert(4, "년 ");
+    		      sb.insert(8, "월 ");
+    		      sb.insert(12,"일");
     		      model.addAttribute("date",sb);
         	}
             
@@ -201,6 +207,7 @@ public class ResponseController {
 		return "about";
 
 	}
+	//기부단체 회원가입시 검색결과에 리스트뿌려주기
 	@RequestMapping(value = "/searchOrganiztion.do",method = RequestMethod.GET)
 	
 	public String searchOrganization(Model model,String nanmmByNm,@RequestParam(defaultValue = "1") int curPage) {
@@ -236,33 +243,38 @@ public class ResponseController {
 			model.addAttribute("R", i);
 		}
 	
-		
+		//페이징 처리하기위해 검색한 키워드 들고감
 		model.addAttribute("nanmmByNm", nanmmByNm);
 
 		model.addAttribute("Page", page);
 		
 		
-		
+		//타일즈 헤더 풋터 필요없기때문에 앞에 경로 붙여줌
 	return "organization/response";
 	}
 	
-	
+	//즐겨찾기 컨트롤러
 	@RequestMapping(value = "/bookmark.do",method = RequestMethod.POST)
 	@ResponseBody
+	//로그인한 세션값 idx와 등록번호 받아오기
 	public String getBoomark(Model model,HttpSession session,
 			String organization_id)throws Exception {
-		System.out.println("organization_id:::"+organization_id);
-		//session.setAttribute("id", 1);
+		
+	//세션에 idx만 캐스팅후 변수에저장
 		int idx = (Integer)session.getAttribute("user_idx"); 
+		//dao에서 인서트인지 딜리트인지 검사한후 인서트 아니면 딜리트 시켜줌 인서트면 1 딜리트면 0 리턴받아옴
 		String i =dao.insertOrDelete(idx, organization_id)+"";
 	
 		return i;
 		
 	}
+	//단체회원가입 컨트롤러
 	@RequestMapping(value = "GroupUserSignup.do",method=RequestMethod.POST)
 	public String GroupUser(Model model,GroupUserCommand guc) {
+		//현재시간 저장
 		guc.setRegister_date(new Date(System.currentTimeMillis()));
 		int i;
+		//인서트
 		  i = gusdao.insertOrganizations(guc);
 		model.addAttribute("R",i);
 		 
