@@ -1,6 +1,6 @@
 package contribution.model;
 
-public class CommentsViewDto {
+public class CommentViewDto {
 
 	String organization_id;
 	String program_id;
