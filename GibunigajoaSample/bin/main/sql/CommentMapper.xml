@@ -29,7 +29,7 @@
 	</update>
 	
 	<!-- 모집프로그램의 block되지 않은 댓글만 출력 = view_comments이용 -->
-	<select id="getAllComment" resultType="contribution.model.Comment" parameterType="map">
+	<select id="getAllComment" resultType="contribution.model.CommentViewDto" parameterType="map">
 		select * from view_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND block_flg = 0
 	</select>
 	

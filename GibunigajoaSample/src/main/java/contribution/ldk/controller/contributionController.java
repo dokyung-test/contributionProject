@@ -1,5 +1,6 @@
 package contribution.ldk.controller;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +30,7 @@ import contribution.model.Comment;
 import contribution.model.FileUtils;
 import contribution.model.Program;
 import contribution.model.ProgramImage;
+import contribution.model.ReportComment;
 import contribution.model.Type;
 import contribution.service.programService;
 
@@ -73,7 +75,7 @@ public class contributionController {
 	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView registerProgram(@ModelAttribute("program") Program pro, HttpSession session) {
 		// pro.setOrganization_id("000000015");
-		System.out.println(pro);
+		System.out.println("program : " + pro);
 		int rowNum = service.insertProgram(pro);
 		if (rowNum > 0) {
 			return requestList(session);
@@ -104,6 +106,9 @@ public class contributionController {
 		mav.addObject("images", images);
 		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
 		mav.addObject("organization_name", service.getOrganizationName(organization_id));
+		
+		mav.addObject("comments", service.getAllComment(program_id, organization_id));
+		System.out.println(service.getAllComment(program_id, organization_id));
 		return mav;
 	}
 
@@ -374,6 +379,22 @@ public class contributionController {
 		System.out.println("comment정보 : "+comment);
 		service.insertComment(comment);
 	}
+	
+	@RequestMapping(value="/insertReportComment.do",  method = RequestMethod.POST)
+	@ResponseBody
+	public void registerReportCommentProc(String organization_id, int program_id, int user_idx, Timestamp comment_id, HttpSession session) {
+		ReportComment comment = new ReportComment();
+		comment.setOrganization_id(organization_id);
+		comment.setProgram_id(program_id);
+		comment.setUser_idx(user_idx);
+		String idx = String.valueOf(session.getAttribute("user_idx"));
+		comment.setReporter_idx(Integer.parseInt(idx));
+		comment.setComment_id(comment_id);
+		System.out.println("reportComment정보 : "+comment);
+		service.insertReportComment(comment);
+	}
+
+	
 	/*
 	 * @RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
 	 * 
