@@ -1,13 +1,12 @@
 package contribution.yjs.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -23,14 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import contribution.model.ContributionDto;
+import contribution.model.ProgramBannerDto;
 import contribution.model.UserCommand;
 import contribution.service.GibunigajoaService;
+
 
 @Controller
 public class GibunigajoaController {
@@ -42,11 +44,21 @@ public class GibunigajoaController {
     private String apiResult = null;
     
 	@RequestMapping("/main.do")
-	public String mainForm(UserCommand command, HttpSession session) {
+	public ModelAndView mainForm() {
+		System.out.println("main");
+		ModelAndView m = new ModelAndView("main");
 		
-		//session.setAttribute("id", "abc");
-		//session.invalidate();
-		return "main";
+		List<ProgramBannerDto> p1 = gibunigajoaService.readCntList(new Date(System.currentTimeMillis()));
+		List<ProgramBannerDto> p2 = gibunigajoaService.dateAscList(new Date(System.currentTimeMillis()));
+		List<ProgramBannerDto> p3 = gibunigajoaService.newAscList(new Date(System.currentTimeMillis()));
+		m.addObject("readCntList", p1);
+		m.addObject("dateAscList", p2);
+		m.addObject("newAscList", p3);
+		System.out.println(p1.toString());
+		System.out.println(p2.toString());
+		System.out.println(p3.toString());
+		
+		return m;
 	}
 	
 	@RequestMapping("/loginForm.do")
@@ -189,7 +201,7 @@ public class GibunigajoaController {
 	@RequestMapping("/logout.do")
 	public String logoutForm(HttpSession session) {
 		session.invalidate();
-		return "main";
+		return "redirect:/main.do";
 	}
 	
 	//회원가입 개인, 단체 type에 따라 관련 회원가입 폼으로 보낸다.  

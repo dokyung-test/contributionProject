@@ -34,50 +34,27 @@
     
     <!-- END nav  액션바-->
     <div class="hero-wrap" >
-	    <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image:url(${pageContext.request.contextPath}/resources/images/bg_1.jpg);">
-	      	<div class="overlay"></div>
+	   <div class="home-slider owl-carousel">
+	     <c:forEach var="newAscList" items="${newAscList}">
+	     
+	      	<div class="slider-item" style="background-image: url(${pageContext.request.contextPath}/resources/images/${newAscList.banner_file_name});">
+	       <div class="overlay"></div>
 	        <div class="container">
 	          <div class="row no-gutters slider-text align-items-center justify-content-center">
 		          <div class="col-md-12 ftco-animate">
 		          	<div class="text w-100 text-center">
-		          		<h2>We're here to help you</h2>
-			            <h1 class="mb-3">Home Builder</h1>
+		          		<%-- <h2>${newAscList.program_subject}</h2> --%>
+		          		<a href = "${pageContext.request.contextPath}/showProgram.do?program_id=${newAscList.program_id}&organization_id=${newAscList.organization_id}">
+		          		<h1 class="mb-3">${newAscList.program_subject}</h1>
+		          		</a>
 		            </div>
 		          </div>
 		        </div>
 	        </div>
 	      </div>
-
-	      <div class="slider-item" style="background-image:url(${pageContext.request.contextPath}/resources/images/bg_2.jpg);">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row no-gutters slider-text align-items-center justify-content-center">
-		          <div class="col-md-12 ftco-animate">
-		          	<div class="text w-100 text-center">
-		          		<h2>Best Builder in the World</h2>
-			            <h1 class="mb-3">We Build Home</h1>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-	      </div>
-
-	      <div class="slider-item" style="background-image:url(${pageContext.request.contextPath}/resources/images/bg_3.jpg);">
-	      	<div class="overlay"></div>
-	        <div class="container">
-	          <div class="row no-gutters slider-text align-items-center justify-content-center">
-		          <div class="col-md-12 ftco-animate">
-		          	<div class="text w-100 text-center">
-		          		<h2>We Build Your Home</h2>
-			            <h1 class="mb-3">Professional Builder</h1>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+		</c:forEach>
+	   </div>
+	 </div>
 	  
 	  
 
@@ -277,48 +254,20 @@
           </div>
         </div>
         <div class="row d-flex">
+        <c:forEach var="dateAscList" items="${dateAscList}">
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
-              </a>
+              <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/${dateAscList.banner_file_name});" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${dateAscList.program_id}&organization_id=${dateAscList.organization_id}"></a>
               <div class="text mt-3 text-center">
               	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                  <div><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${dateAscList.program_id}&organization_id=${dateAscList.organization_id}">${dateAscList.program_subject}</a></div>
                 </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <h3 class="heading"><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${dateAscList.program_id}&organization_id=${dateAscList.organization_id}">${dateAscList.summary}</a></h3>
               </div>
             </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_2.jpg');">
-              </a>
-              <div class="text mt-3 text-center">
-              	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
             </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_3.jpg');">
-              </a>
-              <div class="text mt-3 text-center">
-              	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
+         </c:forEach>
+          
         </div>
       </div>
     </section>
@@ -334,48 +283,19 @@
           </div>
         </div>
         <div class="row d-flex">
+        <c:forEach var="readCntList" items="${readCntList}">
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
-              </a>
+              <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/${readCntList.banner_file_name});" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${readCntList.program_id}&organization_id=${readCntList.organization_id}"></a>
               <div class="text mt-3 text-center">
               	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                  <div><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${readCntList.program_id}&organization_id=${readCntList.organization_id}">${readCntList.program_subject}</a></div>
                 </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <h3 class="heading"><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${readCntList.program_id}&organization_id=${readCntList.organization_id}">${readCntList.summary}</a></h3>
               </div>
             </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_2.jpg');">
-              </a>
-              <div class="text mt-3 text-center">
-              	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('${pageContext.request.contextPath}/resources/images/image_3.jpg');">
-              </a>
-              <div class="text mt-3 text-center">
-              	<div class="meta mb-2">
-                  <div><a href="#">January 30, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
+           </div>
+        </c:forEach>
         </div>
       </div>
     </section>
