@@ -26,8 +26,7 @@ insert into organizations values(#{organization_id},#{nanmmByNm},#{rprsntvNm},#{
 <select id="select-organizations_count" parameterType="String" resultType="int">
 select count(*) from organizations where organization_id=#{organization_id}
 </select>
-
-
-
-
+<select id="select-organizationsAll" parameterType="String" resultType="contribution.model.GroupUserCommand">
+select * from organizations where organization_id=#{organization_id}
+</select>
 </mapper>

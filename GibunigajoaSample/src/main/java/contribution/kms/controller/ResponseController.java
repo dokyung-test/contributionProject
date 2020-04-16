@@ -25,6 +25,7 @@ import contribution.model.ResponseList;
 import contribution.modelcount.ResponseCount;
 import contribution.modelone.ResponseOne;
 import contribution.service.BookmarkService;
+import contribution.service.DetailOrganizationService;
 import contribution.service.GroupUserService;
 
 @Controller
@@ -43,25 +44,32 @@ public class ResponseController {
 
 	BookmarkService dao;
 	GroupUserService gusdao;
+	DetailOrganizationService dosdao;
+	 
+	
+	@Autowired //검새결과 없어서 400오류뜨는 상세화면 기부단체 Dao주입
+	public void setDosdao(DetailOrganizationService dosdao) {
+		this.dosdao=dosdao;
+	}
 	
 	
-	
-    @Autowired
+    @Autowired  //단체회원가입 Dao 주입
 	public void setGusdao(GroupUserService gusdao) {
 		this.gusdao = gusdao;
 	}
 
 	
-	@Autowired
+	@Autowired //즐겨찾기 Dao 주입
 	public void setDao(BookmarkService dao) {
 		this.dao = dao;
 	}
 
-	@Autowired
+	@Autowired 
 	public void setResTemplate(RestTemplate resTemplate) {
 		this.resTemplate = resTemplate;
 	}
-
+   
+	//전체리스트 뿌려주기위한 컨트롤러
 	@RequestMapping(value = "/response.do")
 	public String getResponse(Model model, @RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "") String search, HttpSession session, String organization_id) {
@@ -122,8 +130,9 @@ public class ResponseController {
 
 		int count = responsecount.getResponse().getBody().getTotalCount();
 		int i;
+		//검색결과가 없으면 400이 뜨는오류때문에 1개의 검색결과와 0개의 검색결과를 나눔(검새결과가 무조건 1개 아니면 0개이다.)
 		if (count == 1) {
-
+         
 			ResponseOne list = resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + nanmmbyId,
 					ResponseOne.class);
 
@@ -133,9 +142,15 @@ public class ResponseController {
 			model.addAttribute("R", i);
 
 		} else {
+			//검색결과가 없는 애들은  DB에저장한 기부단체를 뿌려줌
+	    GroupUserCommand list =dosdao.Detail(nanmmbyId);
+			
+			
+			
+			
 			i = 0;
 			model.addAttribute("R", i);
-
+            model.addAttribute("rep_list", list);
 		}
 		return "about";
 

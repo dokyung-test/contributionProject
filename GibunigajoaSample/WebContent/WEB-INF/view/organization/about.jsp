@@ -45,7 +45,7 @@
 		            <h2 class="mb-4">${rep_list.response.body.items.item.nanmmbyNm}</h2>
 		            <p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p> 
 		            <div class="tabulation-2 mt-4">
-									 
+									<c:if test="${R==1}">  
 									<div class="tab-content bg-light rounded mt-2">
 									  <div class="tab-pane container p-0 active" id="home1">
 									  	<p>●대표자명:${rep_list.response.body.items.item.rprsntvNm}</p>
@@ -69,6 +69,35 @@
 									  	<p>●홈페이지:<a href="${rep_list.response.body.items.item.hmpgAdres}">${rep_list.response.body.items.item.hmpgAdres}</a></p>
 									  </div>
 									</div>
+									</c:if>
+									
+									
+											<c:if test="${R==0}"> 
+									<div class="tab-content bg-light rounded mt-2">
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●대표자명:${rep_list.rprsntvNm}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●설립일:${rep_list.fondDe}</p>
+									  </div>
+									   <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●사업자번호:${rep_list.bizrno}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●전화번호:${rep_list.dmstcTelno}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●팩스번호:${rep_list.fxnum}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●주소:${rep_list.adres}</p>
+									  </div>
+									  <div class="tab-pane container p-0 active" id="home1">
+									  	<p>●홈페이지:<a href="${rep_list.hmpadres}">${rep_list.hmpaadres}</a></p>
+									  </div>
+									</div>
+									</c:if>
+									
 								</div>
 								<a class="btn btn-primary" href="response.do">단체목록</a>
 		          </div>
