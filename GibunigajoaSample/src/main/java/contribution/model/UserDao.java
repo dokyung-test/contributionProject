@@ -35,4 +35,14 @@ public class UserDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("gibunigajoa.contributionSum", user_idx);
 	}
 	
+	//기부금액에 따른 등급 update
+	public int updateGrade(HashMap<String, Object> m) {
+		return getSqlSession().update("gibunigajoa.updateGrade", m);
+	}
+	
+	//user 등급확인 
+	public int gradeCheck(int user_idx) {
+		return getSqlSession().selectOne("gibunigajoa.gradeCheck", user_idx);
+	}
+	
 }

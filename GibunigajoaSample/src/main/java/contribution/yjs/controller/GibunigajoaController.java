@@ -280,17 +280,38 @@ public class GibunigajoaController {
 		 
 		 if(session.getAttribute("user_id") != "") {
 			 int contributionSum = gibunigajoaService.contributionSum(user_idx); 
+			 HashMap<String, Object> m = new HashMap<String, Object>();
+			 m.put("user_idx", user_idx);
+			 int gradeNum = 0;
+			 
 			 System.out.println("기부금 체크: "+contributionSum);
 			 if(contributionSum >= 100000 && contributionSum < 500000) {
 				 System.out.println("기부금 체크 10");
-				 jnum = 10;
-
+				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
+				 if(gradeNum != 1) {
+					 jnum = 10;
+					 m.put("grade", 1);
+					 gibunigajoaService.updateGrade(m);
+				 }
+			 
 			 }else if(contributionSum >= 500000 && contributionSum < 1000000) {
 				 System.out.println("기부금 체크 50");
-				 jnum = 50;
+				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
+				 if(gradeNum != 2) {
+					 jnum = 50;
+					 m.put("grade", 2);
+					 gibunigajoaService.updateGrade(m);
+				 }
+				 
+			 
 			 }else if(contributionSum >= 1000000) {
 				 System.out.println("기부금 체크 100");
-				 jnum = 100;
+				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
+				 if(gradeNum != 3) {
+					 jnum = 100;
+					 m.put("grade", 3);
+					 gibunigajoaService.updateGrade(m);
+				 }
 			 }
 		 }
 		 

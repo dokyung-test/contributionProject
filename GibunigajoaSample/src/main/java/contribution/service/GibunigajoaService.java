@@ -55,4 +55,14 @@ public class GibunigajoaService{
 	public int contributionSum(int user_idx) {
 		return userDao.contributionSum(user_idx);
 	}
+	
+	//기부금액에 따른 등급 update
+	public int updateGrade(HashMap<String, Object> m) {
+		return userDao.updateGrade(m);
+	}
+	
+	//user 등급확인
+	public int gradeCheck(int user_idx) {
+		return userDao.gradeCheck(user_idx);
+	}
 }
