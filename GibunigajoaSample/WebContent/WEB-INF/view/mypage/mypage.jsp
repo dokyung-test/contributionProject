@@ -111,7 +111,7 @@
 								var date = args.date;
 								var contribution = args.contribution;								
 								var note = args.note;
-								var date1 = new Date(date);
+								var date1 = new Date(date); 
 								var text_date = date1.getFullYear() + "년  "
 										+ (date1.getMonth() + 1) + "월 "
 										+ date1.getDate() + "일";
@@ -124,10 +124,17 @@
 										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
 								$("#contribution").append(
 										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");								
+                               
+                                if(note == null){
+                                	$("#note").append(
+    										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
+    										
+    										+ "</textarea>");
+                                    }else{
 								$("#note").append(
 										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
 										+ note
-										+ "</textarea>");
+										+ "</textarea>");}
 							});
 					$("#contentmodal").show();
 					return false;
@@ -270,8 +277,7 @@
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
-	border : 10px solid transparent;
-
+	border: 10px solid transparent;
 }
 </style>
 
