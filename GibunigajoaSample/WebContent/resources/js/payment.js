@@ -1,6 +1,8 @@
 
 
 function kakaoPay(){
+	document.getElementById('paymodal').style.display = "none";
+	
 	var contribution = $("#contribution").val();
 	var organization_name = $("#organization_name").val();
 	var nickname = $("#nickname").val();
@@ -58,8 +60,6 @@ function kakaoPay(){
 			   		,url:"payment.do?contribution="+contribution+"&organization_name="+organization_name+"&program_subject="+program_subject+"&organization_id="+organization_id+"&program_id="+program_id	 
 			   		,dataType:"json"})
 			   		.done(function(args){
-
-			   			paymodal.style.display = "none";
 			   			//console.log("payment 들어오니?");
 			   			alert("함께해주셔서 감사합니다. \n기부가 완료되었습니다!");
 			   			

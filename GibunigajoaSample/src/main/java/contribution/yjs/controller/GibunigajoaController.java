@@ -254,13 +254,14 @@ public class GibunigajoaController {
 	 @RequestMapping(value="/payment.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	 @ResponseBody
 	 public String payment(String contribution, String organization_name, String program_subject, String organization_id, String program_id, HttpSession session){
-		 //System.out.println("session: "+session.getAttribute("user_idx"));
+		 System.out.println("session: "+session.getAttribute("user_idx"));
 		 JsonObject json = new JsonObject();
 		 Gson gson = new Gson();
 		 int jnum =0 ;
 		 
-		 String idx = String.valueOf(session.getAttribute("user_idx"));
-		 idx.trim();
+		 if(session.getAttribute("user_id") != null) {
+			 
+		 String idx = String.valueOf(session.getAttribute("user_idx")).trim();
 		 int user_idx = Integer.parseInt(idx);
 		 System.out.println("user_idx: "+user_idx);
 		 ContributionDto command = new ContributionDto();
@@ -268,7 +269,6 @@ public class GibunigajoaController {
 		 command.setOrganization_name(organization_name);
 		 command.setProgram_name(program_subject);
 		 command.setRegister_type_flg(2);
-		 System.out.println("여기까지 오니? ");
 		 command.setUser_idx(user_idx);
 		 command.setDate(new Date(System.currentTimeMillis()));
 		 command.setOrganization_id(organization_id);
@@ -278,7 +278,7 @@ public class GibunigajoaController {
 		 System.out.println("command: "+command.toString());
 		 int num = gibunigajoaService.payInsertContribution(command);
 		 
-		 if(session.getAttribute("user_id") != "") {
+		 
 			 int contributionSum = gibunigajoaService.contributionSum(user_idx); 
 			 HashMap<String, Object> m = new HashMap<String, Object>();
 			 m.put("user_idx", user_idx);
@@ -313,6 +313,19 @@ public class GibunigajoaController {
 					 gibunigajoaService.updateGrade(m);
 				 }
 			 }
+		 }else {//비회원 기부 일시 
+			 
+			 ContributionDto command = new ContributionDto();
+			 command.setContribution(Integer.parseInt(contribution));
+			 command.setOrganization_name(organization_name);
+			 command.setProgram_name(program_subject);
+			 command.setRegister_type_flg(2);
+			 command.setUser_idx(0);
+			 command.setDate(new Date(System.currentTimeMillis()));
+			 command.setOrganization_id(organization_id);
+			 command.setProgram_id(Integer.parseInt(program_id));
+			 System.out.println("command: "+command.toString());
+			 int num = gibunigajoaService.payInsertContribution(command);
 		 }
 		 
 		 json.addProperty("num", jnum);
