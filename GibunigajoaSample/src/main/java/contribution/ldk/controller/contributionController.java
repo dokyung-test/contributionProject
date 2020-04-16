@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import contribution.model.FileUtils;
 import contribution.model.Program;
 import contribution.model.ProgramImage;
@@ -166,10 +168,17 @@ public class contributionController {
 		mav.addObject("updateProgram", pro);
 		List<Type> typeList = service.selectTypes();
 		mav.addObject("typeList", typeList);
-		List<String> programImageList = service.getProgramOriginalFileName(program_id, organization_id);
+		//List<Map<String, Object>> programImageList = getImagesFileName(program_id, organization_id);
+		List<ProgramImage> programImageList = getImagesFileName(program_id, organization_id);
 		mav.addObject("programImageList", programImageList);
 		// registerForm페이지에서 commandName과 모델명을 일치 -> 빈 객체를 만들고 안에다 채워넣는다의 느낌.
 		return mav;
+	}
+	
+	
+	//프로그램의 원본파일, 저장된 파일명습득
+	public List<ProgramImage> getImagesFileName(int program_id, String organization_id){
+		return service.getProgramFileName(program_id, organization_id);
 	}
 	
 	
@@ -280,15 +289,36 @@ public class contributionController {
 	}
 	
 	
+	/*
+	 * @RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String deleteImage(String organization_id, int
+	 * program_id, String stored_file_name) { int rowNum =
+	 * service.deleteImage(program_id, organization_id, stored_file_name);
+	 * List<ProgramImage> fileNameList; Gson json = new Gson(); if(rowNum > 0) {
+	 * System.out.println("delete image"); }else {
+	 * System.out.println("image delete error"); } fileNameList =
+	 * service.getProgramFileName(program_id, organization_id); return
+	 * json.toJson(fileNameList); }
+	 */
+	
+	
 	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void deleteImage(String organization_id, int program_id, String stored_file_name) {
 		int rowNum = service.deleteImage(program_id, organization_id, stored_file_name);
+		/*
+		 * List<ProgramImage> fileNameList; Gson json = new Gson();
+		 */
 		if(rowNum > 0) {
-			System.out.println("delete!!");
+			System.out.println("delete image");
 		}else {
 			System.out.println("image delete error");
 		}
+		/*
+		 * fileNameList = service.getProgramFileName(program_id, organization_id);
+		 * return json.toJson(fileNameList);
+		 */
 	}
 	
 	

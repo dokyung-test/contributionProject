@@ -191,4 +191,10 @@ public class programService {
 		imageSearchKeyword.put("stored_file_name", stored_file_name);
 		return programDao.deleteImage(imageSearchKeyword);
 	}
+	
+	//프로그램의 이미지들의 원본파일명, 저장된 파일명을 습득
+	public List<ProgramImage> getProgramFileName(int program_id, String organization_id) {
+		
+		return programImageDao.getProgramFileName(makeMap(program_id, organization_id));
+	}
 }
