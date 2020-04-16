@@ -48,6 +48,12 @@ public class BookmarkDao extends SqlSessionDaoSupport {
 	
 	
 	
+
+
+
+	
+	
+	
 	
 	
 	

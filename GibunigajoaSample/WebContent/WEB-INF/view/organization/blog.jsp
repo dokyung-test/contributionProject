@@ -49,13 +49,14 @@
 
 
 <%--  <link href="${pageContext.request.contextPath}/resources/search.css"  rel="stylesheet" id="bootstrap-css"> --%>
-<script
+<!-- <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+ -->
 <%-- 
   <link href="${pageContext.request.contextPath}/resources/kimcss/search.css"  rel="stylesheet" id="bootstrap-css"> --%>
 </head>
 <body>
-	<section class="hero-wrap hero-wrap-2" 
+	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_3.jpg');"
 		data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
@@ -79,43 +80,7 @@
 										</button>
 									</div>
 								</form>
-							</div> <%--             		    <div class="search1">
-=======
-<body>
-<section class="hero-wrap hero-wrap-2"
-		style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_3.jpg');"
-		data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text align-items-end">
-				<div class="col-md-9 ftco-animate pb-5">
-					<p class="breadcrumbs mb-2">
-						<span class="mr-2"><a href="main.do">Home</a> <a
-							href="response.do">
-								<h1 class="mb-0 bread">기부단체</h1>
-						</a>
-							<div>
-								<form action="response.do" method="get"
-									class="searchform order-lg-last">
-									<div class="form-group d-flex">
-										<input type="text" class="form-control pl-3"
-											placeholder="Search" name="search" value="${search}">
-										<button type="submit" placeholder=""
-											class="form-control search">
-											<span class="fa fa-search"></span>
-										</button>
-									</div>
-								</form>
-							</div> <%--             		    <div class="search1">
->>>>>>> kimproject
- <form name="form" action="response.do" method="get" class="searchform order-lg-last" > 
- <!--  -->   
-   <div class="form-group d-flex"> 
-<input type="text" board="1" class="form-control input-sm" maxlength="64" placeholder="Search"  name="search" value="${search}"/>
- <button type="submit" class="form-control search"><span class="fa fa-search"></span></button>
-  </div>
-</form>   
-</div> --%>
+							</div>
 				</div>
 			</div>
 		</div>
@@ -140,7 +105,8 @@
 
 						<div class="col-md-4 d-flex ftco-animate">
 							<div class="blog-entry align-self-stretch">
-								<a href="board.do?nanmmbyId=${item.nanmmbyId}" class="block-20 rounded"
+								<a href="board.do?nanmmbyId=${item.nanmmbyId}"
+									class="block-20 rounded"
 									style="background-image: url('${pageContext.request.contextPath}/resources/images/image_${status.count}.jpg');">
 								</a>
 
@@ -149,30 +115,30 @@
 										<div>${item.rcritRealm}</div>
 										<div>${item.dmstcTelno}</div>
 										<c:if test="${R2==1}">
-										<c:set var="contains" value="false" />
-										<c:forEach items="${bookmarkId}" var="bookmark">
-											<c:if test="${bookmark.organization_id eq item.nanmmbyId}">
-												<c:set var="contains" value="true" />
-											</c:if>
-										</c:forEach>
-										<c:choose>
-											<c:when test="${contains eq true }">
-												<div
-													onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
-													<img id="img${status.count}"
-														src="${pageContext.request.contextPath}/resources/images/pStar.png">
-												</div>
-											</c:when>
-											<c:when test="${contains eq false}">
-												<div
-													onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
-													<img id="img${status.count}"
-														src="${pageContext.request.contextPath}/resources/images/bStar.png">
-												</div>
+											<c:set var="contains" value="false" />
+											<c:forEach items="${bookmarkId}" var="bookmark">
+												<c:if test="${bookmark.organization_id eq item.nanmmbyId}">
+													<c:set var="contains" value="true" />
+												</c:if>
+											</c:forEach>
+											<c:choose>
+												<c:when test="${contains eq true }">
+													<div
+														onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
+														<img id="img${status.count}"
+															src="${pageContext.request.contextPath}/resources/images/pStar.png">
+													</div>
+												</c:when>
+												<c:when test="${contains eq false}">
+													<div
+														onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
+														<img id="img${status.count}"
+															src="${pageContext.request.contextPath}/resources/images/bStar.png">
+													</div>
 
-											</c:when>
-										</c:choose>
-  </c:if>
+												</c:when>
+											</c:choose>
+										</c:if>
 									</div>
 									<h3 class="heading">
 										<a href="board.do?nanmmbyId=${item.nanmmbyId}">${item.nanmmbyNm}</a>
@@ -195,39 +161,41 @@
 						<div class="row d-flex">
 							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
-									<a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}" class="block-20 rounded"
+									<a
+										href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
+										class="block-20 rounded"
 										style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
 									</a>
 									<div class="text mt-3 text-center">
 										<div class="meta mb-2">
 											<div>${rep.response.body.items.item.rcritRealm}</div>
 											<div>${rep.response.body.items.item.dmstcTelno}</div>
-                                            <c:if test="${R2==1}">
-											<c:set var="contains" value="false" />
-											<c:forEach items="${bookmarkId}" var="bookmark">
-												<c:if
-													test="${bookmark.organization_id eq rep.response.body.items.item.nanmmbyId}">
-													<c:set var="contains" value="true" />
-												</c:if>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${contains eq true }">
-													<div
-														onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
-														<img id="img${status.count}"
-															src="${pageContext.request.contextPath}/resources/images/pStar.png">
-													</div>
-												</c:when>
-												<c:when test="${contains eq false}">
-													<div
-														onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
-														<img id="img${status.count}"
-															src="${pageContext.request.contextPath}/resources/images/bStar.png">
-													</div>
+											<c:if test="${R2==1}">
+												<c:set var="contains" value="false" />
+												<c:forEach items="${bookmarkId}" var="bookmark">
+													<c:if
+														test="${bookmark.organization_id eq rep.response.body.items.item.nanmmbyId}">
+														<c:set var="contains" value="true" />
+													</c:if>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${contains eq true }">
+														<div
+															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
+															<img id="img${status.count}"
+																src="${pageContext.request.contextPath}/resources/images/pStar.png">
+														</div>
+													</c:when>
+													<c:when test="${contains eq false}">
+														<div
+															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
+															<img id="img${status.count}"
+																src="${pageContext.request.contextPath}/resources/images/bStar.png">
+														</div>
 
-												</c:when>
-											</c:choose>
-                                           </c:if>
+													</c:when>
+												</c:choose>
+											</c:if>
 										</div>
 										<h3 class="heading">
 											<a
