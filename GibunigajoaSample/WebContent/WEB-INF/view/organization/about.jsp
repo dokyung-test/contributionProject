@@ -80,8 +80,8 @@
 											<p>●대표자명:${rep_list.response.body.items.item.rprsntvNm}</p>
 										</div>
 										<div class="tab-pane container p-0 active" id="home1">
-											<p>●설립일:${rep_list.response.body.items.item.fondDe}</p>
-										</div>
+											<p>●설립일:${date}</p>
+										</div> 
 										<div class="tab-pane container p-0 active" id="home1">
 											<p>●사업자번호:${rep_list.response.body.items.item.bizrno}</p>
 										</div>
@@ -131,7 +131,7 @@
 											<p>●대표자명:${rep_list.rprsntvNm}</p>
 										</div>
 										<div class="tab-pane container p-0 active" id="home1">
-											<p>●설립일:${rep_list.fondDe}</p>
+											<p>●설립일:${date}</p>
 										</div>
 										<div class="tab-pane container p-0 active" id="home1">
 											<p>●사업자번호:${rep_list.bizrno}</p>

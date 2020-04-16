@@ -156,6 +156,17 @@ public class ResponseController {
 
 			model.addAttribute("rep_list", list);
 			model.addAttribute("R", i);
+			
+			//공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 
+			if(!list.getResponse().getBody().getItems().getItem().getFondDe().isEmpty()) {
+	  		      String str = list.getResponse().getBody().getItems().getItem().getFondDe();
+	  		      StringBuffer sb=new StringBuffer(str);
+	  		      sb.insert(4, "년");
+	  		      sb.insert(7, "월");
+	  		      sb.insert(10,"일");
+	  		      model.addAttribute("date",sb);
+			}
+			
 
 		} else {
 			//검색결과가 없는 애들은  DB에저장한 기부단체를 뿌려줌
@@ -164,6 +175,17 @@ public class ResponseController {
 			i = 0;
 			model.addAttribute("R", i);
             model.addAttribute("rep_list", list);
+          //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 
+        	if(!list.getFondDe().isEmpty()) {
+    		      String str = list.getFondDe();
+    		      StringBuffer sb=new StringBuffer(str);
+    		      sb.insert(4, "년");
+    		      sb.insert(7, "월");
+    		      sb.insert(10,"일");
+    		      model.addAttribute("date",sb);
+        	}
+            
+            
 		}
 		//해당 list가 있으면 해당단체에 모집프로그램이있다는뜻이고 list가 비어있다면 해당단체에 모집프로그램이없다는뜻
 		List<Program> list = dosdao.DetailProgram(nanmmbyId);
@@ -199,6 +221,9 @@ public class ResponseController {
 			i = 1;
 			model.addAttribute("rep", list1);
 			model.addAttribute("R", i);
+			//String타입으로들어
+		
+			
 		} else if (count > 1) {
 			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + nanmmByNm,
 					ResponseList.class);
