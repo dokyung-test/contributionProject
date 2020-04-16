@@ -14,6 +14,6 @@
 <!--카카오&네이버 로그인 -->
 <select id="kakaoNaverloginCheck" parameterType="String" resultType="contribution.model.UserCommand">select * from users where user_id=#{user_id}</select>
 <!--등급을 위한 사용가 총 기부내역 sum -->
-<select id="contributionSum" parameterType="int" resultType="int">select count(*) from contribution_history where user_idx=#{user_idx}</select>
+<select id="contributionSum" parameterType="int" resultType="int">select sum(contribution) from contribution_history where user_idx=#{user_idx}</select>
 
 </mapper> 

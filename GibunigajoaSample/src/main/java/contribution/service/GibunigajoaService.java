@@ -17,6 +17,7 @@ import contribution.model.UserDao;
 public class GibunigajoaService{
 	@Autowired
 	UserDao userDao;
+	@Autowired
 	MypageDao mypageDao;
 
 	@Autowired

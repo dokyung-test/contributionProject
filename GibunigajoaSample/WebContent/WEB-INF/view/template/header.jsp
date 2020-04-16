@@ -20,16 +20,18 @@
 						<c:when test="${empty user_id}">
 							<a href="javascript:void(0);"
 								class="d-flex align-items-center justify-content-center"
-								style="margin-left: 2%;" id="loginBtn"><span class="fa"><i
-									class="sr-only"></i><img alt="user"
+								style="margin-left: 2%;" id="loginBtn" onclick="memberloginBtn();">
+								<span class="fa">
+								<i class="sr-only"></i><img alt="user"
 									src="${pageContext.request.contextPath}/resources/images/login_02.png"></span></a>
 							<a href="javascript:void(0);"
 								class="d-flex align-items-center justify-content-center"
-								style="margin-left: 20%;" id="myBtn"><span class="fa"><i
-									class="sr-only"></i><img alt="user"
+								style="margin-left: 20%;" id="myBtn" onclick="memberBtn();">
+								<span class="fa">
+								<i class="sr-only"></i><img alt="user"
 									src="${pageContext.request.contextPath}/resources/images/user_02.png"></span></a>
 							<div>
-								<a href="javascript:void(0);" id="loginBtn">로그인&nbsp;&nbsp;&nbsp;</a>
+								<a href="javascript:void(0);" id="loginBtn" onclick="memberloginBtn();">로그인&nbsp;&nbsp;&nbsp;</a>
 								<a href="javascript:void(0);" style="color: #0056b3;" id="myBtn" onclick="memberBtn();">회원가입</a>
 							</div>
 						</c:when>

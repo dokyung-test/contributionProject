@@ -252,8 +252,13 @@ public class GibunigajoaController {
 	 }
 	*/
 	 @RequestMapping(value="/payment.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	 public void payment(String contribution, String organization_name, String program_subject, String organization_id, String program_id, HttpSession session, HttpServletResponse response) throws IOException {
-		 System.out.println("session: "+session.getAttribute("user_idx"));
+	 @ResponseBody
+	 public String payment(String contribution, String organization_name, String program_subject, String organization_id, String program_id, HttpSession session){
+		 //System.out.println("session: "+session.getAttribute("user_idx"));
+		 JsonObject json = new JsonObject();
+		 Gson gson = new Gson();
+		 int jnum =0 ;
+		 
 		 String idx = String.valueOf(session.getAttribute("user_idx"));
 		 idx.trim();
 		 int user_idx = Integer.parseInt(idx);
@@ -267,31 +272,30 @@ public class GibunigajoaController {
 		 command.setUser_idx(user_idx);
 		 command.setDate(new Date(System.currentTimeMillis()));
 		 command.setOrganization_id(organization_id);
+		 System.out.println("organization: "+organization_id);
 		 command.setProgram_id(Integer.parseInt(program_id));
-		 
+		 System.out.println("program: "+program_id);
+		 System.out.println("command: "+command.toString());
 		 int num = gibunigajoaService.payInsertContribution(command);
 		 
 		 if(session.getAttribute("user_id") != "") {
 			 int contributionSum = gibunigajoaService.contributionSum(user_idx); 
-			 
+			 System.out.println("기부금 체크: "+contributionSum);
 			 if(contributionSum >= 100000 && contributionSum < 500000) {
-				 response.setContentType("text/html; charset=UTF-8");
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('10만원 기부해주셨습니다!');</script>");
-				 out.flush(); 
+				 System.out.println("기부금 체크 10");
+				 jnum = 10;
 
 			 }else if(contributionSum >= 500000 && contributionSum < 1000000) {
-				 response.setContentType("text/html; charset=UTF-8");
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('50만원 기부해주셨습니다!');</script>");
-				 out.flush(); 
+				 System.out.println("기부금 체크 50");
+				 jnum = 50;
 			 }else if(contributionSum >= 1000000) {
-				 response.setContentType("text/html; charset=UTF-8");
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('100만원 기부해주셨습니다!');</script>");
-				 out.flush(); 
+				 System.out.println("기부금 체크 100");
+				 jnum = 100;
 			 }
 		 }
+		 
+		 json.addProperty("num", jnum);
+		 return gson.toJson(json);
 		 
 	 }
 	 
