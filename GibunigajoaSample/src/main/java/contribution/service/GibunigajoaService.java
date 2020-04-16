@@ -1,14 +1,16 @@
 package contribution.service;
 
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
-import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import contribution.model.ContributionDto;
 import contribution.model.MypageDao;
+import contribution.model.ProgramBannerDto;
 import contribution.model.UserCommand;
 import contribution.model.UserDao;
 
@@ -19,6 +21,7 @@ public class GibunigajoaService{
 	UserDao userDao;
 	@Autowired
 	MypageDao mypageDao;
+	
 
 	@Autowired
 	public void setUserDao(UserDao userDao) {
@@ -64,5 +67,20 @@ public class GibunigajoaService{
 	//user 등급확인
 	public int gradeCheck(int user_idx) {
 		return userDao.gradeCheck(user_idx);
+	}
+	
+	//최근관심 게시물 리스트 
+	public List<ProgramBannerDto> readCntList(Date date) {
+		return userDao.readCntList(date);
+	}
+	
+	//마감임박 게시물 리스트 
+	public List<ProgramBannerDto> dateAscList(Date date){
+		return userDao.dateAscList(date);
+	}
+	
+	//main 배너 최신 게시물 홍보 
+	public List<ProgramBannerDto> newAscList(Date date){
+		return userDao.newAscList(date);
 	}
 }
