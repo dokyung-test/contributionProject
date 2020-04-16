@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import contribution.model.Comment;
 import contribution.model.CommentDao;
+import contribution.model.CommentViewDto;
 import contribution.model.Program;
 import contribution.model.ProgramBannerDao;
 import contribution.model.ProgramBannerDto;
 import contribution.model.ProgramDao;
 import contribution.model.ProgramImage;
 import contribution.model.ProgramImageDao;
+import contribution.model.ReportComment;
 import contribution.model.Type;
 import contribution.model.TypeDao;
 
@@ -220,6 +222,15 @@ public class programService {
 		return commentDao.insertComment(comment);
 	}
 	
+	//block되지 않은 프로그램의 모든 댓글습득
+	public List<CommentViewDto> getAllComment(int program_id, String organization_id){
+		return commentDao.getAllComment(makeMap(program_id, organization_id));
+	}
+	
+	//댓글신고 insert
+		public int insertReportComment(ReportComment reportComment) {
+			return commentDao.insertReportComment(reportComment);
+		}
 	
 	
 }

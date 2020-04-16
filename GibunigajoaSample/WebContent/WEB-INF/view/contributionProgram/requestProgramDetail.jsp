@@ -24,6 +24,29 @@
 	function closeP() {
 		paymodal.style.display = "none";
 	}
+
+	function report(user_idx, comment_id){
+		var result = confirm("이 댓글을 신고하시겠습니까?");
+		if(result){
+			var organization_id = document.getElementById("organization_id").value;
+			var program_id = document.getElementById("program_id").value;
+
+			$.ajax({
+				type : "post",
+				url : "insertReportComment.do",
+				data : "organization_id="+organization_id+"&program_id="+program_id+"&user_idx="+user_idx+"&comment_id="+comment_id,
+				//dataType : "json"
+			}).done(function(args){
+				window.location.reload();
+						
+			}).fail(function(e){
+				alert(e.responseText);	
+			})	
+			
+		}else{
+			return false;
+		}
+	}
 </script>
 <head>
    <meta charset="utf-8">
@@ -267,70 +290,36 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
-              
+              <c:choose>
+              	<c:when test="${empty comments}">
+              		<h3 style = "color : #ffffff">희망을 전해주세요</h3>
+              	</c:when>
+              	<c:otherwise>
+              	 <c:forEach var = "comment" items = "${comments}">
               <!-- 댓글한세트 -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                 	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                   <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4">${comment.content}</p>
                     <div class="d-flex align-items-center">
                     	<!-- <div class="user-img" style="background-image: url(images/person_1.jpg)"></div> -->
                     	<div class="pl-3">
-		                    <p class="name">Roger Scott1</p>
-		                    <span class="position">Marketing Manager</span>
+		                    <p class="name">${comment.nickname}</p>
+		                    <span class="position"><fmt:formatDate value="${comment.register_date}" pattern = "yyyy-MM-dd"/></span>
+		                    <a onclick = "report('${comment.user_idx}','${comment.comment_id}');" href = "javascript:void()">
+		                    <img alt="신고" src="${pageContext.request.contextPath}/resources/images/alert_1.png" style = "width : 30px; float: right;" >
+		                  	</a>
 		                  </div>
 	                  </div>
                   </div>
                 </div>
               </div>
-              
+              </c:forEach>
+              	</c:otherwise>
+              </c:choose>
              
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<!-- <div class="user-img" style="background-image: url(images/person_3.jpg)"></div> -->
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott2</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<!-- <div class="user-img" style="background-image: url(images/person_1.jpg)"></div> -->
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott3</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<!-- <div class="user-img" style="background-image: url(images/person_2.jpg)"></div> -->
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott4</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
+             
             </div>
           </div>
         </div>
