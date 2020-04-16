@@ -21,6 +21,7 @@ import com.google.gson.annotations.JsonAdapter;
 import contribution.model.BookmarkDto;
 import contribution.model.GroupUserCommand;
 import contribution.model.Page;
+import contribution.model.Program;
 import contribution.model.ResponseList;
 import contribution.modelcount.ResponseCount;
 import contribution.modelone.ResponseOne;
@@ -144,14 +145,22 @@ public class ResponseController {
 		} else {
 			//검색결과가 없는 애들은  DB에저장한 기부단체를 뿌려줌
 	    GroupUserCommand list =dosdao.Detail(nanmmbyId);
-			
-			
-			
-			
+		
 			i = 0;
 			model.addAttribute("R", i);
             model.addAttribute("rep_list", list);
 		}
+		//해당 list가 있으면 해당단체에 모집프로그램이있다는뜻이고 list가 비어있다면 해당단체에 모집프로그램이없다는뜻
+		List<Program> list = dosdao.DetailProgram(nanmmbyId);
+		if(list.size()!=0) {
+			i=1;
+			model.addAttribute("program", list);
+			model.addAttribute("R1", i);
+		}else {
+			i=0;
+			model.addAttribute("R1", i);
+		}
+		
 		return "about";
 
 	}

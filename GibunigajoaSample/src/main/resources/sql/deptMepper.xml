@@ -29,4 +29,18 @@ select count(*) from organizations where organization_id=#{organization_id}
 <select id="select-organizationsAll" parameterType="String" resultType="contribution.model.GroupUserCommand">
 select * from organizations where organization_id=#{organization_id}
 </select>
+
+<select id="select-programCount" parameterType="String"  resultType="int">
+select count(*) from programs where organization_id=#{organization_id}
+</select>
+
+<select id="select-programAll" parameterType="String" resultType="contribution.model.Program">
+select * from programs where organization_id=#{organization_id}
+</select>
+
+<select id="select-programImgae" parameterType="String" resultType="map">
+select image_url from program_images where organization_id=#{organization_id} and original_file_name=#{original_file_name}
+</select>
+
+
 </mapper>
