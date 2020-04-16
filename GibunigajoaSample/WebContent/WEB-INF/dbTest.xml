@@ -42,6 +42,10 @@
 		<property name="sqlSessionFactory" ref = "sqlSessionFactory"/>
 	</bean>
 	
+	<bean id = "commentDao" class = "contribution.model.CommentDao">
+		<property name="sqlSessionFactory" ref = "sqlSessionFactory"/>
+	</bean>
+	
 	<bean id="dao" class="contribution.model.MypageDao">
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import contribution.model.CommentDao;
 import contribution.model.Program;
 import contribution.model.ProgramBannerDao;
 import contribution.model.ProgramBannerDto;
@@ -30,7 +31,16 @@ public class programService {
 	
 	@Autowired
 	ProgramBannerDao programBannerDao;
+
+	@Autowired
+	CommentDao commentDao;
 	
+	
+	@Autowired
+	public void setCommentDao(CommentDao commentDao) {
+		this.commentDao = commentDao;
+	}
+
 	@Autowired
 	public void setProgramImageDao(ProgramImageDao programImageDao) {
 		this.programImageDao = programImageDao;
