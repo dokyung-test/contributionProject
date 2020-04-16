@@ -341,7 +341,7 @@
 <div id="paymodal" class="modal_box">
 	
 	<!-- Modal content -->
-	<div class="modal-content_box">
+	<div class="modal-content_box_pay">
 		<div onclick="closeP()">
 			<span class="close_m">&times;</span>
 		</div>
@@ -350,9 +350,10 @@
 		<div style="margin-bottom: 10%; margin-left: 10%;">
 		<input type="text" id="contribution" name="contribution" style="width:70%;"/> &nbsp;원
 		</div>
-		<a id="kakaoPayBtn" onclick="kakaoPay();" style="margin-right: 10px; margin-left: 5%; margin-bottom: 10%;"> <img alt="카카오페이결제버튼" src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_medium.png"></a>
+		<a id="kakaoPayBtn" onclick="kakaoPay();" style="float:right; margin-right:10%; margin-bottom: 20%;"> <img alt="카카오페이결제버튼" src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_medium.png"></a>
+		<%-- 
 		<a id="naverPayBtn" onclick="naverPay();"><img alt="네이버페이결제버튼" src="${pageContext.request.contextPath}/resources/images/npay_logo.PNG"></a> 
-		
+		 --%>
 	</div>
 </div>
 

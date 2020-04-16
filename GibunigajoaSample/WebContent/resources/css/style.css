@@ -75,7 +75,16 @@ body {
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
-    
+        
+    	.modal-content_box_pay {
+            background-color: #fefefe;
+            margin: 30% auto; 
+            padding-bottom: 60px;
+            padding-right: 10px;
+            border: 1px solid #888;
+            top:10%;
+            width: 50%;
+        } 
         /* Modal Content/Box */
         .modal-content_box {
             background-color: #fefefe;
@@ -84,8 +93,8 @@ body {
             border: 1px solid #888;
             top:10%;
             width: 30%; /* Could be more or less, depending on screen size */    
-                               
         }
+         
         /* The Close Button */
         .close_m {
             color: #aaa;

@@ -37,9 +37,9 @@
 	href="<c:url value="/resources/css/icomoon.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 
-<link
+<%-- <link
 	href="${pageContext.request.contextPath}/resources/kimcss/Table.css"
-	rel="stylesheet" id="bootstrap-css">
+	rel="stylesheet" id="bootstrap-css"> --%>
 <link
 	href="${pageContext.request.contextPath}/resources/kimcss/search.css"
 	rel="stylesheet" id="bootstrap-css">
