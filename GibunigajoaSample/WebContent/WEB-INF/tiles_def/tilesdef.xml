@@ -65,6 +65,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/contributionProgram/programList.jsp" />
 	</definition>
+<!-- 	<definition name="registerComment" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/contributionProgram/registerComment.jsp" />
+	</definition> -->
+	
 
 	<!-- NSB -->
 	<definition name="mypage" extends="base_layout">
