@@ -40,6 +40,70 @@
             }
         }).open();
 	}
+
+	function deleteBanner(){
+		/* alert("deleteBanner in!");
+		 */
+		var organization_id = document.getElementById("organization_id").value;
+		var program_id = document.getElementById("program_id").value;
+
+		$.ajax({
+			type : "post",
+			url : "deleteBanner.do",
+			data : "organization_id="+organization_id+"&program_id="+program_id
+			//dataType : "json"
+		}).done(function(args){
+			$("#bannerInfo").html("등록된 배너이미지가 없습니다.");
+
+			/* if(args.length != 0){
+				var msg = "<table border = '1'>";
+				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
+				for(var id = 0; id <= args.length - 1; id++){
+					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
+					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
+					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
+				}
+				$("#bookList").html(msg);	
+			} */
+					
+		}).fail(function(e){
+			alert(e.responseText);	
+		})
+		
+			
+	}
+
+
+
+	function deleteImage(stored_file_name){
+		var organization_id = document.getElementById("organization_id").value;
+		var program_id = document.getElementById("program_id").value;
+
+		$.ajax({
+			type : "post",
+			url : "deleteImage.do",
+			data : "organization_id="+organization_id+"&program_id="+program_id+"&stored_file_name="+stored_file_name
+			//dataType : "json"
+		}).done(function(args){
+			$("#"+stored_file_name+"").html("");
+
+			/* if(args.length != 0){
+				var msg = "<table border = '1'>";
+				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
+				for(var id = 0; id <= args.length - 1; id++){
+					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
+					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
+					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
+				}
+				$("#bookList").html(msg);	
+			} */
+					
+		}).fail(function(e){
+			alert(e.responseText);	
+		})
+		
+			
+	}
 </script>
 </head>
 <body>
@@ -151,24 +215,21 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="banner">배너이미지</label>
-															<input type = "file" id = "banner" name = "banner" class = "form-control" >														
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-															<%-- <c:forEach items = "${fn:split(updateProgram.banner_file_name,'_')}" var = "item">
-																${item }<br>
-															</c:forEach> --%>
+															<input type = "file" id = "banner" name = "banner" class = "form-control" >
+															<div id = "bannerInfo">
 															${updateProgram.original_file_name}
-															<!-- <input type = "file" id = "banner" name = "banner" class = "form-control" >	 -->													
+															<a onclick="deleteBanner('${updateProgram.banner_file_name}')" href = "javascript:void(0);" style = "color : #000000">&times;</a>
+															</div>					
+													
 													</div>
 												</div>
+	
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="images">이미지</label>
 															<input type = "file" id = "images" name = "images" multiple="multiple" class = "form-control" >
 															<c:forEach var = "original_file_name" items = "${programImageList}">
-																${original_file_name}
+																<div id = "${stored_file_name}">${original_file_name}<a onclick="deleteImage('${updateProgram.banner_file_name}')" href = "javascript:void(0);" style = "color : #000000">&times;</a><br></div>
 															</c:forEach>
 													
 													</div>

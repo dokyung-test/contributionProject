@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -246,13 +247,6 @@ public class contributionController {
 		
 	}
 	
-	//프로그램 수정용 -이미지공백 후 다시 update
-	@RequestMapping(value = "/deleteBanner.do", method = RequestMethod.POST)
-	public int deleteBanner(String organization_id, int program_id) {
-		int row = 0;
-		return row;
-	}
-	
 	
 	//기부단체, admin도 사용하던 리스트
 		/*
@@ -271,6 +265,30 @@ public class contributionController {
 			mav.addObject("programList", service.getTypeProgramList(type));
 		}
 		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/deleteBanner.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteBanner(String organization_id, int program_id) {
+		int rowNum = service.deleteBanner(program_id, organization_id);
+		if(rowNum > 0) {
+			System.out.println("공백수정");
+		}else {
+			System.out.println("banner delete error");
+		}
+	}
+	
+	
+	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void deleteImage(String organization_id, int program_id, String stored_file_name) {
+		int rowNum = service.deleteImage(program_id, organization_id, stored_file_name);
+		if(rowNum > 0) {
+			System.out.println("delete!!");
+		}else {
+			System.out.println("image delete error");
+		}
 	}
 	
 	
