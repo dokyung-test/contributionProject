@@ -205,18 +205,26 @@
 
                           <c:forEach items="${program}" var="item">
 							<div class="item">
-								<div class="testimony-wrap py-4">
+								<div class="testimony-wrap py-4"> 
 									<div
 										class="icon d-flex align-items-center justify-content-center">
 										<span class="fa fa-quote-left"></span> 
 									</div> 
 									<div class="text"> 
 										<p class="mb-5">${item.summary}</p>
-										<div class="d-flex align-items-center">
-											<div class="user-img"
+										<div class="d-flex align-items-center"> 
+											<div class="user-img" 
 												style="background-image: url(${pageContext.request.contextPath}/resources/images/person_1.jpg)"></div>
 											<div class="pl-3">
-												<p class="name">${item.program_subject}</p> 
+											
+											<c:if test="${R==1}">
+												<p class="name"><a class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.response.body.items.item.nanmmbyId}">${item.program_subject}</a></p> 
+												</c:if>
+												<c:if test="${R==0}">
+												<p class="name"><a class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}">${item.program_subject}</a></p> 
+												</c:if>
+												
+												
 												<span class="position">${item.representative}</span>
 											</div> 
 										</div> 
