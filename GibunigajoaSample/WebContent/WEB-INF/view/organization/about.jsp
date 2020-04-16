@@ -216,12 +216,12 @@
 											<div class="user-img" 
 												style="background-image: url(${pageContext.request.contextPath}/resources/images/person_1.jpg)"></div>
 											<div class="pl-3">
-											
+											 
 											<c:if test="${R==1}">
-												<p class="name"><a class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.response.body.items.item.nanmmbyId}">${item.program_subject}</a></p> 
+												<p class="name"><a id="aaa" class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.response.body.items.item.nanmmbyId}" onmouseover='onfocus()' onmouseout="onblur()">${item.program_subject}</a></p> 
 												</c:if>
-												<c:if test="${R==0}">
-												<p class="name"><a class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}">${item.program_subject}</a></p> 
+												<c:if test="${R==0}">   
+												<p class="name"><a id="aaa" class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}" onmouseover='onfocus()' onmouseout="onblur()">${item.program_subject}</a></p> 
 												</c:if>
 												
 												
@@ -368,7 +368,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
-    <script src="<c:url value="/resources/js/bookmarksrcipt.js"/>"></script>
+    <script src="<c:url value="/resources/js/bookmarksrcipt.js?v=1"/>"></script>
  
 </body>
 </html>

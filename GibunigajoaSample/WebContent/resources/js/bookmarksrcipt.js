@@ -14,7 +14,7 @@ type:"post"
 	    
        $(id).attr("src",projectURL+"/resources/images/pStar.png");	
 	   }
-    else{ 
+    else{  
     	 
   $(id).attr("src",projectURL+"/resources/images/bStar.png");	
    }
@@ -30,5 +30,15 @@ type:"post"
 	
 }
 
-
-
+function onfocus(){
+	  alert("onfocus 실행되였어요");
+	$("#aaa").attr('class','mb-5');
+	
+	  
+	
+}
+function onblur(){
+	  alert("onblur 실행되였어요");
+	
+	$("#aaa").attr('class','name')
+}
