@@ -38,7 +38,7 @@ select count(*) from programs where organization_id=#{organization_id}
 </select>
 
 <select id="select-programAll" parameterType="String" resultType="contribution.model.Program">
-select * from programs where organization_id=#{organization_id}
+select * from programs where organization_id=#{organization_id} and approval_flg=1
 </select>
 
 <select id="select-programImgae" parameterType="String" resultType="map">
