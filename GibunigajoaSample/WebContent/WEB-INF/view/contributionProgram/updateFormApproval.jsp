@@ -30,16 +30,6 @@
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	function zipSearch(){
-		new daum.Postcode({
-            oncomplete: function(data) {
-            	var roadAddr = data.roadAddress; // 도로명 주소 변수
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("zip").value = data.zonecode;
-                document.getElementById("address").value = roadAddr;
-            }
-        }).open();
-	}
 
 	function deleteBanner(){
 		/* alert("deleteBanner in!");
@@ -69,13 +59,11 @@
 		}).fail(function(e){
 			alert(e.responseText);	
 		})
-		
 			
 	}
 
 
-
-	function deleteImage(stored_file_name){
+/* 	function deleteImage(stored_file_name){
 		var organization_id = document.getElementById("organization_id").value;
 		var program_id = document.getElementById("program_id").value;
 
@@ -96,14 +84,86 @@
 					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
 				}
 				$("#bookList").html(msg);	
-			} */
+			} 
 					
 		}).fail(function(e){
 			alert(e.responseText);	
 		})
 		
 			
+	} */
+
+	function deleteImage(msg){
+		alert("들어왔다!");
+		var organization_id = document.getElementById("organization_id").value;
+		var program_id = document.getElementById("program_id").value;
+		alert("기본정보");
+		$.ajax({
+			type : "post",
+			url : "deleteImage.do",
+			data : "organization_id="+organization_id+"&program_id="+program_id+"&stored_file_name="+msg
+			//dataType : "json"
+		}).done(function(args){
+			console.log(args);
+			//$("#"+stored_file_name+"").html("");
+
+			/* if(args.length != 0){
+				var msg = "<table border = '1'>";
+				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
+				for(var id = 0; id <= args.length - 1; id++){
+					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
+					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
+					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
+				}
+				$("#bookList").html(msg);	
+			}  */
+					
+		}).fail(function(e){
+			alert(e.responseText);	
+		})
 	}
+	
+	
+/* 	function deleteImage(stored_file_name){
+		var organization_id = document.getElementById("organization_id").value;
+		var program_id = document.getElementById("program_id").value;
+		alert("deleteImages in!");
+		$.ajax({
+			type : "post",
+			url : "deleteImage.do",
+			data : "organization_id="+organization_id+"&program_id="+program_id+"&stored_file_name="+stored_file_name
+ 			dataType : "json" 
+		}).done(function(args){
+			alert("success in");
+			 console.log(args);
+			 /*if(args.length != 0){
+				var msg = "";
+				for(var i = 0; i <= args.length - 1; i++){
+					msg += args[i].original_file_name+"<a onclick='deleteImage(${args[i].stored_file_name})' href = 'javascript:void(0);' style = 'color : #000000'>&times;</a><br />";
+				}
+			}
+			$("#imagesInfo").html(msg); */
+
+			/* if(args.length != 0){
+				var msg = "<table border = '1'>";
+				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
+				for(var id = 0; id <= args.length - 1; id++){
+					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
+					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
+					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
+				}
+				$("#bookList").html(msg);	
+			} 
+					
+		}).fail(function(e){
+			alert(e.responseText);	
+		})
+		
+			
+	} */
+
+
+	
 </script>
 </head>
 <body>
@@ -217,8 +277,16 @@
 														<label class="label" for="banner">배너이미지</label>
 															<input type = "file" id = "banner" name = "banner" class = "form-control" >
 															<div id = "bannerInfo">
-															${updateProgram.original_file_name}
-															<a onclick="deleteBanner('${updateProgram.banner_file_name}')" href = "javascript:void(0);" style = "color : #000000">&times;</a>
+															<c:choose>
+																<c:when test="${updateProgram.original_file_name eq ''}">
+																등록된 배너이미지가 없습니다.<br>
+																</c:when>
+																<c:otherwise>
+																${updateProgram.original_file_name}
+																<a onclick="deleteBanner('${updateProgram.banner_file_name}');" href = "javascript:void(0);" style = "color : #000000">&times;</a>
+																</c:otherwise>
+															</c:choose>
+															
 															</div>					
 													
 													</div>
@@ -228,9 +296,25 @@
 													<div class="form-group">
 														<label class="label" for="images">이미지</label>
 															<input type = "file" id = "images" name = "images" multiple="multiple" class = "form-control" >
-															<c:forEach var = "original_file_name" items = "${programImageList}">
-																<div id = "${stored_file_name}">${original_file_name}<a onclick="deleteImage('${updateProgram.banner_file_name}')" href = "javascript:void(0);" style = "color : #000000">&times;</a><br></div>
-															</c:forEach>
+															<div id = "imagesInfo">
+															<c:choose>
+																<c:when test="${empty programImageList}">
+																등록된 이미지가 없습니다.<br>
+																</c:when>
+																<c:when test="${!empty programImageList}">
+																<c:forEach var = "image" items = "${programImageList}">
+<%-- 																${image.original_file_name}<a onclick = "deleteImage(${image.stored_file_name})" href = "javascript:void(0)">삭제</a>
+ --%>															
+ 																${image.original_file_name}<a onclick = "deleteImage('${image.stored_file_name}')" href = "javascript:void(0)">삭제</a>
+ 																<br>
+																</c:forEach>
+																</c:when>
+															</c:choose>
+															
+															</div>	
+															
+															
+															
 													
 													</div>
 												</div>

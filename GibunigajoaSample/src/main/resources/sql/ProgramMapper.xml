@@ -40,11 +40,19 @@
 	
 	
 	<!-- 프로그램의 모든 이미지의 원본이름 -->
-	<select id = "selectProgramImagesOriginalFileName" parameterType = "map" resultType = "String">
+	<select id = "selectProgramImagesㅒ갸햐ㅜ미FileName" parameterType = "map" resultType = "map">
 		select original_file_name from program_images where program_id = #{program_id} and organization_id = #{organization_id}
 	</select>
 	
+	 <!-- 프로그램의 모든 이미지의 원본이름, 저장된 파일명 -->
+	<!--<select id = "selectProgramImagesFileName" parameterType = "map" resultType = "map">
+		select original_file_name, stored_file_name from program_images where program_id = #{program_id} and organization_id = #{organization_id}
+	</select> -->
 	
+	<!-- 프로그램의 모든 이미지의 원본이름, 저장된 파일명 -->
+	<select id = "selectProgramImagesFileName" parameterType = "map" resultType = "contribution.model.ProgramImage">
+		select original_file_name, stored_file_name from program_images where program_id = #{program_id} and organization_id = #{organization_id}
+	</select>
 	
 	<!-- 미승인된 프로그램 - 배너, 이미지 접근불가-->
 	<!-- 프로그램수정 -->
