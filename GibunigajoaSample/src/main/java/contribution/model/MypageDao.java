@@ -67,4 +67,9 @@ public class MypageDao extends SqlSessionDaoSupport{
 	public int deleteUser(int user_idx) {
 		return getSqlSession().delete("project.deleteUser",user_idx);
 	}
+	
+	//공지사항 리스트
+	public List<NoticeDto> noticeList(){
+		return getSqlSession().selectList("project.noticeList");
+	}
 }

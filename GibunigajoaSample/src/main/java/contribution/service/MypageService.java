@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import contribution.model.ContributionDto;
 import contribution.model.MypageDao;
+import contribution.model.NoticeDto;
 import contribution.model.QandADto;
 import contribution.model.UserCommand;
 
@@ -79,5 +80,10 @@ public class MypageService {
 	//회원 탈퇴
 	public int deleteUser(int user_idx) {
 		return dao.deleteUser(user_idx);
+	}
+	
+	//공지사항 리스트
+	public List<NoticeDto> noticeList(){
+		return dao.noticeList();
 	}
 }

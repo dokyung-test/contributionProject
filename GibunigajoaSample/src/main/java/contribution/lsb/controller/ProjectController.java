@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import contribution.model.ContributionDto;
+import contribution.model.NoticeDto;
 import contribution.model.QandADto;
 import contribution.model.UserCommand;
 import contribution.service.MypageService;
@@ -170,6 +171,16 @@ public class ProjectController {
 		service.deleteUser(idx);
 		session.invalidate();
 		return "redirect:/main.do";
+	}
+	
+	//공지사항 리스트
+	@RequestMapping(value="/notice.do",method = RequestMethod.GET)
+	public ModelAndView NoticeList() {
+		ModelAndView mav = new ModelAndView();
+		List<NoticeDto> list = service.noticeList();
+		mav.addObject("list", list);
+		mav.setViewName("notice");
+		return mav;	
 	}
 
 	@InitBinder

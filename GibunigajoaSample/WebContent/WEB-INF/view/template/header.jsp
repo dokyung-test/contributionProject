@@ -62,7 +62,7 @@
 
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a
+				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/response.do"
 					class="nav-link">기부단체</a></li>
 				<li class="nav-item"><a
@@ -124,7 +124,7 @@
 				<li class="nav-item" id="customerpage"><a
 					href="javascript:void(0);" class="nav-link">고객센터</a>
 					<ul class="submenu">
-						<li><a href="#">공지사항</a></li>
+						<li><a href="${pageContext.request.contextPath}/notice.do">공지사항</a></li>
 						<li><a href="javascript:void(0);"
 							onclick="programAuthorityCheck(); return false;">프로그램신청</a></li>
 						<!-- ${pageContext.request.contextPath}/contributionProgram/registerForm.do onclick="programAuthorityCheck();-->
