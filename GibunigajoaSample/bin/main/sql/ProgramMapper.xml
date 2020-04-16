@@ -127,5 +127,34 @@
 		update programs set banner_file_name = '', original_file_name = '' where organization_id = #{organization_id} AND program_id = ${program_id}
 	</update>
 	
+	<!-- 댓글등록 -->
+	<insert id="insertComment" parameterType="contribution.model.Comment">
+		insert into comments (organization_id, program_id, user_idx, comment_id, content, register_date) values (#{organization_id}, #{program_id}, #{user_idx}, #{comment_id}, #{content}, #{register_date})
+	</insert>
+	
+	<!-- 댓글등록시의 comment_id습득 -->
+	<select id="selectCommentId" resultType="int" parameterType="map">
+		select max(comment_id) from comments where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx}
+	</select>
+	
+	<!-- 신고댓글 -->
+	<insert id="insertReportComment" parameterType="contribution.model.ReportComment">
+		insert into report_comments values (#{organization_id}, #{program_id}, #{user_idx}, #{comment_id}, #{reporter_idx})
+	</insert>
+	
+	<!-- 첫번재 댓글신고 || 5번째 댓글신고로 인하여 notify_flg변경시 -->
+	<update id="alertComment" parameterType="contribution.model.Comment">
+		update comments set report_notify_flg = 1 where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id}
+	</update>
+	
+	<!-- 다섯번째 댓글신고 -> 모두에게 block처리 -->
+	<update id="blockComment" parameterType="contribution.model.Comment">
+		update comments set block_flg = 1 where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id}
+	</update>
+	
+	<!-- 모집프로그램의 block되지 않은 댓글만 출력 = view_comments이용 -->
+	<select id="getAllComment" resultType="contribution.model.Comment" parameterType="map">
+		select * from view_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND block_flg = 0
+	</select>
 	
 </mapper>
