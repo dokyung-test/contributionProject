@@ -17,6 +17,9 @@ delete from organization_bookmarks where  user_idx=#{user_idx}  and organization
 <select id="select-organization_id" parameterType="int" resultType="contribution.model.BookmarkDto">
 select organization_id from organization_bookmarks where user_idx=#{user_idx}
 </select>
+
+
+ 
 <insert id="insert-group_user" parameterType="map">
 insert into users (user_id,password,user_type_id,nickname,register_date,organization_id,name) values(#{user_id},#{password},2,#{nickname},#{register_date},#{organization_id},#{name})
 </insert>

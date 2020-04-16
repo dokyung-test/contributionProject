@@ -75,6 +75,8 @@ public class ResponseController {
 	public String getResponse(Model model, @RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "") String search, HttpSession session, String organization_id) {
         
+		
+		//로그인을 한다면 즐겨찾기 보여주고 안하면 보여주지 않음
 		if(session.getAttribute("user_idx") != null) {
 		
 		int	x = 1;
@@ -124,8 +126,21 @@ public class ResponseController {
 	}
 
 	@RequestMapping("/board.do")
-	public String getBoard(Model model, String nanmmbyId) {
+	public String getBoard(Model model, String nanmmbyId,HttpSession session) {
 
+		if(session.getAttribute("user_idx") != null) {
+			
+			int	x = 1;
+			int idx = (Integer)session.getAttribute("user_idx");
+			
+			int chk = dao.DetailBookmarkChk(idx, nanmmbyId);
+			
+			model.addAttribute("chk", chk);
+			
+			model.addAttribute("R2",x);
+			}
+		
+		
 		ResponseCount responsecount = resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + nanmmbyId,
 				ResponseCount.class);
 

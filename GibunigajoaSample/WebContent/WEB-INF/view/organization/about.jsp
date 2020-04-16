@@ -41,7 +41,8 @@
 	<!-- END nav -->
 
 
-
+<input type="hidden" value="${pageContext.request.contextPath}"
+		id="projectURL">
 	<section class="ftco-section ftco-no-pt ftco-no-pb">
 		<div class="container">
 			<div class="row d-flex no-gutters">
@@ -56,8 +57,21 @@
 					<div class="row justify-content-start py-5">
 						<c:if test="${R==1}">
 							<div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
-
+                                 <c:if test="${R2==1}">
+								<c:if test="${chk==1}">
+								<div onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}')">
+						 		<img id="img"src="${pageContext.request.contextPath}/resources/images/pStar.png">
+								</div>
+								</c:if>
+								<c:if test="${chk==0}">
+								<div
+								onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}')">
+								<img id="img"src="${pageContext.request.contextPath}/resources/images/bStar.png">
+								</div>
+								</c:if>
+								</c:if>
 								<h2 class="mb-4">${rep_list.response.body.items.item.nanmmbyNm}</h2>
+								
 								<p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p>
 								<div class="tabulation-2 mt-4">
 
@@ -95,8 +109,21 @@
  
 						<c:if test="${R==0}">
 							<div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
-
+                                  <c:if test="${R2==1}">
+								<c:if test="${chk==1}">
+								<div onClick="bookmark('${rep_list.organization_id}','img${status.count}')">
+								<img id="img"src="${pageContext.request.contextPath}/resources/images/pStar.png">
+								</div>
+								</c:if>
+								<c:if test="${chk==0}">
+								<div
+								onClick="bookmark('${rep_list.organization_id}','img${status.count}')">
+								<img id="img"src="${pageContext.request.contextPath}/resources/images/bStar.png">
+								</div>
+								</c:if>
+								</c:if>
 								<h2 class="mb-4">${rep_list.nanmmByNm}</h2>
+								
 								<p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p>
 								<div class="tabulation-2 mt-4">
 									<div class="tab-content bg-light rounded mt-2">
@@ -333,6 +360,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
-
+    <script src="<c:url value="/resources/js/bookmarksrcipt.js"/>"></script>
+ 
 </body>
 </html>
