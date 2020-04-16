@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import contribution.model.Comment;
 import contribution.model.FileUtils;
 import contribution.model.Program;
 import contribution.model.ProgramImage;
@@ -344,7 +345,35 @@ public class contributionController {
 		fileNameList = service.getProgramFileName(program_id, organization_id);
 		return json.toJson(fileNameList);
 	}
+	
+	//댓글등록폼
+	@RequestMapping(value = "/registerComment.do")
+	public ModelAndView registerCommentForm(String organization_id, int program_id, HttpSession session) {
+		ModelAndView mav = new ModelAndView("contributionProgram/registerComment");
+		Comment comment = new Comment();
+		comment.setOrganization_id(organization_id);
+		comment.setProgram_id(program_id);
+		/*
+		 * String idx = String.valueOf(session.getAttribute("user_idx"));
+		 * comment.setUser_idx((Integer.parseInt(idx)));
+		 */
+		mav.addObject("comment", comment);
+		return mav;
+	}
 
+	@RequestMapping(value="/insertComment.do",  method = RequestMethod.POST)
+	@ResponseBody
+	public void registerCommentProc(String organization_id, int program_id, String content, HttpSession session) {
+		Comment comment = new Comment();
+		comment.setOrganization_id(organization_id);
+		comment.setProgram_id(program_id);
+		comment.setContent(content);
+		String idx = String.valueOf(session.getAttribute("user_idx"));
+		comment.setRegister_date(new Date());
+		comment.setUser_idx((Integer.parseInt(idx)));
+		System.out.println("comment정보 : "+comment);
+		service.insertComment(comment);
+	}
 	/*
 	 * @RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
 	 * 

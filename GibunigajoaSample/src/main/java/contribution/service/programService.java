@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import contribution.model.Comment;
 import contribution.model.CommentDao;
 import contribution.model.Program;
 import contribution.model.ProgramBannerDao;
@@ -204,7 +205,21 @@ public class programService {
 	
 	//프로그램의 이미지들의 원본파일명, 저장된 파일명을 습득
 	public List<ProgramImage> getProgramFileName(int program_id, String organization_id) {
-		
 		return programImageDao.getProgramFileName(makeMap(program_id, organization_id));
 	}
+	
+	
+	//프로그램 댓글추가
+	public int insertComment(Comment comment) {
+		/*
+		 * Map<String, Object> map = makeMap(comment.getProgram_id(),
+		 * comment.getOrganization_id()); map.put("user_idx", comment.getUser_idx());
+		 * int newComment_id = commentDao.getCommentId(map);
+		 * comment.setComment_id(newComment_id++);
+		 */
+		return commentDao.insertComment(comment);
+	}
+	
+	
+	
 }

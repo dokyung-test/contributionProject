@@ -28,18 +28,6 @@
     
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	function zipSearch(){
-		new daum.Postcode({
-            oncomplete: function(data) {
-            	var roadAddr = data.roadAddress; // 도로명 주소 변수
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("zip").value = data.zonecode;
-                document.getElementById("address").value = roadAddr;
-            }
-        }).open();
-	}
-</script>
 </head>
 <body>
 

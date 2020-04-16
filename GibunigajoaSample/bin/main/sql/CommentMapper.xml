@@ -5,7 +5,7 @@
 
 	<!-- 댓글등록 -->
 	<insert id="insertComment" parameterType="contribution.model.Comment">
-		insert into comments (organization_id, program_id, user_idx, comment_id, content, register_date) values (#{organization_id}, #{program_id}, #{user_idx}, #{comment_id}, #{content}, #{register_date})
+		insert into comments (organization_id, program_id, user_idx, comment_id, content, register_date) values (#{organization_id}, #{program_id}, #{user_idx}, now(), #{content}, #{register_date})
 	</insert>
 	
 	<!-- 댓글등록시의 comment_id습득 -->

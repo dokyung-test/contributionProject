@@ -70,7 +70,9 @@ function kakaoPay(){
 			   			}else if(args.num == 100){
 			   				alert("늘 함께 응원해주셔서 감사합니다.\n100만원 이상 등급이 되셨습니다.");
 			   			}
-			   			location.reload();
+			   			
+			   			window.open("registerComment.do?organization_id="+organization_id+"&program_id="+program_id, '_blank', 'width=500. height=400');
+			   			//location.reload();
 			   		})
 			   		.fail(function(e) {
 			   			alert("error");
