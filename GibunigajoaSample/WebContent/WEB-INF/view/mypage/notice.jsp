@@ -92,7 +92,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>마이페이지</title>
 
 </head>
 <body id="page-top">
@@ -127,7 +126,7 @@
 
 							<tbody>
 
-								<c:forEach var="dto" items="${list}">
+								<c:forEach var="list" items="${list}">
 									<tr>
 										<td style="font-size: 15px"><p id="content"
 												title="${list.notice_idx}">${list.subject}</p></td>
@@ -135,8 +134,8 @@
 												title="${list.notice_idx}">admin</p></td>
 										<td style="font-size: 15px"><p id="content"
 												title="${list.notice_idx}">${list.content}</p></td>
-										<td style="font-size: 15px"><p id=title="${dto.notice_idx}">
-												<fmt:formatDate value="${dto.register_date}"
+										<td style="font-size: 15px"><p id=title="${list.notice_idx}">
+												<fmt:formatDate value="${list.register_date}"
 													pattern="yyyy년 MM월 dd일" /></td>
 										<td style="font-size: 15px"><p id="content"
 												title="${list.notice_idx}">${list.readcount}</p></td>
@@ -153,125 +152,7 @@
 	</div>
 	<!-- End of Main Content -->
 
-	<!-- Q&A  추가 폼 -->
-	<div id="modal" class="searchModal">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<!--  <div class="col-md-7"> -->
-						<div class="contact-wrap w-100 p-md-5 p-4">
-							<h3 class="mb-4" style="font-size: 40px">Q&A작성</h3>
-							<div id="form-message-warning" class="mb-4"></div>
-							<div id="form-message-success" class="mb-4"
-								style="font-size: 20px">Q&A를 작성해 주세요.</div>
-							<form method="POST" action="qANDaInsert.do" name="form"
-								onsubmit="return checkAll()">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label class="label" style="font-size: 20px">제목</label> <input
-												type="text" class="form-control" name="subject"
-												placeholder="제목">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<label class="label" style="font-size: 20px">문의내용</label>
-											<textarea name="content" class="form-control" cols="50"
-												rows="10" placeholder="문의할 내용을 작성해 주세요."></textarea>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="button" onclick="closeModal()"
-												style="float: right; height: 50px; width: 240px; font-size: 20px;"
-												value="취소" class="btn btn-primary" /> <input type="submit"
-												style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
-												value="보내기" class="btn btn-primary" />
-										</div>
-									</div>
-								</div>
-								<input type="hidden" name="user_idx" value="${user_idx}">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Q&A 추가 종료 -->
-
-	<!-- Q&A 상세 내역-->
-	<div id="contentmodal" class="searchModal">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<!--  <div class="col-md-7"> -->
-						<div class="contact-wrap w-100 p-md-5 p-4">
-							<h3 class="mb-4" style="font-size: 40px">Q&A</h3>
-							<div id="form-message-warning" class="mb-4"></div>
-							<div id="form-message-success" class="mb-4"
-								style="font-size: 20px">Q&A상세내용</div>
-							<hr width="1000px" color="black" noshade />
-
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="status_id">상태
-										</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px"
-											id="register_date">작성일</label>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="subject">제목</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="QandAcontent">문의내용</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="answer">답변내용</label>
-
-									</div>
-								</div>
-
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="button" onclick="closeModal()"
-											style="float: right; height: 50px; width: 240px; font-size: 20px;"
-											value="취소" class="btn btn-primary" />
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 기부 내역 상세내역 종료 -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+<div id="ftco-loader" class="show fullscreen">
 	</div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
