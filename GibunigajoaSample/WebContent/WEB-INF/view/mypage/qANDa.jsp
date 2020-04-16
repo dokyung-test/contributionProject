@@ -220,7 +220,7 @@
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h4 class="m-0 font-weight-bold text-primary">Q&A 조회 리스트</h4>
-					<a style="position: absolute; right: 20px; top: 10px;">
+					<a style="position: absolute; right: 40px; top: 10px;">
 						<button id="testBtn" style="font-size: 20px;">Q&A 작성</button>
 					</a>
 				</div>
@@ -313,12 +313,12 @@
 												rows="10" placeholder="문의할 내용을 작성해 주세요."></textarea>
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group">
 											<input type="button" onclick="closeModal()"
-												style="height: 50px; width: 240px; font-size: 20px;"
+												style="float: right; height: 50px; width: 240px; font-size: 20px;"
 												value="취소" class="btn btn-primary" /> <input type="submit"
-												style="height: 50px; width: 240px; font-size: 20px;"
+												style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
 												value="보내기" class="btn btn-primary" />
 										</div>
 									</div>
@@ -381,10 +381,10 @@
 								</div>
 
 
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="form-group">
 										<input type="button" onclick="closeModal()"
-											style="height: 50px; width: 240px; font-size: 20px;"
+											style="float: right; height: 50px; width: 240px; font-size: 20px;"
 											value="취소" class="btn btn-primary" />
 									</div>
 								</div>
