@@ -15,10 +15,18 @@ public class ContributionDto {
 	private String organization_id;
 	private int program_id;
 	
+	@Override
+	public String toString() {
+		return "ContributionDto [contribution_history_idx=" + contribution_history_idx + ", user_idx=" + user_idx
+				+ ", organization_name=" + organization_name + ", program_name=" + program_name + ", date=" + date
+				+ ", contribution=" + contribution + ", note=" + note + ", register_type_flg=" + register_type_flg
+				+ ", organization_id=" + organization_id + ", program_id=" + program_id + "]";
+	}
+
 	public ContributionDto() {}
 	
 	public ContributionDto(int contribution_history_idx, int user_idx, String organization_name, String program_name,
-			Date date,  int contribution, String note, int register_type_flg) {
+			Date date,  int contribution, String note, int register_type_flg, String organization_id, int program_id) {
 		super();
 		this.contribution_history_idx = contribution_history_idx;
 		this.user_idx = user_idx;
@@ -29,6 +37,8 @@ public class ContributionDto {
 		this.contribution = contribution;
 		this.note = note;
 		this.register_type_flg = register_type_flg;
+		this.organization_id = organization_id;
+		this.program_id = program_id;
 	}
 	public int getContribution_history_idx() {
 		return contribution_history_idx;

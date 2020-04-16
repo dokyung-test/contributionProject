@@ -10,8 +10,8 @@ var spanM = document.getElementsByClassName("close_m");
 //회원가입 누르면 modal나옴 
 /*btn.onclick = function() {
     modal.style.display = "block";
-}*/
-
+}
+*/
 //modal의 X버튼 누르면 modal close 
 function closeX() {
 	modal.style.display = "none";
@@ -30,7 +30,10 @@ window.onclick = function(event) {
 }
 
 //loginForm으로 가기 
-loginBtn.onclick = function(){
+/*loginBtn.onclick = function(){
+	location.href="loginForm.do";
+}*/
+function memberloginBtn(){
 	location.href="loginForm.do";
 }
 

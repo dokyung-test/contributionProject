@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<!-- 카카오&네이버 기부 내역 추가 -->
-	<insert id="payInsertContribution">
+	<insert id="payInsertContribution" parameterType="contribution.model.ContributionDto">
 		insert into
 		contribution_history(user_idx,organization_name,program_name,date,contribution,register_type_flg,organization_id,program_id)
 		values(#{user_idx},#{organization_name},#{program_name},#{date},#{contribution},#{register_type_flg},#{organization_id},#{program_id})

@@ -124,12 +124,24 @@ function kakaoPay(){
 			 $.ajax({
 			   		type:"get"
 			   		,url:"payment.do?contribution="+contribution+"&organization_name="+organization_name+"&program_subject="+program_subject+"&organization_id="+organization_id+"&program_id="+program_id	 
-			   		,dataType:"html"})
+			   		,dataType:"json"})
 			   		.done(function(args){
+			   			
+			   			console.log("payment 들어오니?");
+			   			alert("함께해주셔서 감사합니다. \n기부가 완료되었습니다!");
+			   			
+			   			if(args.num == 10){
+			   				alert("따뜻한 마음 함께해요!\n 10만원 이상 등급이 되셨습니다.");
+			   			}else if(args.num == 50){
+			   				alert("함께 희망을 전해요!\n 50만원 이상 등급이 되셨습니다.");
+			   			}else if(args.num == 100){
+			   				alert("늘 함께 응원해주셔서 감사합니다.\n 100만원 이상 등급이 되셨습니다.");
+			   			}
+			   			
 			   			paymodal.style.display = "none";
 			   		})
 			   		.fail(function(e) {
-			   			alert("error");
+			   			alert("error");s
 			   			alert(e.responseText);
 			   		});
 			
