@@ -179,4 +179,16 @@ public class programService {
 		return programImageDao.getProgramOriginalFileName(makeMap(program_id, organization_id));
 	}
 	
+	
+	//프로그램 등록된 배너 삭제->공백처리
+	public int deleteBanner(int program_id, String organization_id) {
+		return programDao.deleteBanner(makeMap(program_id, organization_id));
+	}
+	
+	//프로그램의 이미지삭제 ->개별delete
+	public int deleteImage(int program_id, String organization_id, String stored_file_name) {
+		Map<String, Object> imageSearchKeyword = makeMap(program_id, organization_id);
+		imageSearchKeyword.put("stored_file_name", stored_file_name);
+		return programDao.deleteImage(imageSearchKeyword);
+	}
 }

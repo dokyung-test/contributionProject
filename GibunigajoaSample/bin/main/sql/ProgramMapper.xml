@@ -110,7 +110,14 @@
 	
 	<!-- 프로그램수정시 이미지 삭제 -->
 	<delete id="deleteImages" parameterType="map">
-		delete from program_images where organization_id = #{organization_id} AND program_id = #{program_id}
+		delete from program_images where organization_id = #{organization_id} AND program_id = #{program_id} AND stored_file_name = #{stored_file_name}
 	</delete>
+	
+	
+	<!-- 프로그램 배너 공백으로 수정 -->
+	<update id="deleteBanner" parameterType="map">
+		update programs set banner_file_name = '', original_file_name = '' where organization_id = #{organization_id} AND program_id = ${program_id}
+	</update>
+	
 	
 </mapper>
