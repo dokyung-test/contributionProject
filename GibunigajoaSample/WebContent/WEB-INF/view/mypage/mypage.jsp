@@ -263,13 +263,15 @@
 	background-color: skyblue;
 }
 
+/* 입력칸 스타일 */
 .a {
 	color: black;
 	border-top-left-radius: 7px;
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
-	border: 1px solid gray;
+	border : 10px solid transparent;
+
 }
 </style>
 
@@ -410,12 +412,12 @@
 													style="resize: none;"></textarea>
 											</div>
 										</div>
-										<div class="col-md-8">
+										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal()"
-													style="height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 240px; font-size: 20px;"
 													value="취소" class="btn btn-primary" /> <input type="submit"
-													style="height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
 													value="추가" class="btn btn-primary" />
 											</div>
 										</div>
@@ -473,10 +475,10 @@
 												<label class="label" style="font-size: 20px" id="note">◎메모</label>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal2()" id="cancel"
-													style="height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 240px; font-size: 20px;"
 													value="취소" class="btn btn-primary" />
 											</div>
 										</div>
@@ -534,13 +536,13 @@
 												<label class="label" style="font-size: 20px" id="note2">◎메모</label>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal()" id="cancel"
-													style="height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 240px; font-size: 20px;"
 													value="취소" class="btn btn-primary" /> <input type="submit"
 													id="hidden"
-													style="height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
 													value="수정" class="btn btn-primary" />
 											</div>
 										</div>

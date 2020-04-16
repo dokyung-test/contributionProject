@@ -184,6 +184,16 @@
 	color: white;
 	background-color: skyblue;
 }
+/* 입력칸 스타일 */
+.a {
+	color: black;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border : 10px solid transparent;
+
+}
 </style>
 
 <meta charset="utf-8">
@@ -242,7 +252,7 @@
 										<c:if test="${dto.status_id eq 3}">
 											<td style="font-size: 15px">답변완료</td>
 										</c:if>
-										<td style="font-size: 15px"><p id="content"
+										<td style="font-size: 15px"><p id="subject"
 												title="${dto.board_idx}">${dto.subject}</td>
 										<td style="font-size: 15px"><p id="content"
 												title="${dto.board_idx}">${dto.content}</td>
