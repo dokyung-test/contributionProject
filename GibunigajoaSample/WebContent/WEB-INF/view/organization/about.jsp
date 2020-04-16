@@ -210,7 +210,7 @@
 										class="icon d-flex align-items-center justify-content-center">
 										<span class="fa fa-quote-left"></span> 
 									</div> 
-									<div class="text"> 
+									<div class="text">
 										<p class="mb-5">${item.summary}</p>
 										<div class="d-flex align-items-center"> 
 											<div class="user-img" 
@@ -224,7 +224,7 @@
 												<p class="name"><a id="aaa" class="name" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}" onmouseover='onfocus()' onmouseout="onblur()">${item.program_subject}</a></p> 
 												</c:if>
 												
-												
+												 
 												<span class="position">${item.representative}</span>
 											</div> 
 										</div> 
