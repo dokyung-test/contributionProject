@@ -20,7 +20,7 @@
 	
 	<!-- 첫번재 댓글신고 || 5번째 댓글신고 || alert후에 notify_flg변경시 -->
 	<update id="alertComment" parameterType="contribution.model.Comment">
-		update comments set report_notify_flg = 1 where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id}
+		update comments set report_notify_flg = #{report_notify_flg} where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id}
 	</update>
 	
 	<!-- 다섯번째 댓글신고 notify_flg, block_flg 한번에 변경 -> 모두에게 block처리 -->
@@ -47,5 +47,16 @@
 	<select id="checkReportedComment" resultType = "int" parameterType="contribution.model.ReportComment">
 		select count(*) from report_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id} and reporter_idx = #{reporter_idx}
 	</select>
+	
+	<!-- 로그인시 alert해줘야하는 댓글이 있는지 count체크 -->
+	<select id="notifyCheck" resultType = "int" parameterType="int">
+		select count(*) from comments where user_idx = #{user_idx} AND report_notify_flg = 1
+	</select>
+	
+	<!-- alert후에 모든 comment의 flg수정 -->
+	<update id="updateNotifyFlg" parameterType="int">
+		update comments set report_notify_flg = 0 where user_idx = #{user_idx}
+	</update>
+	
 	
 </mapper>

@@ -24,7 +24,39 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 
+<script type="text/javascript">
+window.onload = function(){
+	$.ajax({
+		type : "post",
+		url : "notifyCheck.do",
+		dataType : "json"
+	}).done(function(args){
+		if(args > 0){
+			alert("다른 이용자가 신고한 댓글이 있습니다. 댓글을 수정해주세요.");
+		}
+				
+	}).fail(function(e){
+		alert(e.responseText);	
+	})
+}
 
+/* function notifyCheck(){
+	alert("notifyCheck!");
+	$.ajax({
+		type : "post",
+		url : "notifyCheck.do",
+		dataType : "json"
+	}).done(function(args){
+		if(args > 0){
+			alert("다른 이용자가 신고한 댓글이 있습니다. 댓글을 수정해주세요.");
+		}
+				
+	}).fail(function(e){
+		alert(e.responseText);	
+	})
+} */
+
+</script>
  </head>
   
   <body>

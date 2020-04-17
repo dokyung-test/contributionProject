@@ -49,6 +49,14 @@ public class CommentDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectOne("comment.checkReportedComment", reportComment);
 	}
 	
+	//로그인시 alert해줄 comment있는지 확인
+	public int notifyCheck(int user_idx) {
+		return getSqlSession().selectOne("comment.notifyCheck",user_idx);
+	}
 	
+	//reportComment alert후에 flg = 0으로 수정
+	public void updateNotifyFlg(int user_idx) {
+		getSqlSession().update("comment.updateNotifyFlg", user_idx);
+	}
 	
 }
