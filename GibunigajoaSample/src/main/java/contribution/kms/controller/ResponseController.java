@@ -52,7 +52,7 @@ public class ResponseController {
 	BookmarkService dao;
 	GroupUserService gusdao;
 	DetailOrganizationService dosdao;
-	FileUploadOrganization file;
+	FileUploadOrganization file = new FileUploadOrganization();
 	
 	@Autowired //검새결과 없어서 400오류뜨는 상세화면 기부단체 Dao주입
 	public void setDosdao(DetailOrganizationService dosdao) {
@@ -295,6 +295,7 @@ public class ResponseController {
 		String original_file_name="";
 		String organization_id= guc.getOrganization_id();
 		System.out.println("이거맞냐?"+organization_id+"banner"+banner+"root"+root);
+		System.out.println("사이즈"+root.length());
 		Map<String,String> fileInfo =file.bannerImageUpload(banner, organization_id, root);
 		stored_file_name = fileInfo.get("stored_file_name");
 		original_file_name = fileInfo.get("original_name");
