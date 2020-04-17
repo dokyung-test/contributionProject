@@ -84,7 +84,8 @@ public class MypageDao extends SqlSessionDaoSupport{
 	}
 	
 	//공지사항 조회수 올리기
-	public int noticeReadcount(int notice_idx) {		
+	public int noticeReadcount(int notice_idx) {	
+		System.out.println(notice_idx);
 		return getSqlSession().update("project.noticeReadcount",notice_idx);      
 	}
 }

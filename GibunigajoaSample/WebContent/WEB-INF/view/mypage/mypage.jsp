@@ -311,19 +311,18 @@
 							<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
 						</a>
 					</div>
-					<hr width="1000px" color="black" noshade />
+				
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
+							<table class="table table-bordered" id="dataTable" width="100%" style="table-layout: fixed;"
 								cellspacing="0">
 								<thead>
 									<tr>
-										<th style="font-size: 20px">기관명</th>
-										<th style="font-size: 20px">프로그램명</th>
-										<th style="font-size: 20px">기부금액</th>
-										<th style="font-size: 20px">날짜</th>
-
-										<th style="font-size: 20px"></th>
+										<th style="font-size: 20px; width:250px;">기관명</th>
+										<th style="font-size: 20px; ">프로그램명</th>
+										<th style="font-size: 20px; width:150px;">기부금액</th>
+										<th style="font-size: 20px; width:150px;">날짜</th>
+										<th style="font-size: 20px; width:150px;"></th>
 									</tr>
 								</thead>
 								<tbody>
