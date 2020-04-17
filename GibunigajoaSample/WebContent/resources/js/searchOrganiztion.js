@@ -1,3 +1,5 @@
+
+//검색을 클릭하면 자싱창을띄어줌
 function searchCheck(){
 	var nanmmByNm =$("#nanmmbyNm").val();
 	var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=yes,height=500,width=500,left=0,top=0';
@@ -6,7 +8,7 @@ function searchCheck(){
 	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,'_parent',settings)
 	
 }
-
+//자식창에서 부모창으로 정보넘김
 function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adres,zip,hmpadres,bizrno){	
 	
 	var nanmmbyId1= document.getElementById(nanmmbyId).value;
@@ -35,12 +37,3 @@ function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adre
 	
 }
 
-function chkSum(){
-	
-	
-if($(":radio[name='type_id']:checked").length <1){	
-	alert("모집분야를 선택해주세요");
-	return false;
-}else{return true;}
-
-}

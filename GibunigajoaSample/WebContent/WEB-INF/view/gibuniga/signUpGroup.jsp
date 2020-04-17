@@ -83,7 +83,7 @@
 												<div class="col-md-12">
 													<label class="label" for="phone_number">전화번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="tel" class="form-control" name="dmstcTelno" id="dmstcTelno" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}">
 													</div>
 												</div>
 												<div class="col-md-12">
@@ -101,7 +101,7 @@
 												<div class="col-md-12">
 													<label class="label" for="phone_number">팩스번호</label>
 														<div class="form-group">
-														<input type="tel" class="form-control" name="fxnum" id="fxnum" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="tel" class="form-control" name="fxnum" id="fxnum" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}">
 													</div>
 												</div>
 												<div class="col-md-12">

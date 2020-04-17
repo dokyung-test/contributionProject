@@ -2,7 +2,7 @@ package contribution.service;
 
 
 
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -22,13 +22,17 @@ public class DetailOrganizationService {
 	@Autowired
 	public void setDao(DetailOrganizationDao dao) {
 		this.dao = dao;
-	}
+	}  
 	
 	public GroupUserCommand Detail(String organization_id){
 		
-		
+		if(dao.DetailCount(organization_id)>=1) {
 		return dao.Detail(organization_id);
-		
+		}else { 
+			GroupUserCommand guc = new GroupUserCommand();
+			return guc;
+			
+					}
 	} 
 	//해당 단체에 프로그램이있을경우 리턴해주고 없다면 빈 리스트 리턴
 	public List<Program> DetailProgram(String organization_id){

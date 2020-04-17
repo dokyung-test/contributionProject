@@ -8,6 +8,13 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class DetailOrganizationDao extends SqlSessionDaoSupport {
 
+	public int DetailCount(String organization_id) {
+		return getSqlSession().selectOne("Kim.select-organizations_count",organization_id);
+		
+	}
+	
+	
+	
 	//400인 친구들 상세화면정보 뿌려주기 
    public GroupUserCommand Detail(String organization_id){
 	   

@@ -176,13 +176,24 @@ public class ResponseController {
 
 		} else {
 			//검색결과가 없는 애들은  DB에저장한 기부단체상세값  jsp로 넘겨주기
-	    GroupUserCommand list =dosdao.Detail(nanmmbyId);
-		
-			i = 0;
-			model.addAttribute("R", i);
-            model.addAttribute("rep_list", list);
-          //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 
-        	if(!list.getFondDe().isEmpty()) {
+	   
+			GroupUserCommand list =dosdao.Detail(nanmmbyId);
+          System.out.println(list.getOrganization_id());
+			if(list.getOrganization_id()!=null) {
+			  i = 0;
+				model.addAttribute("R", i);
+	            model.addAttribute("rep_list", list);
+
+		  }else {
+			  i=2;
+			  model.addAttribute("R", i);
+		  }
+			
+			
+			
+        
+            //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 
+        	if(list.getFondDe() != null) {
     		      String str = list.getFondDe();
     		      StringBuffer sb=new StringBuffer(str);
     		      sb.insert(4, "년 ");
