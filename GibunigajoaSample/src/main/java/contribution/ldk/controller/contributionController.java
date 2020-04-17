@@ -457,5 +457,21 @@ public class contributionController {
 	 * System.out.println("delete image"); }else {
 	 * System.out.println("image delete error"); } }
 	 */
+	
+	@RequestMapping(value = "/notifyCheck.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int notifyCheck(HttpSession session) {
+		int cnt = 0;
+		if(session.getAttribute("user_idx") != null) {
+			String idx = String.valueOf(session.getAttribute("user_idx"));
+			int user_idx = Integer.parseInt(idx);
+			cnt = service.notifyCheck(user_idx);
+			if(cnt > 0) {
+				service.updateNotifyFlg(user_idx);
+			}
+		}
+		return cnt; 
+		
+	}
 
 }

@@ -132,6 +132,8 @@ function loginCheck(){
 				$("#password").val('');//기존내용 제거
 			}else{
 				alert("로그인되었습니다.");
+				
+				
 				window.location="main.do";
 			}
 			
@@ -141,6 +143,8 @@ function loginCheck(){
 			alert(e.responseText);
 		});
 }
+
+
 
 
 //프로그램 신청 접근 권한 

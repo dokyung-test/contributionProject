@@ -6,6 +6,7 @@
 
 <!-- 로고 -->
 <input type="hidden" id="user_type" value="${user_type_id}" />
+<input type = "hidden" id = "user_idx" value = "${user_idx}" />
 <div class="container pt-5">
 	<div class="row justify-content-between">
 		<div class="col">
