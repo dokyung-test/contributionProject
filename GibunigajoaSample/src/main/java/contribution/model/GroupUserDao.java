@@ -23,7 +23,7 @@ public class GroupUserDao extends SqlSessionDaoSupport {
  }
  public int insertGroupUser(GroupUserCommand guc) {
 	 String user_id=guc.getUser_id();
-	 String password=guc.getPassword();
+	 String password=guc.getPassword(); 
 	 String nickname=guc.getNickname();
 	 Date register_date=guc.getRegister_date();
 	 String organization_id=guc.getOrganization_id();
