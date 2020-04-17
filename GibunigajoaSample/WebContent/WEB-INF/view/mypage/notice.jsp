@@ -91,8 +91,12 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<script type="text/javascript">
+	function noticeContent(a) {
 
-
+		location.href="noticeContent.do?notice_idx="+a;
+	};
+	</script>
 </head>
 <body id="page-top">
 	<nav
@@ -127,17 +131,17 @@
 							<tbody>
 
 								<c:forEach var="list" items="${list}">
-									<tr>
-										<td style="font-size: 15px"><p id="content"
+									<tr onclick="noticeContent(${list.notice_idx})">
+										<td style="font-size: 15px"><p 
 												title="${list.notice_idx}">${list.subject}</p></td>
-										<td style="font-size: 15px"><p id="content"
+										<td style="font-size: 15px"><p 
 												title="${list.notice_idx}">admin</p></td>
-										<td style="font-size: 15px"><p id="content"
+										<td style="font-size: 15px"><p 
 												title="${list.notice_idx}">${list.content}</p></td>
 										<td style="font-size: 15px"><p id=title="${list.notice_idx}">
 												<fmt:formatDate value="${list.register_date}"
 													pattern="yyyy년 MM월 dd일" /></td>
-										<td style="font-size: 15px"><p id="content"
+										<td style="font-size: 15px"><p 
 												title="${list.notice_idx}">${list.readcount}</p></td>
 
 									</tr>
@@ -194,8 +198,7 @@
 		src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/check2.js?v=1"></script>
+
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>

@@ -182,6 +182,18 @@ public class ProjectController {
 		mav.setViewName("notice");
 		return mav;	
 	}
+	
+	//공지사항 상세글
+	@RequestMapping(value="/noticeContent.do",method = RequestMethod.GET)
+	public ModelAndView NoticeContent(int notice_idx) {
+		ModelAndView mav = new ModelAndView();
+		NoticeDto list = service.noticeContent(notice_idx);
+		service.noticeReadCount(notice_idx);
+		mav.addObject("list",list);
+		mav.setViewName("noticeContent");
+		return mav;
+	}
+
 
 	@InitBinder
 	protected void initBinnder(WebDataBinder binder) {
