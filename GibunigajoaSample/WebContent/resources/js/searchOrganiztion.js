@@ -5,7 +5,7 @@ function searchCheck(){
 	var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=yes,height=500,width=500,left=0,top=0';
   
 	 
-	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,'_parent',settings)
+	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,'자식창입니다',settings)
 	
 }
 //자식창에서 부모창으로 정보넘김

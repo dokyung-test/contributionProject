@@ -2,9 +2,12 @@ package contribution.kms.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
 
 import contribution.model.BookmarkDto;
+import contribution.model.FileUploadOrganization;
+
 import contribution.model.GroupUserCommand;
 import contribution.model.Page;
 import contribution.model.Program;
@@ -46,7 +52,7 @@ public class ResponseController {
 	BookmarkService dao;
 	GroupUserService gusdao;
 	DetailOrganizationService dosdao;
-	 
+	FileUploadOrganization file;
 	
 	@Autowired //검새결과 없어서 400오류뜨는 상세화면 기부단체 Dao주입
 	public void setDosdao(DetailOrganizationService dosdao) {
@@ -281,7 +287,21 @@ public class ResponseController {
 	}
 	//단체회원가입 컨트롤러
 	@RequestMapping(value = "GroupUserSignup.do",method=RequestMethod.POST)
-	public String GroupUser(Model model,GroupUserCommand guc) {
+	public String GroupUser(Model model,GroupUserCommand guc,@RequestParam("banner") MultipartFile banner,HttpServletRequest request) {
+		//파일업로드
+		String root = request.getServletContext().getRealPath("resources/images/");
+		System.out.println(root);
+		String stored_file_name ="";
+		String original_file_name="";
+		String organization_id= guc.getOrganization_id();
+		System.out.println("이거맞냐?"+organization_id+"banner"+banner+"root"+root);
+		Map<String,String> fileInfo =file.bannerImageUpload(banner, organization_id, root);
+		stored_file_name = fileInfo.get("stored_file_name");
+		original_file_name = fileInfo.get("original_name");
+         int i1;
+         i1 = gusdao.InsertOrganization_logo(organization_id, original_file_name, stored_file_name, root);
+		
+		
 		//현재시간 저장
 		guc.setRegister_date(new Date(System.currentTimeMillis()));
 		int i;
