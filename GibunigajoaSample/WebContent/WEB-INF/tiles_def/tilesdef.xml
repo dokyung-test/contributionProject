@@ -71,14 +71,17 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/qANDa.jsp" />
 	</definition>
-	
 	<definition name="updateUser" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/updateUser.jsp" />
 	</definition>
-		<definition name="notice" extends="base_layout">
+	<definition name="notice" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/notice.jsp" />
+	</definition>
+	<definition name="noticeContent" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/mypage/noticeContent.jsp" />
 	</definition>
 
 

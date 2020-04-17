@@ -72,4 +72,14 @@ public class MypageDao extends SqlSessionDaoSupport{
 	public List<NoticeDto> noticeList(){
 		return getSqlSession().selectList("project.noticeList");
 	}
+	
+	//공지사항상세글 보기
+	public NoticeDto noticeContent(int notice_idx){
+		return getSqlSession().selectOne("project.noticeContent",notice_idx);
+	}
+	
+	//공지사항 조회수 올리기
+	public int noticeReadcount(int notice_idx) {		
+		return getSqlSession().update("project.noticeReadcount",notice_idx);      
+	}
 }

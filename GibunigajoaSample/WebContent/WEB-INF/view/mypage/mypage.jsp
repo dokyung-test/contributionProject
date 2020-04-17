@@ -311,6 +311,7 @@
 							<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
 						</a>
 					</div>
+					<hr width="1000px" color="black" noshade />
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"
