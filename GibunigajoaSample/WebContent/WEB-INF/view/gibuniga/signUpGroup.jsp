@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<form action="GroupUserSignup.do" method="post">
+<form action="GroupUserSignup.do" method="post" enctype="multipart/form-data">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -134,6 +134,18 @@
 														<input type="text" class="form-control" name="bizrno" id="bizrno" placeholder="ex)1234567891"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
+												<div class="col-md-12">
+													<label class="label" for="phone_number">기부단체 로고 등록</label>
+														<div class="form-group">
+														<input type="file" class="form-control" name="banner" id="banner" style="width: 70%; margin: auto; display: inline-block;">
+													</div>
+												</div>
+												
+												
+												
+												
+												
+												
 												<div >
 													<label class="label" >모집분야</label>
 														<div >    
@@ -198,6 +210,6 @@
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
   <script src="<c:url value="/resources/js/signup.js"/>"></script>
-   <script src="<c:url value="/resources/js/searchOrganiztion.js"/>"></script>
+   <script src="<c:url value="/resources/js/searchOrganiztion.js?"/>"></script>
 </body>
 </html>

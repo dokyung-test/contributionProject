@@ -45,5 +45,13 @@ select * from programs where organization_id=#{organization_id} and approval_flg
 select image_url from program_images where organization_id=#{organization_id} and original_file_name=#{original_file_name}
 </select>
 
+<select id="selectCount-organizationsLogo" parameterType="String" resultType="int">
+select count(*) from organization_logos where organization_id=#{organization_id}
+</select>
+
+<insert id="insert-organizationsLogo" parameterType="map">
+insert into organization_logos  values(#{organization_id},#{url},#{original_file_name},#{stored_file_name})
+</insert> 
+
 
 </mapper>
