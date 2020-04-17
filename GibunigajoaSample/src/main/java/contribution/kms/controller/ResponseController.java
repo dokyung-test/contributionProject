@@ -333,6 +333,32 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 		 
 	}
 	
+	public int getOrganizationCntInfo(String organization_id) {
+		ResponseCount responseCount = resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + organization_id,
+				ResponseCount.class);
+		//검색결과의 카운트 확인 ->1 : 공공데이터로 가능
+		//				  ->0 : 공공데이터에서 세팅 불가 ->DB에서 확인
+		return responseCount.getResponse().getBody().getTotalCount();
+
+	}
 	
+	public ResponseOne getOrganizationInfo(String organization_id) {
+		/*
+		 * ResponseCount responseCount = resTemplate.getForObject(nanmmbyNmurl +
+		 * serviceKey + progrmRegistNo + organization_id, ResponseCount.class);
+		 */
+		/*
+		 * ModelAndView mav = new ModelAndView(); //검색결과의 카운트 확인 ->1 : 공공데이터로 가능 // ->0
+		 * : 공공데이터에서 세팅 불가 ->DB에서 확인 int count =
+		 * responseCount.getResponse().getBody().getTotalCount(); if(count == 1) {
+		 * ResponseOne organizationInfo =
+		 * 
+		 * mav.addObject("organizationInfo", organizationInfo);
+		 * mav.addObject("returnType", 1); }else { mav.addObject("returnType", 2); }
+		 */
+
+		return resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + organization_id,
+				ResponseOne.class);
+	}
 
 }
