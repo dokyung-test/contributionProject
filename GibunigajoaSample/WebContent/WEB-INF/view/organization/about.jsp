@@ -49,8 +49,8 @@
 				<div class="col-md-6 d-flex">
 					<div
 						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
-						style="background-image:url(${pageContext.request.contextPath}/resources/images/${banner});">
-
+						style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
+						
 					</div>
 				</div>
 				<div class="col-md-6 pl-md-5">
