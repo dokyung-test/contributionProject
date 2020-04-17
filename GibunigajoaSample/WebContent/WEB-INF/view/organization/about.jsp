@@ -258,7 +258,7 @@
 												</c:if>
 												<c:if test="${R==0}">    
 												<p class="heading"><a id="aaa${status.count}" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}" onmouseover="onfocusTest('aaa${status.count}')" onmouseout="onblurTest('aaa${status.count}')">${item.program_subject}</a></p> 
-												
+											
 												</c:if>
 												
 												 
