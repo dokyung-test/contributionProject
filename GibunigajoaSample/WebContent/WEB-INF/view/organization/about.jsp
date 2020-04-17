@@ -49,7 +49,7 @@
 				<div class="col-md-6 d-flex">
 					<div
 						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
-						style="background-image:url(${pageContext.request.contextPath}/resources/images/about.jpg);">
+						style="background-image:url(${pageContext.request.contextPath}/resources/images/${banner});">
 
 					</div>
 				</div>
@@ -250,7 +250,7 @@
 										<p class="mb-5">${item.summary}</p>
 										<div class="d-flex align-items-center"> 
 											<div class="user-img" 
-												style="background-image: url(${pageContext.request.contextPath}/resources/images/person_${status.count}.jpg)"></div>
+												style="background-image: url(${pageContext.request.contextPath}/resources/images/${item.banner_file_name})"></div>
 											<div class="pl-3">
 											  
 											<c:if test="${R==1}">

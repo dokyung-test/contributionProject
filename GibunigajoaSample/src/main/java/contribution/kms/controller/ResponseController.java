@@ -109,10 +109,17 @@ public class ResponseController {
 			i = 1;
 			model.addAttribute("rep", list1);
 			model.addAttribute("R", i);
+String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBody().getItems().getItem().getNanmmbyId());
+			
+			model.addAttribute("banner",Stored_file_name);
+			
 	    //검색 결과수가 1보다 많으면 여러개받아 list에 넣어줘야하기때문에 ResponseList Dto사용
 		} else if (count > 1) {
 			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + search,
 					ResponseList.class);
+
+			
+			
 			i = 0;
 			model.addAttribute("rep_List", list1);
 			model.addAttribute("R", i);
@@ -169,6 +176,12 @@ public class ResponseController {
 			model.addAttribute("rep_list", list);
 			model.addAttribute("R", i);
 			
+			String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
+			
+			model.addAttribute("banner",Stored_file_name);
+			
+			
+			
 			//공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 
 			if(!list.getResponse().getBody().getItems().getItem().getFondDe().isEmpty()) {
 	  		      String str = list.getResponse().getBody().getItems().getItem().getFondDe();
@@ -186,11 +199,17 @@ public class ResponseController {
 			GroupUserCommand list =dosdao.Detail(nanmmbyId);
           System.out.println(list.getOrganization_id());
 			if(list.getOrganization_id()!=null) {
+				String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
+				
+				model.addAttribute("banner",Stored_file_name);
 			  i = 0;
 				model.addAttribute("R", i);
 	            model.addAttribute("rep_list", list);
 
 		  }else {
+			  String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
+				
+				model.addAttribute("banner",Stored_file_name);
 			  i=2;
 			  model.addAttribute("R", i);
 		  }

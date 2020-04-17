@@ -46,6 +46,10 @@ public class GroupUserService {
 		
 		
 	}
+	public String selectStored_file_name(String organization_id) {
+		
+		return dao.selectStored_file_name(organization_id);
+	}
 
 	
 	

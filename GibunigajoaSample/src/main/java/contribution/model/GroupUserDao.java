@@ -57,6 +57,11 @@ public class GroupUserDao extends SqlSessionDaoSupport {
 	 return getSqlSession().insert("Kim.insert-organizationsLogo",map);
 	 
  }
+ public String selectStored_file_name(String organization_id) {
+	 
+	 return getSqlSession().selectOne("Kim.select-organizationsLogoFilename",organization_id);
+	 
+ }
  
 	 
  }

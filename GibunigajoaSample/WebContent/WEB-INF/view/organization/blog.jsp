@@ -164,7 +164,7 @@
 									<a
 										href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
 										class="block-20 rounded"
-										style="background-image: url('${pageContext.request.contextPath}/resources/images/image_1.jpg');">
+										style="background-image: url('${pageContext.request.contextPath}/resources/images/${banner}');">
 									</a>
 									<div class="text mt-3 text-center">
 										<div class="meta mb-2">
