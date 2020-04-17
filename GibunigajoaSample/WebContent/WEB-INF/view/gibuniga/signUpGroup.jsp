@@ -64,44 +64,44 @@
 												<div class="col-md-12">
 													<label class="label" for="name">모집단체명</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="nanmmByNm" id="nanmmbyNm" placeholder="모집단체명" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="nanmmByNm" id="nanmmbyNm" placeholder="ex)(재)한베재단" style="width: 70%; margin: auto; display: inline-block;">
 													    <input type="button" value="검색" class="btn btn-primary" id="idCheckBtn" onclick="searchCheck()"/>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="name">대표자명</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="rprsntvNm" id="rprsntvNm" placeholder="대표자명" style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="rprsntvNm" id="rprsntvNm" placeholder="ex)홍길동" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="birthday">설립일자</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="fondDe" id="fondDe" placeholder="설립일자"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="fondDe" id="fondDe" placeholder="ex)20080331"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">전화번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" placeholder="전화번호"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="dmstcTelno" id="dmstcTelno" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">공제유형</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="cntrDdcTy" id="phone_number" placeholder="공제유형"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="cntrDdcTy" id="phone_number" placeholder="ex)지정기부금"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
-												<div class="col-md-12">
+											<!-- 	<div class="col-md-12">
 													<label class="label" for="phone_number">기부금단체 지정번호</label>
 														<div class="form-group">
 														<input type="text" class="form-control" name="ctbgrnpAppnNo" id="phone_number" placeholder="지정번호"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
-												</div>
+												</div> -->
 												<div class="col-md-12">
 													<label class="label" for="phone_number">팩스번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="fxnum" id="fxnum" placeholder="팩스번호"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="tel" class="form-control" name="fxnum" id="fxnum" placeholder="ex)02-0000-0000"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
@@ -125,19 +125,19 @@
 												<div class="col-md-12">
 													<label class="label" for="phone_number">홈페이지 주소</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="hmpadres" id="hmpgAdres" placeholder="홈페이지주소"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="hmpadres" id="hmpgAdres" placeholder="ex)http://www.hanviet.or.kr"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<label class="label" for="phone_number">사업자 등록번호</label>
 														<div class="form-group">
-														<input type="text" class="form-control" name="bizrno" id="bizrno" placeholder="사업자 등록번호"style="width: 70%; margin: auto; display: inline-block;">
+														<input type="text" class="form-control" name="bizrno" id="bizrno" placeholder="ex)1234567891"style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div >
 													<label class="label" >모집분야</label>
 														<div >    
-														<input type="radio"  name="type_id" id="" value="0">전체
+														<input type="radio"  name="type_id" id="" value="0" checked="checked">전체
 													    <input type="radio" name="type_id" id="" value="1">아동,청소년
 													    <input type="radio"  name="type_id" id="" value="2">노인복지
 													    <input type="radio"  name="type_id" id="" value="3">장애인

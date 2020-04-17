@@ -1,9 +1,10 @@
 function searchCheck(){
 	var nanmmByNm =$("#nanmmbyNm").val();
-	var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=500,width=500,left=0,top=0';
- 
+	var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=yes,height=500,width=500,left=0,top=0';
+  
 	 
-	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,"자식창",settings)
+	window.open('searchOrganiztion.do?nanmmByNm='+nanmmByNm,'_parent',settings)
+	
 }
 
 function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adres,zip,hmpadres,bizrno){	

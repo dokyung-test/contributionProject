@@ -203,7 +203,7 @@
 
 
 
-                          <c:forEach items="${program}" var="item">
+                          <c:forEach items="${program}" var="item" varStatus="status">
 							<div class="item">
 								<div class="testimony-wrap py-4"> 
 									<div
@@ -214,7 +214,7 @@
 										<p class="mb-5">${item.summary}</p>
 										<div class="d-flex align-items-center"> 
 											<div class="user-img" 
-												style="background-image: url(${pageContext.request.contextPath}/resources/images/person_1.jpg)"></div>
+												style="background-image: url(${pageContext.request.contextPath}/resources/images/person_${status.count}.jpg)"></div>
 											<div class="pl-3">
 											 
 											<c:if test="${R==1}">
