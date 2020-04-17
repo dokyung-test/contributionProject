@@ -54,7 +54,6 @@ function closeModal() {
 
 </script>
 <style>
-/* modal창의 배경 */
 .searchModal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
@@ -66,21 +65,21 @@ function closeModal() {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-} 
-
+	padding: 20%;
+}
 </style>
 </head>
 
 <body>
- <!--    회원정보 수정 -->
+	<!--    회원정보 수정 -->
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="wrapper">
 						<button id="testBtn" class="btn btn-primary"
-							style="position: relative; left: 800px; width: 250px; font-size: 20px;"
-							>회원 탈퇴</button>
+							style="position: relative; left: 800px; width: 250px; font-size: 20px;">회원
+							탈퇴</button>
 						<form action="userUpdate.do" method="post">
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<div class="contact-wrap w-100 p-md-5 p-4">
@@ -147,8 +146,7 @@ function closeModal() {
 
 												<input type="button" value="취소" class="btn btn-primary"
 													style="float: right; padding-left: 4%; padding-right: 4%;"
-													onclick="location.href='mypage.do'" />
-													 <input
+													onclick="location.href='mypage.do'" /> <input
 													type="submit" value="회원정보 수정" class="btn btn-primary"
 													style="float: right; margin-right: 1%" />
 												<div class="submitting"></div>
@@ -165,7 +163,7 @@ function closeModal() {
 		</div>
 	</section>
 
-    <!-- 회원 탈퇴 modal -->
+	<!-- 회원 탈퇴 modal -->
 	<div id="modal" class="searchModal">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -180,21 +178,23 @@ function closeModal() {
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="label" style="font-size: 20px">비밀번호 확인</label>
-											<input type="password" class="form-control" name="password" id="password" placeholder="password를 입력해주세요" style="width: 100%; display: inline-block;">
+											<input type="password" class="form-control" name="password"
+												id="password" placeholder="password를 입력해주세요"
+												style="width: 100%; display: inline-block;">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="button" onclick="closeModal()"
-												style="float: right;  height: 50px; width: 150px; font-size: 20px;"
-												value="취소" class="btn btn-primary" /> 
-												<input type="button"
+												style="float: right; height: 50px; width: 150px; font-size: 20px;"
+												value="취소" class="btn btn-primary" /> <input type="button"
 												style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
-												value="탈퇴" class="btn btn-primary" onclick="deleteUser()"/>
+												value="탈퇴" class="btn btn-primary" onclick="deleteUser()" />
 										</div>
 									</div>
 								</div>
-								<input type="hidden" name="user_idx" value="${user_idx}" id="user_idx">
+								<input type="hidden" name="user_idx" value="${user_idx}"
+									id="user_idx">
 							</form>
 						</div>
 					</div>
@@ -234,6 +234,6 @@ function closeModal() {
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
-	  <script src="<c:url value="/resources/js/deleteUser.js"/>"></script>
+	<script src="<c:url value="/resources/js/deleteUser.js"/>"></script>
 </body>
 </html>
