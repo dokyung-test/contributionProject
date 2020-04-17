@@ -117,22 +117,22 @@
 										+ date1.getDate() + "일";
 
 								$("#organization_name").append(
-										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='organization_name' class='a' value='"+organization_name+"'>");
+										"<br class='a'><input type='text'  style='width:650px; height:50px;' readonly name='organization_name' class='a' value='"+organization_name+"'>");
 								$("#program_name").append(
-										"<br class='a'><input type='text' ' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+program_name+"'>");
+										"<br class='a'><input type='text' ' style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+program_name+"'>");
 								$("#date").append(
-										"<br class='a'><input type='text' style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
+										"<br class='a'><input type='text' style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
 								$("#contribution").append(
-										"<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");								
+										"<br class='a'><input type='text'  style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");								
                                
                                 if(note == null){
                                 	$("#note").append(
-    										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
+    										"<br class='a'><textarea id='c' style='width:650px;height:200px; resize: none;' readonly name='note' class='a'>"
     										
     										+ "</textarea>");
                                     }else{
 								$("#note").append(
-										"<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='note' class='a'>"
+										"<br class='a'><textarea id='c' style='width:650px;height:200px; resize: none;' readonly name='note' class='a'>"
 										+ note
 										+ "</textarea>");}
 							});
@@ -185,19 +185,19 @@
 										
 												$("#organization_name2")
 														.append(
-																"<br class='a'><input type='text' name='organization_name' class='a' value='"+organization_name+"'>");
+																"<br class='a'><input type='text' style='width:650px; height:50px;'  name='organization_name' class='a' value='"+organization_name+"'>");
 												$("#program_name2")
 														.append(
-																"<br class='a'><input type='text' name='program_name' class='a' value='"+program_name+"'>");
+																"<br class='a'><input type='text' style='width:650px; height:50px;'  name='program_name' class='a' value='"+program_name+"'>");
 												$("#date2")
 														.append(
-																"<br class='a'><input type='date' name='date' class='a' value='"+text_date+"'>");
+																"<br class='a'><input type='date' style='width:650px; height:50px;'  name='date' class='a' value='"+text_date+"'>");
 												$("#contribution2")
 														.append(
-																"<br class='a'><input type='text' name='contribution' class='a' value='"+contribution+"'>");
+																"<br class='a'><input type='text' style='width:650px; height:50px;'  name='contribution' class='a' value='"+contribution+"'>");
 												$("#note2")
 														.append(
-																"<br class='a'><textarea cols='50' rows='3' name='note' class='a' style='resize: none;'>"
+																"<br class='a'><textarea cols='50'  rows='3' name='note' class='a' style='width:650px;height:200px; resize: none;'>"
 																		+ note
 																		+ "</textarea>");
 												$("#hidden")
@@ -247,9 +247,10 @@
 	top: 0;
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
+	overflow: auto; 
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+	padding: 2em;
 }
 
 /* 기부추가 버튼 꾸미기 */
@@ -300,13 +301,10 @@
 	<div id="content-wrapper" class="d-flex flex-column">
 		<div id="content">
 
-			<div class="container-fluid">
-				<!-- 페이지 머리 -->
-				<h1 class="h3 mb-2 text-gray-800">기부목록관리 페이지</h1>
-
+			<div class="container-fluid" style="width: 1300px;">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h4 class="m-0 font-weight-bold text-primary">기부내역조회</h4>
+						<h4 class="m-0 font-weight-bold text-primary">기부내역관리</h4>
 						<a style="position: absolute; right: 20px; top: 10px;">
 							<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
 						</a>
@@ -331,8 +329,8 @@
 										<tr>
 											<td style="font-size: 15px">${list.organization_name}</td>
 											<td style="font-size: 15px"><p id="content"
-													title="${list.contribution_history_idx}">
-													${list.program_name}</p></td>
+													title="${list.contribution_history_idx}"><a href="#">
+													${list.program_name}</a></p></td>
 											<td style="font-size: 15px"><fmt:formatNumber
 													value="${list.contribution}" pattern="#,###원" /></td>
 											<td style="font-size: 15px"><fmt:formatDate
@@ -366,7 +364,7 @@
 
 		<!-- 기부 내역 추가 폼 -->
 		<div id="modal" class="searchModal">
-			<div class="container">
+			<div class="container" style="width: 900px;">
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
@@ -380,30 +378,30 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px; color: black">
-													■ 기관명</label> <input type="text" class="form-control"
+												<label class="label" style="font-size: 25px;">
+													기관명</label> <input type="text" class="form-control"
 													name="organization_name" placeholder="기관명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px; color: black">
-													■ 프로그램명</label> <input type="text" class="form-control"
+												<label class="label" style="font-size: 25px;">
+													프로그램명</label> <input type="text" class="form-control"
 													name="program_name" placeholder="프로그램명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px; color: black">
-													■ 기부 금액(숫자만)</label> <input type="text" class="form-control"
+												<label class="label" style="font-size: 25px;">
+													기부 금액(숫자만)</label> <input type="text" class="form-control"
 													name="contribution" placeholder="기부금액"
 													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px; color: black">
-													■ 날짜</label> <input type="Date" class="form-control" name="date"
+												<label class="label" style="font-size: 25px;">
+													날짜</label> <input type="Date" class="form-control" name="date"
 													placeholder="날짜">
 											</div>
 										</div>
@@ -411,8 +409,8 @@
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px; color: black">
-													■ 비고</label>
+												<label class="label" style="font-size: 25px;">
+													 비고</label>
 												<textarea name="note" class="form-control" id="message"
 													cols="30" rows="4" placeholder="메모할 내용을 적으세요."
 													style="resize: none;"></textarea>
@@ -421,9 +419,9 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal()"
-													style="float: right; height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 150px; font-size: 20px;"
 													value="취소" class="btn btn-primary" /> <input type="submit"
-													style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
 													value="추가" class="btn btn-primary" />
 											</div>
 										</div>
@@ -441,50 +439,48 @@
 
 		<!-- 기부 내역 상세 내역-->
 		<div id="contentmodal" class="searchModal">
-			<div class="container">
+			<div class="container" style="width: 900px;">
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h1 class="mb-4" style="font-size: 40px">기부 내역</h1>
-								<div id="form-message-success" class="mb-4"
-									style="font-size: 20px">기부내역 상세보기</div>
 								<hr width="1000px" color="black" noshade />
 								<form method="POST" action="ContributionContent.do">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="organization_name">◎기관명 </label>
+													id="organization_name">기관명 </label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="program_name">◎프로그램명</label>
+													id="program_name">프로그램명</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="contribution">◎기부 금액</label>
+													id="contribution">기부 금액</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="date">◎날짜</label>
+												<label class="label" style="font-size: 20px" id="date">날짜</label>
 											</div>
 										</div>
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="note">◎메모</label>
+												<label class="label" style="font-size: 20px" id="note">메모</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal2()" id="cancel"
-													style="float: right; height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 150px; font-size: 20px;"
 													value="취소" class="btn btn-primary" />
 											</div>
 										</div>
@@ -501,54 +497,52 @@
 
 		<!-- 기부내역 수정 시작 -->
 		<div id="updatemodal" class="searchModal">
-			<div class="container">
+			<div class="container" style="width: 900px;">
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h3 class="mb-4" style="font-size: 40px">기부 내역 수정</h3>
 								<div id="form-message-warning" class="mb-4"></div>
-								<div id="form-message-success" class="mb-4"
-									style="font-size: 20px">기부내역을 수정해 주세요.</div>
 								<form method="POST" action="update.do" name="form2"
 									onsubmit="return checkAll2()">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="organization_name2">◎기관명 </label>
+													id="organization_name2">기관명 </label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="program_name2">◎프로그램명</label>
+													id="program_name2">프로그램명</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="label" style="font-size: 20px"
-													id="contribution2">◎기부 금액</label>
+													id="contribution2">기부 금액</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="date2">◎날짜</label>
+												<label class="label" style="font-size: 20px" id="date2">날짜</label>
 											</div>
 										</div>
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="note2">◎메모</label>
+												<label class="label" style="font-size: 20px" id="note2">메모</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal()" id="cancel"
-													style="float: right; height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; height: 50px; width: 150px; font-size: 20px;"
 													value="취소" class="btn btn-primary" /> <input type="submit"
 													id="hidden"
-													style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
+													style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
 													value="수정" class="btn btn-primary" />
 											</div>
 										</div>

@@ -93,25 +93,23 @@
 <meta name="author" content="">
 <script type="text/javascript">
 	function noticeContent(a) {
-
 		location.href="noticeContent.do?notice_idx="+a;
 	};
 	</script>
 </head>
 <body id="page-top">
+
 	<nav
 		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 	</nav>
+
 	<!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 
-		<div class="container-fluid">
-			<!-- 페이지 머리 -->
-			<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
-
+		<div class="container-fluid" style="width: 1300px;">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h4 class="m-0 font-weight-bold text-primary">공지사항 페이지 입니다.</h4>
+					<h2 class="m-0 font-weight-bold text-primary">공지사항</h2>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -119,11 +117,10 @@
 							cellspacing="0">
 							<thead>
 								<tr>
+									<th style="font-size: 20px; width: 150px;">작성일자</th>
 									<th style="font-size: 20px">제목</th>
-									<th style="font-size: 20px">작성자</th>
-									<th style="font-size: 20px">내용</th>
-									<th style="font-size: 20px">작성일자</th>
-									<th style="font-size: 20px">조회수</th>
+									<th style="font-size: 20px; width: 150px;">작성자</th>
+									<th style="font-size: 20px; width: 150px;">조회수</th>
 
 								</tr>
 							</thead>
@@ -131,18 +128,13 @@
 							<tbody>
 
 								<c:forEach var="list" items="${list}">
-									<tr onclick="noticeContent(${list.notice_idx})">
-										<td style="font-size: 15px"><p 
-												title="${list.notice_idx}">${list.subject}</p></td>
-										<td style="font-size: 15px"><p 
-												title="${list.notice_idx}">admin</p></td>
-										<td style="font-size: 15px"><p 
-												title="${list.notice_idx}">${list.content}</p></td>
+									<tr >
 										<td style="font-size: 15px"><p id=title="${list.notice_idx}">
 												<fmt:formatDate value="${list.register_date}"
 													pattern="yyyy년 MM월 dd일" /></td>
-										<td style="font-size: 15px"><p 
-												title="${list.notice_idx}">${list.readcount}</p></td>
+										<td style="font-size: 15px"><a href="#" onclick="noticeContent(${list.notice_idx})">${list.subject}</a></td>
+										<td style="font-size: 15px">admin</p></td>
+										<td style="font-size: 15px">${list.readcount}</p></td>
 
 									</tr>
 								</c:forEach>
@@ -156,8 +148,7 @@
 	</div>
 	<!-- End of Main Content -->
 
-<div id="ftco-loader" class="show fullscreen">
-	</div>
+	<div id="ftco-loader" class="show fullscreen"></div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 	<script

@@ -165,6 +165,7 @@
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+	padding: 3em;
 }
 
 /* Q&A 추가 버튼 꾸미기 */
@@ -191,8 +192,7 @@
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
-	border : 10px solid transparent;
-
+	border: 10px solid transparent;
 }
 </style>
 
@@ -213,28 +213,24 @@
 	<!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 
-		<div class="container-fluid">
-			<!-- 페이지 머리 -->
-			<h1 class="h3 mb-2 text-gray-800">Q&A</h1>
+		<div class="container-fluid" style="width: 1300px;">
 
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h4 class="m-0 font-weight-bold text-primary">Q&A 조회 리스트</h4>
+					<h4 class="m-0 font-weight-bold text-primary">Q&A 리스트</h4>
 					<a style="position: absolute; right: 40px; top: 10px;">
 						<button id="testBtn" style="font-size: 20px;">Q&A 작성</button>
 					</a>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" style="table-layout: fixed;"
-							cellspacing="0">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							style="table-layout: fixed;" cellspacing="0">
 							<thead>
 								<tr>
-									<th style="font-size: 20px; width:100px;">답변상태</th>
-									<th style="font-size: 20px; width:250px;">제목</th>
-									<th style="font-size: 20px">내용</th>
-									<th style="font-size: 20px">답변내용</th>
-									<th style="font-size: 20px; width:150px; ">작성일</th>
+									<th style="font-size: 20px; width: 150px;">답변상태</th>
+									<th style="font-size: 20px;">제목</th>
+									<th style="font-size: 20px; width: 150px;">작성일</th>
 
 								</tr>
 							</thead>
@@ -252,26 +248,11 @@
 										<c:if test="${dto.status_id eq 3}">
 											<td style="font-size: 15px">답변완료</td>
 										</c:if>
-										<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><p id="subject"
-												title="${dto.board_idx}">${dto.subject}</td>
-										<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><p id="content"
-												title="${dto.board_idx}">${dto.content}</td>
-										<c:if test="${dto.status_id eq 1}">
-											<td style="font-size: 15px"><p id="content"
-													title="${dto.board_idx}">접수중 입니다.</td>
-										</c:if>
-										<c:if test="${dto.status_id eq 2} ">
-											<p id="content" title="${dto.board_idx}">
-											<td style="font-size: 15px">처리중 입니다.</td>
-										</c:if>
-										<c:if test="${dto.status_id eq 3}">
-											<p id="content" title="${dto.board_idx}">
-											<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${dto.answer}</td>
-										</c:if>
-										<td style="font-size: 15px"><p id="content"
-												title="${dto.board_idx}">
-												<fmt:formatDate value="${dto.register_date}"
-													pattern="yyyy년 MM월 dd일" /></td>
+										<td
+											style="font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a
+											href="#" onclick="noticeContent(${dto.board_idx})">${dto.subject}</a></td>
+										<td style="font-size: 15px"><fmt:formatDate
+												value="${dto.register_date}" pattern="yyyy년 MM월 dd일" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -294,8 +275,6 @@
 						<div class="contact-wrap w-100 p-md-5 p-4">
 							<h3 class="mb-4" style="font-size: 40px">Q&A작성</h3>
 							<div id="form-message-warning" class="mb-4"></div>
-							<div id="form-message-success" class="mb-4"
-								style="font-size: 20px">Q&A를 작성해 주세요.</div>
 							<form method="POST" action="qANDaInsert.do" name="form"
 								onsubmit="return checkAll()">
 								<div class="row">
@@ -316,9 +295,9 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<input type="button" onclick="closeModal()"
-												style="float: right; height: 50px; width: 240px; font-size: 20px;"
+												style="float: right; height: 50px; width: 150px; font-size: 20px;"
 												value="취소" class="btn btn-primary" /> <input type="submit"
-												style="float: right; margin-right: 1%; height: 50px; width: 240px; font-size: 20px;"
+												style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
 												value="보내기" class="btn btn-primary" />
 										</div>
 									</div>
@@ -343,8 +322,6 @@
 						<div class="contact-wrap w-100 p-md-5 p-4">
 							<h3 class="mb-4" style="font-size: 40px">Q&A</h3>
 							<div id="form-message-warning" class="mb-4"></div>
-							<div id="form-message-success" class="mb-4"
-								style="font-size: 20px">Q&A상세내용</div>
 							<hr width="1000px" color="black" noshade />
 
 							<div class="row">
@@ -384,7 +361,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<input type="button" onclick="closeModal()"
-											style="float: right; height: 50px; width: 240px; font-size: 20px;"
+											style="float: right; height: 50px; width: 150px; font-size: 20px;"
 											value="취소" class="btn btn-primary" />
 									</div>
 								</div>
@@ -397,13 +374,7 @@
 		</div>
 	</div>
 	<!-- 기부 내역 상세내역 종료 -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
-	</div>
+	<div id="ftco-loader" class="show fullscreen"></div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 	<script
