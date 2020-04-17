@@ -19,10 +19,12 @@ public class FileUploadOrganization {
 	public Map<String, String> bannerImageUpload(MultipartFile file, String organization_id,  String root) {
 		//원본파일명
 		String original_name = file.getOriginalFilename();
+		System.out.println(original_name);
 		//DB에 저장될 새로운 이름-중복을 피하기 위해서
 		int randomNum = random.nextInt(50);
 		String randomValue = System.currentTimeMillis()+"_"+randomNum;
 		String stored_file_name = randomValue + "_" + original_name;
+		System.out.println(stored_file_name);
 		File storeFile = new File(root, stored_file_name);
 		try {
 			file.transferTo(storeFile);

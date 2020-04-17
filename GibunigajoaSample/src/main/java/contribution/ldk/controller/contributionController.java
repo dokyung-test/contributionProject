@@ -2,6 +2,7 @@ package contribution.ldk.controller;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ import contribution.model.ReportComment;
 import contribution.model.Type;
 import contribution.modelcount.ResponseCount;
 import contribution.modelone.ResponseOne;
+import contribution.service.DetailOrganizationService;
 import contribution.service.programService;
 
 @Controller
@@ -49,6 +51,15 @@ public class contributionController {
 	public void setResponseCon(ResponseController responseCon) {
 		this.responseCon = responseCon;
 	}
+	
+	@Autowired
+	DetailOrganizationService organizationService;
+	
+	
+	
+	public void setOrganizationService(DetailOrganizationService organizationService) {
+		this.organizationService = organizationService;
+	}
 
 	@Autowired
 	private programService service;
@@ -56,6 +67,8 @@ public class contributionController {
 	public void setService(programService service) {
 		this.service = service;
 	}
+	
+	
 
 	// 클래스에 들어올때마다 호출 ->언제나 필요한 경우 아니면 붙이지말자.
 	// @ModelAttribute
@@ -107,9 +120,11 @@ public class contributionController {
 		return mav;
 	}
 
+	
+	
 	// 프로그램상세
 	@RequestMapping(value = "/showProgram.do", method = RequestMethod.GET)
-	public ModelAndView showProgramContent(int program_id, String organization_id) {
+	public ModelAndView showProgramContent(int program_id, String organization_id) throws ParseException {
 		int updateReadCount = updateReadcount(program_id, organization_id);
 		ModelAndView mav = new ModelAndView("requestProgramDetail");
 		Program pro = service.getProgramInfo(program_id, organization_id);
@@ -119,9 +134,36 @@ public class contributionController {
 		mav.addObject("images", images);
 		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
 		mav.addObject("organization_name", service.getOrganizationName(organization_id));
-
 		mav.addObject("comments", service.getAllComment(program_id, organization_id));
-		System.out.println(service.getAllComment(program_id, organization_id));
+		//System.out.println(service.getAllComment(program_id, organization_id));
+		//공공데이터에서 습득할 수 있는지에 대한 count -> 1이면 공공데이터에서 습득, 0이면 공공데이터사용x->DB까지 확인할 것.
+		int cnt = responseCon.getOrganizationCntInfo(organization_id);
+		
+		if(cnt > 0) {
+			ResponseOne organizationInfo = responseCon.getOrganizationInfo(organization_id);
+			/*
+			 * String foundationDate =
+			 * organizationInfo.getResponse().getBody().getItems().getItem().getFondDe().
+			 * trim(); //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 if(foundationDate != null)
+			 * { StringBuffer sb=new StringBuffer(str); sb.insert(4, "년 "); sb.insert(8,
+			 * "월 "); sb.insert(12,"일"); model.addAttribute("date",sb);
+			 * 
+			 * } mav.addObject("foundationDate", foundDate);
+			 */
+			mav.addObject("organizationCnt", cnt);
+			mav.addObject("organizationInfo", organizationInfo);
+		}else {
+			//DB에 존재하나 확인 -> organization객체 리턴.
+			GroupUserCommand organization = organizationService.Detail(organization_id);
+			if(organization.getOrganization_id().equals("")) {//빈 객체 -> DB에서도 습득불가
+				mav.addObject("organizationCnt", 0);
+			}else {//DB에서라도 정보습득
+				mav.addObject("organizationCnt", 1);
+				mav.addObject("organizationInfo", organization);
+			}
+			
+		}
+		System.out.println(responseCon.getOrganizationCntInfo(organization_id));
 		return mav;
 	}
 
@@ -477,70 +519,6 @@ public class contributionController {
 
 	}
 
-	/*
-	 * public Model getBoard(Model model, String nanmmbyId,HttpSession session) {
-	 * 
-	 * 
-	 * //로그인하지않으면 즐겨찾기 숨기고 로그인을했으면 즐겨찾기 보여주기 if(session.getAttribute("user_idx") !=
-	 * null) {
-	 * 
-	 * int x = 1; int idx = (Integer)session.getAttribute("user_idx");
-	 * 
-	 * int chk = dao.DetailBookmarkChk(idx, nanmmbyId);
-	 * 
-	 * model.addAttribute("chk", chk);
-	 * 
-	 * model.addAttribute("R2",x); }
-	 * 
-	 * 
-	 * 
-	 * ResponseCount responsecount = resTemplate.getForObject(nanmmbyNmurl +
-	 * serviceKey + progrmRegistNo + nanmmbyId, ResponseCount.class);
-	 * 
-	 * int count = responsecount.getResponse().getBody().getTotalCount(); int i;
-	 * //검색결과가 없으면 400이 뜨는오류때문에 1개의 검색결과와 0개의 검색결과를 나눔(검새결과가 무조건 1개 아니면 0개이다.)
-	 * //검색결과가 1인경우 공공데이터에서 받아온 값 jsp로 넘겨주기 if (count == 1) {
-	 * 
-	 * ResponseOne list = resTemplate.getForObject(nanmmbyNmurl + serviceKey +
-	 * progrmRegistNo + nanmmbyId, ResponseOne.class);
-	 * 
-	 * i = 1;
-	 * 
-	 * model.addAttribute("rep_list", list); model.addAttribute("R", i);
-	 * 
-	 * //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기
-	 * if(!list.getResponse().getBody().getItems().getItem().getFondDe().isEmpty())
-	 * { String str = list.getResponse().getBody().getItems().getItem().getFondDe();
-	 * StringBuffer sb=new StringBuffer(str); sb.insert(4, "년 "); sb.insert(8,
-	 * "월 "); sb.insert(12,"일"); model.addAttribute("date",sb); }
-	 * 
-	 * 
-	 * } else { //검색결과가 없는 애들은 DB에저장한 기부단체상세값 jsp로 넘겨주기
-	 * 
-	 * GroupUserCommand list =dosdao.Detail(nanmmbyId);
-	 * System.out.println(list.getOrganization_id());
-	 * if(list.getOrganization_id()!=null) { i = 0; model.addAttribute("R", i);
-	 * model.addAttribute("rep_list", list);
-	 * 
-	 * }else { i=2; model.addAttribute("R", i); }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 if(list.getFondDe() != null) {
-	 * String str = list.getFondDe(); StringBuffer sb=new StringBuffer(str);
-	 * sb.insert(4, "년 "); sb.insert(8, "월 "); sb.insert(12,"일");
-	 * model.addAttribute("date",sb); }
-	 * 
-	 * 
-	 * } //해당 list가 있으면 해당단체에 모집프로그램이있다는뜻이고 list가 비어있다면 해당단체에 모집프로그램이없다는뜻
-	 * List<Program> list = dosdao.DetailProgram(nanmmbyId); if(list.size()!=0) {
-	 * i=1; model.addAttribute("program", list); model.addAttribute("R1", i); }else
-	 * { i=0; model.addAttribute("R1", i); }
-	 * 
-	 * return "about";
-	 * 
-	 * }
-	 */
+
 
 }
