@@ -228,9 +228,28 @@ public class programService {
 	}
 	
 	//댓글신고 insert
-		public int insertReportComment(ReportComment reportComment) {
-			return commentDao.insertReportComment(reportComment);
-		}
+	public int insertReportComment(ReportComment reportComment) {
+		return commentDao.insertReportComment(reportComment);
+	}
 	
+	//insert전에 커멘트의 신고횟수를 습득
+	public int selectReportCommentCount(ReportComment reportComment) {
+		return commentDao.selectReportCommentCount(reportComment);
+	}
 	
+	//댓글신고 || alert후에 notify_flg변경시 
+	public int updateAlertComment(Comment comment) {
+		return commentDao.updateAlertComment(comment);
+	}
+	
+	//신고 5회로 완전 block처리 & 
+	public int updateBlockComment(Comment comment) {
+		return commentDao.updateBlockComment(comment);
+	}
+	
+	//이미 신고한 댓글인지 count로 습득
+	public int checkReportedComment(ReportComment reportComment) {
+		return commentDao.checkReportedComment(reportComment);
+	}
+		
 }
