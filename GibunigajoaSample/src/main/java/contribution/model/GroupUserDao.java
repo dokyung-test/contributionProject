@@ -2,6 +2,7 @@ package contribution.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -62,7 +63,11 @@ public class GroupUserDao extends SqlSessionDaoSupport {
 	 return getSqlSession().selectOne("Kim.select-organizationsLogoFilename",organization_id);
 	 
  }
- 
+ public List<OrganizationLogosDto> selectStored_file_nameList(String organization_id){
+	 
+	 return getSqlSession().selectList("Kim.select-organizationsLogoFilenameList",organization_id);
+	 
+ }
 	 
  }
 	

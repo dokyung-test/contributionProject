@@ -1,5 +1,6 @@
 package contribution.kms.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import contribution.model.BookmarkDto;
 import contribution.model.FileUploadOrganization;
 
 import contribution.model.GroupUserCommand;
+import contribution.model.OrganizationLogosDto;
 import contribution.model.Page;
 import contribution.model.Program;
 import contribution.model.ResponseList;
@@ -109,6 +111,8 @@ public class ResponseController {
 			i = 1;
 			model.addAttribute("rep", list1);
 			model.addAttribute("R", i);
+			
+			
 String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBody().getItems().getItem().getNanmmbyId());
 			
 			model.addAttribute("banner",Stored_file_name);
@@ -117,8 +121,23 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 		} else if (count > 1) {
 			ResponseList list1 = resTemplate.getForObject(url + serviceKey +numOfRows +pageNo + curPage + keyword + search,
 					ResponseList.class);
-
 			
+		
+			
+			for(int x = 0; x<list1.getResponse().getBody().getItems().getItem().size(); x++) {
+				
+				List<OrganizationLogosDto> logoList=gusdao.selectStored_file_nameList(list1.getResponse().getBody().getItems().getItem().get(x).getNanmmbyId());
+				System.out.println("로고리스트::::"+logoList);
+				if(x==6) {
+					model.addAttribute("banner", logoList);
+					System.out.println(logoList.size());
+				}
+			
+			}
+			
+          
+			
+			 
 			
 			i = 0;
 			model.addAttribute("rep_List", list1);

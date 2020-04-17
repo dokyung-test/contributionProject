@@ -56,6 +56,8 @@ insert into organization_logos  values(#{organization_id},#{url},#{original_file
 <select id="select-organizationsLogoFilename" parameterType="String" resultType="String">
 select stored_file_name from organization_logos where organization_id=#{organization_id}
 </select>
-
+<select id="select-organizationsLogoFilenameList" parameterType="String" resultType="contribution.model.OrganizationLogosDto">
+select * from organization_logos where organization_id=#{organization_id}
+</select>
 
 </mapper>

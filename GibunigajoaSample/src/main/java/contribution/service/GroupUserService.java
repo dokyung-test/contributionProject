@@ -1,5 +1,7 @@
 package contribution.service;
 
+import java.util.List;
+
 import javax.xml.ws.Action;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import contribution.model.GroupUserCommand;
 import contribution.model.GroupUserDao;
+import contribution.model.OrganizationLogosDto;
 
 @Service
 public class GroupUserService {
@@ -50,7 +53,13 @@ public class GroupUserService {
 		
 		return dao.selectStored_file_name(organization_id);
 	}
-
+   
+	public List<OrganizationLogosDto> selectStored_file_nameList(String organization_id) {
+		
+		
+		return dao.selectStored_file_nameList(organization_id);
+		
+	}
 	
 	
 	
