@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,16 +27,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import contribution.kms.controller.ResponseController;
 import contribution.model.Comment;
 import contribution.model.FileUtils;
+import contribution.model.GroupUserCommand;
 import contribution.model.Program;
 import contribution.model.ProgramImage;
 import contribution.model.ReportComment;
 import contribution.model.Type;
+import contribution.modelcount.ResponseCount;
+import contribution.modelone.ResponseOne;
 import contribution.service.programService;
 
 @Controller
 public class contributionController {
+
+	@Autowired
+	ResponseController responseCon;
+
+	@Autowired
+	public void setResponseCon(ResponseController responseCon) {
+		this.responseCon = responseCon;
+	}
 
 	@Autowired
 	private programService service;
@@ -106,7 +119,7 @@ public class contributionController {
 		mav.addObject("images", images);
 		mav.addObject("totalAmount", calcTargetAmount(program_id, organization_id));
 		mav.addObject("organization_name", service.getOrganizationName(organization_id));
-		
+
 		mav.addObject("comments", service.getAllComment(program_id, organization_id));
 		System.out.println(service.getAllComment(program_id, organization_id));
 		return mav;
@@ -218,13 +231,9 @@ public class contributionController {
 	 * 
 	 * } else { return new ModelAndView("errors/error"); } }
 	 */
-	
-	
-	
-	
-	
+
 	// 승인된 프로그램의 수정
-	//banner, programImages가 null인 경우, 현상태에서 수정하지 않는다.
+	// banner, programImages가 null인 경우, 현상태에서 수정하지 않는다.
 	@RequestMapping(value = "/updateProgramApproval.do", method = RequestMethod.POST)
 	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView updateProgramApproval(@ModelAttribute("requestProgram") Program requestProgram,
@@ -241,7 +250,7 @@ public class contributionController {
 			Map<String, String> fileInfo = insertBanner(organization_id, program_id, root, banner);
 			banner_file_name = fileInfo.get("stored_file_name");
 			original_file_name = fileInfo.get("original_name");
-		}else {
+		} else {
 			banner_file_name = requestProgram.getBanner_file_name();
 			original_file_name = requestProgram.getOriginal_file_name();
 		}
@@ -268,10 +277,6 @@ public class contributionController {
 			return new ModelAndView("errors/error");
 		}
 	}
-	
-	
-	
-	
 
 	// 미승인 프로그램의 수정
 	@RequestMapping(value = "/updateProgram.do", method = RequestMethod.POST)
@@ -350,8 +355,8 @@ public class contributionController {
 		fileNameList = service.getProgramFileName(program_id, organization_id);
 		return json.toJson(fileNameList);
 	}
-	
-	//댓글등록폼
+
+	// 댓글등록폼
 	@RequestMapping(value = "/registerComment.do")
 	public ModelAndView registerCommentForm(String organization_id, int program_id, HttpSession session) {
 		ModelAndView mav = new ModelAndView("contributionProgram/registerComment");
@@ -366,7 +371,7 @@ public class contributionController {
 		return mav;
 	}
 
-	@RequestMapping(value="/insertComment.do",  method = RequestMethod.POST)
+	@RequestMapping(value = "/insertComment.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void registerCommentProc(String organization_id, int program_id, String content, HttpSession session) {
 		Comment comment = new Comment();
@@ -376,16 +381,15 @@ public class contributionController {
 		String idx = String.valueOf(session.getAttribute("user_idx"));
 		comment.setRegister_date(new Date());
 		comment.setUser_idx((Integer.parseInt(idx)));
-		//System.out.println("comment정보 : "+comment);
+		// System.out.println("comment정보 : "+comment);
 		service.insertComment(comment);
 	}
-	
-	
-	
-	//이미 유저가 신고한 댓글인지 count확인
-	@RequestMapping(value="/checkComment.do",  method = RequestMethod.POST)
+
+	// 이미 유저가 신고한 댓글인지 count확인
+	@RequestMapping(value = "/checkComment.do", method = RequestMethod.POST)
 	@ResponseBody
-	public int checkReportedCount(String organization_id, int program_id, int user_idx, Timestamp comment_id, HttpSession session) {
+	public int checkReportedCount(String organization_id, int program_id, int user_idx, Timestamp comment_id,
+			HttpSession session) {
 		ReportComment comment = new ReportComment();
 		comment.setOrganization_id(organization_id);
 		comment.setProgram_id(program_id);
@@ -397,14 +401,14 @@ public class contributionController {
 		System.out.println("신고된 수 : " + count);
 		return count;
 	}
-	
-	
-	//아직 신고되지 않은 댓글 -> insert후 notify_flg = 1
-	//이미 신고된 기록이 있는 댓글 -> 1~3사이의 count ->insert만
-	//					  -> 이미 등록되어 있는 신고수의 count->4면, insert후에 notify_flg =1 AND block=1
-	@RequestMapping(value="/insertReportComment.do",  method = RequestMethod.POST)
+
+	// 아직 신고되지 않은 댓글 -> insert후 notify_flg = 1
+	// 이미 신고된 기록이 있는 댓글 -> 1~3사이의 count ->insert만
+	// -> 이미 등록되어 있는 신고수의 count->4면, insert후에 notify_flg =1 AND block=1
+	@RequestMapping(value = "/insertReportComment.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void registerReportCommentProc(String organization_id, int program_id, int user_idx, Timestamp comment_id, HttpSession session) {
+	public void registerReportCommentProc(String organization_id, int program_id, int user_idx, Timestamp comment_id,
+			HttpSession session) {
 		ReportComment comment = new ReportComment();
 		comment.setOrganization_id(organization_id);
 		comment.setProgram_id(program_id);
@@ -412,10 +416,10 @@ public class contributionController {
 		String idx = String.valueOf(session.getAttribute("user_idx"));
 		comment.setReporter_idx(Integer.parseInt(idx));
 		comment.setComment_id(comment_id);
-		System.out.println("reportComment정보 : "+comment);
+		System.out.println("reportComment정보 : " + comment);
 		int reportCount = selectReportCommentCount(comment);
-		if(reportCount == 0 || reportCount == 4) {
-			//insert후에 notify_flg를 바꿔줘야하는 조건 ->tempComment로 파라미터만들어줌.
+		if (reportCount == 0 || reportCount == 4) {
+			// insert후에 notify_flg를 바꿔줘야하는 조건 ->tempComment로 파라미터만들어줌.
 			service.insertReportComment(comment);
 			Comment tempComment = new Comment();
 			tempComment.setOrganization_id(organization_id);
@@ -423,31 +427,30 @@ public class contributionController {
 			tempComment.setUser_idx(user_idx);
 			tempComment.setComment_id(comment_id);
 			tempComment.setReport_notify_flg(1);
-			if(reportCount == 0) {
-				//첫신고 -> notify_flg = 1
+			if (reportCount == 0) {
+				// 첫신고 -> notify_flg = 1
 				updateAlertComment(tempComment);
-			}else {
-				//신고수=5 ->notify_flg = 1 && block_flg = 1;
+			} else {
+				// 신고수=5 ->notify_flg = 1 && block_flg = 1;
 				service.updateBlockComment(tempComment);
 			}
-		}else if(reportCount >= 1 && reportCount <= 3) {
-			//신고만
+		} else if (reportCount >= 1 && reportCount <= 3) {
+			// 신고만
 			service.insertReportComment(comment);
 		}
-		
+
 	}
-	
-	//댓글신고에 따른 notify_flg변경
+
+	// 댓글신고에 따른 notify_flg변경
 	public int updateAlertComment(Comment comment) {
 		return service.updateAlertComment(comment);
 	}
-	
-	//댓글신고전의 댓글의 신고횟수 습득
+
+	// 댓글신고전의 댓글의 신고횟수 습득
 	public int selectReportCommentCount(ReportComment reportComment) {
 		return service.selectReportCommentCount(reportComment);
 	}
 
-	
 	/*
 	 * @RequestMapping(value = "/deleteImage.do", method = RequestMethod.POST)
 	 * 
@@ -457,21 +460,87 @@ public class contributionController {
 	 * System.out.println("delete image"); }else {
 	 * System.out.println("image delete error"); } }
 	 */
-	
+
 	@RequestMapping(value = "/notifyCheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int notifyCheck(HttpSession session) {
 		int cnt = 0;
-		if(session.getAttribute("user_idx") != null) {
+		if (session.getAttribute("user_idx") != null) {
 			String idx = String.valueOf(session.getAttribute("user_idx"));
 			int user_idx = Integer.parseInt(idx);
 			cnt = service.notifyCheck(user_idx);
-			if(cnt > 0) {
+			if (cnt > 0) {
 				service.updateNotifyFlg(user_idx);
 			}
 		}
-		return cnt; 
-		
+		return cnt;
+
 	}
+
+	/*
+	 * public Model getBoard(Model model, String nanmmbyId,HttpSession session) {
+	 * 
+	 * 
+	 * //로그인하지않으면 즐겨찾기 숨기고 로그인을했으면 즐겨찾기 보여주기 if(session.getAttribute("user_idx") !=
+	 * null) {
+	 * 
+	 * int x = 1; int idx = (Integer)session.getAttribute("user_idx");
+	 * 
+	 * int chk = dao.DetailBookmarkChk(idx, nanmmbyId);
+	 * 
+	 * model.addAttribute("chk", chk);
+	 * 
+	 * model.addAttribute("R2",x); }
+	 * 
+	 * 
+	 * 
+	 * ResponseCount responsecount = resTemplate.getForObject(nanmmbyNmurl +
+	 * serviceKey + progrmRegistNo + nanmmbyId, ResponseCount.class);
+	 * 
+	 * int count = responsecount.getResponse().getBody().getTotalCount(); int i;
+	 * //검색결과가 없으면 400이 뜨는오류때문에 1개의 검색결과와 0개의 검색결과를 나눔(검새결과가 무조건 1개 아니면 0개이다.)
+	 * //검색결과가 1인경우 공공데이터에서 받아온 값 jsp로 넘겨주기 if (count == 1) {
+	 * 
+	 * ResponseOne list = resTemplate.getForObject(nanmmbyNmurl + serviceKey +
+	 * progrmRegistNo + nanmmbyId, ResponseOne.class);
+	 * 
+	 * i = 1;
+	 * 
+	 * model.addAttribute("rep_list", list); model.addAttribute("R", i);
+	 * 
+	 * //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기
+	 * if(!list.getResponse().getBody().getItems().getItem().getFondDe().isEmpty())
+	 * { String str = list.getResponse().getBody().getItems().getItem().getFondDe();
+	 * StringBuffer sb=new StringBuffer(str); sb.insert(4, "년 "); sb.insert(8,
+	 * "월 "); sb.insert(12,"일"); model.addAttribute("date",sb); }
+	 * 
+	 * 
+	 * } else { //검색결과가 없는 애들은 DB에저장한 기부단체상세값 jsp로 넘겨주기
+	 * 
+	 * GroupUserCommand list =dosdao.Detail(nanmmbyId);
+	 * System.out.println(list.getOrganization_id());
+	 * if(list.getOrganization_id()!=null) { i = 0; model.addAttribute("R", i);
+	 * model.addAttribute("rep_list", list);
+	 * 
+	 * }else { i=2; model.addAttribute("R", i); }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * //공공데이터받아온 String타입의 설립일을 중간중간에 년월일 추가시키기 if(list.getFondDe() != null) {
+	 * String str = list.getFondDe(); StringBuffer sb=new StringBuffer(str);
+	 * sb.insert(4, "년 "); sb.insert(8, "월 "); sb.insert(12,"일");
+	 * model.addAttribute("date",sb); }
+	 * 
+	 * 
+	 * } //해당 list가 있으면 해당단체에 모집프로그램이있다는뜻이고 list가 비어있다면 해당단체에 모집프로그램이없다는뜻
+	 * List<Program> list = dosdao.DetailProgram(nanmmbyId); if(list.size()!=0) {
+	 * i=1; model.addAttribute("program", list); model.addAttribute("R1", i); }else
+	 * { i=0; model.addAttribute("R1", i); }
+	 * 
+	 * return "about";
+	 * 
+	 * }
+	 */
 
 }
