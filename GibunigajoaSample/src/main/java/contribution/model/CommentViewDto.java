@@ -14,8 +14,17 @@ public class CommentViewDto {
 	int block_flg;
 	String nickname;
 	Date register_date;
+	int report_notify_flg;
 	
 	
+	
+	
+	public int getReport_notify_flg() {
+		return report_notify_flg;
+	}
+	public void setReport_notify_flg(int report_notify_flg) {
+		this.report_notify_flg = report_notify_flg;
+	}
 	public Date getRegister_date() {
 		return register_date;
 	}

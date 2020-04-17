@@ -13,6 +13,7 @@ public class CommentDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("comment.getAllComment", map);
 	}
 	
+	//timestamp로 사용->사용안하는 메서드
 	//댓글등록시 필요한 comment_id세팅
 	public int getCommentId(Map<String, Object> map) {
 		return getSqlSession().selectOne("comment.selectCommentId");
@@ -28,7 +29,7 @@ public class CommentDao extends SqlSessionDaoSupport{
 		return getSqlSession().update("comment.alertComment", comment);
 	}
 	
-	//신고 5회로 완전 block처리 & 
+	//신고 5회로 완전 block처리 & notify_flg = 1
 	public int updateBlockComment(Comment comment) {
 		return getSqlSession().update("comment.blockComment", comment);
 	}
@@ -38,8 +39,15 @@ public class CommentDao extends SqlSessionDaoSupport{
 		return getSqlSession().insert("comment.insertReportComment", reportComment);
 	}
 	
+	//insert전에 커멘트의 신고횟수를 습득
+	public int selectReportCommentCount(ReportComment reportComment) {
+		return getSqlSession().selectOne("comment.selectReportCommentCount",reportComment); 
+	}
 	
-	
+	//이미 신고한 댓글인지 count로 습득
+	public int checkReportedComment(ReportComment reportComment) {
+		return getSqlSession().selectOne("comment.checkReportedComment", reportComment);
+	}
 	
 	
 	

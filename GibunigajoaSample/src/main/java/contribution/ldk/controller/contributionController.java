@@ -376,10 +376,32 @@ public class contributionController {
 		String idx = String.valueOf(session.getAttribute("user_idx"));
 		comment.setRegister_date(new Date());
 		comment.setUser_idx((Integer.parseInt(idx)));
-		System.out.println("comment정보 : "+comment);
+		//System.out.println("comment정보 : "+comment);
 		service.insertComment(comment);
 	}
 	
+	
+	
+	//이미 유저가 신고한 댓글인지 count확인
+	@RequestMapping(value="/checkComment.do",  method = RequestMethod.POST)
+	@ResponseBody
+	public int checkReportedCount(String organization_id, int program_id, int user_idx, Timestamp comment_id, HttpSession session) {
+		ReportComment comment = new ReportComment();
+		comment.setOrganization_id(organization_id);
+		comment.setProgram_id(program_id);
+		comment.setUser_idx(user_idx);
+		String idx = String.valueOf(session.getAttribute("user_idx"));
+		comment.setReporter_idx(Integer.parseInt(idx));
+		comment.setComment_id(comment_id);
+		int count = service.checkReportedComment(comment);
+		System.out.println("신고된 수 : " + count);
+		return count;
+	}
+	
+	
+	//아직 신고되지 않은 댓글 -> insert후 notify_flg = 1
+	//이미 신고된 기록이 있는 댓글 -> 1~3사이의 count ->insert만
+	//					  -> 이미 등록되어 있는 신고수의 count->4면, insert후에 notify_flg =1 AND block=1
 	@RequestMapping(value="/insertReportComment.do",  method = RequestMethod.POST)
 	@ResponseBody
 	public void registerReportCommentProc(String organization_id, int program_id, int user_idx, Timestamp comment_id, HttpSession session) {
@@ -391,7 +413,38 @@ public class contributionController {
 		comment.setReporter_idx(Integer.parseInt(idx));
 		comment.setComment_id(comment_id);
 		System.out.println("reportComment정보 : "+comment);
-		service.insertReportComment(comment);
+		int reportCount = selectReportCommentCount(comment);
+		if(reportCount == 0 || reportCount == 4) {
+			//insert후에 notify_flg를 바꿔줘야하는 조건 ->tempComment로 파라미터만들어줌.
+			service.insertReportComment(comment);
+			Comment tempComment = new Comment();
+			tempComment.setOrganization_id(organization_id);
+			tempComment.setProgram_id(program_id);
+			tempComment.setUser_idx(user_idx);
+			tempComment.setComment_id(comment_id);
+			tempComment.setReport_notify_flg(1);
+			if(reportCount == 0) {
+				//첫신고 -> notify_flg = 1
+				updateAlertComment(tempComment);
+			}else {
+				//신고수=5 ->notify_flg = 1 && block_flg = 1;
+				service.updateBlockComment(tempComment);
+			}
+		}else if(reportCount >= 1 && reportCount <= 3) {
+			//신고만
+			service.insertReportComment(comment);
+		}
+		
+	}
+	
+	//댓글신고에 따른 notify_flg변경
+	public int updateAlertComment(Comment comment) {
+		return service.updateAlertComment(comment);
+	}
+	
+	//댓글신고전의 댓글의 신고횟수 습득
+	public int selectReportCommentCount(ReportComment reportComment) {
+		return service.selectReportCommentCount(reportComment);
 	}
 
 	

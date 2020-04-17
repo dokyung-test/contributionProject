@@ -25,11 +25,11 @@
 		paymodal.style.display = "none";
 	}
 
-	function report(user_idx, comment_id){
+	function report(organization_id, program_id, user_idx, comment_id){
 		var result = confirm("이 댓글을 신고하시겠습니까?");
 		if(result){
-			var organization_id = document.getElementById("organization_id").value;
-			var program_id = document.getElementById("program_id").value;
+			/* var organization_id = document.getElementById("organization_id").value;
+			var program_id = document.getElementById("program_id").value; */
 
 			$.ajax({
 				type : "post",
@@ -46,6 +46,34 @@
 		}else{
 			return false;
 		}
+	}
+
+	function reportBlock(){
+		alert("이미 신고한 댓글입니다.");
+	}
+
+	function reportedCheck(user_idx, comment_id){
+		var organization_id = document.getElementById("organization_id").value;
+		var program_id = document.getElementById("program_id").value;
+
+		$.ajax({
+			type : "post",
+			url : "checkComment.do",
+			data : "organization_id="+organization_id+"&program_id="+program_id+"&user_idx="+user_idx+"&comment_id="+comment_id,
+			dataType : "json"
+		}).done(function(args){	
+			//alert("return : " + args);
+			if(args > 0){
+				reportBlock();
+			}else{
+				//alert("신고안됨");
+				report(organization_id, program_id, user_idx, comment_id);
+			}
+		}).fail(function(e){
+			alert(e.responseText);	
+		})
+
+		
 	}
 </script>
 <head>
@@ -258,8 +286,8 @@
 	    				</a>
             	<div class="desc w-100 px-4">
 	              <div class="text w-100 mb-3">
-	              	<span>Building</span>
-	              	<h2><a href="work-single.html">College Health Profession</a></h2>
+	              	<span></span>
+	              	<h2><a href="work-single.html"></a></h2>
 	              </div>
               </div>
             </div>
@@ -296,6 +324,27 @@
               	</c:when>
               	<c:otherwise>
               	 <c:forEach var = "comment" items = "${comments}">
+              	<%--  <c:set var = "idx" value = "<%=session.getAttribute("user_idx")%>"></c:set> --%>
+<%--               	 <c:if test="${comment.reporter_idx eq user_idx}">
+              	 	<div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">신고된 댓글입니다.</p>
+                    <div class="d-flex align-items-center">
+                    	<!-- <div class="user-img" style="background-image: url(images/person_1.jpg)"></div> -->
+                    	<div class="pl-3">
+		                    <p class="name">${comment.nickname}</p>
+		                    <span class="position"><fmt:formatDate value="${comment.register_date}" pattern = "yyyy-MM-dd"/></span>
+		                    <a onclick = "reportBlock();" href = "javascript:void()">
+		                    <img alt="신고" src="${pageContext.request.contextPath}/resources/images/alert_1.png" style = "width : 30px; float: right;" >
+		                  	</a>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              	 </c:if> --%>
               <!-- 댓글한세트 -->
               <div class="item">
                 <div class="testimony-wrap py-4">
@@ -307,7 +356,7 @@
                     	<div class="pl-3">
 		                    <p class="name">${comment.nickname}</p>
 		                    <span class="position"><fmt:formatDate value="${comment.register_date}" pattern = "yyyy-MM-dd"/></span>
-		                    <a onclick = "report('${comment.user_idx}','${comment.comment_id}');" href = "javascript:void()">
+		                    <a onclick = "reportedCheck('${comment.user_idx}','${comment.comment_id}');" href = "javascript:void()">
 		                    <img alt="신고" src="${pageContext.request.contextPath}/resources/images/alert_1.png" style = "width : 30px; float: right;" >
 		                  	</a>
 		                  </div>
@@ -315,6 +364,7 @@
                   </div>
                 </div>
               </div>
+              <!-- 댓글세트 end -->
               </c:forEach>
               	</c:otherwise>
               </c:choose>

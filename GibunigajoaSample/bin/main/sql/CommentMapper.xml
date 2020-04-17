@@ -33,10 +33,19 @@
 		select * from view_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND block_flg = 0
 	</select>
 	
+ 	<!-- 모집프로그램의 block되지 않은 댓글만 출력 = view_comments이용 -->
+	<!--<select id="getAllComment" resultType="contribution.model.CommentViewDto" parameterType="map">
+		select * from view_comments_report where organization_id = #{organization_id} AND program_id = #{program_id}
+	</select>  -->
+	
 	<!-- 댓글의 신고수 count -> 5개면 blockComment호출해서 완전 block처리-->
 	<select id="selectReportCommentCount" resultType="int" parameterType="contribution.model.Comment">
 		select count(*) from report_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id}
 	</select>
 	
+	<!-- 신고한 댓글인지 count확인-->
+	<select id="checkReportedComment" resultType = "int" parameterType="contribution.model.ReportComment">
+		select count(*) from report_comments where organization_id = #{organization_id} AND program_id = #{program_id} AND user_idx = #{user_idx} AND comment_id = #{comment_id} and reporter_idx = #{reporter_idx}
+	</select>
 	
 </mapper>
