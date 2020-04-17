@@ -262,7 +262,45 @@
 		<p>${requestProgram.usage_plan }</p>
 	  </div>
 	  <div class="tab-pane container p-0 fade" id="organization">
-	  	<p>기관소개</p>
+	  	<div class="tabulation-2 mt-4">
+			<h3>기관소개</h3>
+				<div class="tab-content bg-light rounded mt-2">
+					<c:choose>
+						<c:when test="${organizationCnt > 0}">
+		
+					<div class="tab-pane container p-0 active" >
+						<p>●대표자명:${organizationInfo.response.body.items.item.rprsntvNm}</p>
+					</div>
+					<div class="tab-pane container p-0 active">
+						<p>●설립일:${organizationInfo.response.body.items.item.fondDe}</p>
+					</div> 
+					<div class="tab-pane container p-0 active" >
+						<p>●사업자번호:${organizationInfo.response.body.items.item.bizrno}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●전화번호:${organizationInfo.response.body.items.item.dmstcTelno}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●팩스번호:${organizationInfo.response.body.items.item.fxnum}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●주소:${organizationInfo.response.body.items.item.adres}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>
+							●홈페이지:<a
+								href="${organizationInfo.response.body.items.item.hmpgAdres}">${organizationInfo.response.body.items.item.hmpgAdres}</a>
+						</p>
+					</div>
+					</c:when>
+					<c:when test="${organizationCnt == 0 }">
+						준비중입니다.
+					</c:when>
+					</c:choose>
+				</div>
+								</div>
+	  	
+		
 	  </div>
 	  </div>
 	  </div>
