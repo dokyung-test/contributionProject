@@ -226,15 +226,15 @@
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
+						<table class="table table-bordered" id="dataTable" width="100%" style="table-layout: fixed;"
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th style="font-size: 20px">답변상태</th>
-									<th style="font-size: 20px">제목</th>
+									<th style="font-size: 20px; width:100px;">답변상태</th>
+									<th style="font-size: 20px; width:250px;">제목</th>
 									<th style="font-size: 20px">내용</th>
 									<th style="font-size: 20px">답변내용</th>
-									<th style="font-size: 20px">작성일</th>
+									<th style="font-size: 20px; width:150px; ">작성일</th>
 
 								</tr>
 							</thead>
@@ -252,9 +252,9 @@
 										<c:if test="${dto.status_id eq 3}">
 											<td style="font-size: 15px">답변완료</td>
 										</c:if>
-										<td style="font-size: 15px"><p id="subject"
+										<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><p id="subject"
 												title="${dto.board_idx}">${dto.subject}</td>
-										<td style="font-size: 15px"><p id="content"
+										<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"><p id="content"
 												title="${dto.board_idx}">${dto.content}</td>
 										<c:if test="${dto.status_id eq 1}">
 											<td style="font-size: 15px"><p id="content"
@@ -266,7 +266,7 @@
 										</c:if>
 										<c:if test="${dto.status_id eq 3}">
 											<p id="content" title="${dto.board_idx}">
-											<td style="font-size: 15px">${dto.answer}</td>
+											<td style="font-size: 15px; overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${dto.answer}</td>
 										</c:if>
 										<td style="font-size: 15px"><p id="content"
 												title="${dto.board_idx}">
