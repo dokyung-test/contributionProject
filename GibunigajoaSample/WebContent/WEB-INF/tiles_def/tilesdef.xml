@@ -65,11 +65,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/contributionProgram/programList.jsp" />
 	</definition>
-<!-- 	<definition name="registerComment" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/view/contributionProgram/registerComment.jsp" />
-	</definition> -->
-	
+	<!-- <definition name="registerComment" extends="base_layout"> <put-attribute 
+		name="body" value="/WEB-INF/view/contributionProgram/registerComment.jsp" 
+		/> </definition> -->
+
 
 	<!-- NSB -->
 	<definition name="mypage" extends="base_layout">
@@ -91,6 +90,10 @@
 	<definition name="noticeContent" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/noticeContent.jsp" />
+	</definition>
+	<definition name="qANDaContent" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/mypage/qAndaContent.jsp" />
 	</definition>
 
 

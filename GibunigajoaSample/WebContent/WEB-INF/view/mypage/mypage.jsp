@@ -127,12 +127,12 @@
                                
                                 if(note == null){
                                 	$("#note").append(
-    										"<br class='a'><textarea id='c' style='width:650px;height:200px; resize: none;' readonly name='note' class='a'>"
+    										"<br class='a'><textarea id='c' style='width:650px; resize: none;'cols='4' readonly name='note' class='a'>"
     										
     										+ "</textarea>");
                                     }else{
 								$("#note").append(
-										"<br class='a'><textarea id='c' style='width:650px;height:200px; resize: none;' readonly name='note' class='a'>"
+										"<br class='a'><textarea id='c' style='width:650px; resize: none;'cols='4' readonly name='note' class='a'>"
 										+ note
 										+ "</textarea>");}
 							});
@@ -170,18 +170,6 @@
 														+ month1
 														+ "-"
 														+ date2;
-
-                                                var month1 = (date1.getMonth() + 1) < 10 ? (date1.getMonth() + 1) : '0' + (date1.getMonth() + 1);											
-                                                var month1 = (date1.getMonth() + 1) < 10 ? '0' +(date1.getMonth() + 1) : (date1.getMonth() + 1);
-                                                var date2 =  date1.getDate() <10 ? '0' +date1.getDate() : date1.getDate();												
-
- 												var text_date = date1
-														.getFullYear()
-														+ "-"
-														+ month1
-														+ "-"
-														+ date1.getDate() + "일"; 
-														+ date2; 
 										
 												$("#organization_name2")
 														.append(
@@ -197,7 +185,7 @@
 																"<br class='a'><input type='text' style='width:650px; height:50px;'  name='contribution' class='a' value='"+contribution+"'>");
 												$("#note2")
 														.append(
-																"<br class='a'><textarea cols='50'  rows='3' name='note' class='a' style='width:650px;height:200px; resize: none;'>"
+																"<br class='a'><textarea cols='4' name='note' class='a' style='width:650px; resize: none;'>"
 																		+ note
 																		+ "</textarea>");
 												$("#hidden")

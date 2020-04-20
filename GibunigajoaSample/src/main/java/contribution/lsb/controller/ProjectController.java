@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+
 import contribution.model.ContributionDto;
 import contribution.model.NoticeDto;
 import contribution.model.QandADto;
@@ -59,7 +60,6 @@ public class ProjectController {
 		ModelAndView mav = new ModelAndView();
 
 		int idx = (int) session.getAttribute("user_idx");
-		System.out.println(idx);
 		List<ContributionDto> list = service.ContributionList(idx);
         
 		mav.addObject("list", list);
@@ -95,7 +95,6 @@ public class ProjectController {
 		Gson json = new Gson();
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
-		System.out.println(json.toJson(list));
 		out.print(json.toJson(list));
 	}
 
@@ -107,13 +106,14 @@ public class ProjectController {
 	}
 
 	// Q&A 상세 글 보기
-	@RequestMapping(value = "/QandAContent.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public void QandAContent(HttpServletResponse resp, int num) throws Exception {
-		QandADto list = service.QandAContent(num);
-		Gson json = new Gson();
-		resp.setContentType("text/html;charset=utf-8");
-		PrintWriter out = resp.getWriter();
-		out.print(json.toJson(list));
+	@RequestMapping(value = "/QandAContent.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public ModelAndView QandAContent(int board_idx) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		QandADto list = service.QandAContent(board_idx);		
+		mav.addObject("list",list);
+		mav.setViewName("mypage/qAndaContent");	
+		return mav;
+
 	}
 
 	// 기부내역 삭제

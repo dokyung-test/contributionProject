@@ -92,58 +92,12 @@
 		$("#testBtn").on('click',function() {
 			$("#modal").show();
 		});
-		$("p").click(function(){
-
-			var param = "num="+$(this).attr("title");
-			
-			 var url="QandAContent.do";
-		        $.ajax({
-		           type:"post"
-		           ,url:url
-		           ,data:param
-		           ,dataType:"json"})
-		           .done(function(args){
-
-		               var status_id = args.status_id;
-		               var subject = args.subject;
-		               var register_date = args.register_date;		               
-		               var content = args.content;
-		               var answer = args.answer;
-		               
-					   var date1 = new Date(register_date);
-					   var text_date = date1.getFullYear()+"년  "+ (date1.getMonth()+1) +"월 " + date1.getDate() + "일";	
-
-		               if(status_id == 1){
-		            	   $("#status_id").append("<div class='a'>"+"접수 중"+"</div>");
-				               }
-		               if(status_id == 2){
-		            	   $("#status_id").append("<div class='a'>"+"처리 중"+"</div>");
-				               }
-		               if(status_id == 3){
-		            	   $("#status_id").append("<div class='a'>"+"답변완료"+"</div>");
-				               }	
-					  
-		               $("#subject").append("<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='subject' class='a' value='"+subject+"'>");
-		               $("#register_date").append("<br class='a'><input type='text'  style='width:800px; height:50px;' readonly name='text_date' class='a' value='"+text_date+"'>");
-		               $("#QandAcontent").append("<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='content' class='a'>"
-						+ content
-						+ "</textarea>");
-		               if(status_id == 1){
-		            	   $("#answer").append("<div class='a'>"+"접수 중입니다."+"</div>");
-				               }
-		               if(status_id == 2){
-		            	   $("#answer").append("<div class='a'>"+"처리 중입니다."+"</div>");
-				               }
-		               if(status_id == 3){
-		            	   $("#answer").append("<br class='a'><textarea id='c' style='width:800px;height:200px; resize: none;' readonly name='answer' class='a'>"
-									+ answer
-									+ "</textarea>");
-				               }	               
-		               });
-		        $("#contentmodal").show();
-			 return false;	
-			});
+		
 	});
+
+	function qAndaContent(a){
+        location.href="QandAContent.do?board_idx="+a;
+		}
 	  
 	function closeModal() {
 		$('.searchModal').hide();
@@ -250,7 +204,7 @@
 										</c:if>
 										<td
 											style="font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a
-											href="#" onclick="noticeContent(${dto.board_idx})">${dto.subject}</a></td>
+											href="#" onclick="qAndaContent(${dto.board_idx})">${dto.subject}</a></td>
 										<td style="font-size: 15px"><fmt:formatDate
 												value="${dto.register_date}" pattern="yyyy년 MM월 dd일" /></td>
 									</tr>
@@ -312,68 +266,6 @@
 	</div>
 	<!-- Q&A 추가 종료 -->
 
-	<!-- Q&A 상세 내역-->
-	<div id="contentmodal" class="searchModal">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<!--  <div class="col-md-7"> -->
-						<div class="contact-wrap w-100 p-md-5 p-4">
-							<h3 class="mb-4" style="font-size: 40px">Q&A</h3>
-							<div id="form-message-warning" class="mb-4"></div>
-							<hr width="1000px" color="black" noshade />
-
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="status_id">상태
-										</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px"
-											id="register_date">작성일</label>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="subject">제목</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="QandAcontent">문의내용</label>
-
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="label" style="font-size: 20px" id="answer">답변내용</label>
-
-									</div>
-								</div>
-
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="button" onclick="closeModal()"
-											style="float: right; height: 50px; width: 150px; font-size: 20px;"
-											value="취소" class="btn btn-primary" />
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 기부 내역 상세내역 종료 -->
 	<div id="ftco-loader" class="show fullscreen"></div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
