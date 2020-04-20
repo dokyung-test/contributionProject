@@ -12,9 +12,12 @@ function signupIdCheck(){
 		.done(function(args){
 			if(args.num == 0){
 				alert("사용가능한 아이디입니다.");
+				$("#id_check_type").val(1);
 			}else{
 				alert("사용불가능한 아이디입니다.");
-				$("#user_id").val('');//기존내용 제거 
+				$("#user_id").val('');//기존내용 제거
+
+				$("#id_check_type").val(0);
 			}
 			
 		})
@@ -41,6 +44,24 @@ function signupPasswordCheck(){
 	}
 }
 
-//
+//빈값 확인
+function nullCheck(){
+	alert("come");
+	if($("#user_id").val() == ""){
+		alert("id를 입력해주세요");
+		return false;
+	}else if($("#password").val() == ""){
+		return false;
+	}else if($("#name").val() == ""){
+		return false;
+	}else if($("#nickname").val() == ""){
+		return false;
+	}else if($("#id_check_type").val() == 0){
+		alert("id 중복체크를 해주세요");
+		return false;
+	}else {
+		return true;
+	}
+}
 
 

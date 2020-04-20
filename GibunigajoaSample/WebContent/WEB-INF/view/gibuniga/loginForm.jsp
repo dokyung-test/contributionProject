@@ -33,7 +33,7 @@
 						<div class="wrapper">
 							<div class="row no-gutters mb-5">
 								<div class="col-md-7">
-									<div class="contact-wrap w-100 p-md-5 p-4">
+									<div class="contact-wrap w-100 p-md-5 p-4" style="margin-left: 35%;">
 										<h3 class="mb-4">LOGIN</h3>
 										<div id="form-message-warning" class="mb-4"></div> 
 					      		<div id="form-message-success" class="mb-4">
