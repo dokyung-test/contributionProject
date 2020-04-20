@@ -51,7 +51,7 @@
 <body>
 
 <!-- <form action="signUp.do" method="post" onsubmit="return nullCheck();"> -->
-<form id="form">
+<form action="signUp.do" method="post" id="form">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
