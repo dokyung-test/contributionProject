@@ -91,10 +91,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/noticeContent.jsp" />
 	</definition>
-	<definition name="qANDaContent" extends="base_layout">
+	<definition name="qAndaContent" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/qAndaContent.jsp" />
 	</definition>
+
 
 
 	<!-- KMS -->

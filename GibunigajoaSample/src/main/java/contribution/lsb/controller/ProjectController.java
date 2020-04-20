@@ -3,9 +3,11 @@ package contribution.lsb.controller;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,6 +45,7 @@ public class ProjectController {
 	// 기부내역 입력
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public String insertdonation(ContributionDto dto) {
+		dto.setDate(addHour(dto.getDate()));
 		service.insertContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -90,7 +93,7 @@ public class ProjectController {
 
 	// 기부 내역 수정폼 가기
 	@RequestMapping(value = "/ContributionUpdate.do", method = RequestMethod.POST)
-	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {
+	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {		
 		ContributionDto list = service.ContributionContent(num2);
 		Gson json = new Gson();
 		resp.setContentType("text/html;charset=utf-8");
@@ -101,6 +104,7 @@ public class ProjectController {
 	// 기부내역 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatedonation(ContributionDto dto) {
+		dto.setDate(addHour(dto.getDate()));
 		service.updateContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -111,7 +115,7 @@ public class ProjectController {
 		ModelAndView mav = new ModelAndView();
 		QandADto list = service.QandAContent(board_idx);		
 		mav.addObject("list",list);
-		mav.setViewName("mypage/qAndaContent");	
+		mav.setViewName("qAndaContent");	
 		return mav;
 
 	}
@@ -197,9 +201,19 @@ public class ProjectController {
 
 
 	@InitBinder
-	protected void initBinnder(WebDataBinder binder) {
+	protected void initBinder(WebDataBinder binder) {
+		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setTimeZone(tz);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+	
+	//날짜9시간 추가
+	public Date addHour(Date oldDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(oldDate);
+		cal.add(Calendar.HOUR, 9);
+		return new Date(cal.getTimeInMillis());
 	}
 
 }
