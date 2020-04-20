@@ -15,10 +15,17 @@ public class CommentViewDto {
 	String nickname;
 	Date register_date;
 	int report_notify_flg;
+	int grade;
 	
 	
 	
 	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	public int getReport_notify_flg() {
 		return report_notify_flg;
 	}

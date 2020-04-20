@@ -209,8 +209,20 @@
         </div>
       </div>
  </section>
- 
- 	<!--마감임박 모집프로그램 -->
+ <!-- 검색 -->
+ <section>
+	<form action="#" class="searchform order-lg-last">
+          
+        </form>
+        
+        <div class="form-group d-flex">
+      <div id = "row" style = "width : 80%; text-align : center;"> 
+        프로그램명 :     <input type="text" class="form-control pl-3" placeholder="Search" style = "width : 50%;">
+            <button type="submit" placeholder="" class="form-control search"  style = "width : 45px;"><span class="fa fa-search"></span></button>
+          </div>
+          </div>
+ </section>
+ 	<!--모집프로그램 -->
     <section class="ftco-section">
       <div class="container">
 
