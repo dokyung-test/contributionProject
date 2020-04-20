@@ -88,6 +88,13 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
+<script type="text/javascript">
+  function returnQandA(){
+    location.href="qANDa.do";
+	  }
+
+</script>
+
 </head>
 
 <body id="page-top">
@@ -117,43 +124,45 @@
 							<ul style="width: 100%; position: relative; top: 10px;">
 								<c:if test="${list.status_id==1}">
 									<li
-										style="display: inline; color: black; position: relative; right: 30px;">접수중</li>
+										style="display: inline; color: black; position: relative; right: 30px; font-size: 25px;" >접수중</li>
 								</c:if>
 								<c:if test="${list.status_id==2}">
 									<li
-										style="display: inline; color: black; position: relative; right: 30px;">처리중</li>
+										style="display: inline; color: black; position: relative; right: 30px; font-size: 25px;">처리중</li>
 								</c:if>
 								<c:if test="${list.status_id==3}">
 									<li
-										style="display: inline; color: black; position: relative; right: 30px;">처리완료</li>
+										style="display: inline; color: black; position: relative; right: 30px; font-size: 25px;">처리완료</li>
 								</c:if>
 								<li
-									style="display: inline; color: black; position: relative; left: 650px;">작성일
+									style="display: inline; color: black; position: relative; left: 500px; font-size: 25px;">작성일
 									: <fmt:formatDate value="${list.register_date}"
 										pattern="yyyy년 MM월 dd일" />
 								</li>
 							</ul>
 							<hr width="1000px" color="black" noshade />
-							<div style="font-size: 20px;">문의내용</div>
+							<div style="font-size: 25px;">문의내용</div>
 							<textarea class="form-control" name=subject id="subject"
-								style="margin: auto; display: inline-block;" rows="20"
+								style="margin: auto; display: inline-block;" rows="10"
 								readonly="readonly">${list.content}</textarea>
 
 							<c:if test="${list.status_id==1}">
-								<div style="font-size: 20px;">
-									답변내용<br> 접수중 입니다..
+								<div style="font-size: 25px;">
+									답변내용<textarea class="form-control" name=answer id="answers"
+										style="margin: auto; display: inline-block;" cols="100"rows="10" readonly="readonly">접수중 입니다..</textarea>
 								</div>
 							</c:if>
 							<c:if test="${list.status_id==2}">
-								<div style="font-size: 20px;">
-									답변내용<br> 처리중 입니다..
+								<div style="font-size: 25px;">
+									답변내용<textarea class="form-control" name=answer id="answers"
+										style="margin: auto; display: inline-block;" cols="100"rows="10" readonly="readonly">처리중 입니다...</textarea>
 								</div>
 							</c:if>
 							<c:if test="${list.status_id==3}">
-								<div style="font-size: 20px;">
+								<div style="font-size: 25px;">
 									답변내용
 									<textarea class="form-control" name=answer id="answers"
-										style="margin: auto; display: inline-block;" rows="20">${list.answer}</textarea>
+										style="margin: auto; display: inline-block;" cols="100"rows="10" readonly="readonly">${list.answer}</textarea>
 								</div>
 							</c:if>
 						</div>

@@ -222,7 +222,21 @@
 
 		$('#contentmodal').hide();
 		$('.a').remove();
-	};
+	}
+
+	function printPage(){
+		 var initBody;
+		 window.onbeforeprint = function(){
+		  initBody = document.body.innerHTML;
+		  document.body.innerHTML =  document.getElementById('print').innerHTML;
+		 };
+		 window.onafterprint = function(){
+		  document.body.innerHTML = initBody;
+		 };
+		 window.print();
+		 return false;
+		};
+
 </script>
 
 <style>
@@ -235,14 +249,14 @@
 	top: 0;
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
-	overflow: auto; 
+	overflow: auto;
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 	padding: 2em;
 }
 
 /* 기부추가 버튼 꾸미기 */
-#testBtn {
+.button {
 	border-top-left-radius: 7px;
 	border-bottom-left-radius: 7px;
 	border-top-right-radius: 7px;
@@ -254,7 +268,7 @@
 	padding: 5px;
 }
 
-#testBtn:hover {
+.button:hover {
 	color: white;
 	background-color: skyblue;
 }
@@ -294,21 +308,25 @@
 					<div class="card-header py-3">
 						<h4 class="m-0 font-weight-bold text-primary">기부내역관리</h4>
 						<a style="position: absolute; right: 20px; top: 10px;">
-							<button id="testBtn" style="font-size: 20px;">기부내역 추가</button>
+
+							<button class="button" id="testBtn" style="font-size: 20px;">기부내역 추가</button>
 						</a>
+						<form>
+							<input  type="button" style="font-size: 20px; position: absolute; right: 200px; top: 10px;" class="button"  value="화면 출력" onclick="window.print()" />
+						</form>
 					</div>
-				
+
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%" style="table-layout: fixed;"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" width="100%"
+								style="table-layout: fixed;" cellspacing="0">
 								<thead>
 									<tr>
-										<th style="font-size: 20px; width:250px;">기관명</th>
-										<th style="font-size: 20px; ">프로그램명</th>
-										<th style="font-size: 20px; width:150px;">기부금액</th>
-										<th style="font-size: 20px; width:150px;">날짜</th>
-										<th style="font-size: 20px; width:150px;"></th>
+										<th style="font-size: 20px; width: 250px;">기관명</th>
+										<th style="font-size: 20px;">프로그램명</th>
+										<th style="font-size: 20px; width: 150px;">기부금액</th>
+										<th style="font-size: 20px; width: 150px;">날짜</th>
+										<th style="font-size: 20px; width: 150px;"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -317,8 +335,9 @@
 										<tr>
 											<td style="font-size: 15px">${list.organization_name}</td>
 											<td style="font-size: 15px"><p id="content"
-													title="${list.contribution_history_idx}"><a href="#">
-													${list.program_name}</a></p></td>
+													title="${list.contribution_history_idx}">
+													<a href="#"> ${list.program_name}</a>
+												</p></td>
 											<td style="font-size: 15px"><fmt:formatNumber
 													value="${list.contribution}" pattern="#,###원" /></td>
 											<td style="font-size: 15px"><fmt:formatDate
@@ -366,30 +385,30 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;">
-													기관명</label> <input type="text" class="form-control"
-													name="organization_name" placeholder="기관명">
+												<label class="label" style="font-size: 25px;"> 기관명</label> <input
+													type="text" class="form-control" name="organization_name"
+													placeholder="기관명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;">
-													프로그램명</label> <input type="text" class="form-control"
-													name="program_name" placeholder="프로그램명">
+												<label class="label" style="font-size: 25px;"> 프로그램명</label>
+												<input type="text" class="form-control" name="program_name"
+													placeholder="프로그램명">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;">
-													기부 금액(숫자만)</label> <input type="text" class="form-control"
+												<label class="label" style="font-size: 25px;"> 기부
+													금액(숫자만)</label> <input type="text" class="form-control"
 													name="contribution" placeholder="기부금액"
 													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;">
-													날짜</label> <input type="Date" class="form-control" name="date"
+												<label class="label" style="font-size: 25px;"> 날짜</label> <input
+													type="Date" class="form-control" name="date"
 													placeholder="날짜">
 											</div>
 										</div>
@@ -397,8 +416,7 @@
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 25px;">
-													 비고</label>
+												<label class="label" style="font-size: 25px;"> 비고</label>
 												<textarea name="note" class="form-control" id="message"
 													cols="30" rows="4" placeholder="메모할 내용을 적으세요."
 													style="resize: none;"></textarea>
