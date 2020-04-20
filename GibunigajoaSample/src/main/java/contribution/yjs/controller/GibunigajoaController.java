@@ -31,6 +31,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import contribution.ldk.controller.contributionController;
 import contribution.model.ContributionDto;
 import contribution.model.ProgramBannerDto;
 import contribution.model.UserCommand;
@@ -42,6 +43,11 @@ public class GibunigajoaController {
 	
 	@Autowired
 	GibunigajoaService gibunigajoaService;
+	
+	@Autowired
+	contributionController contributionCtr;
+	
+
 	/* NaverLoginBO */
     private NaverLoginBO naverLoginBO;
     private String apiResult = null;
@@ -276,6 +282,8 @@ public class GibunigajoaController {
 		 */
 			System.out.println("다 입력");
 		
+			command.setBirthday(contributionCtr.addHour(command.getBirthday()));
+			System.out.println("birthday: "+command.getBirthday());
 			int result= gibunigajoaService.memberInsert(command);
 		  
 			if(result > 0) { singnUpSuccess = "redirect:/loginForm.do"; }
@@ -389,13 +397,18 @@ public class GibunigajoaController {
 
 	}
 
+	public void setContributionCtr(contributionController contributionCtr) {
+		this.contributionCtr = contributionCtr;
+	}
+	
 	public void setGibunigajoaService(GibunigajoaService gibunigajoaService) {
 		this.gibunigajoaService = gibunigajoaService;
 	}
-	 @Autowired
-	    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-	        this.naverLoginBO = naverLoginBO;
-	    }
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
 	
 
 }

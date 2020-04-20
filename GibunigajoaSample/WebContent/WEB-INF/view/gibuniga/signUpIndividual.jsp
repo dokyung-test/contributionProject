@@ -17,11 +17,41 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+    
+    <script type="text/javascript">
+  //빈값 확인
+    function nullCheck(){
+    	//alert("come");
+    	if($("#user_id").val() == ""){
+    		alert("id를 입력해주세요");
+    		//return false;
+    	}else if($("#password").val() == ""){
+    		alert("password를 입력해주세요");
+    		//return false;
+    	}else if($("#name").val() == ""){
+    		alert("name을 입력해주세요");
+    		//return false;
+    	}else if($("#nickname").val() == ""){
+    		alert("닉네임를 입력해주세요");
+    		//return false;
+    	}else if($("#id_check_type").val() == 0){
+    		alert("id 중복체크를 해주세요");
+    		//return false;
+    	}else if($("#passwordCheck").val() == ""){
+    		alert("password 확인체크를 해주세요");
+    	}else {
+    	
+    		//location.href="signUp.do";
+    		$("#form").submit();
+    		//return true;
+    	}
+    }
+    </script>
 </head>
 <body>
 
 <!-- <form action="signUp.do" method="post" onsubmit="return nullCheck();"> -->
-<form>
+<form id="form">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">

@@ -1,29 +1,3 @@
-//빈값 확인
-function nullCheck(){
-	//alert("come");
-	if($("#user_id").val() == ""){
-		alert("id를 입력해주세요");
-		//return false;
-	}else if($("#password").val() == ""){
-		alert("password를 입력해주세요");
-		//return false;
-	}else if($("#name").val() == ""){
-		alert("name을 입력해주세요");
-		//return false;
-	}else if($("#nickname").val() == ""){
-		alert("닉네임를 입력해주세요");
-		//return false;
-	}else if($("#id_check_type").val() == 0){
-		alert("id 중복체크를 해주세요");
-		//return false;
-	}else if($("#passwordCheck").val() == ""){
-		alert("password 확인체크를 해주세요");
-	}else {
-	
-		location.href="signUp.do";
-		//return true;
-	}
-}
 
 
 //아이디 중복체크 
