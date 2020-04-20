@@ -59,8 +59,9 @@ public class ProjectController {
 		ModelAndView mav = new ModelAndView();
 
 		int idx = (int) session.getAttribute("user_idx");
+		System.out.println(idx);
 		List<ContributionDto> list = service.ContributionList(idx);
-
+        
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
