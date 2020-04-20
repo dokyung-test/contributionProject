@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<form action="signUp.do" method="post">
+<form action="signUp.do" method="post" onsubmit="return nullCheck();">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -31,17 +31,16 @@
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">회원가입</h3>
 										<div id="form-message-warning" class="mb-4"></div> 
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
 											<div class="row">
 												<div class="col-md-12" >
-														<label class="label" for="user_id">ID</label>
+														<label class="label" for="user_id">ID(필수)</label>
 													<div class="form-group">
 														<input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" style="width: 70%; display: inline-block;">
 														<input type="button" value="중복체크" class="btn btn-primary" id="idCheckBtn" onclick="signupIdCheck()"/>
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">password</label>
+													<label class="label" for="password">password(필수)</label>
 														<div class="form-group">
 														<input type="password" class="form-control" name="password" id="password" placeholder="password" style="width: 70%; display: inline-block;">
 													</div>
@@ -54,13 +53,13 @@
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="name">Name</label>
+													<label class="label" for="name">Name(필수)</label>
 														<div class="form-group">
 														<input type="text" class="form-control" name="name" id="name" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="name">Nickname</label>
+													<label class="label" for="name">Nickname(필수)</label>
 														<div class="form-group">
 														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
@@ -86,7 +85,7 @@
 													</div>
 												</div>
 											</div>
-										</form>
+										
 									</div> 
 								<!-- </div> -->
 								
@@ -97,6 +96,7 @@
 				</div>
     	</div>
     	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
+    	<input type="hidden" id="id_check_type"value="0">
     </section>
     
     

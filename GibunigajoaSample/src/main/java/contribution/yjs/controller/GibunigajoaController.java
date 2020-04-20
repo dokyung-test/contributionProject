@@ -1,12 +1,15 @@
 package contribution.yjs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -238,15 +241,46 @@ public class GibunigajoaController {
 	
 	//개인 회원가입 Insert service로 가는 다리 
 	@RequestMapping("/signUp.do")
-	public String singnUpSuccess(UserCommand command) {
+	public String singnUpSuccess(UserCommand command){
 		command.setGrade(0);
 		command.setRegister_date(new Date(System.currentTimeMillis()));
 		command.setOrganization_id("");
-		int result= gibunigajoaService.memberInsert(command);	
+		
 		String singnUpSuccess="";
-		if(result > 0) {
-			singnUpSuccess = "redirect:/loginForm.do";
-		}
+		
+		/*
+		 * if(command.getUser_id().equals("")) { System.out.println("id 노 입력");
+		 * singnUpSuccess = "signupCheck.do?num=1";
+		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
+		 * response.getWriter(); out.
+		 * println("<script>alert('ID를 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1'; </script>"
+		 * ); out.flush();
+		 * 
+		 * }else if(command.getPassword().equals("")) {
+		 * System.out.println("password 노 입력");
+		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
+		 * response.getWriter(); out.
+		 * println("<script>alert('password를 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
+		 * ); out.flush(); }else if(command.getName().equals("")) {
+		 * System.out.println("name 노 입력"); singnUpSuccess = "signupCheck.do?num=1";
+		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
+		 * response.getWriter(); out.
+		 * println("<script>alert('이름을 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
+		 * ); out.flush(); }else if(command.getNickname().equals("")) {
+		 * System.out.println("nickname 노 입력"); singnUpSuccess = "signupCheck.do?num=1";
+		 * //location.href='signupCheck.do?num=1';
+		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
+		 * response.getWriter(); out.
+		 * println("<script>alert('닉네임을 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
+		 * ); out.flush(); }else {}
+		 */
+			System.out.println("다 입력");
+			int result= gibunigajoaService.memberInsert(command);	
+			
+			if(result > 0) {
+				singnUpSuccess = "redirect:/loginForm.do";
+			}
+		
 		
 		return singnUpSuccess;
 	}
