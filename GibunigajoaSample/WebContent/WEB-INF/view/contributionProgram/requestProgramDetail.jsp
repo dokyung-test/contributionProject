@@ -234,16 +234,16 @@
 
 
 <!-- 모집내용/기관소개섹션 -->
-	<section>
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
 	<div class="tabulation-2 mt-4">
 	<!-- 탭버튼영역 -->
-	<ul class="nav nav-pills nav-fill d-md-flex d-block">
+	<ul class="nav nav-pills nav-fill d-md-flex d-block" style = "width: 1100px; margin: auto; padding-bottom: 15px;">
 	<li class="nav-item px-lg-2 mb-md-0 mb-2">
 	
-	<a data-toggle = "tab" class = "nav-link2 active py-2" href = "#programContent">모집내용</a>
+	<a data-toggle = "tab" class = "nav-link2 active py-2" href = "#programContent" style="padding: 230px;">모집내용</a>
 	</li>
 	<li class="nav-item px-lg-2 mb-md-0 mb-2">
-	<a data-toggle = "tab" href = "#organization" class="nav-link2 py-2">기관소개</a>
+	<a data-toggle = "tab" href = "#organization" class="nav-link2 py-2"style="padding: 230px;">기관소개</a>
 	</li></ul>
 	
 	
