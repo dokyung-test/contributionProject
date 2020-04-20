@@ -4,10 +4,13 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,7 +39,6 @@ import contribution.model.Program;
 import contribution.model.ProgramImage;
 import contribution.model.ReportComment;
 import contribution.model.Type;
-import contribution.modelcount.ResponseCount;
 import contribution.modelone.ResponseOne;
 import contribution.service.DetailOrganizationService;
 import contribution.service.programService;
@@ -92,7 +94,9 @@ public class contributionController {
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
+		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setTimeZone(tz);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
@@ -101,7 +105,10 @@ public class contributionController {
 	// 요청마다 session이 존재하는 범위이기 때문에, session이 필요한 메서드에서는 요청별 파라미터로 받아서 넘겨준다.
 	public ModelAndView registerProgram(@ModelAttribute("program") Program pro, HttpSession session) {
 		// pro.setOrganization_id("000000015");
+		
 		System.out.println("program : " + pro);
+		pro.setStart_date(addHour(pro.getStart_date()));
+		pro.setEnd_date(addHour(pro.getEnd_date()));
 		int rowNum = service.insertProgram(pro);
 		if (rowNum > 0) {
 			return requestList(session);
@@ -281,8 +288,10 @@ public class contributionController {
 	public ModelAndView updateProgramApproval(@ModelAttribute("requestProgram") Program requestProgram,
 			@RequestParam("banner") MultipartFile banner, @RequestParam("images") List<MultipartFile> programImages,
 			HttpSession session, HttpServletRequest request) {
-		System.out.println("승인update");
+		//System.out.println("승인update");
 		System.out.println(requestProgram);
+		requestProgram.setStart_date(addHour(requestProgram.getStart_date()));
+		requestProgram.setEnd_date(addHour(requestProgram.getEnd_date()));
 		String organization_id = (String) session.getAttribute("organization_id");
 		int program_id = requestProgram.getProgram_id();
 		String root = request.getServletContext().getRealPath("resources/images/");
@@ -298,7 +307,7 @@ public class contributionController {
 		}
 		requestProgram.setOriginal_file_name(original_file_name);
 		requestProgram.setBanner_file_name(banner_file_name);
-		System.out.println("승인update");
+		//System.out.println("승인update");
 		System.out.println(requestProgram);
 		int rowNum = service.updateProgramApproval(requestProgram);
 		// String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린
@@ -326,7 +335,9 @@ public class contributionController {
 	public ModelAndView updateProgram(@ModelAttribute("requestProgram") Program requestProgram, HttpSession session) {
 		String organization_id = (String) session.getAttribute("organization_id");
 		int program_id = requestProgram.getProgram_id();
-		System.out.println("미승인update");
+		requestProgram.setStart_date(addHour(requestProgram.getStart_date()));
+		requestProgram.setEnd_date(addHour(requestProgram.getEnd_date()));
+		//System.out.println("미승인update");
 		System.out.println(requestProgram);
 		int rowNum = service.updateProgramApproval(requestProgram);
 		// String root = request.getServletContext().getRealPath("/");//프로젝트 외부에 올린
@@ -519,6 +530,13 @@ public class contributionController {
 
 	}
 
+	//날짜9시간 추가
+	public Date addHour(Date oldDate) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(oldDate);
+		cal.add(Calendar.HOUR, 9);
+		return new Date(cal.getTimeInMillis());
+	}
 
 
 }
