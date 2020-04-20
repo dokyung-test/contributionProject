@@ -392,7 +392,23 @@
                     <div class="d-flex align-items-center">
                     	<!-- <div class="user-img" style="background-image: url(images/person_1.jpg)"></div> -->
                     	<div class="pl-3">
+		                    <div class= "row" style = "padding-left: 0px">
 		                    <p class="name">${comment.nickname}</p>
+		                    <c:choose>
+		                    	<c:when test="${comment.grade == 0 }">
+		                    	<img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 25px;">
+		                    	</c:when>
+		                    	<c:when test="${comment.grade == 1 }">
+		                    	<img alt="Lv.1" src="${pageContext.request.contextPath}/resources/images/battery_1.png" style = "width : 20px;height : 25px;">
+		                    	</c:when>
+		                    	<c:when test="${comment.grade == 2 }">
+		                    	<img alt="Lv.2" src="${pageContext.request.contextPath}/resources/images/battery_2.png" style = "width : 20px;height : 25px;">
+		                    	</c:when>
+		                    	<c:when test="${comment.grade == 3 }">
+		                    	<img alt="Lv.3" src="${pageContext.request.contextPath}/resources/images/battery_3.png" style = "width : 20px;height : 25px;">
+		                    	</c:when>
+		                    </c:choose>
+		                    </div>
 		                    <span class="position"><fmt:formatDate value="${comment.register_date}" pattern = "yyyy-MM-dd"/></span>
 		                    <a onclick = "reportedCheck('${comment.user_idx}','${comment.comment_id}');" href = "javascript:void()">
 		                    <img alt="신고" src="${pageContext.request.contextPath}/resources/images/alert_1.png" style = "width : 30px; float: right;" >
