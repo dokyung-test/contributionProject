@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="true"%>
@@ -7,12 +6,13 @@
 <%@ page isELIgnored="false"%>
 
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
 	rel="stylesheet">
@@ -91,82 +91,85 @@
 </head>
 
 <body id="page-top">
+	<nav
+		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+	</nav>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
-				<div class="container">
+		<div class="container">
 
-					<div class="col-md-12">
+			<div class="col-md-12">
 
-						<h1 class="mb-4">Q&A</h1>
-						<button onclick="returnQandA()" class="btn btn-primary"
-							style="position: relative; left: 800px; width: 250px; font-size: 20px;">목록</button>
-							<div class="row no-gutters mb-5" style="background: #e8edf0;">
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<div id="form-message-warning" class="mb-4"></div>
-									<div class="row">
-										<div class="col-md-12" style="display: inline;">
+				<h1 class="mb-4">Q&A</h1>
+				<button onclick="returnQandA()" class="btn btn-primary"
+					style="position: relative; left: 800px; width: 250px; font-size: 20px;">목록</button>
+				<div class="row no-gutters mb-5" style="background: #e8edf0;">
+					<div class="contact-wrap w-100 p-md-5 p-4">
+						<div id="form-message-warning" class="mb-4"></div>
+						<div class="row">
+							<div class="col-md-12" style="display: inline;">
 
-											<h2>${list.subject}</h2>
+								<h2>${list.subject}</h2>
 
-										</div>
-										<hr width="1000px" color="black" noshade />
-										<ul style="width: 100%; position: relative; top: 10px;">
-											<c:if test="${list.status_id==1}">
-												<li
-													style="display: inline; color: black; position: relative; right: 30px;">접수중</li>
-											</c:if>
-											<c:if test="${list.status_id==2}">
-												<li
-													style="display: inline; color: black; position: relative; right: 30px;">처리중</li>
-											</c:if>
-											<c:if test="${list.status_id==3}">
-												<li
-													style="display: inline; color: black; position: relative; right: 30px;">처리완료</li>
-											</c:if>
-											<li
-												style="display: inline; color: black; position: relative; left: 650px;">작성일
-												: <fmt:formatDate value="${list.register_date}"
-													pattern="yyyy년 MM월 dd일" />
-											</li>
-										</ul>
-										<hr width="1000px" color="black" noshade />
-										<div style="font-size: 20px;">문의내용</div>
-										<textarea class="form-control" name=subject id="subject"
-											style="margin: auto; display: inline-block;" rows="20"
-											readonly="readonly">${list.content}</textarea>
-										
-										<c:if test="${list.status_id==1}">
-										<div style="font-size: 20px;">답변내용<br>
-										 접수중 입니다..</div>
-										</c:if>
-										<c:if test="${list.status_id==2}">
-										<div style="font-size: 20px;">답변내용<br>
-										 처리중 입니다..</div>
-										</c:if>
-										<c:if test="${list.status_id==3}">
-										<div style="font-size: 20px;">답변내용
-											<textarea class="form-control" name=answer id="answers"
-												style="margin: auto; display: inline-block;" rows="20">${list.answer}</textarea></div>
-										</c:if>
-									</div>
-								</div>
 							</div>
+							<hr width="1000px" color="black" noshade />
+							<ul style="width: 100%; position: relative; top: 10px;">
+								<c:if test="${list.status_id==1}">
+									<li
+										style="display: inline; color: black; position: relative; right: 30px;">접수중</li>
+								</c:if>
+								<c:if test="${list.status_id==2}">
+									<li
+										style="display: inline; color: black; position: relative; right: 30px;">처리중</li>
+								</c:if>
+								<c:if test="${list.status_id==3}">
+									<li
+										style="display: inline; color: black; position: relative; right: 30px;">처리완료</li>
+								</c:if>
+								<li
+									style="display: inline; color: black; position: relative; left: 650px;">작성일
+									: <fmt:formatDate value="${list.register_date}"
+										pattern="yyyy년 MM월 dd일" />
+								</li>
+							</ul>
+							<hr width="1000px" color="black" noshade />
+							<div style="font-size: 20px;">문의내용</div>
+							<textarea class="form-control" name=subject id="subject"
+								style="margin: auto; display: inline-block;" rows="20"
+								readonly="readonly">${list.content}</textarea>
+
+							<c:if test="${list.status_id==1}">
+								<div style="font-size: 20px;">
+									답변내용<br> 접수중 입니다..
+								</div>
+							</c:if>
+							<c:if test="${list.status_id==2}">
+								<div style="font-size: 20px;">
+									답변내용<br> 처리중 입니다..
+								</div>
+							</c:if>
+							<c:if test="${list.status_id==3}">
+								<div style="font-size: 20px;">
+									답변내용
+									<textarea class="form-control" name=answer id="answers"
+										style="margin: auto; display: inline-block;" rows="20">${list.answer}</textarea>
+								</div>
+							</c:if>
+						</div>
 					</div>
 				</div>
-
-
-
 			</div>
-			<!-- End of Content Wrapper -->
+		</div>
 
 
-		<!-- End of Page Wrapper -->
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
+	</div>
+	<!-- End of Content Wrapper -->
+
+
+	<!-- End of Page Wrapper -->
+	<div id="ftco-loader" class="show fullscreen"></div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 	<script
