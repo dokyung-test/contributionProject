@@ -20,7 +20,8 @@
 </head>
 <body>
 
-<form action="signUp.do" method="post" onsubmit="return nullCheck();">
+<!-- <form action="signUp.do" method="post" onsubmit="return nullCheck();"> -->
+<form>
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -80,7 +81,7 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<input type="button" value="취소" class="btn btn-primary" style="float: right; padding-left: 4%; padding-right: 4%;" onclick="location.href='main.do'"/>
-														<input type="submit" value="회원가입" class="btn btn-primary" style="float: right; margin-right: 1%"/>
+														<input type="button" onclick="nullCheck();" value="회원가입" class="btn btn-primary" style="float: right; margin-right: 1%"/>
 														<div class="submitting"></div>
 													</div>
 												</div>
@@ -106,7 +107,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
  <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
   <script src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
   <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
@@ -122,6 +123,6 @@
   <script src="<c:url value="/resources/js/google-map.js"/>"></script>
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
-  <script src="<c:url value="/resources/js/signup.js"/>"></script>
+  
 </body>
 </html>

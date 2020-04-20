@@ -275,11 +275,11 @@ public class GibunigajoaController {
 		 * ); out.flush(); }else {}
 		 */
 			System.out.println("다 입력");
-			int result= gibunigajoaService.memberInsert(command);	
-			
-			if(result > 0) {
-				singnUpSuccess = "redirect:/loginForm.do";
-			}
+		
+			int result= gibunigajoaService.memberInsert(command);
+		  
+			if(result > 0) { singnUpSuccess = "redirect:/loginForm.do"; }
+		 
 		
 		
 		return singnUpSuccess;
