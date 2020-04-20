@@ -28,6 +28,35 @@
     
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+function nullCheck(){
+	var subject = document.getElementById("program_subject").value;
+	var target_amount = document.getElementById("target_amount").value;
+	var start_date = document.getElementById("start_date").value;
+	var end_date = document.getElementById("end_date").value;
+
+	if(subject == ""){
+		document.getElementById("program_subject").focus();
+		alert("프로그램명을 입력해주세요");
+		return false;
+	}else if(target_amount == ""){
+		document.getElementById("target_amount").focus();
+		alert("목표금액을 입력해주세요");
+		return false;
+	}else if(start_date == ""){
+		document.getElementById("start_date").focus();
+		alert("모집시작일을 입력해주세요.");
+		return false;
+	}else if(end_date == ""){
+		document.getElementById("end_date").focus();
+		alert("모집종료일을 입력해주세요.");
+		return false;
+	}
+
+	$("#updateForm").submit();
+
+}
+</script>
 </head>
 <body>
 
@@ -41,7 +70,7 @@
 								<!-- <div class="col-md-7"> -->
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">모집프로그램신청</h3>
-										<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgram.do" enctype="multipart/form-data">
+										<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgram.do" enctype="multipart/form-data" id = "updateForm">
 											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
 											  <input type = "hidden" id = "program_id" name = "program_id" value = "${updateProgram.program_id}"/>
 											<div class="row">
@@ -137,7 +166,7 @@
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="submit" value="프로그램 신청" class="btn btn-primary">
+														<input type="button" value="프로그램 수정" class="btn btn-primary" onclick = "nullCheck();">
 														<div class="submitting"></div>
 													</div>
 												</div>

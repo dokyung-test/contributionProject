@@ -27,7 +27,7 @@
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	function zipSearch(){
+/* 	function zipSearch(){
 		new daum.Postcode({
             oncomplete: function(data) {
             	var roadAddr = data.roadAddress; // 도로명 주소 변수
@@ -36,6 +36,34 @@
                 document.getElementById("address").value = roadAddr;
             }
         }).open();
+	} */
+
+	function nullCheck(){
+		var subject = document.getElementById("program_subject").value;
+		var target_amount = document.getElementById("target_amount").value;
+		var start_date = document.getElementById("start_date").value;
+		var end_date = document.getElementById("end_date").value;
+
+		if(subject == ""){
+			document.getElementById("program_subject").focus();
+			alert("프로그램명을 입력해주세요");
+			return false;
+		}else if(target_amount == ""){
+			document.getElementById("target_amount").focus();
+			alert("목표금액을 입력해주세요");
+			return false;
+		}else if(start_date == ""){
+			document.getElementById("start_date").focus();
+			alert("모집시작일을 입력해주세요.");
+			return false;
+		}else if(end_date == ""){
+			document.getElementById("end_date").focus();
+			alert("모집종료일을 입력해주세요.");
+			return false;
+		}
+
+		$("#registerForm").submit();
+	
 	}
 </script>
 </head>
@@ -51,7 +79,7 @@
 								<!-- <div class="col-md-7"> -->
 									<div class="contact-wrap w-100 p-md-5 p-4">
 										<h3 class="mb-4">모집프로그램신청</h3>
-										<form:form commandName="program" action="${pageContext.request.contextPath}/registerProgram.do">
+										<form:form commandName="program" action="${pageContext.request.contextPath}/registerProgram.do" id = "registerForm">
 											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
 											<div class="row">
 												<div class="col-md-9">
@@ -142,7 +170,7 @@
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<input type="submit" value="프로그램 신청" class="btn btn-primary">
+														<input type="button" onclick = "nullCheck();" value="프로그램 신청" class="btn btn-primary">
 														<div class="submitting"></div>
 													</div>
 												</div>
