@@ -52,6 +52,47 @@ function closeModal() {
 
 };
 
+function checkpass() {
+
+	alert("a");
+	if (!checkpassword(form.password.value)) {
+		return false;
+	}
+
+	if (!checkDate(form.birthday.value)) {
+		return false;
+	}
+
+	return true;
+}
+
+//공백확인 함수
+function checkExistData(value, dataName) {
+	if (value == "") {
+		alert(dataName + " 입력해주세요!!!");
+		return false;
+	}
+	return true;
+}
+
+function checkpassword(password) {
+	alert("d");
+	// 비밀번호가 입력되었는지 확인하기
+	if (!checkExistData(password, "비밀번호를")) {
+		form.password.focus();
+		return false;
+	}
+	return true; // 확인이 완료되었을 때
+}
+
+function checkDate(date) {
+	if (!date) {
+		alert("날짜를 입력해주세요!");
+		return false;
+	}
+	return true; // 확인이 완료되었을 때
+}
+
 </script>
 <style>
 .searchModal {
@@ -80,7 +121,7 @@ function closeModal() {
 						<button id="testBtn" class="btn btn-primary"
 							style="position: relative; left: 800px; width: 250px; font-size: 20px;">회원
 							탈퇴</button>
-						<form action="userUpdate.do" method="post">
+						<form action="userUpdate.do" name=form method="post" onsubmit="return checkpass()">
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">회원정보 수정</h3>
@@ -127,9 +168,12 @@ function closeModal() {
 										<div class="col-md-12">
 											<label class="label" for="birthday">birthday</label>
 											<div class="form-group">
-												<input type="date" value="${list.birthday}"
-													class="form-control" name="birthday" id="birthday"
+												<input type="date" value="${list.birthday}"class="form-control" name="birthday"
+													id="birthday"
 													style="width: 70%; margin: auto; display: inline-block;">
+												<fmt:formatDate value="${list.birthday}"
+													pattern="yyyy-MM-dd" />
+											
 											</div>
 										</div>
 										<div class="col-md-12">
