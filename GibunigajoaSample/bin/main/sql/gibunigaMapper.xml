@@ -25,6 +25,6 @@
 <!--main 마감임박 게시물 리스트  -->
 <select id="dateAscList" resultType="contribution.model.ProgramBannerDto" parameterType="Date">select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1 and end_date >= #{date} order by end_date asc limit 3</select>
 <!--main 배너 최신 게시물 홍보  -->
-<select id="newAscList" resultType="contribution.model.ProgramBannerDto" parameterType="Date">select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1 and end_date >= #{date} and approval_date is not null order by approval_date asc limit 3</select>
+<select id="newAscList" resultType="contribution.model.ProgramBannerDto" parameterType="Date">select organization_id, program_id, program_subject, summary, banner_file_name from programs where approval_flg = 1 and end_date >= #{date} and approval_date is not null order by approval_date desc limit 3</select>
 
 </mapper> 
