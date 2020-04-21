@@ -134,14 +134,14 @@
 											<c:choose>
 												<c:when test="${contains eq true }">
 													<div
-														onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
+														onClick="bookmark('${item.nanmmbyId}','img${status.count}','${item.nanmmbyNm}')">
 														<img id="img${status.count}"
 															src="${pageContext.request.contextPath}/resources/images/pStar.png">
 													</div>
 												</c:when>
 												<c:when test="${contains eq false}">
 													<div
-														onClick="bookmark('${item.nanmmbyId}','img${status.count}')">
+														onClick="bookmark('${item.nanmmbyId}','img${status.count}','${item.nanmmbyNm}')">
 														<img id="img${status.count}"
 															src="${pageContext.request.contextPath}/resources/images/bStar.png">
 													</div>
@@ -191,14 +191,14 @@
 												<c:choose>
 													<c:when test="${contains eq true }">
 														<div
-															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
+															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}','${rep.response.body.items.item.nanmmbyNm}')">
 															<img id="img${status.count}"
 																src="${pageContext.request.contextPath}/resources/images/pStar.png">
 														</div>
 													</c:when>
 													<c:when test="${contains eq false}">
 														<div
-															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}')">
+															onClick="bookmark('${rep.response.body.items.item.nanmmbyId}','img${status.count}','${rep.response.body.items.item.nanmmbyNm}')">
 															<img id="img${status.count}"
 																src="${pageContext.request.contextPath}/resources/images/bStar.png">
 														</div>
@@ -285,6 +285,6 @@
 
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
-	<script src="<c:url value="/resources/js/bookmarksrcipt.js"/>"></script>
+	<script src="<c:url value="/resources/js/bookmarksrcipt.js?"/>"></script>
 </body>
 </html>

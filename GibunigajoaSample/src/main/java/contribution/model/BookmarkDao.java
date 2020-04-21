@@ -17,17 +17,19 @@ public class BookmarkDao extends SqlSessionDaoSupport {
 	  map.put("user_idx",user_idx);
 	  map.put("organization_id",organization_id);
 		
-	   
+	    
 	  return 	getSqlSession().selectOne("Kim.select-bookmark",map);
 		
 		
 	}
-	public int insertBookmark(int user_idx,String organization_id) {
+	public int insertBookmark(int user_idx,String organization_id,String nanmmbyNm) {
 	
 		Map<String,Object> map = new HashMap<String, Object>();
-		  
+		  System.out.println("모집단체명:::::"+nanmmbyNm);
 		  map.put("user_idx",user_idx);
 		  map.put("organization_id",organization_id);
+		  map.put("nanmmbyNm",nanmmbyNm);
+		
 		
 		return getSqlSession().insert("Kim.insert-bookmark",map);  
 	}
