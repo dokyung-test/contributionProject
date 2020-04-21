@@ -196,7 +196,7 @@
 										<c:if test="${dto.status_id eq 1}">
 											<td style="font-size: 15px">접수중</td>
 										</c:if>
-										<c:if test="${dto.status_id eq 2} ">
+										<c:if test="${dto.status_id eq 2}">
 											<td style="font-size: 15px">처리중</td>
 										</c:if>
 										<c:if test="${dto.status_id eq 3}">

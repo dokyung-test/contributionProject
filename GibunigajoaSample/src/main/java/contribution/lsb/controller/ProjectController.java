@@ -68,7 +68,6 @@ public class ProjectController {
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public ModelAndView ContributionList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
 
@@ -136,9 +135,26 @@ public class ProjectController {
 
 	// 회원정보 수정 폼 가기
 	@RequestMapping(value = "/updateUserForm.do", method = RequestMethod.GET)
-	public ModelAndView updateUserForm(HttpSession session) {
+	public ModelAndView updateUserForm(HttpSession session,UserCommand dto) {
+		
+		
+		  System.out.println(dto.getBirthday());
+		
+		/*
+		 * int month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) :
+		 * date1.getMonth() + 1; String date2 = date1.getDate() < 10?
+		 * '0'+date1.getDate(): date1.getDate(); Date birthday = date1.getFullYear() +
+		 * "-" + month1 + "-" + date2;
+		 * 
+		 * 
+		 * 
+		 * dto.setBirthday(birthday);
+		 */
+		
+		
 		ModelAndView mav = new ModelAndView();
 		int idx = (int) session.getAttribute("user_idx");
+		
 		UserCommand list = service.UpdateUserForm(idx);
 		mav.addObject("list", list);
 		mav.setViewName("updateUser");

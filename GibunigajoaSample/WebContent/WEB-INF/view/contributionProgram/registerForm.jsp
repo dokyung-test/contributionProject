@@ -129,7 +129,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label class="label" for="target_amount">목표금액</label>
-														<form:input path="target_amount" class = "form-control"/>
+														<input type = "number" id = "target_amount" name = "target_amount" class = "form-control"/>
 													</div>
 												</div>
 												<div class="col-md-6">
