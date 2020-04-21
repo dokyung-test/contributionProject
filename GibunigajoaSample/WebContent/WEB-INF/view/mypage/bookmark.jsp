@@ -91,11 +91,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<script type="text/javascript">
-	function noticeContent(a) {
-		location.href="noticeContent.do?notice_idx="+a;
-	};
-	</script>
+
 </head>
 <body id="page-top">
 
@@ -117,10 +113,10 @@
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th style="font-size: 20px; width: 150px;">작성일자</th>
-									<th style="font-size: 20px">제목</th>
-									<th style="font-size: 20px; width: 150px;">작성자</th>
-									<th style="font-size: 20px; width: 150px;">조회수</th>
+									<th style="font-size: 20px;">기관명</th>
+									<th style="font-size: 20px;">항목</th>
+									<th style="font-size: 20px">즐겨찾기</th>
+									
 
 								</tr>
 							</thead>
@@ -129,10 +125,7 @@
 
 								<c:forEach var="list" items="${list}">
 									<tr >
-										<td style="font-size: 15px"><p id=title="${list.notice_idx}">
-												<fmt:formatDate value="${list.register_date}"
-													pattern="yyyy년 MM월 dd일" /></td>
-										<td style="font-size: 15px"><a href="#" onclick="noticeContent(${list.notice_idx})">${list.subject}</a></td>
+										<td style="font-size: 15px">admin</p></td>
 										<td style="font-size: 15px">admin</p></td>
 										<td style="font-size: 15px">${list.readcount}</p></td>
 
