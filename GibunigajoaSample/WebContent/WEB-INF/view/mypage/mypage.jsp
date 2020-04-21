@@ -117,9 +117,9 @@
 										+ date1.getDate() + "일";
 
 								$("#organization_name").append(
-										"<br class='a'><input type='text'  style='width:650px; height:50px;' readonly name='organization_name' class='a' value='"+organization_name+"'>");
+										"<br class='a'><div style='color:black' class='a'>"+organization_name+"</div>");
 								$("#program_name").append(
-										"<br class='a'><input type='text' ' style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+program_name+"'>");
+										"<br class='a'><div style='color:black' class='a'>"+program_name+"</div>");
 								$("#date").append(
 										"<br class='a'><div style='color:black' class='a'>"+text_date+"</div>");
 								$("#contribution").append(
@@ -337,10 +337,19 @@
 									<c:forEach var="list" items="${list}">
 										<tr>
 											<td style="font-size: 15px">${list.organization_name}</td>
-											<td style="font-size: 15px"><p id="content"
-													title="${list.contribution_history_idx}">
-													<a href="#"> ${list.program_name}</a>
-												</p></td>
+
+											<c:if test="${list.register_type_flg eq 1}">
+												<td style="font-size: 15px"><p id="content"
+														title="${list.contribution_history_idx}">
+														<a href="#"> ${list.program_name}</a>
+													</p></td>
+											</c:if>
+											<c:if test="${list.register_type_flg eq 2}">
+												<td style="font-size: 15px">
+														<a href="${pageContext.request.contextPath}/showProgram.do?program_id=${list.program_id}&organization_id=${list.organization_id}">${list.program_name}</a>													
+													</td>
+											</c:if>
+
 											<td style="font-size: 15px"><fmt:formatNumber
 													value="${list.contribution}" pattern="#,###원" /></td>
 											<td style="font-size: 15px"><fmt:formatDate
@@ -387,9 +396,8 @@
 						<div class="wrapper">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h3 class="mb-4" style="font-size: 40px">기부 내역 추가</h3>
+								<hr width="700px" color="black" noshade />
 								<div id="form-message-warning" class="mb-4"></div>
-								<div id="form-message-success" class="mb-4"
-									style="font-size: 20px">기부내역을 추가해 주세요.</div>
 								<form method="POST" action="insert.do" name="form"
 									onsubmit="return checkAll()">
 									<div class="row">
@@ -461,36 +469,36 @@
 						<div class="wrapper">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h1 class="mb-4" style="font-size: 40px">기부 내역</h1>
-								<hr width="1000px" color="black" noshade />
+								<hr width="700px" color="black" noshade />
 								<form method="POST" action="ContributionContent.do">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="organization_name">기관명 </label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="program_name">프로그램명</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="contribution">기부 금액</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="date">날짜</label>
+												<label class="label" style="font-size: 25px" id="date">날짜</label>
 											</div>
 										</div>
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="note">메모</label>
+												<label class="label" style="font-size: 25px" id="note">메모</label>
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -519,37 +527,38 @@
 						<div class="wrapper">
 							<div class="contact-wrap w-100 p-md-5 p-4">
 								<h3 class="mb-4" style="font-size: 40px">기부 내역 수정</h3>
+								<hr width="700px" color="black" noshade />
 								<div id="form-message-warning" class="mb-4"></div>
 								<form method="POST" action="update.do" name="form2"
 									onsubmit="return checkAll2()">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="organization_name2">기관명 </label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="program_name2">프로그램명</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px"
+												<label class="label" style="font-size: 25px"
 													id="contribution2">기부 금액</label>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="date2">날짜</label>
+												<label class="label" style="font-size: 25px" id="date2">날짜</label>
 											</div>
 										</div>
 
 										<div class="col-md-12">
 											<div class="form-group">
-												<label class="label" style="font-size: 20px" id="note2">메모</label>
+												<label class="label" style="font-size: 25px" id="note2">메모</label>
 											</div>
 										</div>
 										<div class="col-md-12">
