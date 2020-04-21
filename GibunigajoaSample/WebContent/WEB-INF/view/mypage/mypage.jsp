@@ -121,9 +121,9 @@
 								$("#program_name").append(
 										"<br class='a'><input type='text' ' style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+program_name+"'>");
 								$("#date").append(
-										"<br class='a'><input type='text' style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+text_date+"'>");
+										"<br class='a'><div style='color:black' class='a'>"+text_date+"</div>");
 								$("#contribution").append(
-										"<br class='a'><input type='text'  style='width:650px; height:50px;' readonly name='program_name' class='a' value='"+contribution+"'>");								
+										"<br class='a'><div style='color:black' class='a'>"+contribution+"원"+"</div>");								
                                
                                 if(note == null){
                                 	$("#note").append(
@@ -182,7 +182,7 @@
 																"<br class='a'><input type='date' style='width:650px; height:50px;'  name='date' class='a' value='"+text_date+"'>");
 												$("#contribution2")
 														.append(
-																"<br class='a'><input type='text' style='width:650px; height:50px;'  name='contribution' class='a' value='"+contribution+"'>");
+																"<br class='a'><input type='text' style='width:650px; height:50px;'  onkeyup='this.value=this.value.replace(/[^0-9]/g,'');' name='contribution' class='a' value='"+contribution+"'>");
 												$("#note2")
 														.append(
 																"<br class='a'><textarea cols='4' name='note' class='a' style='width:650px; resize: none;'>"
@@ -309,10 +309,13 @@
 						<h4 class="m-0 font-weight-bold text-primary">기부내역관리</h4>
 						<a style="position: absolute; right: 20px; top: 10px;">
 
-							<button class="button" id="testBtn" style="font-size: 20px;">기부내역 추가</button>
+							<button class="button" id="testBtn" style="font-size: 20px;">기부내역
+								추가</button>
 						</a>
 						<form>
-							<input  type="button" style="font-size: 20px; position: absolute; right: 200px; top: 10px;" class="button"  value="화면 출력" onclick="window.print()" />
+							<input type="button"
+								style="font-size: 20px; position: absolute; right: 160px; top: 10px;"
+								class="button" value="화면 출력" onclick="window.print()" />
 						</form>
 					</div>
 
@@ -343,9 +346,16 @@
 											<td style="font-size: 15px"><fmt:formatDate
 													value="${list.date}" pattern="yyyy년 MM월 dd일" /></td>
 
-											<td align="center" style="font-size: 15px"><a href="#"
-												title="${list.contribution_history_idx}" class="update"
-												style="color: blue">수정 / </a> <a href="#"
+											<td align="center" style="font-size: 15px"><c:choose>
+													<c:when test="${list.register_type_flg eq 1}">
+														<a href="#" title="${list.contribution_history_idx}"
+															class="update" style="color: blue">수정 / </a>
+													</c:when>
+													<c:when test="${list.register_type_flg eq 2}">
+
+													</c:when>
+													<c:otherwise></c:otherwise>
+												</c:choose> <a href="#"
 												onclick="deletelist(${list.contribution_history_idx})"
 												style="color: blue">삭제</a> <c:set var="total"
 													value="${total + list.contribution}" />
@@ -626,9 +636,9 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/check.js?v=1"></script>
+		src="${pageContext.request.contextPath}/resources/vendor/datatables/check.js?v=2"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/check3.js?v=1"></script>
+		src="${pageContext.request.contextPath}/resources/vendor/datatables/check3.js?v=2"></script>
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>

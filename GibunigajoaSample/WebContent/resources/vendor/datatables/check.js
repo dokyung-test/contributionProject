@@ -20,28 +20,6 @@
         return true;
     }
 	
-	function checkAll2(){
-		if (!checkDate(form2.date.value)) {
-            return false;
-        }
-        if (!checkOrganization_name(form2.organization_name.value)) {
-        	return false;
-        }
-        if (!checkProgram_name(form2.program_name.value)) {
-            return false;
-        }
-        if (!checkContribution(form2.contribution.value)) {
-            return false;
-        }      
-		if (!checkSubject(form2.subject.value)) {
-            return false;
-        }
-        if (!checkContent(form2.content.value)) {
-            return false;
-        }  
-        return true;
-    }
-	
     // 공백확인 함수
     function checkExistData(value, dataName) {
         if (value == "") {
@@ -75,11 +53,11 @@
         	form.contribution.focus();
             return false;
         }      
-        //0부터 시작시 0을 지움
+/*        //0부터 시작시 0을 지움
         var contributionRegExp = value.replace(/^[0]|[^0-9,]/g, ''); //비밀번호 유효성 검사
         if (!contributionRegExp.test(contribution)) {
             return false;
-        }        
+        }   */  
         return true; //확인이 완료되었을 때
     }
     
