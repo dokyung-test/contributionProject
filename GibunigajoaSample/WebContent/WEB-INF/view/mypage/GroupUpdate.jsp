@@ -95,6 +95,50 @@ function closeModal() {
 
 };
 
+
+//공백체크
+function checkpass() {
+	
+	if($("#password").val() == ""){
+		alert("비밀번호를 입력해 주세요.")
+		$("#password").focus();
+		return false;
+	}
+
+	if($("#name").val() == ""){
+		alert("이름을 입력해 주세요.")
+		$("#name").focus();
+		return false;
+	}
+
+	if($("#nickname").val() == ""){
+		alert("닉네임을 입력해 주세요.")
+		$("#nickname").focus();
+		return false;
+	}
+
+	else if($("#passwordCheck").val() == ""){
+		alert("비밀번호check를 입력해 주세요.")
+		$("#passwordCheck").focus();
+		return false;
+	}
+
+ 	else if($("#password").val() != $("#passwordCheck").val()){
+		alert("비밀번호가 일치하지 않습니다.")
+		$("#passwordCheck").focus();
+		return false;
+		} 
+	
+ 	else if (($("#birthday").val() == "")) {
+		alert("생일을 입력해 주세요.")
+		$("#birthday").focus();
+		return false;
+	}
+
+	return true;
+}
+
+
 </script>
 <style>
 .searchModal {
@@ -123,7 +167,8 @@ function closeModal() {
 						<button id="testBtn" class="btn btn-primary"
 							style="position: relative; left: 800px; width: 250px; font-size: 20px;">회원
 							탈퇴</button>
-						<form action="GroupUser.do" method="post"  enctype="multipart/form-data">
+						<form action="GroupUser.do" method="post"  enctype="multipart/form-data"
+						onsubmit="return checkpass()"> 
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">회원정보 수정</h3>

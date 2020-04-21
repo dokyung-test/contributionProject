@@ -17,10 +17,79 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+//공백체크
+function checkpass() {
+
+
+
+ 	 if (($("#user_id").val() == "")) {
+		alert("ID를 입력해주세요.")
+		$("#user_id").focus();
+		return false;
+	}
+
+ 	else if (($("#id_check_type").val() == 0)) {
+		alert("ID 중복체크를 해주세요.");
+		$("#user_id").focus();
+		return false;
+	}
+	
+
+   	
+	
+ 	 else if($("#password").val() == ""){
+		alert("비밀번호를 입력해 주세요.")
+		$("#password").focus();
+		return false;
+	}
+
+ 	else if($("#passwordCheck").val() == ""){
+		alert("비밀번호check를 입력해 주세요.")
+		$("#passwordCheck").focus();
+		return false;
+	} 
+
+ 	else if($("#password").val() != $("#passwordCheck").val()){
+		alert("비밀번호가 일치하지 않습니다.")
+		$("#passwordCheck").focus();
+		return false;
+		} 
+	
+    	
+
+ 	 else	if($("#name").val() == ""){
+		alert("이름을 입력해 주세요.")
+		$("#name").focus();
+		return false;
+	}
+
+ 	 else if($("#nickname").val() == ""){
+		alert("닉네임을 입력해 주세요.")
+		$("#nickname").focus();
+		return false;
+	}
+
+	
+
+ 	
+	
+ 
+
+	return true;
+}
+
+</script>
+
+
+
+
+
 </head>
 <body>
 
-<form action="GroupUserSignup.do" method="post" enctype="multipart/form-data">
+<form action="GroupUserSignup.do" method="post" enctype="multipart/form-data" onsubmit="return checkpass()">
 <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -184,6 +253,7 @@
 				</div>
     	</div>
     	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
+        	<input type="hidden" id="id_check_type"value="0">
     </section>
     
     
