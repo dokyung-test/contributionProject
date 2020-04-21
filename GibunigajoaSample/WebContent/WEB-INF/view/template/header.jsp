@@ -128,15 +128,15 @@
 					href="javascript:void(0);" class="nav-link">고객센터</a>
 					<ul class="submenu">
 						<li><a href="${pageContext.request.contextPath}/notice.do">공지사항</a></li>
-						<li><a href="javascript:void(0);"
-							onclick="programAuthorityCheck(); return false;">프로그램신청</a></li>
-						<!-- ${pageContext.request.contextPath}/contributionProgram/registerForm.do onclick="programAuthorityCheck();-->
+						<c:if test="${user_type_id eq 2}">
+						<!-- <li><a href="javascript:void(0);" onclick="programAuthorityCheck(); return false;">프로그램신청</a></li> -->
+						<li><a href="requestList.do">프로그램신청</a></li>
+						</c:if>
 					</ul></li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
 <!-- The Modal -->
 <div id="myModal" class="modal_box">
 

@@ -140,7 +140,8 @@ public class GibunigajoaController {
 		    //4.파싱 닉네임 세션으로 저장
 	        //session.setAttribute("sessionId",nickname); //세션 생성
 	        model.addAttribute("result", apiResult);
-	        return "main";
+	        //return "main";
+	        return "redirect:/main.do";
 	    }
 	 
 	 //카카오 로그인 & 회원정보 저장
