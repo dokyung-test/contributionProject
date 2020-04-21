@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -379,5 +380,25 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 		return resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + organization_id,
 				ResponseOne.class);
 	}
+	
+	
+	
+	
+	//단체아이디 수정
+	@RequestMapping(value = "GroupUser.do" ,method = RequestMethod.POST)
+	public int updateUser(HttpSession session,GroupUserCommand guc) {
+		int user_idx= (Integer)session.getAttribute("user_idx");
+		
+		String password = guc.getPassword();
+		String nickname = guc.getNickname();
+		String user_id = guc.getUser_id();
+		
+		
+		return gusdao.updatelogo(user_idx, password, nickname, user_id);
+		
+		
+	}
+	
+	
 
 }

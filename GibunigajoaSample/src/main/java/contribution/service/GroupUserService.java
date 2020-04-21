@@ -61,7 +61,12 @@ public class GroupUserService {
 		
 	}
 	
-	
+	public int updatelogo(int user_idx,String password,String nickname,String user_id) {
+		
+		return dao.updatelogo(user_idx, password, nickname, user_id);
+		
+		
+	}
 	
 	
 	
