@@ -21,30 +21,3 @@ function deleteUser() {
 	});
 }
 
-function checkpass() {
-
-	if (!checkpassword(form.password.value)) {
-		return false;
-	}
-
-	return true;
-}
-
-//공백확인 함수
-function checkExistData(value, dataName) {
-	if (value == "") {
-		alert(dataName + " 입력해주세요!!!");
-		return false;
-	}
-	return true;
-}
-
-
-function checkpassword(password) {
-	// 비밀번호가 입력되었는지 확인하기
-	if (!checkExistData(password, "비밀번호를")) {
-		form.password.focus();
-		return false;
-	}
-	return true; // 확인이 완료되었을 때
-}
