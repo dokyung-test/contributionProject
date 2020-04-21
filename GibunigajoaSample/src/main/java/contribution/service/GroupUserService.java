@@ -105,7 +105,7 @@ public int InsertorDelete(String organization_id,String original_file_name ,Stri
 		return dao.selectStored_file_name(organization_id);
 	}
    
-	public List<OrganizationLogosDto> selectStored_file_nameList(String organization_id) {
+	public String selectStored_file_nameList(String organization_id) {
 		
 		
 		return dao.selectStored_file_nameList(organization_id);

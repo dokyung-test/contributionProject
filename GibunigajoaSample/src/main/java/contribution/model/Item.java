@@ -15,8 +15,16 @@ public class Item {
 	String zip;// 우편번호
 	String hmpgAdres;// 홈페이지주소
 	String nprftOrgnztRegistNo;
-	 
+	String stored_file_name;//DB에 있는 이미지
 	
+	
+	
+	public String getStored_file_name() {
+		return stored_file_name;
+	}
+	public void setStored_file_name(String stored_file_name) {
+		this.stored_file_name = stored_file_name;
+	}
 	public String getNanmmbyId() {
 		return nanmmbyId;
 	}

@@ -63,9 +63,9 @@ public class GroupUserDao extends SqlSessionDaoSupport {
 	 return getSqlSession().selectOne("Kim.select-organizationsLogoFilename",organization_id);
 	 
  }
- public List<OrganizationLogosDto> selectStored_file_nameList(String organization_id){
+ public String selectStored_file_nameList(String organization_id){
 	 
-	 return getSqlSession().selectList("Kim.select-organizationsLogoFilenameList",organization_id);
+	 return getSqlSession().selectOne("Kim.select-organizationsLogoFilenameList",organization_id);
 	 
  }
  

@@ -124,16 +124,10 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 					ResponseList.class);
 			
 		
-			
-			for(int x = 0; x<list1.getResponse().getBody().getItems().getItem().size(); x++) {
+			 
+			for(int x = 0; x<list1.getResponse().getBody().getItems().getItem().size(); x++) { 
+				list1.getResponse().getBody().getItems().getItem().get(x).setStored_file_name(gusdao.selectStored_file_nameList(list1.getResponse().getBody().getItems().getItem().get(x).getNanmmbyId()));
 				
-				List<OrganizationLogosDto> logoList=gusdao.selectStored_file_nameList(list1.getResponse().getBody().getItems().getItem().get(x).getNanmmbyId());
-				System.out.println("로고리스트::::"+logoList);
-				if(x==6) {
-					model.addAttribute("banner", logoList);
-					System.out.println(logoList.size());
-				}
-			
 			}
 			
           
