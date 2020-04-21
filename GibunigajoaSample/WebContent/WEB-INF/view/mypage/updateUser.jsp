@@ -38,13 +38,16 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
+
 <script>
 $(function() {
-	<!-- 회원탈퇴 누를시 modal창 띄우는 jquery  -->
+
+
+ 	<!-- 회원탈퇴 누를시 modal창 띄우는 jquery  -->
 	$("#testBtn").on('click',function() {
 		$("#modal").show();
-	});
-	});
+	}) 
+	}); 
 
 /* 취소 누를시 modal창을 숨김  */
 function closeModal() {
@@ -52,45 +55,46 @@ function closeModal() {
 
 };
 
+// 공백체크
 function checkpass() {
-
-	alert("a");
-	if (!checkpassword(form.password.value)) {
+	
+	if($("#password").val() == ""){
+		alert("비밀번호를 입력해 주세요.")
+		$("#password").focus();
 		return false;
 	}
 
-	if (!checkDate(form.birthday.value)) {
+	if($("#name").val() == ""){
+		alert("이름을 입력해 주세요.")
+		$("#name").focus();
+		return false;
+	}
+
+	if($("#nickname").val() == ""){
+		alert("닉네임을 입력해 주세요.")
+		$("#nickname").focus();
+		return false;
+	}
+
+	else if($("#passwordCheck").val() == ""){
+		alert("비밀번호check를 입력해 주세요.")
+		$("#passwordCheck").focus();
+		return false;
+	}
+
+ 	else if($("#password").val() != $("#passwordCheck").val()){
+		alert("비밀번호가 일치하지 않습니다.")
+		$("#passwordCheck").focus();
+		return false;
+		} 
+	
+ 	else if (($("#birthday").val() == "")) {
+		alert("생일을 입력해 주세요.")
+		$("#birthday").focus();
 		return false;
 	}
 
 	return true;
-}
-
-//공백확인 함수
-function checkExistData(value, dataName) {
-	if (value == "") {
-		alert(dataName + " 입력해주세요!!!");
-		return false;
-	}
-	return true;
-}
-
-function checkpassword(password) {
-	alert("d");
-	// 비밀번호가 입력되었는지 확인하기
-	if (!checkExistData(password, "비밀번호를")) {
-		form.password.focus();
-		return false;
-	}
-	return true; // 확인이 완료되었을 때
-}
-
-function checkDate(date) {
-	if (!date) {
-		alert("날짜를 입력해주세요!");
-		return false;
-	}
-	return true; // 확인이 완료되었을 때
 }
 
 </script>
@@ -106,7 +110,7 @@ function checkDate(date) {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-	padding: 20%;
+	padding: 15%;
 }
 </style>
 </head>
@@ -121,7 +125,10 @@ function checkDate(date) {
 						<button id="testBtn" class="btn btn-primary"
 							style="position: relative; left: 800px; width: 250px; font-size: 20px;">회원
 							탈퇴</button>
-						<form action="userUpdate.do" name=form method="post" onsubmit="return checkpass()">
+
+						<form action="userUpdate.do" name="form" method="post"
+							onsubmit="return checkpass()">
+
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">회원정보 수정</h3>
@@ -168,12 +175,10 @@ function checkDate(date) {
 										<div class="col-md-12">
 											<label class="label" for="birthday">birthday</label>
 											<div class="form-group">
-												<input type="date" value="${list.birthday}"class="form-control" name="birthday"
-													id="birthday"
+												<input type="date" value="${list.birthday}"
+													class="form-control" name="birthday" id="birthday"
 													style="width: 70%; margin: auto; display: inline-block;">
-												<fmt:formatDate value="${list.birthday}"
-													pattern="yyyy-MM-dd" />
-											
+
 											</div>
 										</div>
 										<div class="col-md-12">
