@@ -211,16 +211,15 @@
  </section>
  <!-- 검색 -->
  <section>
-	<form action="#" class="searchform order-lg-last">
           
-        </form>
         
-        <div class="form-group d-flex">
-      <div id = "row" style = "width : 80%; text-align : center;"> 
-        프로그램명 :     <input type="text" class="form-control pl-3" placeholder="Search" style = "width : 50%;">
-            <button type="submit" placeholder="" class="form-control search"  style = "width : 45px;"><span class="fa fa-search"></span></button>
+        
+        <!-- <div class="form-group d-flex"> -->
+<div style = "text-align : center;padding-top : 30px">
+			<input type="text" class="form-control pl-3" placeholder="Search" style = "width : 50%; display:inline; ">
+            <button type="submit" placeholder="" class="form-control search"  style = "width : 45px; display : inline;"><span class="fa fa-search"></span></button>
           </div>
-          </div>
+          <!-- </div> -->
  </section>
  	<!--모집프로그램 -->
     <section class="ftco-section">
