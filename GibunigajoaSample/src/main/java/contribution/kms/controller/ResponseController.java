@@ -191,7 +191,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			model.addAttribute("R", i);
 			
 			String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
-			
+			System.out.println("listdddd여기는 공공디비에서뿌려ㅑ준것이다");
 			model.addAttribute("banner",Stored_file_name);
 			
 			
@@ -219,7 +219,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			  i = 0;
 				model.addAttribute("R", i);
 	            model.addAttribute("rep_list", list);
-
+  System.out.println("listdddd여기는 디비에서뿌려ㅑ준것이다");
 		  }else {
 			  String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
 				
@@ -298,7 +298,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 
 		model.addAttribute("Page", page);
 		
-		
+		 
 		//타일즈 헤더 풋터 필요없기때문에 앞에 경로 붙여줌
 	return "organization/response";
 	}
@@ -308,13 +308,13 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 	@ResponseBody
 	//로그인한 세션값 idx와 등록번호 받아오기
 	public String getBoomark(Model model,HttpSession session,
-			String organization_id)throws Exception {
+			String organization_id,String nanmmbyNm )throws Exception {
 		
 	//세션에 idx만 캐스팅후 변수에저장
 		int idx = (Integer)session.getAttribute("user_idx"); 
 		//dao에서 인서트인지 딜리트인지 검사한후 인서트 아니면 딜리트 시켜줌 인서트면 1 딜리트면 0 리턴받아옴
-		String i =dao.insertOrDelete(idx, organization_id)+"";
-	
+		String i =dao.insertOrDelete(idx, organization_id ,nanmmbyNm)+"";
+	 
 		return i;
 		
 	}

@@ -19,10 +19,10 @@ public class BookmarkService {
 	}
 	
 	//해당단체를 클릭했을때  북마크DB 에 이미정보가있으면 삭제시키고 없으면 인서트 
-	public int insertOrDelete(int user_idx,String organization_id) {
+	public int insertOrDelete(int user_idx,String organization_id,String nanmmbyNm) {
 		int i;
 		if(dao.selectBookmark(user_idx, organization_id)==0) {
-			dao.insertBookmark(user_idx, organization_id);
+			dao.insertBookmark(user_idx, organization_id,nanmmbyNm);
 			i =1; 
 		     return i;
 		}else {

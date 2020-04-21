@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 select count(*) from organization_bookmarks where user_idx=#{user_idx} and organization_id =#{organization_id}
 </select>
 <insert id="insert-bookmark" parameterType="map">
-insert into organization_bookmarks values(#{user_idx},#{organization_id})
+insert into organization_bookmarks values(#{user_idx},#{organization_id},#{nanmmbyNm})
 </insert>
 <delete id="delete-bookmark" parameterType="map">
 delete from organization_bookmarks where  user_idx=#{user_idx}  and organization_id =#{organization_id}
