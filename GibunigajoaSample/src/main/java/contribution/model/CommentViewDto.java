@@ -16,10 +16,17 @@ public class CommentViewDto {
 	Date register_date;
 	int report_notify_flg;
 	int grade;
+	int user_type_id;
 	
 	
 	
 	
+	public int getUser_type_id() {
+		return user_type_id;
+	}
+	public void setUser_type_id(int user_type_id) {
+		this.user_type_id = user_type_id;
+	}
 	public int getGrade() {
 		return grade;
 	}
