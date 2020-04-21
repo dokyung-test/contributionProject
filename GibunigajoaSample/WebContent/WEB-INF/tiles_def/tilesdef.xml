@@ -119,4 +119,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/gibuniga/groupPro.jsp" />
 	</definition>
+	<definition name="GroupUpdate" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/mypage/GroupUpdate.jsp" />
+	</definition>
 </tiles-definitions>

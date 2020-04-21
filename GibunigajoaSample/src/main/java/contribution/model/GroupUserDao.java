@@ -80,8 +80,30 @@ public class GroupUserDao extends SqlSessionDaoSupport {
 	 return getSqlSession().update("Kim.update-User",map);
 	 
  }
- 
+ public OrganizationLogosDto selectLogo(String organization_id) {
 	 
+	 return getSqlSession().selectOne("Kim.select-organizationsLogoAll",organization_id);
+	 
+ }
+public int DeleteLogo(String organization_id) {
+
+	return getSqlSession().delete("Kim.delete-logo",organization_id);
+}
+
+public int deleteOrganization(String organization_id) {
+
+	return getSqlSession().delete("Kim.delete-organizations",organization_id);
+}
+
+
+
+public GroupUserCommand selectUserAll(int user_idx) {
+	
+	return getSqlSession().selectOne("Kim.select-userAll",user_idx); 
+}
+
+
+
  }
 	
 

@@ -105,7 +105,7 @@
 
 							<c:when test="${user_type_id eq 2}">
 								<li><a
-									href="${pageContext.request.contextPath}/updateUserForm.do">회원정보수정(단체)</a></li>
+									href="${pageContext.request.contextPath}/updateGroupForm.do">회원정보수정(단체)</a></li>
 							</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>

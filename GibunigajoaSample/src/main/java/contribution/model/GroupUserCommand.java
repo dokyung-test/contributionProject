@@ -6,7 +6,7 @@ public class GroupUserCommand {
 
 	String user_id;
 	String password;
-	 
+	String name; 
 	String organization_id;// 등록번호
 	String nanmmByNm;// 모집단체명
 	String rprsntvNm;// 대표자명

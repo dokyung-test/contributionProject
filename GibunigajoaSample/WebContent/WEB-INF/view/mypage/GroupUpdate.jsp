@@ -38,7 +38,50 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+
+
+
+
 <script>
+
+
+function deleteBanner1(){
+
+
+var organization_id = $("#organization_id").val();
+
+alert("asdwerasdwe");
+
+
+$.ajax({
+
+
+type : "post",
+url : "deleteBanner1.do",
+data : "organization_id="+organization_id
+,dataType:"text"
+}).done(function (args){
+
+$("#bannerInfo").html("등록된 배너 이미지가 없습니다.");
+	
+})
+
+
+
+}
+
+
+
+
+
+
+
 $(function() {
 	<!-- 회원탈퇴 누를시 modal창 띄우는 jquery  -->
 	$("#testBtn").on('click',function() {
@@ -80,7 +123,7 @@ function closeModal() {
 						<button id="testBtn" class="btn btn-primary"
 							style="position: relative; left: 800px; width: 250px; font-size: 20px;">회원
 							탈퇴</button>
-						<form action="userUpdate.do" method="post">
+						<form action="GroupUser.do" method="post"  enctype="multipart/form-data">
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<div class="contact-wrap w-100 p-md-5 p-4">
 									<h3 class="mb-4">회원정보 수정</h3>
@@ -106,18 +149,11 @@ function closeModal() {
 												<div id="passwordChkResult"></div>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<label class="label" for="name">Name</label>
-											<div class="form-group">
-												<input type="text" value="${list.name}" class="form-control"
-													name="name" id="name" placeholder="Name"
-													style="width: 70%; margin: auto; display: inline-block;">
-											</div>
-										</div>
+										
 										<div class="col-md-12">
 											<label class="label" for="name">Nickname</label>
 											<div class="form-group">
-												<input type="text" value="${list.nickname}"
+												<input type="text" value="${user.nickname}"
 													class="form-control" name="nickname" id="nickname"
 													placeholder="nickName"
 													style="width: 70%; margin: auto; display: inline-block;"
@@ -125,21 +161,36 @@ function closeModal() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="birthday">birthday</label>
+											<label class="label" for="birthday">ID</label>
 											<div class="form-group">
-												<input type="date" value="${list.birthday}"
-													class="form-control" name="birthday" id="birthday"
+												<input type="text" value="${user.user_id}"
+													class="form-control" name="user_id" id="user_id"
 													style="width: 70%; margin: auto; display: inline-block;">
 											</div>
-										</div>
-										<div class="col-md-12">
-											<label class="label" for="phone_number">PhoneNumber</label>
-											<div class="form-group">
-												<input type="number" value="${list.phone_number}"
-													class="form-control" name="phone_number" id="phone_number"
-													style="width: 70%; margin: auto; display: inline-block;">
-											</div>
-										</div>
+										</div> 
+										 
+										<input type="hidden" value="${organization_id}" id = "organization_id" name="organization_id">
+										<div class="col-md-6">
+													<div class="form-group">
+														<label class="label" for="banner">배너이미지</label>
+															<input type = "file" id = "banner" name = "banner" class = "form-control" >
+															<div id = "bannerInfo">
+															<c:choose> 
+															<c:when test ="${organization.original_file_name==null}">
+															등록된 배너이미지가 없습니다.<br>
+															</c:when> 
+															<c:otherwise>
+	                                                                        ${organization.original_file_name}
+																<a onclick="deleteBanner1();" href = "javascript:void(0);" style = "color : #000000">&times;</a>
+															</c:otherwise>
+															</c:choose>
+															</div>					
+													
+													</div>
+												</div>
+										
+										
+										
 
 										<div class="col-md-12">
 											<div class="form-group">
@@ -176,7 +227,7 @@ function closeModal() {
 							<form method="POST" action="deleteUser.do" name="form" id="pass">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="form-group">
+										<div class="form-group"> 
 											<label class="label" style="font-size: 20px">비밀번호 확인</label>
 											<input type="password" class="form-control" name="password"
 												id="password" placeholder="password를 입력해주세요"

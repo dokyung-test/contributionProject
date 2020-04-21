@@ -333,8 +333,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 		String stored_file_name ="";
 		String original_file_name="";
 		String organization_id= guc.getOrganization_id();
-		System.out.println("이거맞냐?"+organization_id+"banner"+banner+"root"+root);
-		System.out.println("사이즈"+root.length());
+		
 		Map<String,String> fileInfo =file.bannerImageUpload(banner, organization_id, root);
 		stored_file_name = fileInfo.get("stored_file_name");
 		original_file_name = fileInfo.get("original_name");
@@ -381,22 +380,64 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 				ResponseOne.class);
 	}
 	
+	@RequestMapping("updateGroupForm.do")
+	public String updateGroupform(HttpSession session,Model model) {
+		String organization_id =(String) session.getAttribute("organization_id");
+		System.out.println("등록번호13212313"+organization_id);
+		int user_idx= (Integer)session.getAttribute("user_idx");
+		OrganizationLogosDto dto;
+		dto = gusdao.selectLogo(organization_id);
+		
+		GroupUserCommand guc;
+		guc = gusdao.selectUserAll(user_idx);
+		model.addAttribute("organization_id", organization_id);
+		model.addAttribute("organization", dto);
+        model.addAttribute("user",guc);
+		
+		
+		return "GroupUpdate";
+		
+	}
+	
 	
 	
 	
 	//단체아이디 수정
 	@RequestMapping(value = "GroupUser.do" ,method = RequestMethod.POST)
-	public int updateUser(HttpSession session,GroupUserCommand guc) {
+	public String updateUser(HttpSession session,GroupUserCommand guc,MultipartFile banner,HttpServletRequest request) {
 		int user_idx= (Integer)session.getAttribute("user_idx");
-		
+		if(!banner.isEmpty()) {
+			String root = request.getServletContext().getRealPath("resources/images/");
+			System.out.println(root);
+			String stored_file_name ="";
+			String original_file_name="";
+			String organization_id= guc.getOrganization_id();
+			
+			Map<String,String> fileInfo =file.bannerImageUpload(banner, organization_id, root);
+			stored_file_name = fileInfo.get("stored_file_name");
+			original_file_name = fileInfo.get("original_name");
+	         int i1;
+	         i1 = gusdao.InsertorDelete(organization_id, original_file_name, stored_file_name, root);
+			
+		}
 		String password = guc.getPassword();
 		String nickname = guc.getNickname();
 		String user_id = guc.getUser_id();
 		
+		gusdao.updatelogo(user_idx, password, nickname, user_id); 
 		
-		return gusdao.updatelogo(user_idx, password, nickname, user_id);
+		
+		return "redirect:/main.do";
 		
 		
+	}
+	@RequestMapping(value = "deleteBanner1.do",method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteLogo(String organization_id) {
+		
+		
+		
+		return gusdao.deleteLogo(organization_id);
 	}
 	
 	

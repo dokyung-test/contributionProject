@@ -25,11 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-
 import contribution.model.ContributionDto;
 import contribution.model.NoticeDto;
 import contribution.model.QandADto;
 import contribution.model.UserCommand;
+import contribution.service.GroupUserService;
 import contribution.service.MypageService;
 
 @Controller
@@ -40,6 +40,13 @@ public class ProjectController {
 
 	public void setService(MypageService service) {
 		this.service = service;
+	}
+	//단체 회원 탈퇴 dao
+	GroupUserService gusdao;
+	
+    @Autowired
+	public void setGusdao(GroupUserService gusdao) {
+		this.gusdao = gusdao;
 	}
 
 	// 기부내역 입력
@@ -64,7 +71,7 @@ public class ProjectController {
 
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
-        
+
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
@@ -93,7 +100,7 @@ public class ProjectController {
 
 	// 기부 내역 수정폼 가기
 	@RequestMapping(value = "/ContributionUpdate.do", method = RequestMethod.POST)
-	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {		
+	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {
 		ContributionDto list = service.ContributionContent(num2);
 		Gson json = new Gson();
 		resp.setContentType("text/html;charset=utf-8");
@@ -113,9 +120,9 @@ public class ProjectController {
 	@RequestMapping(value = "/QandAContent.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ModelAndView QandAContent(int board_idx) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		QandADto list = service.QandAContent(board_idx);		
-		mav.addObject("list",list);
-		mav.setViewName("qAndaContent");	
+		QandADto list = service.QandAContent(board_idx);
+		mav.addObject("list", list);
+		mav.setViewName("qAndaContent");
 		return mav;
 
 	}
@@ -157,14 +164,14 @@ public class ProjectController {
 		m.put("user_idx", idx);
 		m.put("password", password);
 
-		UserCommand user = service.deleteUserCheck(m);	
-		
-			if(user == null) {
-				num = 0;
-			}else {
-				num = 1;				
-			}
-		json.addProperty("num", num);
+		UserCommand user = service.deleteUserCheck(m);
+
+		if (user == null) {
+			num = 0;
+		} else {
+			num = 1;
+		}
+		json.addProperty("num", num); 
 		return gson.toJson(json);
 
 	}
@@ -172,33 +179,46 @@ public class ProjectController {
 	// 회원탈퇴
 	@RequestMapping(value = "/deleteUser.do")
 	public String deletedonation(HttpSession session) {
+
 		int idx = (int) session.getAttribute("user_idx");
-		service.deleteUser(idx);
-		session.invalidate();
-		return "redirect:/main.do";
+		String organization_id = (String) session.getAttribute("organization_id");
+		int type_id = (int) session.getAttribute("user_type_id");
+         
+		if (type_id == 2) { 
+			service.deleteUser(idx); 
+			gusdao.deleteLogo(organization_id);
+			gusdao.deleteOrganization(organization_id);
+			session.invalidate();
+			return "redirect:/main.do";
+			
+		} else {
+
+			service.deleteUser(idx);
+			session.invalidate();
+			return "redirect:/main.do";
+		}
 	}
-	
-	//공지사항 리스트
-	@RequestMapping(value="/notice.do",method = RequestMethod.GET)
+
+	// 공지사항 리스트
+	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
 	public ModelAndView NoticeList() {
 		ModelAndView mav = new ModelAndView();
 		List<NoticeDto> list = service.noticeList();
 		mav.addObject("list", list);
 		mav.setViewName("notice");
-		return mav;	
+		return mav;
 	}
-	
-	//공지사항 상세글
-	@RequestMapping(value="/noticeContent.do",method = RequestMethod.GET)
+
+	// 공지사항 상세글
+	@RequestMapping(value = "/noticeContent.do", method = RequestMethod.GET)
 	public ModelAndView NoticeContent(int notice_idx) {
 		ModelAndView mav = new ModelAndView();
 		NoticeDto list = service.noticeContent(notice_idx);
 		service.noticeReadCount(notice_idx);
-		mav.addObject("list",list);
+		mav.addObject("list", list);
 		mav.setViewName("noticeContent");
 		return mav;
 	}
-
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -207,8 +227,8 @@ public class ProjectController {
 		dateFormat.setTimeZone(tz);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-	
-	//날짜9시간 추가
+
+	// 날짜9시간 추가
 	public Date addHour(Date oldDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(oldDate);

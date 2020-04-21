@@ -34,9 +34,54 @@ public class GroupUserService {
 		}else {
 		return	i=0;
 		
-		}
+		} 
 
 	}
+	
+	public  GroupUserCommand selectUserAll(int user_idx) {
+		
+		return dao.selectUserAll(user_idx);
+	} 
+	
+	
+public int deleteOrganization(String organization_id)	{
+	
+	return dao.deleteOrganization(organization_id);
+}
+	
+	
+	
+public int deleteLogo(String organization_id) {
+	
+	return dao.DeleteLogo(organization_id);
+	
+}	
+	
+	
+public int InsertorDelete(String organization_id,String original_file_name ,String stored_file_name,String url) {
+		
+		int i ;
+		if(dao.SelectOrganization_logoCount(organization_id)<1) {
+			dao.InsertOrganization_logo(organization_id, original_file_name, stored_file_name, url);
+			return i=1;
+			
+			
+		}else {
+			dao.DeleteLogo(organization_id);
+			
+			dao.InsertOrganization_logo(organization_id, original_file_name, stored_file_name, url);
+			
+			return i=1;}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	public int InsertOrganization_logo(String organization_id,String original_file_name ,String stored_file_name,String url) {
 		
 		int i ;
@@ -45,7 +90,13 @@ public class GroupUserService {
 			return i=1;
 			
 			
-		}else {return i=0;}
+		}else {
+			
+			
+			
+			
+			
+			return i=0;}
 		
 		
 	}
@@ -68,8 +119,11 @@ public class GroupUserService {
 		
 	}
 	
+	public OrganizationLogosDto selectLogo(String organization_id) {
+		
+		return dao.selectLogo(organization_id);
+	}
 	
-	
-	
+
 	
 }
