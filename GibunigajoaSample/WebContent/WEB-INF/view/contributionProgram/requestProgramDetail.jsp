@@ -117,8 +117,20 @@
     		<div class="row d-flex no-gutters">
     			<div class="col-md-6 d-flex">
     			<!-- 프로그램대표사진 -->
-    				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image:url(${pageContext.request.contextPath}/resources/images/${requestProgram.banner_file_name});">
+    			<c:choose>
+           		<c:when test="${requestProgram.banner_file_name eq '' || empty requestProgram.banner_file_name}">
+           		          <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image:url(${pageContext.request.contextPath}/resources/images/organization_default.jpg);">
     				</div>
+           		</c:when>
+           		<c:when test="${requestProgram.banner_file_name ne '' || !empty requestProgram.banner_file_name}">
+           		          <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image:url(${pageContext.request.contextPath}/resources/images/${requestProgram.banner_file_name});">
+    				</div>
+           		</c:when>
+           </c:choose>
+           
+           
+           
+    				
     			</div>
     			
     			<!-- 간단요약부분 -->
@@ -399,20 +411,25 @@
                     	<div class="pl-3">
 		                    <div class= "row" style = "padding-left: 0px">
 		                    <p class="name">${comment.nickname}</p>
+		                    <c:if test="${comment.user_type_id ne 2}">
 		                    <c:choose>
-		                    	<c:when test="${comment.grade == 0 }">
+		                    	<c:when test="${comment.grade eq 0 }">
 		                    	<img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 25px;">
 		                    	</c:when>
-		                    	<c:when test="${comment.grade == 1 }">
+		                    	<c:when test="${comment.grade eq 1 }">
 		                    	<img alt="Lv.1" src="${pageContext.request.contextPath}/resources/images/battery_1.png" style = "width : 20px;height : 25px;">
 		                    	</c:when>
-		                    	<c:when test="${comment.grade == 2 }">
+		                    	<c:when test="${comment.grade eq 2 }">
 		                    	<img alt="Lv.2" src="${pageContext.request.contextPath}/resources/images/battery_2.png" style = "width : 20px;height : 25px;">
 		                    	</c:when>
-		                    	<c:when test="${comment.grade == 3 }">
+		                    	<c:when test="${comment.grade eq 3 }">
 		                    	<img alt="Lv.3" src="${pageContext.request.contextPath}/resources/images/battery_3.png" style = "width : 20px;height : 25px;">
 		                    	</c:when>
+	                    		<c:when test="${empty comment.grade}">
+		                    	<%-- <img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 25px;"> --%>
+		                    	</c:when>
 		                    </c:choose>
+		                    </c:if>
 		                    </div>
 		                    <span class="position"><fmt:formatDate value="${comment.register_date}" pattern = "yyyy-MM-dd"/></span>
 		                    <a onclick = "reportedCheck('${comment.user_idx}','${comment.comment_id}');" href = "javascript:void()">

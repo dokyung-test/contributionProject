@@ -282,8 +282,15 @@
          <!-- 프로그램당 반복구간-->
           <div class="col-md-4 d-flex ftco-animate">
            <div class="blog-entry align-self-stretch">
-              <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/${program.banner_file_name});" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}">
-              </a>
+           <c:choose>
+           		<c:when test="${program.banner_file_name eq '' || empty program.banner_file_name}">
+           		          <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/organization_default.jpg);" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}"></a>
+           		</c:when>
+           		<c:when test="${program.banner_file_name ne '' || !empty program.banner_file_name}">
+           		          <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/${program.banner_file_name});" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}"></a>
+           		</c:when>
+           </c:choose>
+              
               <div class="text mt-3 text-center">
               	<div class="meta mb-2">
                   <div><a href="${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}">${program.program_subject}</a></div>
