@@ -8,7 +8,12 @@
 <html>
 <script type="text/javascript">
 	function organizationOpen(url){
-		window.open(url,'_blank');
+		if(url == null){
+			alert("홈페이지주소를 제공하고 있지 않습니다.");
+		}else{
+			window.open(url,'_blank');
+		}
+		
 	}
 
 	// modal외의 것 클릭하면 modal close
