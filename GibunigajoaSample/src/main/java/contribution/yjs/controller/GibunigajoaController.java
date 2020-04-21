@@ -331,9 +331,10 @@ public class GibunigajoaController {
 		 command.setProgram_id(Integer.parseInt(program_id));
 		 System.out.println("program: "+program_id);
 		 System.out.println("command: "+command.toString());
+		 
 		 int num = gibunigajoaService.payInsertContribution(command);
-		 
-		 
+		 int user_type_id = Integer.parseInt(String.valueOf(session.getAttribute("user_type_id")));
+		 System.out.println("user_type_id: "+user_type_id);
 			 int contributionSum = gibunigajoaService.contributionSum(user_idx); 
 			 HashMap<String, Object> m = new HashMap<String, Object>();
 			 m.put("user_idx", user_idx);
@@ -342,31 +343,39 @@ public class GibunigajoaController {
 			 System.out.println("기부금 체크: "+contributionSum);
 			 if(contributionSum >= 100000 && contributionSum < 500000) {
 				 System.out.println("기부금 체크 10");
-				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
-				 if(gradeNum != 1) {
-					 jnum = 10;
-					 m.put("grade", 1);
-					 gibunigajoaService.updateGrade(m);
-				 }
+				if(user_type_id != 2) {
+					gradeNum = gibunigajoaService.gradeCheck(user_idx);
+					 if(gradeNum != 1) {
+						 jnum = 10;
+						 m.put("grade", 1);
+						 gibunigajoaService.updateGrade(m);
+					 }
+				}
 			 
 			 }else if(contributionSum >= 500000 && contributionSum < 1000000) {
 				 System.out.println("기부금 체크 50");
-				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
-				 if(gradeNum != 2) {
-					 jnum = 50;
-					 m.put("grade", 2);
-					 gibunigajoaService.updateGrade(m);
+				 if(user_type_id != 2) {
+					 gradeNum = gibunigajoaService.gradeCheck(user_idx);
+					 if(gradeNum != 2) {
+						 jnum = 50;
+						 m.put("grade", 2);
+						 gibunigajoaService.updateGrade(m);
+					 }
 				 }
 				 
 			 
 			 }else if(contributionSum >= 1000000) {
 				 System.out.println("기부금 체크 100");
-				 gradeNum = gibunigajoaService.gradeCheck(user_idx);
-				 if(gradeNum != 3) {
-					 jnum = 100;
-					 m.put("grade", 3);
-					 gibunigajoaService.updateGrade(m);
+				 if(user_type_id != 2) {
+					 
+					 gradeNum = gibunigajoaService.gradeCheck(user_idx);
+					 if(gradeNum != 3) {
+						 jnum = 100;
+						 m.put("grade", 3);
+						 gibunigajoaService.updateGrade(m);
+					 }
 				 }
+				 
 			 }
 		 }else {//비회원 기부 일시 
 			 
