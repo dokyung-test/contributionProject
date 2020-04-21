@@ -60,4 +60,21 @@ select stored_file_name from organization_logos where organization_id=#{organiza
 select * from organization_logos where organization_id=#{organization_id}
 </select>
 
+<select id="select-organizationsLogoAll" parameterType="String" resultType="contribution.model.OrganizationLogosDto">
+select * from organization_logos where organization_id=#{organization_id}
+</select>
+
+
+
+ 
+<update id="update-User" parameterType="map">
+update users set password = #{password}, nickname=#{nickname},user_id=#{user_id} where user_idx=#{user_idx}
+</update>
+
+<delete id="delete-logo" parameterType="String">
+delete from organization_logos  where  organization_id =#{organization_id}
+</delete>
+
+
+
 </mapper>

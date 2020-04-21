@@ -68,6 +68,19 @@ public class GroupUserDao extends SqlSessionDaoSupport {
 	 return getSqlSession().selectList("Kim.select-organizationsLogoFilenameList",organization_id);
 	 
  }
+ 
+ public int updatelogo(int user_idx,String password,String nickname,String user_id) {
+	 
+	 Map<String,Object> map = new HashMap<String,Object>();
+	 map.put("user_idx", user_idx);
+	 map.put("password", password);
+	 map.put("nickname", nickname);
+	 map.put("user_id", user_id);
+	 
+	 return getSqlSession().update("Kim.update-User",map);
+	 
+ }
+ 
 	 
  }
 	
