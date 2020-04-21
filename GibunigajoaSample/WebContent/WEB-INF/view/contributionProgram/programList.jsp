@@ -22,6 +22,56 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+    <script type="text/javascript">
+		function searchProgram(type_id){
+			//alert("분야검색 : " + type_id);
+			var searchKeyword = $("#searchKeyword").val();
+			var url = "";
+			var data = "";
+			if(type_id == 0){//전체검색
+				url = "searchProgram.do";
+				data = "searchKeyword="+searchKeyword;
+			}else{//분야별검색
+				url = "searchProgramType.do";
+				data = "type_id="+type_id+"&searchKeyword="+searchKeyword;
+			}
+
+
+			$.ajax({
+				type : "post",
+				url : url,
+				data : data,
+				dataType : "json"
+			}).done(function(args){
+				var msg = "";
+				if(args.length != 0){
+					for(var index = 0; index <= args.length - 1; index++){
+						msg += "<div class='col-md-4 d-flex ftco-animate' style = 'opacity:100;visibility:visible'>";
+						msg += "<div class='blog-entry align-self-stretch'>";
+						msg += "<a class='block-20 rounded' style='background-image: url(${pageContext.request.contextPath}/resources/images/"+args[index].banner_file_name+");' href = '${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>";
+						msg += "</a>";
+						msg += "<div class='text mt-3 text-center'>";
+						msg += "<div class='meta mb-2'>";
+						msg += "<div><a href='${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>"+args[index].program_subject+"</a></div>";
+						msg += "</div>";
+						msg += "<h3 class='heading'><a href='${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>"+args[index].summary+"</a></h3>";
+						msg += "</div>";
+						msg += "</div>";
+						msg += "</div>";
+					}
+				}else{
+					msg = "검색결과가 존재하지 않습니다.";
+				}
+				//console.log(msg);
+				$("#programItems").html(msg);
+				//alert("end!");
+				/* $("#programItems").show(); */
+						
+			}).fail(function(e){
+				alert(e.responseText);	
+			})
+		}
+    </script>
 </head>
 <body>
 <!-- 아이콘 -->
@@ -216,8 +266,8 @@
         
         <!-- <div class="form-group d-flex"> -->
 <div style = "text-align : center;padding-top : 30px">
-			<input type="text" class="form-control pl-3" placeholder="Search" style = "width : 50%; display:inline; ">
-            <button type="submit" placeholder="" class="form-control search"  style = "width : 45px; display : inline;"><span class="fa fa-search"></span></button>
+			<input type="text" class="form-control pl-3" placeholder="프로그램명 검색" style = "width : 50%; display:inline;" id = "searchKeyword">
+            <button type="button" onclick = "searchProgram('<%=request.getParameter("type")%>');"class="form-control search"  style = "width : 45px; display : inline;"><span class="fa fa-search"></span></button>
           </div>
           <!-- </div> -->
  </section>
@@ -225,7 +275,7 @@
     <section class="ftco-section">
       <div class="container">
 
-        <div class="row d-flex">
+        <div class="row d-flex" id = "programItems">
         
         
         <c:forEach var = "program" items="${programList}">

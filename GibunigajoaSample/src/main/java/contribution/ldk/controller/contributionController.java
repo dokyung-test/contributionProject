@@ -36,6 +36,7 @@ import contribution.model.Comment;
 import contribution.model.FileUtils;
 import contribution.model.GroupUserCommand;
 import contribution.model.Program;
+import contribution.model.ProgramBannerDto;
 import contribution.model.ProgramImage;
 import contribution.model.ReportComment;
 import contribution.model.Type;
@@ -537,6 +538,29 @@ public class contributionController {
 		cal.add(Calendar.HOUR, 9);
 		return new Date(cal.getTimeInMillis());
 	}
-
+	
+	
+	@RequestMapping(value = "/searchProgramType.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String searchProgramType(int type_id, String searchKeyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("type_id", type_id);
+		map.put("searchKeyword", searchKeyword);
+		Gson json = new Gson();
+		List<ProgramBannerDto> programItems;
+		programItems = service.searchProgramType(map);
+		
+		return json.toJson(programItems);
+	}
+	
+	
+	@RequestMapping(value = "/searchProgram.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String searchProgram(String searchKeyword) {
+		Gson json = new Gson();
+		List<ProgramBannerDto> programItems;
+		programItems = service.searchProgram(searchKeyword);
+		return json.toJson(programItems);
+	}
 
 }

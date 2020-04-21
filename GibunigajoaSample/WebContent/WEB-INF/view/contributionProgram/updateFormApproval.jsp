@@ -111,20 +111,8 @@
 			}else{
 				msg += "등록된 이미지가 없습니다.";
 			}
-			//alert(msg);
-			$("#imagesInfo").html(msg);
-			//$("#"+stored_file_name+"").html("");
 
-			/* if(args.length != 0){
-				var msg = "<table border = '1'>";
-				msg += "<tr><td>책번호</td><td>책제목</td><td>출판사</td><td>가격</td><td>판매가</td><td>주문번호</td></tr>"
-				for(var id = 0; id <= args.length - 1; id++){
-					msg += "<tr><td>"+args[id].bookid+"</td><td>"+args[id].bookname+"</td>";
-					msg += "<td>"+args[id].publisher+"</td><td>"+args[id].price+"</td>";
-					msg += "<td>"+args[id].saleprice+"</td><td>"+args[id].orderid+"</td></tr>";
-				}
-				$("#bookList").html(msg);	
-			}  */
+			$("#imagesInfo").html(msg);
 					
 		}).fail(function(e){
 			alert(e.responseText);	

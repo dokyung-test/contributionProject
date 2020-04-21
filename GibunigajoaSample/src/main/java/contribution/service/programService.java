@@ -261,4 +261,14 @@ public class programService {
 	public void updateNotifyFlg(int user_idx) {
 		commentDao.updateNotifyFlg(user_idx);
 	}
+	
+	//개인회원용 - 프로그램검색 - 전체
+	public List<ProgramBannerDto> searchProgram(String searchKeyword){
+		return programBannerDao.searchProgram(searchKeyword);
+	}
+	
+	//개인회원용 - 분야별프로그램 검색
+	public List<ProgramBannerDto> searchProgramType(Map<String, Object> map){
+		return programBannerDao.searchProgramType(map);
+	}
 }
