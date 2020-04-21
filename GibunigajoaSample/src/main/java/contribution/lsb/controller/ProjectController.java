@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import contribution.model.BookmarkDto;
 import contribution.model.ContributionDto;
 import contribution.model.NoticeDto;
 import contribution.model.QandADto;
@@ -136,25 +137,8 @@ public class ProjectController {
 	// 회원정보 수정 폼 가기
 	@RequestMapping(value = "/updateUserForm.do", method = RequestMethod.GET)
 	public ModelAndView updateUserForm(HttpSession session,UserCommand dto) {
-		
-		
-		  System.out.println(dto.getBirthday());
-		
-		/*
-		 * int month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) :
-		 * date1.getMonth() + 1; String date2 = date1.getDate() < 10?
-		 * '0'+date1.getDate(): date1.getDate(); Date birthday = date1.getFullYear() +
-		 * "-" + month1 + "-" + date2;
-		 * 
-		 * 
-		 * 
-		 * dto.setBirthday(birthday);
-		 */
-		
-		
 		ModelAndView mav = new ModelAndView();
-		int idx = (int) session.getAttribute("user_idx");
-		
+		int idx = (int) session.getAttribute("user_idx");	
 		UserCommand list = service.UpdateUserForm(idx);
 		mav.addObject("list", list);
 		mav.setViewName("updateUser");
@@ -236,6 +220,20 @@ public class ProjectController {
 		return mav;
 	}
 
+	/* 즐겨찾기 리스트 */
+	@RequestMapping(value = "/bookmark.do", method= RequestMethod.GET)
+	public ModelAndView bookmarkList(HttpSession session) {
+		int idx = (int) session.getAttribute("user_idx");
+		ModelAndView mav = new ModelAndView();
+		List<BookmarkDto> list = service.bookmarkList(idx);
+		mav.addObject("list",list);
+		mav.setViewName("bookmark");
+		return mav;
+		
+	}
+	
+	
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");

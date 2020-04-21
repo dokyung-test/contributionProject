@@ -114,9 +114,8 @@
 							<thead>
 								<tr>
 									<th style="font-size: 20px;">기관명</th>
-									<th style="font-size: 20px;">항목</th>
 									<th style="font-size: 20px">즐겨찾기</th>
-									
+
 
 								</tr>
 							</thead>
@@ -124,10 +123,13 @@
 							<tbody>
 
 								<c:forEach var="list" items="${list}">
-									<tr >
-										<td style="font-size: 15px">admin</p></td>
-										<td style="font-size: 15px">admin</p></td>
-										<td style="font-size: 15px">${list.readcount}</p></td>
+									<tr>
+										<td style="font-size: 15px"><a href="board.do?nanmmbyId=${list.organization_id}">${list.nanmmbyNm}</a></td>
+										<td style="font-size: 15px"><div
+												onClick="bookmark('${list.organization_id}','img${status.count}','${list.nanmmbyNm}')">
+												<img id="img${status.count}"
+													src="${pageContext.request.contextPath}/resources/images/pStar.png">
+											</div></td>
 
 									</tr>
 								</c:forEach>
@@ -162,6 +164,7 @@
 	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
+	<script src="<c:url value="/resources/js/bookmarksrcipt.js?"/>"></script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script

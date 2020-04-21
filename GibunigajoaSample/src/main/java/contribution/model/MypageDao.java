@@ -17,6 +17,11 @@ public class MypageDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("project.QandAList",user_idx);
 	}
 	
+	//단체 즐겨찾기 리스트
+	public List<BookmarkDto> bookmarkList(int user_idx){
+		return getSqlSession().selectList("project.bookmarkList",user_idx);
+	}
+	
 	//기부내역 상세글 보기
 	public ContributionDto ContributionContent(int contribution_history_idx){
 		return getSqlSession().selectOne("project.ContributionContent",contribution_history_idx);
