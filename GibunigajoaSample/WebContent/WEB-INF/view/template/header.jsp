@@ -37,11 +37,50 @@
 							</div>
 						</c:when>
 						<c:otherwise>
+						<c:choose>
+							<c:when test="${user_type_id eq 1 || user_type_id eq 3 }">
+								<c:choose>
+							<c:when test="${grade eq 0}">
+								<div style="margin-top: 15%;">
+								<span style="color: #ffc107;"><img alt="grade" src="${pageContext.request.contextPath}/resources/images/battery_0.png">${nickname}</span>님
+								환영합니다.&nbsp;&nbsp;&nbsp; <a href="javascript:void(0);"
+									onclick="logout(); return false;" style="color: #0056b3;">로그아웃</a>
+							</div>
+							</c:when>
+							<c:when test="${grade eq 1}">
+								<div style="margin-top: 15%;">
+								<span style="color: #ffc107;"><img alt="grade" src="${pageContext.request.contextPath}/resources/images/battery_1.png">${nickname}</span>님
+								환영합니다.&nbsp;&nbsp;&nbsp; <a href="javascript:void(0);"
+									onclick="logout(); return false;" style="color: #0056b3;">로그아웃</a>
+							</div>
+							</c:when>
+							<c:when test="${grade eq 2}">
+								<div style="margin-top: 15%;">
+								<span style="color: #ffc107;"><img alt="grade" src="${pageContext.request.contextPath}/resources/images/battery_2.png">${nickname}</span>님
+								환영합니다.&nbsp;&nbsp;&nbsp; <a href="javascript:void(0);"
+									onclick="logout(); return false;" style="color: #0056b3;">로그아웃</a>
+							</div>
+							</c:when>
+							<c:when test="${grade eq 3}">
+								<div style="margin-top: 15%;">
+								<span style="color: #ffc107;"><img alt="grade" src="${pageContext.request.contextPath}/resources/images/battery_3.png">${nickname}</span>님
+								환영합니다.&nbsp;&nbsp;&nbsp; <a href="javascript:void(0);"
+									onclick="logout(); return false;" style="color: #0056b3;">로그아웃</a>
+							</div>
+							</c:when>
+						</c:choose>
+						</c:when>
+						
+						<c:otherwise>
 							<div style="margin-top: 15%;">
 								<span style="color: #ffc107;">${nickname}</span>님
 								환영합니다.&nbsp;&nbsp;&nbsp; <a href="javascript:void(0);"
 									onclick="logout(); return false;" style="color: #0056b3;">로그아웃</a>
 							</div>
+						</c:otherwise>
+						</c:choose>
+						
+						
 						</c:otherwise>
 					</c:choose>
 
