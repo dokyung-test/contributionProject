@@ -8,7 +8,7 @@
 <html>
 <script type="text/javascript">
 	function organizationOpen(url){
-		if(url == null){
+		if(url == null || url == ""){
 			alert("홈페이지주소를 제공하고 있지 않습니다.");
 		}else{
 			window.open(url,'_blank');
