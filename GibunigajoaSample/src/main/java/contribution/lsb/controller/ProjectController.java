@@ -39,13 +39,14 @@ public class ProjectController {
 	@Autowired
 	MypageService service;
 
+	// 단체 회원 탈퇴 dao
+	GroupUserService gusdao;
+
 	public void setService(MypageService service) {
 		this.service = service;
 	}
-	//단체 회원 탈퇴 dao
-	GroupUserService gusdao;
-	
-    @Autowired
+
+	@Autowired
 	public void setGusdao(GroupUserService gusdao) {
 		this.gusdao = gusdao;
 	}
@@ -136,9 +137,9 @@ public class ProjectController {
 
 	// 회원정보 수정 폼 가기
 	@RequestMapping(value = "/updateUserForm.do", method = RequestMethod.GET)
-	public ModelAndView updateUserForm(HttpSession session,UserCommand dto) {
+	public ModelAndView updateUserForm(HttpSession session, UserCommand dto) {
 		ModelAndView mav = new ModelAndView();
-		int idx = (int) session.getAttribute("user_idx");	
+		int idx = (int) session.getAttribute("user_idx");
 		UserCommand list = service.UpdateUserForm(idx);
 		mav.addObject("list", list);
 		mav.setViewName("updateUser");
@@ -163,17 +164,15 @@ public class ProjectController {
 		HashMap<Object, Object> m = new HashMap<Object, Object>();
 		m.put("user_idx", idx);
 		m.put("password", password);
-
 		UserCommand user = service.deleteUserCheck(m);
-
+		
 		if (user == null) {
 			num = 0;
 		} else {
 			num = 1;
 		}
-		json.addProperty("num", num); 
+		json.addProperty("num", num);
 		return gson.toJson(json);
-
 	}
 
 	// 회원탈퇴
@@ -183,14 +182,14 @@ public class ProjectController {
 		int idx = (int) session.getAttribute("user_idx");
 		String organization_id = (String) session.getAttribute("organization_id");
 		int type_id = (int) session.getAttribute("user_type_id");
-         
-		if (type_id == 2) { 
-			service.deleteUser(idx); 
+
+		if (type_id == 2) {
+			service.deleteUser(idx);
 			gusdao.deleteLogo(organization_id);
 			gusdao.deleteOrganization(organization_id);
 			session.invalidate();
 			return "redirect:/main.do";
-			
+
 		} else {
 
 			service.deleteUser(idx);
@@ -221,19 +220,17 @@ public class ProjectController {
 	}
 
 	/* 즐겨찾기 리스트 */
-	@RequestMapping(value = "/bookmark.do", method= RequestMethod.GET)
+	@RequestMapping(value = "/bookmark.do", method = RequestMethod.GET)
 	public ModelAndView bookmarkList(HttpSession session) {
 		int idx = (int) session.getAttribute("user_idx");
 		ModelAndView mav = new ModelAndView();
 		List<BookmarkDto> list = service.bookmarkList(idx);
-		mav.addObject("list",list);
+		mav.addObject("list", list);
 		mav.setViewName("bookmark");
 		return mav;
-		
+
 	}
-	
-	
-	
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
@@ -249,5 +246,4 @@ public class ProjectController {
 		cal.add(Calendar.HOUR, 9);
 		return new Date(cal.getTimeInMillis());
 	}
-
 }

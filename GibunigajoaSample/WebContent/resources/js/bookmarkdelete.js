@@ -12,8 +12,8 @@ type:"post"
 ,data:"organization_id="+a+"&nanmmbyNm="+c
 ,dataType:"text"	}) 
 .done(function(args){
-   if(args==1){
-	   
+   
+   if(args==1){   
        $(id).attr("src",projectURL+"/resources/images/pStar.png");	
 	   }
     else{  
@@ -35,16 +35,3 @@ type:"post"
 	
 }
 
-function onfocusTest(a){
-	
-/*	var id="#"+a;
-	$(id).attr("name","yellow"); */
-	
-	
-}
-function onblurTest(a){
-	/*var id="#"+a;
-	
-	$(id).removeAttr('color');
-	 */
-}

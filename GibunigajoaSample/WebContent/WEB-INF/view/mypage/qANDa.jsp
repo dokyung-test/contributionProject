@@ -5,100 +5,68 @@
 <%@ page session="true"%>
 <%@ page isELIgnored="false"%>
 
+<!-- -------------------------------------Q&A 리스트 페이지------------------------------------------------- -->
+
 
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/animate.css"/>">
-<link
-	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/magnific-popup.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/ionicons.min.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/flaticon.css"/>">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/icomoon.css"/>">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
+<link href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value="/resources/css/owl.theme.default.min.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/magnific-popup.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/ionicons.min.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/flaticon.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/icomoon.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-
-<link
-	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/flaticon.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-
 <script>
 	$(function() {
-		<!-- Q&A 추가 누를시 modal창 띄우는 jquery  -->
+		
+		//Q&A 추가 누를시 modal창 띄우는 jquery
 		$("#testBtn").on('click',function() {
 			$("#modal").show();
-		});
-		
+		});		
 	});
 
+	//Q&A 상세페지로 이동
 	function qAndaContent(a){
         location.href="QandAContent.do?board_idx="+a;
 		}
-	  
+
+	//modal창 닫기 
 	function closeModal() {
 		$('.searchModal').hide();
 		$('.searchModal2').hide();
@@ -121,7 +89,6 @@
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 	padding: 3em;
 }
-
 /* Q&A 추가 버튼 꾸미기 */
 #testBtn {
 	border-top-left-radius: 7px;
@@ -134,7 +101,6 @@
 	color: white;
 	padding: 5px;
 }
-
 #testBtn:hover {
 	color: white;
 	background-color: skyblue;
@@ -149,26 +115,14 @@
 	border: 10px solid transparent;
 }
 </style>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>마이페이지</title>
-
 </head>
+
 <body id="page-top">
-	<nav
-		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-	</nav>
-	<!-- Content Wrapper -->
+	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+	
+	<!-- Q&A 리스트 시작 -->
 	<div id="content-wrapper" class="d-flex flex-column">
-
 		<div class="container-fluid" style="width: 1300px;">
-
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h4 class="m-0 font-weight-bold text-primary">Q&A 리스트</h4>
@@ -185,12 +139,10 @@
 									<th style="font-size: 20px; width: 150px;">답변상태</th>
 									<th style="font-size: 20px;">제목</th>
 									<th style="font-size: 20px; width: 150px;">작성일</th>
-
 								</tr>
 							</thead>
 
 							<tbody>
-
 								<c:forEach var="dto" items="${list}">
 									<tr>
 										<c:if test="${dto.status_id eq 1}">
