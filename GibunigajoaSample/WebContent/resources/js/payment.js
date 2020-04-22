@@ -70,8 +70,13 @@ function kakaoPay(){
 			   			}else if(args.num == 100){
 			   				alert("늘 함께 응원해주셔서 감사합니다.\nLv.3 등급이 되셨습니다.");
 			   			}
-			   			
-			   			window.open("registerComment.do?organization_id="+organization_id+"&program_id="+program_id, '_blank', 'width=500. height=400');
+			   			var idx = $("#user_idx").val()
+			   			alert("idx : " + idx);
+			   			if(idx){
+			   				window.open("registerComment.do?organization_id="+organization_id+"&program_id="+program_id, '_blank', 'width=700. height=400');
+			   			}else if(!idx){
+			   				location.reload();
+			   			}
 			   			//location.reload();
 			   		})
 			   		.fail(function(e) {

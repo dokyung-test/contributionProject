@@ -496,7 +496,7 @@
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
   <script src="<c:url value="/resources/js/signup.js"/>"></script>
-  <script src="<c:url value="/resources/js/payment.js"/>"></script>
+  <script src="<c:url value="/resources/js/payment.js?v=1"/>"></script>
   </body>
 
 
