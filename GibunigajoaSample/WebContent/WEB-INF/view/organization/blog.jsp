@@ -124,7 +124,9 @@
 									<div class="meta mb-2">
 										<div>${item.rcritRealm}</div>
 										<div>${item.dmstcTelno}</div>
-										<c:if test="${R2==1}">
+										<!-- 로그인 한 상태이거나 단체회원이아닌경우 뿌려줌 -->
+										<c:if test="${R2==1}"> 
+										
 											<c:set var="contains" value="false" />
 											<c:forEach items="${bookmarkId}" var="bookmark">
 												<c:if test="${bookmark.organization_id eq item.nanmmbyId}">

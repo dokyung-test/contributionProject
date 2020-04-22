@@ -8,6 +8,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 public class DetailOrganizationDao extends SqlSessionDaoSupport {
 
+	
+	//등록번호로 단체회원가입이 되있는지 확인
 	public int DetailCount(String organization_id) {
 		return getSqlSession().selectOne("Kim.select-organizations_count",organization_id);
 		

@@ -23,12 +23,12 @@ public class DetailOrganizationService {
 	public void setDao(DetailOrganizationDao dao) {
 		this.dao = dao;
 	}  
-	
+	//해당등록번호가 우리쪽db에 저장되있는지 확인하고 있으면 검색결과 리턴하고 없으면 비어있는객체 리턴 
 	public GroupUserCommand Detail(String organization_id){
-		
+		//해당등록번호로 검색해서 테이블에 카운트가 1이면 있는거니 해당테이블에있는 상세화면데이터 뿌려주고
 		if(dao.DetailCount(organization_id)>=1) {
 		return dao.Detail(organization_id);
-		}else { 
+		}else { //아닐경우는 비어있는 객체리턴함
 			GroupUserCommand guc = new GroupUserCommand();
 			return guc;
 			
