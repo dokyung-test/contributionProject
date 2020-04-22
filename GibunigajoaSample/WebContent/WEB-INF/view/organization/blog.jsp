@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -153,7 +154,22 @@
 										</c:if>
 									</div>
 									<h3 class="heading">
+									<c:set var="leg" value="${fn:length(item.nanmmbyNm)}"></c:set>
+									<c:choose>
+										<c:when test="${leg < 25}">
 										<a href="board.do?nanmmbyId=${item.nanmmbyId}">${item.nanmmbyNm}</a>
+										<span style="color:#fff; opacity: 0;">
+											<c:forEach var="i" begin="${leg}" end="25">
+												d
+											</c:forEach>
+										</span>
+										</c:when>
+										<c:otherwise>
+										<a href="board.do?nanmmbyId=${item.nanmmbyId}">${item.nanmmbyNm}</a>
+										</c:otherwise>
+									</c:choose>
+																											
+										
 									</h3>
 								</div>
 							</div>
