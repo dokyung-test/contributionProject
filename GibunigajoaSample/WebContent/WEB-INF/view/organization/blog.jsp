@@ -168,16 +168,31 @@
 			<c:if test="${R==1}">
 
 
-				<section class="ftco-section">
-					<div class="container">
-						<div class="row d-flex">
+				
 							<div class="col-md-4 d-flex ftco-animate">
 								<div class="blog-entry align-self-stretch">
-									<a
-										href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
-										class="block-20 rounded"
-										style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
-									</a>
+								
+									<c:choose>
+                       <c:when test="${item.stored_file_name==null}">
+						
+								<a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
+									class="block-20 rounded"
+									style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
+								</a>
+                            </c:when>
+                            <c:otherwise>
+                            <a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
+									class="block-20 rounded"
+									style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${item.stored_file_name}');">
+								</a>
+                            </c:otherwise>
+                                                       
+                            </c:choose>
+									
+									
+									
+									
+									
 									<div class="text mt-3 text-center">
 										<div class="meta mb-2">
 											<div>${rep.response.body.items.item.rcritRealm}</div>
