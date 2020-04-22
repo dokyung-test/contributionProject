@@ -1,7 +1,9 @@
 
 //검색을 클릭하면 자싱창을띄어줌
 function searchCheck(){
+	$("#search_check_type").val(1);
 	var nanmmByNm =$("#nanmmbyNm").val();
+	
 	var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=yes,height=500,width=500,left=0,top=0';
   
 	 
@@ -34,6 +36,6 @@ function sendToParent(nanmmbyId,nanmmbyNm,rprsntvNm,fondDe,dmstcTelno,fxnum,adre
 	opener.document.getElementById("bizrno").value=bizrno1;
 
 	self.close();    
-	
+
 }
 
