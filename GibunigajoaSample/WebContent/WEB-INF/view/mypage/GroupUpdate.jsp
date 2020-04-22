@@ -175,8 +175,17 @@ function checkpass() {
 
 									<div id="form-message-warning" class="mb-4"></div>
 									<div class="row">
+									<div class="col-md-12">
+											<label class="label" for="birthday">ID</label>
+											<div class="form-group">
+												<input type="text" value="${user.user_id}"
+													class="form-control" name="user_id" id="user_id"
+													style="width: 70%; margin: auto; display: inline-block;" readonly>
+											</div>
+										</div>
+									
 										<div class="col-md-12">
-											<label class="label" for="password">password</label>
+											<label class="label" for="password">비밀번호</label>
 											<div class="form-group">
 												<input type="password" class="form-control" name="password"
 													id="password" placeholder="password"
@@ -184,7 +193,7 @@ function checkpass() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="password">passwordCheck</label>
+											<label class="label" for="password">비밀번호확인</label>
 											<div class="form-group">
 												<input type="password" class="form-control"
 													name="passwordCheck" id="passwordCheck"
@@ -196,7 +205,7 @@ function checkpass() {
 										</div>
 										
 										<div class="col-md-12">
-											<label class="label" for="name">Nickname</label>
+											<label class="label" for="name">닉네임</label>
 											<div class="form-group">
 												<input type="text" value="${user.nickname}"
 													class="form-control" name="nickname" id="nickname"
@@ -205,14 +214,7 @@ function checkpass() {
 													value>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<label class="label" for="birthday">ID</label>
-											<div class="form-group">
-												<input type="text" value="${user.user_id}"
-													class="form-control" name="user_id" id="user_id"
-													style="width: 70%; margin: auto; display: inline-block;">
-											</div>
-										</div> 
+										 
 										 
 										<input type="hidden" value="${organization_id}" id = "organization_id" name="organization_id">
 										<div class="col-md-6">

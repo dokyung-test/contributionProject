@@ -100,12 +100,12 @@
 						<c:choose>
 							<c:when test="${user_type_id eq 1}">
 								<li><a
-									href="${pageContext.request.contextPath}/updateUserForm.do">회원정보수정(개인)</a></li>
+									href="${pageContext.request.contextPath}/updateUserForm.do">회원정보수정</a></li>
 							</c:when>
 
 							<c:when test="${user_type_id eq 2}">
 								<li><a
-									href="${pageContext.request.contextPath}/updateGroupForm.do">회원정보수정(단체)</a></li>
+									href="${pageContext.request.contextPath}/updateGroupForm.do">회원정보수정</a></li>
 							</c:when>
 							<c:otherwise></c:otherwise>
 						</c:choose>

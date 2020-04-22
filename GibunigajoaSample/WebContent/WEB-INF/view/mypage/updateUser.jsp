@@ -126,7 +126,7 @@ function checkpass() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="password">비밀번호 일치여부</label>
+											<label class="label" for="password">비밀번호확인</label>
 											<div class="form-group">
 												<input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="passwordCheck" 
 												       onchange="signupPasswordCheck()" style="width: 70%; display: inline-block;">
@@ -142,7 +142,7 @@ function checkpass() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="name">Nickname</label>
+											<label class="label" for="name">닉네임</label>
 											<div class="form-group">
 												<input type="text" value="${list.nickname}"
 													class="form-control" name="nickname" id="nickname"
@@ -151,7 +151,7 @@ function checkpass() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="birthday">birthday</label>
+											<label class="label" for="birthday">생년월일</label>
 											<div class="form-group">
 												<input type="date" value="${list.birthday}"
 													class="form-control" name="birthday" id="birthday"
@@ -159,7 +159,7 @@ function checkpass() {
 											</div>
 										</div>
 										<div class="col-md-12">
-											<label class="label" for="phone_number">PhoneNumber</label>
+											<label class="label" for="phone_number">연락처</label>
 											<div class="form-group">
 												<input type="number" value="${list.phone_number}"
 													class="form-control" name="phone_number" id="phone_number"
