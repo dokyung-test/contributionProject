@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import contribution.model.BookmarkDto;
 import contribution.model.ContributionDto;
 import contribution.model.NoticeDto;
 import contribution.model.QandADto;
@@ -38,13 +39,14 @@ public class ProjectController {
 	@Autowired
 	MypageService service;
 
+	// 단체 회원 탈퇴 dao
+	GroupUserService gusdao;
+
 	public void setService(MypageService service) {
 		this.service = service;
 	}
-	//단체 회원 탈퇴 dao
-	GroupUserService gusdao;
-	
-    @Autowired
+
+	@Autowired
 	public void setGusdao(GroupUserService gusdao) {
 		this.gusdao = gusdao;
 	}
@@ -52,7 +54,7 @@ public class ProjectController {
 	// 기부내역 입력
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public String insertdonation(ContributionDto dto) {
-		dto.setDate(addHour(dto.getDate()));
+		dto.setDate(addHour(dto.getDate())); //9시간 더하기
 		service.insertContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -70,7 +72,6 @@ public class ProjectController {
 		ModelAndView mav = new ModelAndView();
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
-
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
@@ -87,7 +88,7 @@ public class ProjectController {
 		return mav;
 	}
 
-	// 기부 내역 상세 글 보기
+	// 기부 내역 상세 글 보기 (modal창으로 가야하므로 ajax로 보냄)
 	@RequestMapping(value = "/ContributionContent.do", method = RequestMethod.POST)
 	public void ContributionContent(HttpServletResponse resp, int num) throws Exception {
 		ContributionDto list = service.ContributionContent(num);
@@ -97,7 +98,7 @@ public class ProjectController {
 		out.print(json.toJson(list));
 	}
 
-	// 기부 내역 수정폼 가기
+	// 기부 내역 수정폼 가기 (modal창으로 가야하므로 ajax로 보냄)
 	@RequestMapping(value = "/ContributionUpdate.do", method = RequestMethod.POST)
 	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {
 		ContributionDto list = service.ContributionContent(num2);
@@ -110,7 +111,7 @@ public class ProjectController {
 	// 기부내역 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatedonation(ContributionDto dto) {
-		dto.setDate(addHour(dto.getDate()));
+		dto.setDate(addHour(dto.getDate())); //9시간 더함
 		service.updateContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -135,26 +136,9 @@ public class ProjectController {
 
 	// 회원정보 수정 폼 가기
 	@RequestMapping(value = "/updateUserForm.do", method = RequestMethod.GET)
-	public ModelAndView updateUserForm(HttpSession session,UserCommand dto) {
-		
-		
-		  System.out.println(dto.getBirthday());
-		
-		/*
-		 * int month1 = date1.getMonth() + 1 < 10? '0'+(date1.getMonth() + 1) :
-		 * date1.getMonth() + 1; String date2 = date1.getDate() < 10?
-		 * '0'+date1.getDate(): date1.getDate(); Date birthday = date1.getFullYear() +
-		 * "-" + month1 + "-" + date2;
-		 * 
-		 * 
-		 * 
-		 * dto.setBirthday(birthday);
-		 */
-		
-		
+	public ModelAndView updateUserForm(HttpSession session, UserCommand dto) {
 		ModelAndView mav = new ModelAndView();
 		int idx = (int) session.getAttribute("user_idx");
-		
 		UserCommand list = service.UpdateUserForm(idx);
 		mav.addObject("list", list);
 		mav.setViewName("updateUser");
@@ -179,36 +163,33 @@ public class ProjectController {
 		HashMap<Object, Object> m = new HashMap<Object, Object>();
 		m.put("user_idx", idx);
 		m.put("password", password);
-
 		UserCommand user = service.deleteUserCheck(m);
-
+		
 		if (user == null) {
 			num = 0;
 		} else {
 			num = 1;
 		}
-		json.addProperty("num", num); 
+		json.addProperty("num", num);
 		return gson.toJson(json);
-
 	}
 
-	// 회원탈퇴
+	// 회원탈퇴(개인,단체)
 	@RequestMapping(value = "/deleteUser.do")
 	public String deletedonation(HttpSession session) {
 
 		int idx = (int) session.getAttribute("user_idx");
 		String organization_id = (String) session.getAttribute("organization_id");
 		int type_id = (int) session.getAttribute("user_type_id");
-         
-		if (type_id == 2) { 
-			service.deleteUser(idx); 
+
+		if (type_id == 2) {
+			service.deleteUser(idx);
 			gusdao.deleteLogo(organization_id);
 			gusdao.deleteOrganization(organization_id);
 			session.invalidate();
 			return "redirect:/main.do";
-			
-		} else {
 
+		} else {
 			service.deleteUser(idx);
 			session.invalidate();
 			return "redirect:/main.do";
@@ -236,6 +217,18 @@ public class ProjectController {
 		return mav;
 	}
 
+	/* 즐겨찾기 리스트 */
+	@RequestMapping(value = "/bookmark.do", method = RequestMethod.GET)
+	public ModelAndView bookmarkList(HttpSession session) {
+		int idx = (int) session.getAttribute("user_idx");
+		ModelAndView mav = new ModelAndView();
+		List<BookmarkDto> list = service.bookmarkList(idx);
+		mav.addObject("list", list);
+		mav.setViewName("bookmark");
+		return mav;
+
+	}
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
@@ -251,5 +244,4 @@ public class ProjectController {
 		cal.add(Calendar.HOUR, 9);
 		return new Date(cal.getTimeInMillis());
 	}
-
 }

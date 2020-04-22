@@ -56,7 +56,7 @@ function deleteBanner1(){
 
 var organization_id = $("#organization_id").val();
 
-alert("asdwerasdwe");
+
 
 
 $.ajax({

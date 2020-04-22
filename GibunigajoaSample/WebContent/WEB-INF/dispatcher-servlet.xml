@@ -75,5 +75,17 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="exceptionMappings">
+		<props>
+			<prop key="java.lang.Exception">
+				error/exception
+			</prop>
+			<prop key="java.lang.NullPointerException">
+				error/nullException
+			</prop>
+		</props>
+	</property>
+	</bean> 
 	
 </beans>

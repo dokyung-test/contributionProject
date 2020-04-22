@@ -20,6 +20,11 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 //공백체크
+
+
+
+
+
 function checkpass() {
 
 
@@ -71,6 +76,18 @@ function checkpass() {
 		return false;
 	}
 
+	 else if($("#nanmmbyNm").val() == ""){
+			alert("모집단체명을 입력해 주세요.")
+			$("#nanmmbyNm").focus();
+			return false;
+		}
+	    
+ 	 
+ 	else if (($("#search_check_type").val() == 0)) {
+		alert("모집단체명 검색을 해주세요");
+		$("#nanmmbyNm").focus();
+		return false;
+	}
 	
 
  	
@@ -254,6 +271,7 @@ function checkpass() {
     	</div>
     	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
         	<input type="hidden" id="id_check_type"value="0">
+        	<input type="hidden" id="search_check_type" value="0">
     </section>
     
     

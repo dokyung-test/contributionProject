@@ -12,7 +12,7 @@
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
 	rel="stylesheet">
 
-<link rel="stylesheet"
+<link rel="stylesheet" 
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet"
@@ -47,11 +47,32 @@
 		<div class="container">
 			<div class="row d-flex no-gutters">
 				<div class="col-md-6 d-flex">
+				
+				
+				
+				<c:choose>
+				<c:when test="${banner!=null}">
 					<div
 						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
 						style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
 						
 					</div>
+					</c:when>
+					<c:otherwise>
+					<div
+						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
+						style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
+						
+					</div>
+					</c:otherwise>
+				</c:choose>
+				
+				
+				
+				
+				
+				
+				
 				</div>
 				<div class="col-md-6 pl-md-5">
 					<div class="row justify-content-start py-5">
@@ -59,21 +80,21 @@
 							<div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
                                  <c:if test="${R2==1}">
 								<c:if test="${chk==1}">
-								<div onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}')">
+								<div onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}','${rep_list.response.body.items.item.nanmmbyNm}')">
 						 		<img id="img"src="${pageContext.request.contextPath}/resources/images/pStar.png">
 								</div>
 								</c:if>
-								<c:if test="${chk==0}">
+								<c:if test="${chk==0}">  
 								<div
-								onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}')">
+								onClick="bookmark('${rep_list.response.body.items.item.nanmmbyId}','img${status.count}','${rep_list.response.body.items.item.nanmmbyNm}')">
 								<img id="img"src="${pageContext.request.contextPath}/resources/images/bStar.png">
 								</div>
 								</c:if>
 								</c:if>
 								<h2 class="mb-4">${rep_list.response.body.items.item.nanmmbyNm}</h2>
 								
-								<p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p>
-								<div class="tabulation-2 mt-4">
+								
+								<div class="tabulation-2 mt-4"> 
 
 									<div class="tab-content bg-light rounded mt-2">
 										<div class="tab-pane container p-0 active" id="home1">
@@ -111,20 +132,19 @@
 							<div class="col-md-12 heading-section ftco-animate pl-md-4 py-md-4">
                                   <c:if test="${R2==1}">
 								<c:if test="${chk==1}">
-								<div onClick="bookmark('${rep_list.organization_id}','img${status.count}')">
+								<div onClick="bookmark('${rep_list.organization_id}','img${status.count}','${rep_list.nanmmByNm}')">
 								<img id="img"src="${pageContext.request.contextPath}/resources/images/pStar.png">
 								</div>
-								</c:if>
-								<c:if test="${chk==0}">
-								<div
-								onClick="bookmark('${rep_list.organization_id}','img${status.count}')">
+								</c:if> 
+								<c:if test="${chk==0}"> 
+								<div 
+								onClick="bookmark('${rep_list.organization_id}','img${status.count}','${rep_list.nanmmByNm}')">
 								<img id="img"src="${pageContext.request.contextPath}/resources/images/bStar.png">
 								</div>
 								</c:if>
 								</c:if>
 								<h2 class="mb-4">${rep_list.nanmmByNm}</h2>
-								
-								<p>우리기부단체는 개쩌는 기부단체이기때문에 우리한테기부하 자</p>
+							
 								<div class="tabulation-2 mt-4">
 									<div class="tab-content bg-light rounded mt-2">
 										<div class="tab-pane container p-0 active" id="home1">
@@ -145,7 +165,7 @@
 										<div class="tab-pane container p-0 active" id="home1">
 											<p>●주소:${rep_list.adres}</p>
 										</div>
-										<div class="tab-pane container p-0 active" id="home1">
+										<div class="tab-pane container p-0 active" id="home1"> 
 											<p>
 												●홈페이지:<a href="${rep_list.hmpadres}">${rep_list.hmpadres}</a>
 											</p>
@@ -405,7 +425,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 	<script src="<c:url value="/resources/js/signup.js?v=1"/>"></script>
-    <script src="<c:url value="/resources/js/bookmarksrcipt.js?v=2"/>"></script>
+    <script src="<c:url value="/resources/js/bookmarksrcipt.js?"/>"></script>
  
 </body>
 </html>

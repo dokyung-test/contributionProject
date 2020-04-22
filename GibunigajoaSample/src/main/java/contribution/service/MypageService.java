@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import contribution.model.BookmarkDto;
 import contribution.model.ContributionDto;
 import contribution.model.MypageDao;
 import contribution.model.NoticeDto;
@@ -30,6 +31,11 @@ public class MypageService {
 	// Q&A 리스트 보기
 	public List<QandADto> QandAList(int user_idx) {
 		return dao.QandAList(user_idx);
+	}
+	
+	// Q&A 리스트 보기
+	public List<BookmarkDto> bookmarkList(int user_idx) {
+		return dao.bookmarkList(user_idx);
 	}
 
 	// 기부내역 상세글 보기

@@ -95,6 +95,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/view/mypage/qAndaContent.jsp" />
 	</definition>
+	<definition name="bookmark" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/view/mypage/bookmark.jsp" />
+	</definition>
 
 
 

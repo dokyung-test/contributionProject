@@ -112,12 +112,12 @@
 						<c:choose>
 							<c:when test="${user_type_id eq 1}">
 								<li><a
-									href="${pageContext.request.contextPath}/bookmark1.do">단체
+									href="${pageContext.request.contextPath}/bookmark.do">단체
 										즐겨찾기 목록</a></li>
 							</c:when>
 							<c:when test="${user_type_id eq 3}">
 								<li><a
-									href="${pageContext.request.contextPath}/bookmark1.do">단체
+									href="${pageContext.request.contextPath}/bookmark.do">단체
 										즐겨찾기 목록</a></li>
 							</c:when>
 							<c:otherwise></c:otherwise>
