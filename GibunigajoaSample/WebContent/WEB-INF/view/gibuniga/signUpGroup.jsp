@@ -71,6 +71,18 @@ function checkpass() {
 		return false;
 	}
 
+	 else if($("#nanmmbyNm").val() == ""){
+			alert("모집단체명을 입력해 주세요.")
+			$("#nanmmbyNm").focus();
+			return false;
+		}
+	    
+ 	 
+ 	else if (($("#search_check_type").val() == 0)) {
+		alert("모집단체명 검색을 해주세요");
+		$("#nanmmbyNm").focus();
+		return false;
+	}
 	
 
  	
