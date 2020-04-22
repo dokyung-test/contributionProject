@@ -13,12 +13,14 @@ import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -470,6 +472,15 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 		return gusdao.deleteLogo(organization_id);
 	}
 	
+	
+	@ExceptionHandler(Exception.class)
+	 public ModelAndView handleException(HttpServletRequest request, Exception ex) {
+		System.out.println("들어오니?");
+	    ModelAndView mv =new ModelAndView("error/exception");
+	    System.out.println("Message: "+ex.getMessage());
+	    mv.addObject("message", ex.getMessage());
+	    return mv;
+	 }
 	
 
 }

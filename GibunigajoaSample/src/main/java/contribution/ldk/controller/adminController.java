@@ -2,8 +2,11 @@ package contribution.ldk.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,5 +50,14 @@ public class adminController {
 	public int updateApprovalProgram(String organization_id, int program_id, int approval_flg) {
 		return service.updateApprovalFlg(organization_id, program_id, approval_flg);
 	}
+	
+	@ExceptionHandler(Exception.class)
+	 public ModelAndView handleException(HttpServletRequest request, Exception ex) {
+		System.out.println("들어오니?");
+	    ModelAndView mv =new ModelAndView("error/exception");
+	    System.out.println("Message: "+ex.getMessage());
+	    mv.addObject("message", ex.getMessage());
+	    return mv;
+	 }
 	
 }

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -244,4 +246,13 @@ public class ProjectController {
 		cal.add(Calendar.HOUR, 9);
 		return new Date(cal.getTimeInMillis());
 	}
+	
+	@ExceptionHandler(Exception.class)
+	 public ModelAndView handleException(HttpServletRequest request, Exception ex) {
+		System.out.println("들어오니?");
+	    ModelAndView mv =new ModelAndView("error/exception");
+	    System.out.println("Message: "+ex.getMessage());
+	    mv.addObject("message", ex.getMessage());
+	    return mv;
+	 }
 }

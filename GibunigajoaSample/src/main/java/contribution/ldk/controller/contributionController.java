@@ -20,6 +20,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -562,5 +563,14 @@ public class contributionController {
 		programItems = service.searchProgram(searchKeyword);
 		return json.toJson(programItems);
 	}
+	
+	@ExceptionHandler(Exception.class)
+	 public ModelAndView handleException(HttpServletRequest request, Exception ex) {
+		System.out.println("들어오니?");
+	    ModelAndView mv =new ModelAndView("error/exception");
+	    System.out.println("Message: "+ex.getMessage());
+	    mv.addObject("message", ex.getMessage());
+	    return mv;
+	 }
 
 }

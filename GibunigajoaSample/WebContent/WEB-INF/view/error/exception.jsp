@@ -6,7 +6,7 @@
 <style type="text/css">
 body{
 background-image: url("${pageContext.request.contextPath}/resources/images/error.png");
-background-size: 100%;
+background-size: cover;
 background-repeat: no-repeat;
 
 }
