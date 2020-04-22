@@ -173,7 +173,7 @@
 								<div class="blog-entry align-self-stretch">
 								
 									<c:choose>
-                       <c:when test="${item.stored_file_name==null}">
+                       <c:when test="${banner==null}">
 						
 								<a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
 									class="block-20 rounded"
@@ -183,7 +183,7 @@
                             <c:otherwise>
                             <a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
 									class="block-20 rounded"
-									style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${item.stored_file_name}');">
+									style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
 								</a>
                             </c:otherwise>
                                                        
