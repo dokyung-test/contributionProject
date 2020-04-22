@@ -61,9 +61,7 @@
 	/* 기부 이력 상세 글 보기(modal) */
 	$("p").click(
 		function() {
-
 			var param = "num=" + $(this).attr("title");
-
 			var url = "ContributionContent.do";
 			$.ajax({
 				type : "post",
@@ -118,11 +116,11 @@
 								var date2 = date1.getDate() < 10? '0'+date1.getDate(): date1.getDate();
 								var text_date = date1.getFullYear() + "-" + month1 + "-" + date2;
 										
-								$("#organization_name2").append("<br class='a'><input type='text' style='width:650px; height:50px;'  name='organization_name' class='a' value='"+organization_name+"'>");
-								$("#program_name2").append("<br class='a'><input type='text' style='width:650px; height:50px;'  name='program_name' class='a' value='"+program_name+"'>");
-								$("#date2").append("<br class='a'><input type='date' style='width:650px; height:50px;'  name='date' class='a' value='"+text_date+"'>");
-								$("#contribution2").append("<br class='a'><input type='text' style='width:650px; height:50px;'  onkeyup='this.value=this.value.replace(/[^0-9]/g,'');' name='contribution' class='a' value='"+contribution+"'>");
-								$("#note2").append("<br class='a'><textarea cols='4' name='note' class='a' style='width:650px; resize: none;'>" + note + "</textarea>");
+								$("#organization_name2").append("<br class='a'> <input type='text' style='width:650px; height:50px;'  name='organization_name' class='a' value='"+organization_name+"'>");
+								$("#program_name2").append("<br class='a'> <input type='text' style='width:650px; height:50px;'  name='program_name' class='a' value='"+program_name+"'>");
+								$("#date2").append("<br class='a'> <input type='date' style='width:650px; height:50px;'  name='date' class='a' value='"+text_date+"'>");
+								$("#contribution2").append("<br class='a'> <input type='text' style='width:650px; height:50px;'  onkeyup='this.value=this.value.replace(/[^0-9]/g,'');' name='contribution' class='a' value='"+contribution+"'>");
+								$("#note2").append("<br class='a'> <textarea cols='4' name='note' class='a' style='width:650px; resize: none;'>" + note + "</textarea>");
 								$("#hidden").append("<input type='hidden' name='contribution_history_idx' value='"+contribution_history_idx+"' />");
 											});
 							$("#updatemodal").show();
@@ -217,7 +215,8 @@
 							<button class="button" id="testBtn" style="font-size: 20px;">기부내역 추가</button>
 						</a>
 						<form>
-							<input type="button" style="font-size: 20px; position: absolute; right: 160px; top: 10px;" class="button" value="화면 출력" onclick="window.print()" />
+							<input type="button" style="font-size: 20px; position: absolute; right: 160px; top: 10px;" 
+							       class="button" value="화면 출력" onclick="window.print()" />
 						</form>
 					</div>
 					<div class="card-body">
@@ -326,8 +325,10 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<input type="button" onclick="closeModal()" style="float: right; height: 50px; width: 150px; font-size: 20px;" value="취소" class="btn btn-primary" /> 
-												<input type="submit" style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;" value="추가" class="btn btn-primary" />
+												<input type="button" onclick="closeModal()" style="float: right; height: 50px; 
+												       width: 150px; font-size: 20px;" value="취소" class="btn btn-primary" /> 
+												<input type="submit" style="float: right; margin-right: 1%; height: 50px; width: 150px; 
+												       font-size: 20px;" value="추가" class="btn btn-primary" />
 											</div>
 										</div>
 									</div>
@@ -381,7 +382,8 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<input type="button" onclick="closeModal2()" id="cancel" style="float: right; height: 50px; width: 150px; font-size: 20px;" ㄴvalue="취소" class="btn btn-primary" />
+												<input type="button" onclick="closeModal2()" id="cancel" style="float: right; height: 50px;
+												       width: 150px; font-size: 20px;" ㄴvalue="취소" class="btn btn-primary" />
 											</div>
 										</div>
 									</div>
@@ -435,8 +437,10 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<input type="button" onclick="closeModal()" id="cancel" style="float: right; height: 50px; width: 150px; font-size: 20px;" value="취소" class="btn btn-primary" /> 
-												<input type="submit" id="hidden" style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;" value="수정" class="btn btn-primary" />
+												<input type="button" onclick="closeModal()" id="cancel" style="float: right; height: 50px;
+												       width: 150px; font-size: 20px;" value="취소" class="btn btn-primary" /> 
+												<input type="submit" id="hidden" style="float: right; margin-right: 1%; height: 50px;
+                                                       width: 150px; font-size: 20px;" value="수정" class="btn btn-primary" />
 											</div>
 										</div>
 									</div>

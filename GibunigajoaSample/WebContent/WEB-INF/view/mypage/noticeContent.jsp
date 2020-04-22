@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="true"%>
 <%@ page isELIgnored="false"%>
 
 <!-- -------------------------------------공지사항 상세 페이지------------------------------------------------- -->
@@ -87,7 +86,6 @@ horizontal; // 가로크기만 조절가능 resize: vertical; 세로크기만 �
 	
 	<div id="ftco-loader" class="show fullscreen">
 	</div>
-
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>

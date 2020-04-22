@@ -54,7 +54,7 @@ public class ProjectController {
 	// 기부내역 입력
 	@RequestMapping(value = "/insert.do", method = RequestMethod.POST)
 	public String insertdonation(ContributionDto dto) {
-		dto.setDate(addHour(dto.getDate()));
+		dto.setDate(addHour(dto.getDate())); //9시간 더하기
 		service.insertContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -72,7 +72,6 @@ public class ProjectController {
 		ModelAndView mav = new ModelAndView();
 		int idx = (int) session.getAttribute("user_idx");
 		List<ContributionDto> list = service.ContributionList(idx);
-
 		mav.addObject("list", list);
 		mav.setViewName("mypage");
 		return mav;
@@ -89,7 +88,7 @@ public class ProjectController {
 		return mav;
 	}
 
-	// 기부 내역 상세 글 보기
+	// 기부 내역 상세 글 보기 (modal창으로 가야하므로 ajax로 보냄)
 	@RequestMapping(value = "/ContributionContent.do", method = RequestMethod.POST)
 	public void ContributionContent(HttpServletResponse resp, int num) throws Exception {
 		ContributionDto list = service.ContributionContent(num);
@@ -99,7 +98,7 @@ public class ProjectController {
 		out.print(json.toJson(list));
 	}
 
-	// 기부 내역 수정폼 가기
+	// 기부 내역 수정폼 가기 (modal창으로 가야하므로 ajax로 보냄)
 	@RequestMapping(value = "/ContributionUpdate.do", method = RequestMethod.POST)
 	public void ContributionUpdate(HttpServletResponse resp, int num2) throws Exception {
 		ContributionDto list = service.ContributionContent(num2);
@@ -112,7 +111,7 @@ public class ProjectController {
 	// 기부내역 수정하기
 	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String updatedonation(ContributionDto dto) {
-		dto.setDate(addHour(dto.getDate()));
+		dto.setDate(addHour(dto.getDate())); //9시간 더함
 		service.updateContribution(dto);
 		return "redirect:/mypage.do";
 	}
@@ -175,7 +174,7 @@ public class ProjectController {
 		return gson.toJson(json);
 	}
 
-	// 회원탈퇴
+	// 회원탈퇴(개인,단체)
 	@RequestMapping(value = "/deleteUser.do")
 	public String deletedonation(HttpSession session) {
 
@@ -191,7 +190,6 @@ public class ProjectController {
 			return "redirect:/main.do";
 
 		} else {
-
 			service.deleteUser(idx);
 			session.invalidate();
 			return "redirect:/main.do";
