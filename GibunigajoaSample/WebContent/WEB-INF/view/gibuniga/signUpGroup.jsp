@@ -298,6 +298,6 @@ function checkpass() {
   <script src="<c:url value="/resources/js/main.js"/>"></script>
   <script src="<c:url value="/resources/js/logoutcheck.js"/>"></script>
   <script src="<c:url value="/resources/js/signup.js"/>"></script>
-   <script src="<c:url value="/resources/js/searchOrganiztion.js?"/>"></script>
+   <script src="<c:url value="/resources/js/searchOrganiztion.js"/>"></script>
 </body>
 </html>

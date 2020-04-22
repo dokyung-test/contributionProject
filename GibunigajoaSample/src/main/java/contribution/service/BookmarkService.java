@@ -10,7 +10,7 @@ import contribution.model.BookmarkDto;;
 
 @Service 
 public class BookmarkService {
-
+  //즐겨찾기 dao
 	BookmarkDao dao;
     
 	@Autowired
@@ -18,15 +18,17 @@ public class BookmarkService {
 		this.dao = dao;
 	}
 	
-	//해당단체를 클릭했을때  북마크DB 에 이미정보가있으면 삭제시키고 없으면 인서트 
+	//해당단체를 클릭했을때  북마크DB 에 즐겨찾기 정보가있으면 삭제  없으면 인서트  
 	public int insertOrDelete(int user_idx,String organization_id,String nanmmbyNm) {
 		int i;
 		if(dao.selectBookmark(user_idx, organization_id)==0) {
 			dao.insertBookmark(user_idx, organization_id,nanmmbyNm);
+			//인서트하면 1 리턴해주고 이미지파일 핑크색 별모양으로 바꿔주고 
 			i =1; 
 		     return i;
 		}else {
 			dao.deleteBookmark(user_idx, organization_id);
+			//이미있는경우에 들어왔다면 삭제시키고 검은색 별모양으로 바꿔줌
 			i=0;
 			return i;
 		}
