@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="true"%>
 <%@ page isELIgnored="false"%>
 
 <!-- -------------------------------------Q&A 리스트 페이지------------------------------------------------- -->
@@ -145,6 +144,7 @@
 							<tbody>
 								<c:forEach var="dto" items="${list}">
 									<tr>
+									    <!-- status_id의 상태에 따라 답변상태 란에 보이는 내용 -->
 										<c:if test="${dto.status_id eq 1}">
 											<td style="font-size: 15px">접수중</td>
 										</c:if>
@@ -154,11 +154,13 @@
 										<c:if test="${dto.status_id eq 3}">
 											<td style="font-size: 15px">답변완료</td>
 										</c:if>
-										<td
-											style="font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a
-											href="#" onclick="qAndaContent(${dto.board_idx})">${dto.subject}</a></td>
-										<td style="font-size: 15px"><fmt:formatDate
-												value="${dto.register_date}" pattern="yyyy년 MM월 dd일" /></td>
+										
+										<td style="font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+										<a href="#" onclick="qAndaContent(${dto.board_idx})">${dto.subject}</a> <!-- 문의사항 제목 -->
+										</td>
+										<td style="font-size: 15px">
+										<fmt:formatDate value="${dto.register_date}" pattern="yyyy년 MM월 dd일" /> <!-- 문의 날짜 -->
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -167,44 +169,39 @@
 				</div>
 			</div>
 		</div>
-		<!-- /.container-fluid -->
 	</div>
-	<!-- End of Main Content -->
+	<!-- Q&A리스트 끝 -->
 
-	<!-- Q&A  추가 폼 -->
+	<!-- Q&A 추가 폼(modal) -->
 	<div id="modal" class="searchModal">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="wrapper">
-						<!--  <div class="col-md-7"> -->
 						<div class="contact-wrap w-100 p-md-5 p-4">
 							<h3 class="mb-4" style="font-size: 40px">Q&A작성</h3>
 							<div id="form-message-warning" class="mb-4"></div>
-							<form method="POST" action="qANDaInsert.do" name="form"
-								onsubmit="return checkAll()">
+							<form method="POST" action="qANDaInsert.do" name="form" onsubmit="return checkAll()"> <!-- 공백체크 -->
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label class="label" style="font-size: 20px">제목</label> <input
-												type="text" class="form-control" name="subject"
-												placeholder="제목">
+											<label class="label" style="font-size: 20px">제목</label> 
+											<input type="text" class="form-control" name="subject" placeholder="제목">
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="label" style="font-size: 20px">문의내용</label>
-											<textarea name="content" class="form-control" cols="50"
-												rows="10" placeholder="문의할 내용을 작성해 주세요."></textarea>
+											<textarea name="content" class="form-control" cols="50" rows="10" 
+											          placeholder="문의할 내용을 작성해 주세요."></textarea>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="button" onclick="closeModal()"
-												style="float: right; height: 50px; width: 150px; font-size: 20px;"
-												value="취소" class="btn btn-primary" /> <input type="submit"
-												style="float: right; margin-right: 1%; height: 50px; width: 150px; font-size: 20px;"
-												value="보내기" class="btn btn-primary" />
+											<input type="button" onclick="closeModal()" style="float: right; height: 50px; width: 150px; 
+											       font-size: 20px;" value="취소" class="btn btn-primary" />
+										    <input type="submit" style="float: right; margin-right: 1%; height: 50px; width: 150px; 
+										           font-size: 20px;" value="보내기" class="btn btn-primary" />
 										</div>
 									</div>
 								</div>
@@ -221,50 +218,33 @@
 	<div id="ftco-loader" class="show fullscreen"></div>
 
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/popper.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.waypoints.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.stellar.min.js"/>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.animateNumber.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
-	<script
-		src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
 
-	<!-- Bootstrap core JavaScript-->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Core plugin JavaScript-->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<!-- Custom scripts for all pages-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 	<!-- Page level plugins -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendor/datatables/check2.js?v=1"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/check.js?v=2"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/check3.js?v=2"></script>
 	<!-- Page level custom scripts -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 </body>
-
 </html>

@@ -51,7 +51,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-
 </head>
 <body id="page-top">
 
@@ -79,7 +78,7 @@
 										<td style="font-size: 15px"><a href="board.do?nanmmbyId=${list.organization_id}">${list.nanmmbyNm}</a></td>
 										<td style="font-size: 15px">
 										<div onClick="bookmark('${list.organization_id}','img${status.count}','${list.nanmmbyNm}')">
-												<img id="img${status.count}" src="${pageContext.request.contextPath}/resources/images/pStar.png">
+											<img id="img${status.count}" src="${pageContext.request.contextPath}/resources/images/pStar.png">
 										</div></td>
 									</tr>
 								</c:forEach>
