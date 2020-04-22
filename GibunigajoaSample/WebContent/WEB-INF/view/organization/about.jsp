@@ -47,11 +47,32 @@
 		<div class="container">
 			<div class="row d-flex no-gutters">
 				<div class="col-md-6 d-flex">
+				
+				
+				
+				<c:choose>
+				<c:when test="${banner!=null}">
 					<div
 						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
 						style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
 						
 					</div>
+					</c:when>
+					<c:otherwise>
+					<div
+						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
+						style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
+						
+					</div>
+					</c:otherwise>
+				</c:choose>
+				
+				
+				
+				
+				
+				
+				
 				</div>
 				<div class="col-md-6 pl-md-5">
 					<div class="row justify-content-start py-5">

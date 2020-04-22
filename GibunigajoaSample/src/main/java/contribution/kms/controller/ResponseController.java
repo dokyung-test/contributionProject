@@ -83,10 +83,10 @@ public class ResponseController {
 	@RequestMapping(value = "/response.do")
 	public String getResponse(Model model, @RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "") String search, HttpSession session, String organization_id) {
-        
-		
+        if(session.getAttribute("user_type_id")!=null) {
+		int type_id = (Integer) session.getAttribute("user_type_id");
 		//로그인을 한다면 즐겨찾기 보여주고 안하면 보여주지 않음
-		if(session.getAttribute("user_idx") != null) {
+		if(session.getAttribute("user_idx") != null && type_id !=2) {
 		
 		int	x = 1;
 		int idx = (Integer)session.getAttribute("user_idx");
@@ -96,6 +96,7 @@ public class ResponseController {
 		model.addAttribute("bookmarkId", bookmarkList);
 		
 		model.addAttribute("R2",x);
+		}
 		}
 		//키워드에따른 검색결과수 확인하기
 		ResponseCount responsecount = resTemplate.getForObject(url + serviceKey + keyword + search,
@@ -155,12 +156,13 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 
 		return "blog";
 	}
-//기부단체 상세화면
+//기부단체 상세화면 
 	@RequestMapping("/board.do")
 	public String getBoard(Model model, String nanmmbyId,HttpSession session) {
-
+		if(session.getAttribute("user_type_id")!=null) {
+		int type_id = (Integer) session.getAttribute("user_type_id");
       //로그인하지않으면 즐겨찾기 숨기고 로그인을했으면 즐겨찾기 보여주기
-		if(session.getAttribute("user_idx") != null) {
+		if(session.getAttribute("user_idx") != null && type_id !=2) {
 			
 			int	x = 1;
 			int idx = (Integer)session.getAttribute("user_idx");
@@ -172,7 +174,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			model.addAttribute("R2",x);
 			}
 		
-		
+		} 
 		ResponseCount responsecount = resTemplate.getForObject(nanmmbyNmurl + serviceKey + progrmRegistNo + nanmmbyId,
 				ResponseCount.class);
 
@@ -191,7 +193,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			model.addAttribute("R", i);
 			
 			String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
-			System.out.println("listdddd여기는 공공디비에서뿌려ㅑ준것이다");
+			
 			model.addAttribute("banner",Stored_file_name);
 			
 			
@@ -211,7 +213,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			//검색결과가 없는 애들은  DB에저장한 기부단체상세값  jsp로 넘겨주기
 	   
 			GroupUserCommand list =dosdao.Detail(nanmmbyId);
-          System.out.println(list.getOrganization_id());
+             
 			if(list.getOrganization_id()!=null) {
 				String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
 				
@@ -219,7 +221,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 			  i = 0;
 				model.addAttribute("R", i);
 	            model.addAttribute("rep_list", list);
-  System.out.println("listdddd여기는 디비에서뿌려ㅑ준것이다");
+
 		  }else {
 			  String Stored_file_name= gusdao.selectStored_file_name(nanmmbyId);
 				

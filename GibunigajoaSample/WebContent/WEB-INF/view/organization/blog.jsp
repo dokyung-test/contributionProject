@@ -55,7 +55,7 @@
 <%-- 
   <link href="${pageContext.request.contextPath}/resources/kimcss/search.css"  rel="stylesheet" id="bootstrap-css"> --%>
 </head>
-<body>
+<body> 
 	<section class="hero-wrap hero-wrap-2"
 		style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_3.jpg');"
 		data-stellar-background-ratio="0.5">
@@ -109,7 +109,7 @@
 						
 								<a href="board.do?nanmmbyId=${item.nanmmbyId}"
 									class="block-20 rounded"
-									style="background-image: url('${pageContext.request.contextPath}/resources/images/image_${status.count}.jpg');">
+									style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
 								</a>
                             </c:when>
                             <c:otherwise>

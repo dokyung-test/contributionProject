@@ -254,6 +254,7 @@ function checkpass() {
     	</div>
     	<input type="hidden" id="user_type_id" name="user_type_id" value="1">
         	<input type="hidden" id="id_check_type"value="0">
+        	<input type="hidden" id="search_check_type" value="0">
     </section>
     
     
