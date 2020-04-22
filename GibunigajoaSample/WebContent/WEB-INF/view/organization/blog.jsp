@@ -94,7 +94,7 @@
 
 
 
-	<section class="ftco-section">
+	<section class="ftco-section" style = "margin-bottom:-50px;">
 
 		<div class="container">
 
@@ -245,7 +245,7 @@
 	<div class="row mt-5">
 		<div class="col text-center">
 			<div class="block-27">
-				<ul>
+				<ul style = "margin-bottom :50px;">
 					<c:if test="${Page.curPage ne 1}">
 						<li><a
 							href="response.do?curPage=${Page.prevPage}&search=${search}">&lt;</a></li>

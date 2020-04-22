@@ -174,13 +174,13 @@
 }
 /* 기부추가 버튼 꾸미기 */
 .button {
-	border-top-left-radius: 7px;
-	border-bottom-left-radius: 7px;
-	border-top-right-radius: 7px;
-	border-bottom-right-radius: 7px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
 	margin-right: -4px;
-	border: 1px solid skyblue;
-	background-color: #4e73df;
+	border: 1px solid #00043c;
+	background-color: #00043c;
 	color: white;
 	padding: 5px;
 }
@@ -202,20 +202,20 @@
 </head>
 <body id="page-top">
 
-	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+	<!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav> -->
 	
 	<!-- 기부이력 리스트 시작 -->
-	<div id="content-wrapper" class="d-flex flex-column">
+	<div id="content-wrapper" class="d-flex flex-column" style = "margin-top:70px">
 		<div id="content">
 			<div class="container-fluid" style="width: 1300px;">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h4 class="m-0 font-weight-bold text-primary">기부내역관리</h4>
 						<a style="position: absolute; right: 20px; top: 10px;">
-							<button class="button" id="testBtn" style="font-size: 20px;">기부내역 추가</button>
+							<button class="button" id="testBtn" style="font-size: 15px;margin-top:5px; ">기부내역 추가</button>
 						</a>
 						<form>
-							<input type="button" style="font-size: 20px; position: absolute; right: 160px; top: 10px;" 
+							<input type="button" style="font-size: 15px; position: absolute; right: 160px; top: 10px; margin-top:5px; margin-right:-30px; padding-left:15px; padding-right:15px;" 
 							       class="button" value="화면 출력" onclick="window.print()" />
 						</form>
 					</div>
@@ -383,7 +383,7 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<input type="button" onclick="closeModal2()" id="cancel" style="float: right; height: 50px;
-												       width: 150px; font-size: 20px;" ㄴvalue="취소" class="btn btn-primary" />
+												       width: 150px; font-size: 20px;" value="취소" class="btn btn-primary" />
 											</div>
 										</div>
 									</div>

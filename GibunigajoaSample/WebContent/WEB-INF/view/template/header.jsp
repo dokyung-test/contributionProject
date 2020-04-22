@@ -32,7 +32,7 @@
 								<i class="sr-only"></i><img alt="user"
 									src="${pageContext.request.contextPath}/resources/images/user_02.png"></span></a>
 							<div>
-								<a href="javascript:void(0);" id="loginBtn" onclick="memberloginBtn();">로그인&nbsp;&nbsp;&nbsp;</a>
+								<a href="javascript:void(0);" id="loginBtn" onclick="memberloginBtn();" style = "color : #fdbe34;">로그인&nbsp;&nbsp;&nbsp;</a>
 								<a href="javascript:void(0);" style="color: #0056b3;" id="myBtn" onclick="memberBtn();">회원가입</a>
 							</div>
 						</c:when>

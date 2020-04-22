@@ -95,8 +95,8 @@
 	border-top-right-radius: 7px;
 	border-bottom-right-radius: 7px;
 	margin-right: -4px;
-	border: 1px solid skyblue;
-	background-color: #4e73df;
+	border: 1px solid #00043c;
+	background-color: #00043c;
 	color: white;
 	padding: 5px;
 }
