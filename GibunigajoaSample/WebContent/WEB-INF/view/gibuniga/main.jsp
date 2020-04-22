@@ -32,7 +32,7 @@ window.onload = function(){
 		dataType : "json"
 	}).done(function(args){
 		if(args > 0){
-			alert("다른 이용자가 신고한 댓글이 있습니다. 댓글을 수정해주세요.");
+			alert("다른 이용자가 신고한 댓글이 있습니다.");
 		}
 				
 	}).fail(function(e){

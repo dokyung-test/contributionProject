@@ -284,7 +284,10 @@
 				<div class="tab-content bg-light rounded mt-2">
 					<c:choose>
 						<c:when test="${organizationCnt > 0}">
-		
+					<div class="tab-pane container p-0 active" >
+						<h2><a href="board.do?nanmmbyId=${requestProgram.organization_id}">${organization_name}</a></h2>
+					</div>
+					
 					<div class="tab-pane container p-0 active" >
 						<p>●대표자명:${organizationInfo.response.body.items.item.rprsntvNm}</p>
 					</div>
@@ -414,16 +417,16 @@
 		                    <c:if test="${comment.user_type_id ne 2}">
 		                    <c:choose>
 		                    	<c:when test="${comment.grade eq 0 }">
-		                    	<img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 25px;">
+		                    	<img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 21px;">
 		                    	</c:when>
 		                    	<c:when test="${comment.grade eq 1 }">
-		                    	<img alt="Lv.1" src="${pageContext.request.contextPath}/resources/images/battery_1.png" style = "width : 20px;height : 25px;">
+		                    	<img alt="Lv.1" src="${pageContext.request.contextPath}/resources/images/battery_1.png" style = "width : 20px;height : 21px;">
 		                    	</c:when>
 		                    	<c:when test="${comment.grade eq 2 }">
-		                    	<img alt="Lv.2" src="${pageContext.request.contextPath}/resources/images/battery_2.png" style = "width : 20px;height : 25px;">
+		                    	<img alt="Lv.2" src="${pageContext.request.contextPath}/resources/images/battery_2.png" style = "width : 20px;height : 21px;">
 		                    	</c:when>
 		                    	<c:when test="${comment.grade eq 3 }">
-		                    	<img alt="Lv.3" src="${pageContext.request.contextPath}/resources/images/battery_3.png" style = "width : 20px;height : 25px;">
+		                    	<img alt="Lv.3" src="${pageContext.request.contextPath}/resources/images/battery_3.png" style = "width : 20px;height : 21px;">
 		                    	</c:when>
 	                    		<c:when test="${empty comment.grade}">
 		                    	<%-- <img alt="Lv.0" src="${pageContext.request.contextPath}/resources/images/battery_0.png" style = "width : 20px;height : 25px;"> --%>
