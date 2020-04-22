@@ -349,6 +349,9 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
 	//단체회원가입 컨트롤러
 	@RequestMapping(value = "GroupUserSignup.do",method=RequestMethod.POST)
 	public String GroupUser(Model model,GroupUserCommand guc,@RequestParam("banner") MultipartFile banner,HttpServletRequest request) {
+		
+		if(banner.getOriginalFilename()!="") {
+		 
 		//파일업로드
 		String root = request.getServletContext().getRealPath("resources/images/");
 		System.out.println(root);
@@ -362,7 +365,7 @@ String Stored_file_name= gusdao.selectStored_file_name(list1.getResponse().getBo
          int i1;
        //단체회원가입시 이미지테이블에 이미지 추가하기
          i1 = gusdao.InsertOrganization_logo(organization_id, original_file_name, stored_file_name, root);
-		
+		}
 		
 		//현재시간 저장
 		guc.setRegister_date(new Date(System.currentTimeMillis()));
