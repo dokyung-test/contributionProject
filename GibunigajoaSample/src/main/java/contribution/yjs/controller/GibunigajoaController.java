@@ -20,6 +20,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -263,23 +264,7 @@ public class GibunigajoaController {
 		 * println("<script>alert('ID를 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1'; </script>"
 		 * ); out.flush();
 		 * 
-		 * }else if(command.getPassword().equals("")) {
-		 * System.out.println("password 노 입력");
-		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		 * response.getWriter(); out.
-		 * println("<script>alert('password를 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
-		 * ); out.flush(); }else if(command.getName().equals("")) {
-		 * System.out.println("name 노 입력"); singnUpSuccess = "signupCheck.do?num=1";
-		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		 * response.getWriter(); out.
-		 * println("<script>alert('이름을 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
-		 * ); out.flush(); }else if(command.getNickname().equals("")) {
-		 * System.out.println("nickname 노 입력"); singnUpSuccess = "signupCheck.do?num=1";
-		 * //location.href='signupCheck.do?num=1';
-		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		 * response.getWriter(); out.
-		 * println("<script>alert('닉네임을 입력하지 않으셨습니다.'); location.href='signupCheck.do?num=1';</script>"
-		 * ); out.flush(); }else {}
+		 * }else {}
 		 */
 			System.out.println("다 입력");
 		
@@ -397,6 +382,15 @@ public class GibunigajoaController {
 		 
 	 }
 	 
+	 
+	 @ExceptionHandler(Exception.class)
+	 public ModelAndView handleException(HttpServletRequest request, Exception ex) {
+		System.out.println("들어오니?");
+	    ModelAndView mv =new ModelAndView("error/exception");
+	    System.out.println("Message: "+ex.getMessage());
+	    mv.addObject("message", ex.getMessage());
+	    return mv;
+	 }
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {

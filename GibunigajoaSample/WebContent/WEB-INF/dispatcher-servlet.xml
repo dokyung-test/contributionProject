@@ -81,9 +81,6 @@
 			<prop key="java.lang.Exception">
 				error/exception
 			</prop>
-			<prop key="java.lang.NullPointerException">
-				error/nullException
-			</prop>
 		</props>
 	</property>
 	</bean> 
