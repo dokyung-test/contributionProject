@@ -164,7 +164,7 @@
 	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
 	<script src="<c:url value="/resources/js/logoutcheck.js?v=1"/>"></script>
-	<script src="<c:url value="/resources/js/bookmarksrcipt.js?"/>"></script>
+	<script src="<c:url value="/resources/js/bookmarkdelete.js?"/>"></script>
 
 	<!-- Bootstrap core JavaScript-->
 	<script
