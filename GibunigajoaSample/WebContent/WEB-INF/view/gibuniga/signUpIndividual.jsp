@@ -71,38 +71,38 @@
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">password(필수)</label>
+													<label class="label" for="password">비밀번호(필수)</label>
 														<div class="form-group">
 														<input type="password" class="form-control" name="password" id="password" placeholder="password" style="width: 70%; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">passwordCheck</label>
+													<label class="label" for="password">비밀번호확인</label>
 														<div class="form-group">
 														<input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="passwordCheck" onchange="signupPasswordCheck()" style="width: 70%; display: inline-block;">
 														<div id="passwordChkResult"></div> 
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="name">Name(필수)</label>
+													<label class="label" for="name">이름(필수)</label>
 														<div class="form-group">
 														<input type="text" class="form-control" name="name" id="name" placeholder="Name" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="name">Nickname(필수)</label>
+													<label class="label" for="name">닉네임(필수)</label>
 														<div class="form-group">
 														<input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickName" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="birthday">birthday</label>
+													<label class="label" for="birthday">생년월일</label>
 														<div class="form-group">
 														<input type="date" class="form-control" name="birthday" id="birthday" style="width: 70%; margin: auto; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12">
-													<label class="label" for="phone_number">PhoneNumber</label>
+													<label class="label" for="phone_number">연락처</label>
 														<div class="form-group">
 														<input type="number" class="form-control" name="phone_number" id="phone_number" style="width: 70%; margin: auto; display: inline-block;">
 													</div>

@@ -128,13 +128,13 @@ function checkpass() {
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">password</label>
+													<label class="label" for="password">비밀번호</label>
 														<div class="form-group">
 														<input type="password" class="form-control" name="password" id="password" placeholder="password" style="width: 70%; display: inline-block;">
 													</div>
 												</div>
 												<div class="col-md-12"> 
-													<label class="label" for="password">passwordCheck</label>
+													<label class="label" for="password">비밀번호확인</label>
 														<div class="form-group">
 														<input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="passwordCheck" onchange="signupPasswordCheck()" style="width: 70%; display: inline-block;">
 														<div id="passwordChkResult"></div> 
