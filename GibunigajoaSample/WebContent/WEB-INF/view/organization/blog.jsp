@@ -110,13 +110,13 @@
 						
 								<a href="board.do?nanmmbyId=${item.nanmmbyId}"
 									class="block-20 rounded"
-									style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
+						 			style="background-image: url('${pageContext.request.contextPath}/resources/images/organization_default.jpg');">
 								</a>
                             </c:when>
                             <c:otherwise>
                             <a href="board.do?nanmmbyId=${item.nanmmbyId}"
 									class="block-20 rounded"
-									style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${item.stored_file_name}');">
+									style="background-image: url('http://192.168.0.83:8081/GibunigajoaSample/resources/images/${item.stored_file_name}');">
 								</a>
                             </c:otherwise>
                                                        
@@ -198,8 +198,8 @@
                             </c:when>
                             <c:otherwise>
                             <a href="board.do?nanmmbyId=${rep.response.body.items.item.nanmmbyId}"
-									class="block-20 rounded"
-									style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
+									class="block-20 rounded" 
+									style="background-image: url('http://192.168.0.83:8081/GibunigajoaSample/resources/images/${banner}');">
 								</a>
                             </c:otherwise>
                                                        

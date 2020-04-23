@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -282,8 +283,9 @@
          <!-- 프로그램당 반복구간-->
           <div class="col-md-4 d-flex ftco-animate">
            <div class="blog-entry align-self-stretch">
+		<c:set var = "leg" value="${fn:length(program.banner_file_name)}"></c:set>
            <c:choose>
-           		<c:when test="${program.banner_file_name eq '' || empty program.banner_file_name}">
+           		<c:when test="${program.banner_file_name eq '' || empty program.banner_file_name || leg eq 0}">
            		          <a class="block-20 rounded" style="background-image: url(${pageContext.request.contextPath}/resources/images/organization_default.jpg);" href = "${pageContext.request.contextPath}/showProgram.do?program_id=${program.program_id}&organization_id=${program.organization_id}"></a>
            		</c:when>
            		<c:when test="${program.banner_file_name ne '' || !empty program.banner_file_name}">
