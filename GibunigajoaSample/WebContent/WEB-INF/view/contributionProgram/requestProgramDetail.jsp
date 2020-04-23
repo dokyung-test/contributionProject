@@ -70,6 +70,8 @@
 			//alert("return : " + args);
 			if(args > 0){
 				reportBlock();
+			}else if(args == -1){
+				alert("로그인 후에 시도해주세요.");
 			}else{
 				//alert("신고안됨");
 				report(organization_id, program_id, user_idx, comment_id);

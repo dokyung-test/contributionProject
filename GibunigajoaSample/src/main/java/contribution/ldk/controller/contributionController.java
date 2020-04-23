@@ -458,11 +458,16 @@ public class contributionController {
 		comment.setProgram_id(program_id);
 		comment.setUser_idx(user_idx);
 		String idx = String.valueOf(session.getAttribute("user_idx"));
-		comment.setReporter_idx(Integer.parseInt(idx));
-		comment.setComment_id(comment_id);
-		int count = service.checkReportedComment(comment);
-		System.out.println("신고된 수 : " + count);
-		return count;
+		if(idx == null || idx.equals("") || idx.equals("null")) {
+			return -1;
+		}else {
+			comment.setReporter_idx(Integer.parseInt(idx));
+			comment.setComment_id(comment_id);
+			int count = service.checkReportedComment(comment);
+			System.out.println("신고된 수 : " + count);
+			return count;
+		}
+		
 	}
 
 	// 아직 신고되지 않은 댓글 -> insert후 notify_flg = 1
