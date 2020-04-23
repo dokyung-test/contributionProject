@@ -71,7 +71,7 @@ function kakaoPay(){
 			   				alert("늘 함께 응원해주셔서 감사합니다.\nLv.3 등급이 되셨습니다.");
 			   			}
 			   			var idx = $("#user_idx").val()
-			   			alert("idx : " + idx);
+			   			/*alert("idx : " + idx);*/
 			   			if(idx){
 			   				window.open("registerComment.do?organization_id="+organization_id+"&program_id="+program_id, '_blank', 'width=700. height=400');
 			   			}else if(!idx){
