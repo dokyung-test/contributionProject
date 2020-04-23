@@ -26,7 +26,7 @@ public class NaverLoginBO {
 	//state: 애플리케이션이 생성한 상태 토큰
 	private final static String CLIENT_ID = "CnBmTQOvufPYittG7rjY";
 	private final static String CLIENT_SECRET = "535FmsX7Cm";
-	private final static String REDIRECT_URI = "http://localhost:8081/GibunigajoaSample/callback.do";
+	private final static String REDIRECT_URI = "http://192.168.0.83:8081/GibunigajoaSample/callback.do";
 	private final static String SESSION_STATE = "oauth_state";
 	
 	/* 프로필 조회 API URL */
