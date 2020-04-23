@@ -49,7 +49,11 @@
 					for(var index = 0; index <= args.length - 1; index++){
 						msg += "<div class='col-md-4 d-flex ftco-animate' style = 'opacity:100;visibility:visible'>";
 						msg += "<div class='blog-entry align-self-stretch'>";
-						msg += "<a class='block-20 rounded' style='background-image: url(${pageContext.request.contextPath}/resources/images/"+args[index].banner_file_name+");' href = '${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>";
+						if(args[index].banner_file_name == "" || args[index].banner_file_name == null){
+							msg += "<a class='block-20 rounded' style='background-image: url(${pageContext.request.contextPath}/resources/images/organization_default.jpg);' href = '${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>";
+						}else{
+							msg += "<a class='block-20 rounded' style='background-image: url(${pageContext.request.contextPath}/resources/images/"+args[index].banner_file_name+");' href = '${pageContext.request.contextPath}/showProgram.do?program_id="+args[index].program_id+"&organization_id="+args[index].organization_id+"'>";
+						}
 						msg += "</a>";
 						msg += "<div class='text mt-3 text-center'>";
 						msg += "<div class='meta mb-2'>";
