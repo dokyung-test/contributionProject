@@ -284,6 +284,8 @@
 				<div class="tab-content bg-light rounded mt-2">
 					<c:choose>
 						<c:when test="${organizationCnt > 0}">
+						<!-- 공공데이터에서 습득한 정보 -->
+							<c:if test="${dataFlg eq 1}">
 					<div class="tab-pane container p-0 active" >
 						<h2><a href="board.do?nanmmbyId=${requestProgram.organization_id}">${organization_name}</a></h2>
 					</div>
@@ -312,6 +314,37 @@
 								href="${organizationInfo.response.body.items.item.hmpgAdres}">${organizationInfo.response.body.items.item.hmpgAdres}</a>
 						</p>
 					</div>
+					</c:if>
+					<c:if test="${dataFlg eq 2 }">
+					<div class="tab-pane container p-0 active" >
+						<h2><a href="board.do?nanmmbyId=${requestProgram.organization_id}">${organization_name}</a></h2>
+					</div>
+					
+					<div class="tab-pane container p-0 active" >
+						<p>●대표자명:${organizationInfo.rprsntvNm}</p>
+					</div>
+					<div class="tab-pane container p-0 active">
+						<p>●설립일:${organizationInfo.fondDe}</p>
+					</div> 
+					<div class="tab-pane container p-0 active" >
+						<p>●사업자번호:${organizationInfo.bizrno}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●전화번호:${organizationInfo.dmstcTelno}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●팩스번호:${organizationInfo.fxnum}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>●주소:${organizationInfo.adres}</p>
+					</div>
+					<div class="tab-pane container p-0 active" >
+						<p>
+							●홈페이지:<a
+								href="${organizationInfo.hmpadres}">${organizationInfo.hmpadres}</a>
+						</p>
+					</div>
+					</c:if>
 					</c:when>
 					<c:when test="${organizationCnt == 0 }">
 						준비중입니다.

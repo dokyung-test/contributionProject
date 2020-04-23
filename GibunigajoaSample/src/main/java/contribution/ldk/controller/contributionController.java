@@ -149,6 +149,9 @@ public class contributionController {
 		int cnt = responseCon.getOrganizationCntInfo(organization_id);
 		
 		if(cnt > 0) {
+			//공공데이터에서 습득했는지, DB에서 습득했는지 구분용
+			//공공데이터에서 습득 = 1
+			mav.addObject("dataFlg", 1);
 			ResponseOne organizationInfo = responseCon.getOrganizationInfo(organization_id);
 			/*
 			 * String foundationDate =
@@ -167,12 +170,17 @@ public class contributionController {
 			if(organization.getOrganization_id().equals("")) {//빈 객체 -> DB에서도 습득불가
 				mav.addObject("organizationCnt", 0);
 			}else {//DB에서라도 정보습득
+				//공공데이터에서 습득했는지, DB에서 습득했는지 구분용
+				//공공데이터에서 습득 = 2
+				mav.addObject("dataFlg", 2);
 				mav.addObject("organizationCnt", 1);
 				mav.addObject("organizationInfo", organization);
+				System.out.println(organization);
 			}
 			
 		}
-		System.out.println(responseCon.getOrganizationCntInfo(organization_id));
+		
+		/* System.out.println(responseCon.getOrganizationCntInfo(organization_id)); */
 		return mav;
 	}
 

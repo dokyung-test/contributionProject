@@ -135,6 +135,15 @@ public class GroupUserCommand {
 	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
+	@Override
+	public String toString() {
+		return "GroupUserCommand [user_id=" + user_id + ", password=" + password + ", name=" + name
+				+ ", organization_id=" + organization_id + ", nanmmByNm=" + nanmmByNm + ", rprsntvNm=" + rprsntvNm
+				+ ", fondDe=" + fondDe + ", cntrDdcTy=" + cntrDdcTy + ", ctbgrnpAppnNo=" + ctbgrnpAppnNo
+				+ ", dmstcTelno=" + dmstcTelno + ", fxnum=" + fxnum + ", adres=" + adres + ", adres_detail="
+				+ adres_detail + ", zip=" + zip + ", hmpadres=" + hmpadres + ", bizrno=" + bizrno + ", type_id="
+				+ type_id + ", nickname=" + nickname + ", register_date=" + register_date + "]";
+	}
 	
 	
 	

@@ -68,7 +68,8 @@
 	<!-- 공지사항 상세 시작 -->
 	<div class="container">
 		<div class="col-md-12">
-			<h1 class="mb-4">공지사항 상세</h1>
+	<!-- 		<h1 class="mb-4">공지사항 상세</h1> -->
+	<br>
 			<button onclick="returnNotice()" class="btn btn-primary"
 				style="position: relative; left: 800px; width: 250px; font-size: 20px;">목록</button>
 			<div class="row no-gutters mb-5" style="background: #e8edf0;">
