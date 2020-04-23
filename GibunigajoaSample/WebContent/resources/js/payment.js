@@ -10,6 +10,7 @@ function kakaoPay(){
 	var organization_id = $("#organization_id").val();
 	var program_id = $("#program_id").val();
 	
+	//난수만들기 
 	const today = new Date();
 	const ms = today.getMilliseconds();
 	var a = Math.floor(Math.random() * 1000) + 1;
@@ -27,6 +28,7 @@ function kakaoPay(){
 			method: 'easy', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
 			show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
 			
+			//네이버에서 필요 
 			user_info: { //우리 쪽 db에서 작업 
 				username: nickname
 			},
