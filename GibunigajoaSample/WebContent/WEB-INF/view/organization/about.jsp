@@ -54,7 +54,7 @@
 				<c:when test="${banner!=null}">
 					<div
 						class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end"
-						style="background-image: url('http://localhost:8081/GibunigajoaSample/resources/images/${banner}');">
+						style="background-image: url('http://192.168.0.83:8081/GibunigajoaSample/resources/images/${banner}');">
 						
 					</div>
 					</c:when>
@@ -277,7 +277,7 @@
 												<p class="heading"><a id="aaa${status.count}" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.response.body.items.item.nanmmbyId}" onmouseover="onfocusTest('aaa${status.count}')" onmouseout="onblurTest('aaa${status.count}')">${item.program_subject}</a></p> 
 												</c:if>
 												<c:if test="${R==0}">    
-												<p class="heading"><a id="aaa${status.count}" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.nanmmByNm}" onmouseover="onfocusTest('aaa${status.count}')" onmouseout="onblurTest('aaa${status.count}')">${item.program_subject}</a></p> 
+												<p class="heading"><a id="aaa${status.count}" href="showProgram.do?program_id=${item.program_id}&organization_id=${rep_list.organization_id}" onmouseover="onfocusTest('aaa${status.count}')" onmouseout="onblurTest('aaa${status.count}')">${item.program_subject}</a></p> 
 											
 												</c:if>
 												
