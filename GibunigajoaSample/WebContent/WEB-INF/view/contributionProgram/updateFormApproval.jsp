@@ -173,7 +173,7 @@
 							<div class="row no-gutters mb-5" style="background: #e8edf0;">
 								<!-- <div class="col-md-7"> -->
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">모집프로그램신청</h3>
+										<h3 class="mb-4">모집프로그램수정</h3>
 										<form:form commandName="updateProgram" action="${pageContext.request.contextPath}/updateProgramApproval.do" enctype="multipart/form-data">
 											 <input type = "hidden" id = "organization_id" name = "organization_id" value = "<%=session.getAttribute("organization_id")%>"/>
 											 <input type = "hidden" id = "program_id" name = "program_id" value = "${updateProgram.program_id}"/>
