@@ -69,14 +69,14 @@
 							<thead>
 								<tr>
 									<th style="font-size: 20px;">기관명</th>
-									<th style="font-size: 20px">즐겨찾기</th>
+									<th style="font-size: 20px; width:120px;" >즐겨찾기</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="list" items="${list}">
 									<tr>
 										<td style="font-size: 15px"><a href="board.do?nanmmbyId=${list.organization_id}">${list.nanmmbyNm}</a></td>
-										<td style="font-size: 15px">
+										<td style="font-size: 15px;" align="center">
 										<div onClick="bookmark('${list.organization_id}','img${status.count}','${list.nanmmbyNm}')">
 											<img id="img${status.count}" src="${pageContext.request.contextPath}/resources/images/pStar.png">
 										</div></td>
