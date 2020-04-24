@@ -26,6 +26,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
+
 <script>
 $(function() {
  	//회원탈퇴 누를시 modal창 띄우는 jquery
@@ -243,8 +244,23 @@ function checkpass() {
 	<script src="<c:url value="/resources/js/owl.carousel.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/scrollax.min.js"/>"></script>
-	<script ㄴsrc="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="<c:url value="/resources/js/google-map.js"/>"></script>
 	<script src="<c:url value="/resources/js/main.js"/>"></script>
+	
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+	<!-- Page level plugins -->
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/check.js?v=2"></script>
+	<script src="${pageContext.request.contextPath}/resources/vendor/datatables/check3.js?v=2"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/deleteUser.js?v=2"></script>
+	<!-- Page level custom scripts -->
+	<script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 </body>
 </html>
